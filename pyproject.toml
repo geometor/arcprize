@@ -1,0 +1,39 @@
+[project]
+name = "geometor-arcprize"
+dynamic = ["version"]
+authors = [
+  { name="phi ARCHITECT", email="github@phiarchitect.com" },
+]
+description = "tools and research for the arcprize contest"
+readme = "README.rst"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "textual",
+    "rich",
+    "jinja2",
+]
+
+[project.scripts]
+arcprize = "geometor.arcprize.__main__:run"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["geometor"]
+namespaces = true
+
+[tool.setuptools.dynamic]
+version = {attr = "geometor.arcprize.__version__"}
+
+[project.urls]
+"Website" = "https://geometor.github.io/arcprize"
+"Repository" = "https://github.com/geometor/arcprize"
+"Issues" = "https://github.com/geometor/arcprize/issues"
