@@ -8,6 +8,7 @@ from multiprocessing import Pool, cpu_count
 from geometor.model import Model
 from geometor.model.helpers import *
 from geometor.render import Plotter, Sequencer
+from geometor.arcprize.styles import ARC_STYLES
 
 def load_data(file_path):
     with open(file_path, "r") as file:
@@ -25,6 +26,7 @@ def generate_model(data, filename_prefix, output_dir):
             x = x if x > 1 else 2
             y = y if y > 1 else 2
             plotter = Plotter(model.name, FIG_W=16, FIG_H=9)
+            plotter.add_styles(ARC_STYLES)
             plotter.plot_model(model)
             plt.savefig(os.path.join(output_dir, f"{model.name}.png"))
             plt.close()
