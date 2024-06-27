@@ -3,25 +3,6 @@ import os
 from collections import Counter
 
 
-def load_data(file_path):
-    with open(file_path, "r") as file:
-        return json.load(file)
-
-
-def get_size_average(file_path):
-    data = load_data(file_path)
-    total_area = 0
-    num_samples = len(data["train"])
-
-    for sample in data["train"]:
-        input_matrix = sample["input"]
-        output_matrix = sample["output"]
-        input_area = len(input_matrix) * len(input_matrix[0])
-        output_area = len(output_matrix) * len(output_matrix[0])
-        total_area += input_area + output_area
-
-    return total_area / num_samples if num_samples > 0 else 0
-
 
 class Grid:
     def __init__(self, matrix):
@@ -72,6 +53,20 @@ class Puzzle:
             color: output_counts[color] - input_counts[color] for color in self.colors
         }
 
+
+    def get_size_average(file_path):
+        data = load_data(file_path)
+        total_area = 0
+        num_samples = len(data["train"])
+
+        for sample in data["train"]:
+            input_matrix = sample["input"]
+            output_matrix = sample["output"]
+            input_area = len(input_matrix) * len(input_matrix[0])
+            output_area = len(output_matrix) * len(output_matrix[0])
+            total_area += input_area + output_area
+
+        return total_area / num_samples if num_samples > 0 else 0
 
 class PuzzleSet:
     def __init__(self, folder_path):
