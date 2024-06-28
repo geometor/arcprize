@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from geometor.render import Plotter
 from geometor.arcprize.styles import ARC_STYLES
 from model import PuzzleSet, Puzzle, PuzzlePair, Grid
+from multiprocessing import Pool, cpu_count
 
 class ARCRenderer:
     def __init__(self, output_dir, fig_w=16, fig_h=9):
@@ -31,16 +32,26 @@ class ARCRenderer:
             self.render_pair(pair)
 
     def render_puzzle_set(self, puzzle_set: PuzzleSet):
-        for puzzle in puzzle_set.puzzles:
-            self.render_puzzle(puzzle)
+        num_workers = cpu_count()
+        print(f"Using {num_workers} workers")
 
-def main():
-    input_dir = "../../../refs/ARC-800-tasks/training"
-    output_dir = "./rendered_puzzles"
+        with Pool(num_workers) as pool:
+            pool.map(self.render_puzzle, puzzle_set.puzzles)
 
+def process_puzzle_set(args):
+    input_dir, output_dir = args
     puzzle_set = PuzzleSet(input_dir)
     renderer = ARCRenderer(output_dir)
     renderer.render_puzzle_set(puzzle_set)
+    return f"Processed {len(puzzle_set.puzzles)} puzzles"
+
+def main():
+    input_dir = "../refs/ARC-800-tasks/training"
+    output_dir = "./rendered_puzzles"
+
+    args = (input_dir, output_dir)
+    result = process_puzzle_set(args)
+    print(result)
 
 if __name__ == "__main__":
     main()
