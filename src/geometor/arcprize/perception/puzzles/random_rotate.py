@@ -9,7 +9,7 @@ from geometor.arcprize.perception.symbols import SYMBOL_SETS
 
 def generate_puzzle(size=3, error_chance=0.1, max_errors=1, symbol_set_key="digits"):
     symbol_set = SYMBOL_SETS[symbol_set_key]
-    input_grid = generate_grid(size, symbol_set)
+    input_grid = generate_grid(size, size, symbol_set)
     rotation = random.choice(["none", "right", "left", "full"])
     output_grid = rotate_grid(input_grid, rotation)
 
