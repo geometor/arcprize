@@ -1,0 +1,40 @@
+.
+├── demos
+│   └── training
+├── docsrc
+│   ├── demos
+│   ├── mission
+│   ├── modules
+│   ├── __pycache__
+│   ├── refs
+│   │   └── anaximander
+│   ├── _static
+│   │   └── css
+│   └── usage
+├── dreaming
+│   ├── ffmpeg-png
+│   └── png
+│       └── ffmpeg-png
+├── refs
+│   ├── ARC-800-tasks
+│   │   ├── evaluation
+│   │   ├── reports
+│   │   └── training
+│   ├── arc-prize-2024
+│   ├── chollets-arc-challenge-current-winners
+│   └── tests
+└── src
+    ├── geometor
+    │   └── arcprize
+    │       ├── perception
+    │       │   ├── grids
+    │       │   │   └── __pycache__
+    │       │   ├── models
+    │       │   │   └── __pycache__
+    │       │   ├── puzzles
+    │       │   │   └── __pycache__
+    │       │   └── __pycache__
+    │       └── __pycache__
+    └── geometor_arcprize.egg-info
+
+37 directories

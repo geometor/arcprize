@@ -1,8 +1,10 @@
 
 import random
 import numpy as np
+from jinja2 import Environment, PackageLoader
 
-from geometor.arcprize.perception.grids.random_grid import generate_grid
+
+from geometor.arcprize.perception.grids.random_rectangles import generate_grid
 from geometor.arcprize.perception.grids.tools import rotate_grid, introduce_errors, grid_to_string
 from geometor.arcprize.perception.symbols import SYMBOL_SETS
 
@@ -22,19 +24,16 @@ def generate_puzzle(size=3, error_chance=0.1, max_errors=1, symbol_set_key="digi
 
 
 def generate_prompt(input_grid, output_grid, row_delimiter="\n", cell_delimiter=" "):
-    prompt = f"""Analyze the following input and output grids and determine the rotation applied:
+    env = Environment(
+            loader=PackageLoader("geometor.arcprize.perception", "puzzles"),
+    )
+    template_variables = {
+        "input_grid": grid_to_string(input_grid, row_delimiter, cell_delimiter),
+        "output_grid": grid_to_string(output_grid, row_delimiter, cell_delimiter),
+    }
+    template = env.get_template("random_rotate.txt.j2")
+    prompt = template.render(template_variables)
 
-Input grid:
-{grid_to_string(input_grid, row_delimiter, cell_delimiter)}
-
-Output grid:
-{grid_to_string(output_grid, row_delimiter, cell_delimiter)}
-
-Determine the rotation applied to transform the input grid into the output grid. Respond with exactly one of these words: `none`, `right`, `left`, `full`, or `error`.
-
-do not explain your answer
-
-Answer:"""
     return prompt
 
 

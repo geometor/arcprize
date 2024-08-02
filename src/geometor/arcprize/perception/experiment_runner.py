@@ -1,8 +1,8 @@
 from rich import print
 from datetime import datetime
 
-from puzzles.random_rotate import generate_puzzle_set
-from models.ollama import generate_response
+from .puzzles.random_rotate import generate_puzzle_set
+from .models.ollama import generate_response
 
 
 def test_individual_puzzles(puzzles, model):
@@ -32,30 +32,3 @@ def test_individual_puzzles(puzzles, model):
     return results
 
 
-def run_experiments(symbol_sets, puzzles_per_set, min_size, max_size, model):
-    all_results = []
-
-    for symbol_set in symbol_sets:
-        puzzles = generate_puzzle_set(
-            puzzles_per_set,
-            min_size=min_size,
-            max_size=max_size,
-            symbol_set_key=symbol_set,
-            cell_delimiter="",
-        )
-
-        print(f"\nTesting with {symbol_set} symbol set:")
-
-        results = test_individual_puzzles(puzzles, model)
-        all_results.extend(results)
-
-        correct_count = sum(1 for r in results if r["is_correct"])
-        print(f"Individual testing: {correct_count} out of {len(puzzles)} correct")
-
-        print("\nDetailed results:")
-        for r in results:
-            print(
-                f"{r['index']}: Size: {r['size']}, Response: {r['model_response']}, Correct: {r['is_correct']}, Time: {r['processing_time']:.2f}s"
-            )
-
-    return all_results
