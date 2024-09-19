@@ -1,0 +1,19 @@
+{
+  "model": "phi3:mini",
+  "symbol_sets": [
+    "digits",
+    "letters",
+    "symbols"
+  ],
+  "timestamp": "2024-08-02T06:42:19.954797",
+  "results": [
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 17.243346691131592,
+      "model": "phi3:mini",
+      "symbol_set": "digits",
+      "input_grid": 

@@ -1,0 +1,3011 @@
+{
+  "model": "phi3:mini",
+  "symbol_sets": [
+    "digits",
+    "letters",
+    "symbols"
+  ],
+  "timestamp": "2024-08-01T22:44:27.987323",
+  "results": [
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 17.424864530563354,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.189412593841553,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.22462010383606,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 3,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.200358867645264,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 4,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.160282850265503,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 5,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.268043518066406,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 6,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.231894969940186,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 7,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.20829725265503,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 8,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.18640398979187,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 9,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.223483562469482,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 10,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.222929954528809,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 11,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.3008873462677,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 12,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.306727170944214,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 13,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.23234224319458,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 14,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.367175340652466,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 15,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.264568328857422,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 16,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.41549563407898,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 17,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.143333435058594,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 18,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.335014581680298,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 19,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.432306051254272,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 20,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.207743883132935,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 21,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.331417083740234,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 22,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.367652416229248,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 23,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.44555115699768,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 24,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.375716209411621,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 25,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.384145498275757,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 26,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.476897239685059,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 27,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.630048513412476,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 28,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.632188558578491,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 29,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.452796459197998,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 30,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.40238881111145,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 31,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.404026508331299,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 32,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.423390865325928,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 33,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.644466638565063,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 34,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.432479619979858,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 35,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.4964919090271,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 36,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.35688829421997,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 37,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.381825685501099,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 38,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.386999607086182,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 39,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.3968505859375,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 40,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.291077375411987,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 41,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.412263631820679,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 42,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.455165147781372,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 43,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.848793268203735,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 44,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.49176287651062,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 45,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.47464919090271,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 46,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.40981125831604,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 47,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.552441358566284,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 48,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.544471263885498,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 49,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.480650901794434,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 50,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.564426898956299,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 51,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.499832391738892,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 52,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.523399591445923,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 53,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.57509469985962,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 54,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.44497013092041,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 55,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.578634977340698,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 56,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.440156936645508,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 57,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.584626197814941,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 58,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.45479440689087,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 59,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.476467609405518,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 60,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.492505550384521,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 61,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.448074579238892,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 62,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.552376985549927,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 63,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.586610794067383,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 64,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.532593011856079,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 65,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.563212633132935,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 66,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.298262357711792,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 67,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.46925163269043,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 68,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.36846113204956,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 69,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.452339172363281,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 70,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.531842470169067,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 71,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.483237028121948,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 72,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.468380689620972,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 73,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.540505409240723,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 74,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.512619733810425,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 75,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.396448135375977,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 76,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.507503509521484,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 77,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.36835241317749,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 78,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.463988780975342,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 79,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.486570835113525,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 80,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.540302515029907,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 81,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.484693765640259,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 82,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.518381118774414,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 83,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.404929637908936,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 84,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.507103443145752,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 85,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.736928224563599,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 86,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.590943574905396,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 87,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.529014825820923,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 88,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.522071599960327,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 89,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.515170574188232,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 90,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.34944462776184,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 91,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.592513799667358,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 92,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.459775924682617,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 93,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.484500408172607,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 94,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.536384105682373,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 95,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.572309255599976,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 96,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.47162652015686,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 97,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.423875570297241,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 98,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.499312400817871,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 99,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.465647459030151,
+      "model": "phi3:mini",
+      "symbol_set": "digits"
+    },
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.249297380447388,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.386621713638306,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.017549514770508,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 3,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.35559892654419,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 4,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.355337142944336,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 5,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.516908407211304,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 6,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.867082834243774,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 7,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.463332176208496,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 8,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 7.883741140365601,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 9,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.111278295516968,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 10,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.523890733718872,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 11,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.022117137908936,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 12,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.375544309616089,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 13,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.219435691833496,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 14,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.096809387207031,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 15,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.198800802230835,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 16,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 8.281046390533447,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 17,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.538914442062378,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 18,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.376389265060425,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 19,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.83673357963562,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 20,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.131138563156128,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 21,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.42832350730896,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 22,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.5926194190979,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 23,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.02460789680481,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 24,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.339004278182983,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 25,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.408182859420776,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 26,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.49641728401184,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 27,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.347512006759644,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 28,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.072731733322144,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 29,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.103277921676636,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 30,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.495665788650513,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 31,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 7.980523109436035,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 32,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.475694417953491,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 33,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.15929126739502,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 34,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.539166927337646,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 35,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.973073244094849,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 36,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.16698431968689,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 37,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.144431352615356,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 38,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.14076042175293,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 39,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.459759712219238,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 40,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.115772485733032,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 41,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.064618825912476,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 42,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.260004043579102,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 43,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.019198179244995,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 44,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.117373704910278,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 45,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.106876373291016,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 46,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.37214732170105,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 47,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.981890916824341,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 48,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.289910554885864,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 49,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.059635639190674,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 50,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.335876703262329,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 51,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.107749938964844,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 52,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.035021305084229,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 53,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.383549451828003,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 54,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.140299081802368,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 55,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.108553647994995,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 56,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.976483106613159,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 57,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.048572540283203,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 58,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.068110942840576,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 59,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.151772499084473,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 60,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.084045886993408,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 61,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.496714115142822,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 62,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.995874881744385,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 63,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.107393741607666,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 64,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.396800518035889,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 65,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.519788026809692,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 66,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.118901014328003,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 67,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.958179950714111,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 68,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.439307928085327,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 69,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.046700954437256,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 70,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.035982131958008,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 71,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.04849910736084,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 72,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.03847885131836,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 73,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.06498670578003,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 74,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.224445819854736,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 75,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.21004033088684,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 76,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.271132946014404,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 77,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.015740156173706,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 78,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.05109977722168,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 79,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.096987009048462,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 80,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.33493447303772,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 81,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.117064476013184,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 82,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.123176574707031,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 83,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.428711652755737,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 84,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.375010251998901,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 85,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.18794870376587,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 86,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.300814867019653,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 87,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.043933391571045,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 88,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.34714150428772,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 89,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.079053163528442,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 90,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.628559350967407,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 91,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.664423942565918,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 92,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.203677892684937,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 93,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.187614679336548,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 94,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.243776082992554,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 95,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.09070086479187,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 96,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.499478340148926,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 97,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.080876111984253,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 98,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.366841793060303,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 99,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.06345796585083,
+      "model": "phi3:mini",
+      "symbol_set": "letters"
+    },
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 7.997599124908447,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 7.967756271362305,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 7.657199144363403,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 3,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.08744192123413,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 4,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.159011363983154,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 5,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.108465909957886,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 6,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.019657850265503,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 7,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.052296876907349,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 8,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.02069354057312,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 9,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.215309858322144,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 10,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.360960483551025,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 11,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.995113372802734,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 12,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.16787338256836,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 13,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.208831787109375,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 14,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.250969886779785,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 15,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.164186000823975,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 16,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.008402824401855,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 17,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.252567052841187,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 18,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 7.935900449752808,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 19,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.23302698135376,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 20,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.239442825317383,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 21,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.276580810546875,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 22,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.10350775718689,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 23,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 8.064084768295288,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 24,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.859261989593506,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 25,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.201054811477661,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 26,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.219719409942627,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 27,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.211246967315674,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 28,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 7.864309549331665,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 29,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.392842054367065,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 30,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.159608840942383,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 31,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.162906169891357,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 32,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 8.400806903839111,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 33,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.103160619735718,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 34,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.246228456497192,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 35,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.211324453353882,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 36,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.096220016479492,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 37,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.306255102157593,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 38,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.16505217552185,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 39,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.139419078826904,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 40,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.088639259338379,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 41,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.110356092453003,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 42,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.3002610206604,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 43,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.1004958152771,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 44,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.08507776260376,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 45,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.9263389110565186,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 46,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.235171556472778,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 47,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 8.02883505821228,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 48,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.043387174606323,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 49,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.091203689575195,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 50,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.03946590423584,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 51,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.9317522048950195,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 52,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.058674097061157,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 53,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 7.916022062301636,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 54,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.19674825668335,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 55,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.092222690582275,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 56,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.131596326828003,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 57,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.519323348999023,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 58,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.071510553359985,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 59,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 8.013423442840576,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 60,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.219542026519775,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 61,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.128582239151001,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 62,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.044826984405518,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 63,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.079867124557495,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 64,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.418920755386353,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 65,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.067409753799438,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 66,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.052838563919067,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 67,
+      "size": 3,
+      "model_response": "error",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.000356912612915,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 68,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.171106815338135,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 69,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.938630819320679,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 70,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.389130592346191,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 71,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.105638027191162,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 72,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.90405797958374,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 73,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.136506795883179,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 74,
+      "size": 3,
+      "model_response": "error",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 7.944731950759888,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 75,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 7.919633388519287,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 76,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.943231582641602,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 77,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 7.893040657043457,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 78,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 7.967111587524414,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 79,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.279165506362915,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 80,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.1029372215271,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 81,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.939755916595459,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 82,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.12676191329956,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 83,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.991148948669434,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 84,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.15956974029541,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 85,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 7.8831870555877686,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 86,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.031739234924316,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 87,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.039892435073853,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 88,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "full",
+      "is_correct": true,
+      "processing_time": 7.9889867305755615,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 89,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.164104223251343,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 90,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 7.931891918182373,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 91,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.099037408828735,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 92,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.252251148223877,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 93,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.164136171340942,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 94,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 8.175867557525635,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 95,
+      "size": 3,
+      "model_response": "full",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 7.923271417617798,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 96,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.196673393249512,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 97,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.87551212310791,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 98,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "left",
+      "is_correct": true,
+      "processing_time": 8.06822657585144,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    },
+    {
+      "index": 99,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "right",
+      "is_correct": true,
+      "processing_time": 8.1005859375,
+      "model": "phi3:mini",
+      "symbol_set": "symbols"
+    }
+  ]
+}

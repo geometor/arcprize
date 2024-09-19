@@ -1,0 +1,341 @@
+index,size,model_response,correct_answer,is_correct,processing_time,model,symbol_set,input_grid,output_grid
+0,9,none,none,True,20.525460243225098,phi3:mini,digits,"2 3 3 3 3 3 3 3 3
+3 1 1 1 3 3 3 3 3
+3 1 1 1 3 3 3 3 3
+3 3 3 3 3 3 3 3 3
+4 3 3 3 5 5 5 3 3
+4 3 3 3 5 5 5 3 3
+4 3 3 3 5 0 0 0 3
+4 3 3 3 3 3 3 3 3
+3 3 3 3 3 3 3 3 3","2 3 3 3 3 3 3 3 3
+3 1 1 1 3 3 3 3 3
+3 1 1 1 3 3 3 3 3
+3 3 3 3 3 3 3 3 3
+4 3 3 3 5 5 5 3 3
+4 3 3 3 5 5 5 3 3
+4 3 3 3 5 0 0 0 3
+4 3 3 3 3 3 3 3 3
+3 3 3 3 3 3 3 3 3"
+1,7,none,right,False,15.37977409362793,phi3:mini,digits,"4 4 4 4 4 4 4
+4 4 4 4 4 4 4
+4 4 4 4 4 4 4
+4 4 9 4 4 4 4
+4 4 9 4 0 4 4
+4 7 9 4 0 4 4
+4 7 4 4 4 4 4","4 4 4 4 4 4 4
+7 7 4 4 4 4 4
+4 9 9 9 4 4 4
+4 4 4 4 4 4 4
+4 0 0 4 4 4 4
+4 4 4 4 4 4 4
+4 4 4 4 4 4 4"
+2,3,none,none,True,8.49066686630249,phi3:mini,digits,"6 6 6
+6 6 6
+6 1 6","6 6 6
+6 6 6
+6 1 6"
+3,7,none,none,True,15.248750448226929,phi3:mini,digits,"7 7 6 7 7 7 7
+7 7 7 7 7 7 7
+7 7 7 7 7 7 7
+7 7 7 7 7 5 5
+7 7 7 7 7 5 5
+7 7 7 4 4 7 7
+7 7 7 4 4 7 7","7 7 6 7 7 7 7
+7 7 7 7 7 7 7
+7 7 7 7 7 7 7
+7 7 7 7 7 5 5
+7 7 7 7 7 5 5
+7 7 7 4 4 7 7
+7 7 7 4 4 7 7"
+4,7,right,right,True,15.231600761413574,phi3:mini,digits,"2 1 2 2 2 9 9
+2 2 2 2 2 9 9
+2 2 2 2 2 2 2
+7 2 2 2 3 2 2
+7 2 2 2 2 2 2
+7 2 2 2 2 2 2
+2 2 2 2 2 2 2","2 7 7 7 2 2 2
+2 2 2 2 2 2 1
+2 2 2 2 2 2 2
+2 2 2 2 2 2 2
+2 2 2 3 2 2 2
+2 2 2 2 2 9 9
+2 2 2 2 2 9 9"
+5,5,right,left,False,11.340878248214722,phi3:mini,digits,"5 1 1 5 5
+5 1 1 5 5
+7 7 5 5 5
+5 5 5 5 5
+5 5 5 5 6","5 5 5 5 6
+5 5 5 5 5
+1 1 5 5 5
+1 1 7 5 5
+5 5 7 5 5"
+6,9,right,full,False,20.536656379699707,phi3:mini,digits,"0 0 4 4 4 0 5 5 0
+0 0 4 4 4 0 5 5 0
+0 0 9 4 4 0 5 5 0
+0 0 9 0 0 0 5 5 0
+0 0 9 0 0 0 0 0 0
+0 0 0 0 3 3 3 3 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 5 0 0","0 0 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 3 3 3 3 0 0 0 0
+0 0 0 0 0 0 9 0 0
+0 5 5 0 0 0 9 0 0
+0 5 5 0 4 4 9 0 0
+0 5 5 0 4 4 4 0 0
+0 5 5 0 4 4 4 0 0"
+7,8,right,left,False,17.762585878372192,phi3:mini,digits,"7 7 7 7 7 7 4 7
+7 7 7 7 7 7 7 7
+7 7 7 7 7 7 7 7
+7 8 8 2 2 2 2 7
+7 8 1 1 1 1 2 7
+7 8 1 1 1 1 6 7
+7 7 1 1 1 1 6 7
+7 7 7 7 7 7 7 7","7 7 7 7 7 7 7 7
+4 7 7 2 2 6 6 7
+7 7 7 2 1 1 1 7
+7 7 7 2 1 1 1 7
+7 7 7 2 1 1 1 7
+7 7 7 8 1 1 1 7
+7 7 7 8 8 8 7 7
+7 7 7 7 7 7 7 7"
+8,7,right,right,True,15.305734872817993,phi3:mini,digits,"3 3 3 4 4 4 3
+3 3 3 4 4 4 3
+3 3 3 3 3 3 3
+0 0 3 3 3 3 3
+0 0 3 2 3 3 3
+7 0 3 3 3 3 3
+3 3 3 3 3 3 3","3 7 0 0 3 3 3
+3 0 0 0 3 3 3
+3 3 3 3 3 3 3
+3 3 2 3 3 4 4
+3 3 3 3 3 4 4
+3 3 3 3 3 4 4
+3 3 3 3 3 3 3"
+9,5,right,full,False,11.328545808792114,phi3:mini,digits,"1 1 0 0 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 4 9 1 1","1 1 9 4 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 0 0 1 1"
+0,7,full,left,False,12.009093999862671,phi3:mini,letters,"Y Y Y Y Y D Y
+Y Y Y Y Y D Y
+E Y Y Y Y Y Y
+E Y Y Y Y Y B
+E Y Y Y Y N B
+Y Y Y Y Y Y Y
+Y Y Y Y Y Y Y","Y Y Y B B Y Y
+D D Y Y N Y Y
+Y Y Y Y Y Y Y
+Y Y Y Y Y Y Y
+Y Y Y Y Y Y Y
+Y Y Y Y Y Y Y
+Y Y E E E Y Y"
+1,9,full,full,True,14.88780927658081,phi3:mini,letters,"Y Y Y Y D D D D D
+Y Y Y Y D D D D D
+Y Y Y Y D D D D D
+D C C C D D D D D
+D V V D D D D D D
+D V H H H H D D D
+D D H H H H D D D
+D D H H H H D D D
+D D D D D S D D D","D D D S D D D D D
+D D D H H H H D D
+D D D H H H H D D
+D D D H H H H V D
+D D D D D D V V D
+D D D D D C C C D
+D D D D D Y Y Y Y
+D D D D D Y Y Y Y
+D D D D D Y Y Y Y"
+2,6,none,none,True,11.409436464309692,phi3:mini,letters,"H Y H H H H
+H Y H H H H
+H Y H H H H
+V V V H H H
+V V G H H H
+H H H H H H","H Y H H H H
+H Y H H H H
+H Y H H H H
+V V V H H H
+V V G H H H
+H H H H H H"
+3,6,none,none,True,13.108274936676025,phi3:mini,letters,"Z J J J J J
+J F J J J J
+J F J O O J
+J J J O O J
+J J J O N J
+J J J J N J","Z J J J J J
+J F J J J J
+J F J O O J
+J J J O O J
+J J J O N J
+J J J J N J"
+4,7,right,right,True,12.339667320251465,phi3:mini,letters,"P P P P P P P
+P P P P P P P
+S V P N P P P
+V V P P P P O
+V V P P P P P
+P P P P P P P
+P P P P P P P","P P V V S P P
+P P V V V P P
+P P P P P P P
+P P P P N P P
+P P P P P P P
+P P P P P P P
+P P P O P P P"
+5,5,full,left,False,9.998306035995483,phi3:mini,letters,"X X X X I
+X O X X X
+X O X X X
+X X X X X
+X X X U X","I X X X X
+X X X X U
+X X X X X
+X O O X X
+X X X X X"
+6,3,right,right,True,11.058837890625,phi3:mini,letters,"V V V
+V V W
+V Y V","V V V
+Y V V
+V W V"
+7,6,none,none,True,12.308732986450195,phi3:mini,letters,"N N N N Q N
+N O N Y Y N
+N O N Y Y N
+N O K Y Y N
+N N N N N N
+N N N N N N","N N N N Q N
+N O N Y Y N
+N O N Y Y N
+N O K Y Y N
+N N N N N N
+N N N N N N"
+8,9,full,full,True,20.57997488975525,phi3:mini,letters,"K K K K K K K K K
+K K K K K K K K K
+K K K D D K K K K
+K K K D D N N N K
+E E E D P P P N K
+E E E K K K K K K
+E E E K K K K K K
+K K K K K K K K K
+K K K K K K L K K","K K L K K K K K K
+K K K K K K K K K
+K K K K K K E E E
+K K K K K K E E E
+K N P P P D E E E
+K N N N D D K K K
+K K K K D D K K K
+K K K K K K K K K
+K K K K K K K K K"
+9,3,full,full,True,8.856722354888916,phi3:mini,letters,"J J J
+J J F
+J T J","J T J
+F J J
+J J J"
+0,5,full,full,True,10.29964828491211,phi3:mini,symbols,"? ? ? ? ?
+? ? ? ? ?
+? ! ? ? ?
+? ! ? + ?
+? ? ? + @","@ + ? ? ?
+? + ? ! ?
+? ? ? ! ?
+? ? ? ? ?
+? ? ? ? ?"
+1,6,left,full,False,11.439237356185913,phi3:mini,symbols,"% $ $ $ % %
+% $ $ $ % %
+% % % % % %
+% ! ! ! % %
+% = ! ! % %
+% ! ! ! % %","% % ! ! ! %
+% % ! ! = %
+% % ! ! ! %
+% % % % % %
+% % $ $ $ %
+% % $ $ $ %"
+2,9,left,right,False,16.127727508544922,phi3:mini,symbols,"+ + + + + + + + +
+@ @ ! ! ! + + + +
+@ @ ! ! * * + + +
+@ @ ? ? * * + + +
+@ @ ? ? * * + + +
+@ ? ? ? * * + + +
++ + + + + + + + +
++ + + + + + + + +
++ + + + + + + + +","+ + + @ @ @ @ @ +
++ + + ? @ @ @ @ +
++ + + ? ? ? ! ! +
++ + + ? ? ? ! ! +
++ + + * * * * ! +
++ + + * * * * + +
++ + + + + + + + +
++ + + + + + + + +
++ + + + + + + + +"
+3,4,none,none,True,10.184529781341553,phi3:mini,symbols,"# # @ #
+# ? @ #
+# # % %
+# # # #","# # @ #
+# ? @ #
+# # % %
+# # # #"
+4,3,full,full,True,9.509660959243774,phi3:mini,symbols,"= = =
+? = =
+= + %","% + =
+= = ?
+= = ="
+5,6,right,left,False,11.593332529067993,phi3:mini,symbols,"! ! ! ! ! !
+! ! ! ! % !
+! ! ! ! $ =
+! ! ! ! $ =
+! ! ! ! $ @
+! ! ! ! @ @","! ! = = @ @
+! % $ $ $ @
+! ! ! ! ! !
+! ! ! ! ! !
+! ! ! ! ! !
+! ! ! ! ! !"
+6,3,none,left,False,9.225456237792969,phi3:mini,symbols,"+ + +
++ ? +
++ + +","+ + +
++ ? +
++ + +"
+7,9,full,left,False,15.62505555152893,phi3:mini,symbols,"? ? + + + + ? ? ?
+? ? + + + + ? ? ?
+? ? + + + + ? ? ?
+? ? ? ? ? ? ? % @
+? ? = = = = ? ? @
+? ? = = = = ? ? @
+$ $ $ $ = = ? ? ?
+? ? = = = = ? ? ?
+? ? ? ? ? ? ? ? ?","? ? ? @ @ @ ? ? ?
+? ? ? % ? ? ? ? ?
+? ? ? ? ? ? ? ? ?
++ + + ? = = = = ?
++ + + ? = = = = ?
++ + + ? = = $ = ?
++ + + ? = = $ = ?
+? ? ? ? ? ? $ ? ?
+? ? ? ? ? ? $ ? ?"
+8,8,right,full,False,12.592423677444458,phi3:mini,symbols,"= = = = = = = =
+= = $ $ $ $ = =
+= = $ $ $ $ = =
+= = = = = = ? ?
+@ @ = = = = ? ?
+@ @ * * * * ? ?
+@ @ * * * * = =
+@ @ * * * * % =","= % * * * * @ @
+= = * * * * @ @
+? ? * * * * @ @
+? ? = = = = @ @
+? ? = = = = = =
+= = $ $ $ $ = =
+= = $ $ $ $ = =
+= = = = = = = ="
+9,4,none,full,False,9.56398344039917,phi3:mini,symbols,"+ + + +
++ + + +
++ ! $ +
+= ! $ +","+ $ ! =
++ $ ! +
++ + + +
++ + + +"

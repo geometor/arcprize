@@ -23,6 +23,8 @@ __licence__ = "MIT"
 
 ```py
 
+
+
 ```
 
 ## src/geometor/arcprize/perception/grids/__init__.py
@@ -38,6 +40,12 @@ __licence__ = "MIT"
 ```
 
 ## src/geometor/arcprize/perception/puzzles/__init__.py
+
+```py
+
+```
+
+## src/geometor/arcprize/perception/render/__init__.py
 
 ```py
 
@@ -408,30 +416,6 @@ if __name__ == "__main__":
 
 ```
 
-## src/geometor/arcprize/perception/__main__.py
-
-```py
-from datetime import datetime
-
-from .experiment_runner import run_experiments
-from .data_export import export_to_csv
-
-if __name__ == "__main__":
-    model = "phi3:mini"
-    model = "phi3:medium"
-    model = "llama3.1"
-    symbol_sets_to_test = ["XO", "digits", "letters", "symbols"]
-    results = run_experiments(
-        symbol_sets_to_test, puzzles_per_set=10, min_size=3, max_size=5, model=model
-    )
-
-    export_to_csv(
-        results,
-        f"rotation_puzzle_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-    )
-
-```
-
 ## src/geometor/arcprize/perception/data_export.py
 
 ```py
@@ -460,19 +444,28 @@ from datetime import datetime
 
 from .puzzles.random_rotate import generate_puzzle_set
 from .models.ollama import generate_response
+from .grids.tools import grid_to_string
 
 
 def test_individual_puzzles(puzzles, model):
     results = []
     for i, prompt, correct_answer, size, symbol_set, input_grid, output_grid in puzzles:
-        print("\n#####################################")
-        print(prompt)
+        input_grid_str = grid_to_string(input_grid)
+        output_grid_str = grid_to_string(output_grid)
+        print(f"\n {i} of {len(puzzles)} #####################################")
+        print()
+        print(input_grid_str)
+        print()
+        print(output_grid_str)
         result, processing_time = generate_response(prompt, model)
+
         response = result["response"].strip().lower()
-        print(response)
+        print(f"response: {response}")
 
         is_correct = response == correct_answer.lower()
-        print(is_correct, correct_answer)
+        print(f"  answer: {correct_answer}", is_correct)
+
+        print(f"    time: {processing_time:.2f} s")
 
         test_result = {
             "index": i,
@@ -483,39 +476,14 @@ def test_individual_puzzles(puzzles, model):
             "processing_time": processing_time,
             "model": model,
             "symbol_set": symbol_set,
+            "input_grid": grid_to_string(input_grid),
+            "output_grid": grid_to_string(output_grid),
         }
         results.append(test_result)
 
     return results
 
 
-def run_experiments(symbol_sets, puzzles_per_set, min_size, max_size, model):
-    all_results = []
-
-    for symbol_set in symbol_sets:
-        puzzles = generate_puzzle_set(
-            puzzles_per_set,
-            min_size=min_size,
-            max_size=max_size,
-            symbol_set_key=symbol_set,
-            cell_delimiter="",
-        )
-
-        print(f"\nTesting with {symbol_set} symbol set:")
-
-        results = test_individual_puzzles(puzzles, model)
-        all_results.extend(results)
-
-        correct_count = sum(1 for r in results if r["is_correct"])
-        print(f"Individual testing: {correct_count} out of {len(puzzles)} correct")
-
-        print("\nDetailed results:")
-        for r in results:
-            print(
-                f"{r['index']}: Size: {r['size']}, Response: {r['model_response']}, Correct: {r['is_correct']}, Time: {r['processing_time']:.2f}s"
-            )
-
-    return all_results
 
 ```
 
@@ -525,9 +493,167 @@ def run_experiments(symbol_sets, puzzles_per_set, min_size, max_size, model):
 import random
 import numpy as np
 
+
 def generate_grid(width, height, symbol_set):
     return np.random.choice(list(symbol_set), size=(width, height))
 
+
+if __name__ == "__main__":
+    from geometor.arcprize.perception.symbols import SYMBOL_SETS
+
+    width, height = 5, 5
+    symbol_set = SYMBOL_SETS["digits"]
+
+    grid = generate_grid(width, height, symbol_set)
+    print("Generated sparse grid:")
+    print(grid)
+
+```
+
+## src/geometor/arcprize/perception/grids/random_lines.py
+
+```py
+import random
+import numpy as np
+
+def generate_grid(width, height, symbol_set):
+    # Convert symbol_set to a list and shuffle it
+    symbols = list(symbol_set)
+    random.shuffle(symbols)
+    
+    # Use the first symbol to fill the entire grid
+    background_symbol = symbols.pop(0)
+    grid = np.full((height, width), background_symbol)
+    
+    # Determine the number of lines to draw (max of width or height, minus 1 if odd)
+    num_lines = max(width, height)
+    if num_lines % 2 != 0:
+        num_lines -= 1
+    
+    # Create a list of available rows and columns, excluding the center if odd
+    available_rows = list(range(height))
+    available_cols = list(range(width))
+    
+    if height % 2 != 0:
+        available_rows.remove(height // 2)
+    if width % 2 != 0:
+        available_cols.remove(width // 2)
+    
+    # Shuffle the available rows and columns
+    random.shuffle(available_rows)
+    random.shuffle(available_cols)
+    
+    # Draw lines
+    for i in range(min(num_lines, len(symbols))):
+        symbol = symbols[i]
+        if random.choice([True, False]) and available_rows:  # Draw horizontal line
+            row = available_rows.pop()
+            grid[row, :] = symbol
+        elif available_cols:  # Draw vertical line
+            col = available_cols.pop()
+            grid[:, col] = symbol
+    
+    return grid
+
+# Example usage
+if __name__ == "__main__":
+    from geometor.arcprize.perception.symbols import SYMBOL_SETS
+    
+    width, height = 5, 5
+    symbol_set = SYMBOL_SETS["digits"]
+    
+    grid = generate_grid(width, height, symbol_set)
+    print("Generated line grid:")
+    print(grid)
+
+```
+
+## src/geometor/arcprize/perception/grids/random_rectangles.py
+
+```py
+import random
+import numpy as np
+
+def generate_grid(width, height, symbol_set):
+    # Convert symbol_set to a list and shuffle it
+    symbols = list(symbol_set)
+    random.shuffle(symbols)
+    
+    # Use the first symbol as the background
+    background_symbol = symbols.pop(0)
+    grid = np.full((height, width), background_symbol)
+    
+    # Determine the number of rectangles to draw
+    num_rectangles = min(len(symbols), max(2, (width + height) // 4))
+    
+    for symbol in symbols[:num_rectangles]:
+        # Determine rectangle size and position
+        rect_width = random.randint(1, max(1, width // 2))
+        rect_height = random.randint(1, max(1, height // 2))
+        x = random.randint(0, width - rect_width)
+        y = random.randint(0, height - rect_height)
+        
+        # Draw the rectangle
+        grid[y:y+rect_height, x:x+rect_width] = symbol
+    
+    return grid
+
+# Example usage
+if __name__ == "__main__":
+    from geometor.arcprize.perception.symbols import SYMBOL_SETS
+    
+    width, height = 7, 7
+    symbol_set = SYMBOL_SETS["digits"]
+    
+    grid = generate_grid(width, height, symbol_set)
+    print("Generated rectangle grid:")
+    for row in grid:
+        print(" ".join(row))
+
+```
+
+## src/geometor/arcprize/perception/grids/random_sparse.py
+
+```py
+import random
+import numpy as np
+
+
+def generate_grid(width, height, symbol_set):
+    # Convert symbol_set to a list and shuffle it
+    symbols = list(symbol_set)
+    random.shuffle(symbols)
+
+    # Use the first symbol to fill the entire grid
+    background_symbol = symbols.pop(0)
+    grid = np.full((height, width), background_symbol)
+
+    # Create a list of all cell addresses and shuffle it
+    cell_addresses = [(x, y) for y in range(height) for x in range(width)]
+    random.shuffle(cell_addresses)
+
+    # Determine the number of cells to fill
+    num_cells_to_fill = max(width, height)
+
+    # Fill random cells with the remaining symbols
+    for i in range(min(num_cells_to_fill, len(cell_addresses), len(symbols))):
+        x, y = cell_addresses.pop()
+        symbol = symbols[i % len(symbols)]  # Cycle through remaining symbols if needed
+        grid[y, x] = symbol
+
+    return grid
+
+
+# Example usage
+if __name__ == "__main__":
+    from geometor.arcprize.perception.symbols import SYMBOL_SETS
+
+    width, height = 5, 5
+    symbol_set = SYMBOL_SETS["digits"]
+
+    grid = generate_grid(width, height, symbol_set)
+    print("Generated sparse grid:")
+    print(grid)
 
 ```
 
@@ -605,7 +731,7 @@ import numpy as np
 from jinja2 import Environment, PackageLoader
 
 
-from geometor.arcprize.perception.grids.random_full import generate_grid
+from geometor.arcprize.perception.grids.random_rectangles import generate_grid
 from geometor.arcprize.perception.grids.tools import rotate_grid, introduce_errors, grid_to_string
 from geometor.arcprize.perception.symbols import SYMBOL_SETS
 
@@ -659,6 +785,247 @@ def generate_puzzle_set(
             (i, prompt, rotation, size, symbol_set_key, input_grid, output_grid)
         )
     return puzzles
+
+```
+
+## src/geometor/arcprize/perception/render/capture_test.py
+
+```py
+from playwright.sync_api import sync_playwright
+
+# HTML content with a simple CSS animation and a timer
+html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(200px); }
+        }
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            animation: move 2s infinite alternate;
+        }
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div id="timer">0.00</div>
+    <script>
+        let startTime = Date.now();
+        let timerElement = document.getElementById('timer');
+        function updateTimer() {
+            let elapsedTime = (Date.now() - startTime) / 1000;
+            timerElement.textContent = elapsedTime.toFixed(2);
+            if (elapsedTime < 10) {
+                requestAnimationFrame(updateTimer);
+            }
+        }
+        updateTimer();
+    </script>
+</body>
+</html>
+"""
+
+def capture_animation_with_timer():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        
+        # Start video recording
+        context = browser.new_context(
+            record_video_dir="./videos/",
+            record_video_size={"width": 1920, "height": 1080}
+        )
+        
+        page = context.new_page()
+        
+        # Set the content of the page directly
+        page.set_content(html_content)
+        # Wait for the timer to reach 5 seconds
+        page.wait_for_function("() => parseFloat(document.getElementById('timer').textContent) >= 5")
+        
+        # Close the context to stop recording
+        context.close()
+        # Retrieve the path to the recorded video
+        video_path = page.video.path()
+
+        # Close the browser
+        browser.close()
+
+    print("Video captured as", video_path)
+
+if __name__ == "__main__":
+    capture_animation_with_timer()
+
+
+```
+
+## src/geometor/arcprize/perception/render/pw.py
+
+```py
+import json
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+from jinja2 import Environment, FileSystemLoader
+
+# Set up Jinja2 environment
+env = Environment(loader=FileSystemLoader("."))
+template = env.get_template("template3.html.j2")
+
+
+def generate_puzzle_image(puzzle, output_dir, page, total_puzzles):
+    # Generate HTML content using Jinja2 template
+    puzzle["total_puzzles"] = total_puzzles
+    html_content = template.render(puzzle)
+
+    # Set content and wait for it to load
+    page.set_content(html_content)
+    page.wait_for_load_state("networkidle")
+
+    # Capture screenshot
+    output_path = output_dir / f"{puzzle['symbol_set']}_{puzzle['index']}.png"
+    page.screenshot(path=str(output_path), full_page=True)
+    print(f"Created {output_path}")
+
+    output_path = output_dir / f"{puzzle['symbol_set']}_{puzzle['index']}.html"
+    with open(output_path, "w") as f:
+        f.write(html_content)
+    print(f"Created {output_path}")
+
+
+def visualize_puzzles(json_file, output_dir):
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    with open(json_file, "r") as f:
+        data = json.load(f)
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1920, "height": 1080})
+
+        total_puzzles = len(data["results"])
+
+        for puzzle in data["results"]:
+            generate_puzzle_image(puzzle, output_dir, page, total_puzzles)
+
+        browser.close()
+
+
+if __name__ == "__main__":
+    json_file = "../../../../../demos/rotation_puzzle_results_20240802_084405.json"
+    output_dir = "~/Sessions/rotation_test"
+    visualize_puzzles(json_file, output_dir)
+
+```
+
+## src/geometor/arcprize/perception/render/svg.py
+
+```py
+import json
+import svgwrite
+
+def create_grid_svg(dwg, grid, start_x, start_y, cell_size, title):
+    elements = []
+
+    # Add title
+    elements.append(
+        dwg.text(
+            title,
+            insert=(start_x + len(grid[0]) * cell_size / 2, start_y - 10),
+            text_anchor="middle",
+            font_size=14,
+            font_family="Arial",
+            fill="gray",
+        )
+    )
+
+    # Draw background
+    elements.append(
+        dwg.rect(
+            insert=(start_x, start_y),
+            size=(len(grid[0]) * cell_size, len(grid) * cell_size),
+            fill="black",
+        )
+    )
+
+    # Draw grid as text
+    for y, row in enumerate(grid):
+        elements.append(
+            dwg.text(
+                row,
+                insert=(start_x + 5, start_y + (y + 0.7) * cell_size),
+                font_size=14,
+                font_family="monospace",
+                fill="white",
+            )
+        )
+
+    return elements
+
+def create_puzzle_svg(puzzle, filename):
+    input_grid = puzzle["input_grid"].split("\n")
+    output_grid = puzzle["output_grid"].split("\n")
+
+    cell_size = 20  # Adjusted for monospace font
+    max_line_length = max(max(len(line) for line in input_grid), 
+                          max(len(line) for line in output_grid))
+    grid_width = max_line_length * cell_size
+    grid_height = len(input_grid) * cell_size
+    padding = 20
+    total_width = grid_width * 2 + padding * 3
+    total_height = grid_height + padding * 2
+
+    dwg = svgwrite.Drawing(filename, size=(f"{total_width}px", f"{total_height}px"))
+
+    # Create input grid
+    input_elements = create_grid_svg(
+        dwg, input_grid, padding, padding, cell_size, "Input Grid"
+    )
+    for element in input_elements:
+        dwg.add(element)
+
+    # Create output grid
+    output_elements = create_grid_svg(
+        dwg, output_grid, grid_width + padding * 2, padding, cell_size, "Output Grid"
+    )
+    for element in output_elements:
+        dwg.add(element)
+
+    # Add puzzle information
+    info_text = f"Model: {puzzle['model']}, Response: {puzzle['model_response']}, Correct: {puzzle['correct_answer']}"
+    dwg.add(
+        dwg.text(
+            info_text,
+            insert=(padding, total_height - 10),
+            font_size=12,
+            font_family="Arial",
+            fill="black",
+        )
+    )
+
+    dwg.save()
+
+def visualize_puzzles(json_file):
+    with open(json_file, "r") as f:
+        data = json.load(f)
+
+    for i, puzzle in enumerate(data["results"]):
+        filename = f"puzzle_{i+1}.svg"
+        create_puzzle_svg(puzzle, filename)
+        print(f"Created {filename}")
+
+if __name__ == "__main__":
+    json_file = "../../../../../demos/rotation_puzzle_results_20240802_084405.json"  # Replace with your JSON file name
+    visualize_puzzles(json_file)
+
 
 ```
 

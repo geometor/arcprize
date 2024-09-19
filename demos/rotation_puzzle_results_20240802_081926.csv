@@ -1,0 +1,46 @@
+index,size,model_response,correct_answer,is_correct,processing_time,model,symbol_set,input_grid,output_grid
+0,3,none,none,True,8.224493741989136,phi3:mini,digits,"6 6 6
+6 6 3
+0 6 6","6 6 6
+6 6 3
+0 6 6"
+1,3,none,left,False,8.186771631240845,phi3:mini,digits,"9 9 9
+9 0 9
+8 7 9","9 9 9
+9 0 7
+9 9 8"
+2,3,none,none,True,8.190858602523804,phi3:mini,digits,"4 1 4
+4 7 5
+4 4 4","4 1 4
+4 7 5
+4 4 4"
+0,3,full,full,True,7.8478429317474365,phi3:mini,letters,"B B O
+B B R
+B B B","B B B
+R B B
+O B B"
+1,3,full,full,True,8.245891571044922,phi3:mini,letters,"K W K
+L K K
+K K J","J K K
+K K L
+K W K"
+2,3,right,right,True,7.845794439315796,phi3:mini,letters,"I T T
+Z T T
+T T Y","T Z I
+T T T
+Y T T"
+0,3,none,none,True,7.854259490966797,phi3:mini,symbols,"= = =
+* = =
+# * =","= = =
+* = =
+# * ="
+1,3,right,full,False,7.830487251281738,phi3:mini,symbols,"* @ @
+* @ @
+$ @ @","@ @ $
+@ @ *
+@ @ *"
+2,3,right,full,False,7.810130596160889,phi3:mini,symbols,"$ = $
+$ $ $
+$ $ ?","? $ $
+$ $ $
+$ = $"

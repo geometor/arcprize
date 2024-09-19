@@ -5,9 +5,66 @@
 │   ├── arc-animation-generator.sh
 │   ├── arc-gen-models.py
 │   ├── demo.py
+│   ├── example-chromium.png
+│   ├── example-firefox.png
+│   ├── example-webkit.png
 │   ├── frames.txt
 │   ├── omega2.py
 │   ├── omega.py
+│   ├── playwright_test.png
+│   ├── playwright_test.py
+│   ├── puzzle_10.svg
+│   ├── puzzle_11.svg
+│   ├── puzzle_12.svg
+│   ├── puzzle_13.svg
+│   ├── puzzle_14.svg
+│   ├── puzzle_15.svg
+│   ├── puzzle_16.svg
+│   ├── puzzle_17.svg
+│   ├── puzzle_18.svg
+│   ├── puzzle_19.svg
+│   ├── puzzle_1.svg
+│   ├── puzzle_20.svg
+│   ├── puzzle_21.svg
+│   ├── puzzle_22.svg
+│   ├── puzzle_23.svg
+│   ├── puzzle_24.svg
+│   ├── puzzle_25.svg
+│   ├── puzzle_26.svg
+│   ├── puzzle_27.svg
+│   ├── puzzle_28.svg
+│   ├── puzzle_29.svg
+│   ├── puzzle_2.svg
+│   ├── puzzle_30.svg
+│   ├── puzzle_3.svg
+│   ├── puzzle_4.svg
+│   ├── puzzle_5.svg
+│   ├── puzzle_6.svg
+│   ├── puzzle_7.svg
+│   ├── puzzle_8.svg
+│   ├── puzzle_9.svg
+│   ├── random_full_rotate.py
+│   ├── random_rotate.py
+│   ├── rotation_puzzle_results_20240801_135149.csv
+│   ├── rotation_puzzle_results_20240801_141304.csv
+│   ├── rotation_puzzle_results_20240801_184533.csv
+│   ├── rotation_puzzle_results_20240801_190015.csv
+│   ├── rotation_puzzle_results_20240801_191052.csv
+│   ├── rotation_puzzle_results_20240801_210756.csv
+│   ├── rotation_puzzle_results_20240801_220628.csv
+│   ├── rotation_puzzle_results_20240801_220628.json
+│   ├── rotation_puzzle_results_20240801_232553.csv
+│   ├── rotation_puzzle_results_20240801_232553.json
+│   ├── rotation_puzzle_results_20240802_064340.csv
+│   ├── rotation_puzzle_results_20240802_064340.json
+│   ├── rotation_puzzle_results_20240802_071347.csv
+│   ├── rotation_puzzle_results_20240802_071347.json
+│   ├── rotation_puzzle_results_20240802_081926.csv
+│   ├── rotation_puzzle_results_20240802_081926.json
+│   ├── rotation_puzzle_results_20240802_082305.csv
+│   ├── rotation_puzzle_results_20240802_082305.json
+│   ├── rotation_puzzle_results_20240802_084405.csv
+│   ├── rotation_puzzle_results_20240802_084405.json
 │   └── training
 │       ├── 000-44f52bb0_0_input.png
 │       ├── 000-44f52bb0_0_output.png
@@ -4008,9 +4065,11 @@
 │           │   │   ├── __init__.py
 │           │   │   ├── __pycache__
 │           │   │   ├── random_full.py
+│           │   │   ├── random_lines.py
+│           │   │   ├── random_rectangles.py
+│           │   │   ├── random_sparse.py
 │           │   │   └── tools.py
 │           │   ├── __init__.py
-│           │   ├── __main__.py
 │           │   ├── models
 │           │   │   ├── __init__.py
 │           │   │   ├── ollama.py
@@ -4021,11 +4080,79 @@
 │           │   │   ├── random_rotate.py
 │           │   │   └── random_rotate.txt.j2
 │           │   ├── __pycache__
-│           │   ├── rotation_puzzle_results_20240801_081456.csv
-│           │   ├── rotation_puzzle_results_20240801_082539.csv
-│           │   ├── rotation_puzzle_results_20240801_084012.csv
-│           │   ├── rotation_puzzle_results_20240801_112213.csv
-│           │   ├── rotation_puzzle_results_20240801_120039.csv
+│           │   ├── render
+│           │   │   ├── capture_test.py
+│           │   │   ├── __init__.py
+│           │   │   ├── puzzle_images
+│           │   │   │   ├── digits_0.html
+│           │   │   │   ├── digits_0.png
+│           │   │   │   ├── digits_1.html
+│           │   │   │   ├── digits_1.png
+│           │   │   │   ├── digits_2.html
+│           │   │   │   ├── digits_2.png
+│           │   │   │   ├── digits_3.html
+│           │   │   │   ├── digits_3.png
+│           │   │   │   ├── digits_4.html
+│           │   │   │   ├── digits_4.png
+│           │   │   │   ├── digits_5.html
+│           │   │   │   ├── digits_5.png
+│           │   │   │   ├── digits_6.html
+│           │   │   │   ├── digits_6.png
+│           │   │   │   ├── digits_7.html
+│           │   │   │   ├── digits_7.png
+│           │   │   │   ├── digits_8.html
+│           │   │   │   ├── digits_8.png
+│           │   │   │   ├── digits_9.html
+│           │   │   │   ├── digits_9.png
+│           │   │   │   ├── letters_0.html
+│           │   │   │   ├── letters_0.png
+│           │   │   │   ├── letters_1.html
+│           │   │   │   ├── letters_1.png
+│           │   │   │   ├── letters_2.html
+│           │   │   │   ├── letters_2.png
+│           │   │   │   ├── letters_3.html
+│           │   │   │   ├── letters_3.png
+│           │   │   │   ├── letters_4.html
+│           │   │   │   ├── letters_4.png
+│           │   │   │   ├── letters_5.html
+│           │   │   │   ├── letters_5.png
+│           │   │   │   ├── letters_6.html
+│           │   │   │   ├── letters_6.png
+│           │   │   │   ├── letters_7.html
+│           │   │   │   ├── letters_7.png
+│           │   │   │   ├── letters_8.html
+│           │   │   │   ├── letters_8.png
+│           │   │   │   ├── letters_9.html
+│           │   │   │   ├── letters_9.png
+│           │   │   │   ├── symbols_0.html
+│           │   │   │   ├── symbols_0.png
+│           │   │   │   ├── symbols_1.html
+│           │   │   │   ├── symbols_1.png
+│           │   │   │   ├── symbols_2.html
+│           │   │   │   ├── symbols_2.png
+│           │   │   │   ├── symbols_3.html
+│           │   │   │   ├── symbols_3.png
+│           │   │   │   ├── symbols_4.html
+│           │   │   │   ├── symbols_4.png
+│           │   │   │   ├── symbols_5.html
+│           │   │   │   ├── symbols_5.png
+│           │   │   │   ├── symbols_6.html
+│           │   │   │   ├── symbols_6.png
+│           │   │   │   ├── symbols_7.html
+│           │   │   │   ├── symbols_7.png
+│           │   │   │   ├── symbols_8.html
+│           │   │   │   ├── symbols_8.png
+│           │   │   │   ├── symbols_9.html
+│           │   │   │   └── symbols_9.png
+│           │   │   ├── pw.py
+│           │   │   ├── __pycache__
+│           │   │   ├── svg.py
+│           │   │   ├── template2.html.j2
+│           │   │   ├── template3.html.j2
+│           │   │   ├── template.html.j2
+│           │   │   └── videos
+│           │   │       ├── 31b2fb8ce452165d4a252873e7911231.webm
+│           │   │       └── ca46ac044f35fd95142518105c1fce74.webm
 │           │   └── symbols.py
 │           ├── puzzle_player.py
 │           ├── __pycache__
@@ -4033,4 +4160,4 @@
 │           └── styles.py
 └── tree.txt
 
-36 directories, 3997 files
+40 directories, 4120 files
