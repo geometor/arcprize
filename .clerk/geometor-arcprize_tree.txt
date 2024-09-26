@@ -8448,11 +8448,9 @@
 │       └── arcprize
 │           ├── analyze.py
 │           ├── app.py
-│           ├── arcprize.py
 │           ├── img_gen.py
 │           ├── __init__.py
 │           ├── __main__.py
-│           ├── model.py
 │           ├── perception
 │           │   ├── data_export.py
 │           │   ├── experiment_runner.py
@@ -8488,10 +8486,15 @@
 │           │   │   └── template.html.j2
 │           │   └── symbols.py
 │           ├── puzzle_player.py
+│           ├── puzzles
+│           │   ├── grid.py
+│           │   ├── __init__.py
+│           │   ├── puzzle.py
+│           │   └── report.py
 │           ├── __pycache__
 │           ├── render.py
 │           ├── reports5.py
 │           └── styles.py
 └── tree.txt
 
-460 directories, 8034 files
+461 directories, 8036 files
