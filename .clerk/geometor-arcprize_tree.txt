@@ -8490,6 +8490,7 @@
 │           │   ├── grid.py
 │           │   ├── __init__.py
 │           │   ├── puzzle.py
+│           │   ├── __pycache__
 │           │   └── report.py
 │           ├── __pycache__
 │           ├── render.py
@@ -8497,4 +8498,4 @@
 │           └── styles.py
 └── tree.txt
 
-461 directories, 8036 files
+462 directories, 8036 files

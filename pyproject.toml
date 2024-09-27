@@ -19,7 +19,8 @@ dependencies = [
 ]
 
 [project.scripts]
-arcprize = "geometor.arcprize.__main__:run"
+arcgen = "geometor.arcprize.__main__:run"
+gridgen = "geometor.arcprize.img_gen:text_to_image"
 
 [build-system]
 requires = ["setuptools", "setuptools-scm"]

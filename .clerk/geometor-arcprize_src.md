@@ -22,12 +22,21 @@ __licence__ = "MIT"
 ## src/geometor/arcprize/__main__.py
 
 ```py
-"""The package entry point into the application."""
+from geometor.arcprize.puzzles.puzzle import *
+from geometor.arcprize.img_gen import process_all_puzzles
+from rich import print
 
-from .app import run
+def run():
+   puzzleset = PuzzleSet() 
+   print(puzzleset.puzzles)
+   process_all_puzzles(puzzleset, "images")
+
+
+
 
 if __name__ == "__main__":
     run()
+
 ```
 
 ## src/geometor/arcprize/analyze.py
@@ -184,8 +193,10 @@ def run() -> None:
 ```py
 import json
 import os
+from pathlib import Path
 import glob
 from PIL import Image, ImageDraw
+from geometor.arcprize.puzzles import Puzzle, PuzzleSet
 
 # Color mapping from arcprize.org
 # 0 --white: #EEEEEE;
@@ -205,6 +216,7 @@ from PIL import Image, ImageDraw
 # replaced Gray with Pink
 # darkened red, orange, yellow
 #  5: (255, 123, 204),  # Pink
+
 COLOR_MAP = {
     0: (238, 238, 238),  # White
     1: (30, 147, 255),  # Blue
@@ -223,16 +235,16 @@ def create_grid_image(grid, filename):
     cell_size = 8
     border = 1
     color_size = 6
-    width = len(grid[0]) * cell_size
-    height = len(grid) * cell_size
+    width = grid.width * cell_size
+    height = grid.height * cell_size
 
     image = Image.new("RGB", (width, height), color="black")
     draw = ImageDraw.Draw(image)
 
-    for y, row in enumerate(grid):
-        for x, cell in enumerate(row):
+    for y in range(grid.height):
+        for x in range(grid.width):
             color = COLOR_MAP.get(
-                cell, (128, 128, 128)
+                grid.matrix[y, x], (128, 128, 128)
             )  # Default to gray if color not found
             draw.rectangle(
                 [
@@ -247,55 +259,32 @@ def create_grid_image(grid, filename):
     image.save(filename)
 
 
-def process_puzzle(puzzle_data, output_dir):
-    os.makedirs(output_dir, exist_ok=True)
+def create_puzzle_images(puzzle: Puzzle, output_dir: Path):
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    for i, example in enumerate(puzzle_data["train"]):
-        create_grid_image(
-            example["input"], os.path.join(output_dir, f"train_{i+1}_input.png")
-        )
-        create_grid_image(
-            example["output"], os.path.join(output_dir, f"train_{i+1}_output.png")
-        )
+    for i, pair in enumerate(puzzle.train):
+        create_grid_image(pair.input, output_dir / f"train_{i+1}_input.png")
+        create_grid_image(pair.output, output_dir / f"train_{i+1}_output.png")
 
-    for i, test in enumerate(puzzle_data["test"]):
-        create_grid_image(
-            test["input"], os.path.join(output_dir, f"test_{i+1}_input.png")
-        )
-        if "output" in test:
-            create_grid_image(
-                test["output"], os.path.join(output_dir, f"test_{i+1}_output.png")
-            )
+    for i, pair in enumerate(puzzle.test):
+        create_grid_image(pair.input, output_dir / f"test_{i+1}_input.png")
+        if pair.output:
+            create_grid_image(pair.output, output_dir / f"test_{i+1}_output.png")
 
 
-def process_all_puzzles(input_dir, output_base_dir):
-    for json_file in glob.glob(os.path.join(input_dir, "*.json")):
-        puzzle_name = os.path.splitext(os.path.basename(json_file))[0]
-        output_dir = os.path.join(output_base_dir, puzzle_name)
-
-        with open(json_file, "r") as f:
-            puzzle_data = json.load(f)
-
-        process_puzzle(puzzle_data, output_dir)
-        print(f"Processed puzzle: {puzzle_name}")
+def process_all_puzzles(puzzle_set: PuzzleSet, output_base_dir: Path):
+    output_base_dir = Path(output_base_dir)
+    for puzzle in puzzle_set.puzzles:
+        output_dir = output_base_dir / str(puzzle.id)
+        create_puzzle_images(puzzle, output_dir)
+        print(f"Processed puzzle: {puzzle.id}")
 
 
 def image_to_base64(image):
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
-
-
-def main():
-    input_dir = "."  # Directory containing JSON files
-    output_base_dir = "images"  # Base directory for output images
-    #  puzzle_images
-    process_all_puzzles(input_dir, output_base_dir)
-    print(f"All puzzles processed. Images generated in {output_base_dir}")
-
-
-if __name__ == "__main__":
-    main()
 
 ```
 
@@ -1988,6 +1977,8 @@ if __name__ == "__main__":
 ## src/geometor/arcprize/puzzles/__init__.py
 
 ```py
+from .puzzle import *
+from .grid import *
 
 ```
 
