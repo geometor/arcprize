@@ -7,10 +7,13 @@ from pathlib import Path
 import json
 import numpy as np
 
+
+#  def matrix_to_json_string(matrix):
+    #  return "[\n" + ",\n".join(f"        {row}" for row in matrix.tolist()) + "\n      ]"
+
 def matrix_to_json_string(matrix):
-    return '[\n' + ',\n'.join(
-        f'        {row}' for row in matrix.tolist()
-    ) + '\n      ]'
+    return "[\n" + ",\n".join(f"          {row}" for row in matrix.tolist()) + "\n        ]"
+
 
 def generate_artifacts(puzzle_set, output_dir):
     output_dir = Path(output_dir)
@@ -35,12 +38,41 @@ def generate_artifacts(puzzle_set, output_dir):
             if pair.output:
                 (pair_dir / "output.txt").write_text(pair.output.to_string())
 
-        # Generate JSON file (unchanged)
-        json_str = '{\n'
-        # ... (rest of the JSON generation code remains the same)
-        
+        # Generate JSON file
+        json_str = "{\n"
+        json_str += f'  "id": "{puzzle.id}",\n'
+        json_str += '  "train": [\n'
+        for pair in puzzle.train:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            json_str += (
+                '      "output": ' + matrix_to_json_string(pair.output.matrix) + "\n"
+            )
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ],\n"
+        json_str += '  "test": [\n'
+        for pair in puzzle.test:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            if pair.output:
+                json_str += (
+                    '      "output": '
+                    + matrix_to_json_string(pair.output.matrix)
+                    + "\n"
+                )
+            else:
+                json_str += '      "output": null\n'
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ]\n"
+        json_str += "}"
         json_path = puzzle_dir / f"{puzzle.id}.json"
-        with json_path.open('w') as f:
+        with json_path.open("w") as f:
             f.write(json_str)
 
     # Generate images
@@ -48,12 +80,13 @@ def generate_artifacts(puzzle_set, output_dir):
 
 
 def run():
-    puzzle_set = PuzzleSet() 
+    puzzle_set = PuzzleSet()
     print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
-    
+
     output_dir = Path("artifacts")
     generate_artifacts(puzzle_set, output_dir)
     print(f"Generated artifacts in {output_dir}")
+
 
 if __name__ == "__main__":
     run()
