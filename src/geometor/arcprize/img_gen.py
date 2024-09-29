@@ -109,12 +109,12 @@ def create_puzzle_pair(input_grid, output_grid, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     def create_image_size(basename, grid):
-        sizes = [8, 16]
+        sizes = [8, 16, 32]
         for size in sizes:
             create_grid_image(
                 grid, output_dir / f"{basename}_{size}.png", cell_size=size
             )
-            if size == 16:
+            if size in (16, 32):
                 create_grid_image(
                     grid,
                     output_dir / f"{basename}_{size}_numbered.png",
