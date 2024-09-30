@@ -7,7 +7,12 @@
 - which I've attached here
 - basically saying the benchmark has resisted the current methods 
   progress has slowed
-- they need NOVEL ideas
+- general consensus - they need NOVEL ideas
+
+
+> We can now more confidently say that existing approaches are insufficient to defeat ARC-AGI. The large prize efficiently clears the idea space of low hanging fruit.
+
+> The benchmark continues to resist all known solutions, including expensive, scaled-up LLM solutions and newly released models that emulate human reasoning. This is not just evidence that we need to try new things, it's also evidence the underlying concepts of ARC-AGI are correct; specifically, Chollet's definition of AGI:
 
 ## 2 perception and discernment
 - we've spent quite a bit of time discussing the ARC challenge
@@ -116,11 +121,15 @@ too much information at once to give the whole puzzle
 
 
 ## second pair of training
+ATTACH: train pair 2
+
 - get the story - describe the transformation function
 - compare these two to themselves and the last pair
 
 
 ## test input
+ATTACH: test input 1
+
 - we are going to build the output grid one step at a time 
 - translate your story into a set of operations
 - build solution - provide feedback
@@ -152,6 +161,12 @@ ask perception questions to lead to better awareness
 - test the story against the training inputs to regenerate the outputs
 
 - more than one test input would filter out lucky guesses
+
+- this is not an engineering problem
+  it's a perception problem
+
+- we want to raise an intelligence to learn to think and see
+  not expect it out of the box
 
 
 
