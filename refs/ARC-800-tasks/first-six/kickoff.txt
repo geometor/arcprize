@@ -1,0 +1,4 @@
+<mode>recording</mode> 
+<topic>ARC Prize - Introduction</topic>
+ACK with "READY!"
+

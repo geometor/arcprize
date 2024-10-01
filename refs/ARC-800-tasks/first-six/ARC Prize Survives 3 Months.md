@@ -21,7 +21,8 @@ We launched ARC Prize to provide the world a measure of progress towards AGI and
 
 We are 3 months into the 2024 competition. ARC Prize is still unbeaten.
 
-Millions of people are now aware of ARC Prize. ARC Prize is the #1 competition [on Kaggle](https://www.kaggle.com/competitions/arc-prize-2024/). One thousand teams are making one thousand submissions every week. ARC-AGI has been mentioned in notable publications like [TIME](https://time.com/7012823/francois-chollet/), [Semafor](https://www.semafor.com/article/06/28/2024/communicate-with-animals-win-millions-inside-the-wild-new-world-of-ai-prizes), [Reuters](https://www.reuters.com/technology/artificial-intelligence/ai-experts-ready-humanitys-last-exam-stump-powerful-tech-2024-09-16/), and [New Scientist](https://www.newscientist.com/article/2437029-1m-prize-for-ai-that-can-solve-puzzles-that-are-simple-for-humans/), along with dozens of podcasts including [Dwarkesh](https://youtu.be/UakqL6Pj9xo), [Sean Carroll's Mindscape](https://www.preposterousuniverse.com/podcast/2024/06/24/280-francois-chollet-on-deep-learning-and-the-meaning-of-intelligence/), and [Tucker Carlson](https://youtu.be/cNqTu_58sZ8).
+Millions of people are now aware of ARC Prize. 
+ARC Prize is the #1 competition [on Kaggle](https://www.kaggle.com/competitions/arc-prize-2024/). One thousand teams are making one thousand submissions every week. 
 
 When new state-of-the-art LLM models are released, people are starting to [ask how it performs](https://x.com/arcprize/status/1834348966663856577) on ARC-AGI. Over half a million people caught the [ARC-AGI-Pub results](https://arcprize.org/blog/openai-o1-results-arc-prize) we published for OpenAI's o1 models.
 
@@ -37,7 +38,7 @@ ARC Prize is a grand experiment. The ARC-AGI benchmark was conceptualized in 201
 
 The competition kicked off with the hypothesis that new ideas are needed to unlock AGI and we put over $1,000,000 on the line to prove it wrong. When we launched, we said that if the benchmark remained unbeaten after 3 months we'd increase the prize.
 
-Since launch, new approaches hit the leaderboards **resulting in a 12pp score increase to the 46% SOTA!**
+Since launch, new approaches hit the leaderboards **resulting in a 12pp score increase to the 48% SOTA!**
 
 ![AI Benchmark Saturation](ARC%20Prize%20Survives%203%20Months/ai-benchmarks-2.png)
 
@@ -55,7 +56,7 @@ While many were skeptical on Launch Day, over the past few months, tens of thous
 
 While not perfect, ARC-AGI is still the only benchmark that was designed to resist memorization - the very thing LLMs are superhuman at - and measures progress to close the gap between current AI and AGI.
 
-The current leading approach from the MindsAI team involves fine-tuning a language model at test-time on a generated dataset to achieve their 46% score. On the public leaderboard, the top approach leverages parallel inference and search to achieve a 43% score. These techniques are similar to the closed source AGI research by larger, well-funded AI labs like DeepMind, OpenAI, DeepSeek, and others.
+The current leading approach from the MindsAI team involves fine-tuning a language model at test-time on a generated dataset to achieve their 48% score. On the public leaderboard, the top approach leverages parallel inference and search to achieve a 43% score. These techniques are similar to the closed source AGI research by larger, well-funded AI labs like DeepMind, OpenAI, DeepSeek, and others.
 
 By the end of ARC Prize 2024 we expect to publish several novel open source implementations to help propel the scientific frontier forward.
 
