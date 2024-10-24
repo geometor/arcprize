@@ -67,6 +67,43 @@ class Puzzle:
     def colors(self):
         return set.union(*(pair.colors for pair in self.all_pairs))
 
+    
+    def nice_json_layout(puzzle):
+        json_str = "{\n"
+        json_str += f'  "id": "{puzzle.id}",\n'
+        json_str += '  "train": [\n'
+        for pair in puzzle.train:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            json_str += (
+                '      "output": ' + matrix_to_json_string(pair.output.matrix) + "\n"
+            )
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ],\n"
+        json_str += '  "test": [\n'
+        for pair in puzzle.test:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            if pair.output:
+                json_str += (
+                    '      "output": '
+                    + matrix_to_json_string(pair.output.matrix)
+                    + "\n"
+                )
+            else:
+                json_str += '      "output": null\n'
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ]\n"
+        json_str += "}"
+
+        return json_str
+
 
 class PuzzleSet:
     def __init__(self, folder_path="."):

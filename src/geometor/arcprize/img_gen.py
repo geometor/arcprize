@@ -7,25 +7,6 @@ from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
 import numpy as np
 
 
-# Color mapping from arcprize.org
-# 0 --white: #EEEEEE;
-# 1 --blue: #1E93FF;
-# 2 --red: #F93C31;
-# 3 --green: #4FCC30;
-# 4 --yellow: #FFDC00;
-# 5 --gray: #555555;
-#  --magenta-light: #ff7bcc;
-# 6 --magenta: #E53AA3;
-# 7 --orange: #FF851B;
-# 8 --blue-light: #87D8F1;
-# 9 --maroon: #921231;
-#  --black: #000000;
-#  --offwhite: #C0C0C0;
-#  --gray-light: #999999;
-# replaced Gray with Pink
-# darkened red, orange, yellow
-#  5: (255, 123, 204),  # Pink
-
 COLOR_MAP = {
     0: (238, 238, 238),  # White
     1: (30, 147, 255),  # Blue
