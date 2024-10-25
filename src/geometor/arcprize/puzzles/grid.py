@@ -2,6 +2,7 @@ import numpy as np
 from geometor.model import Model
 
 from PIL import Image, ImageDraw, ImageFont
+
 COLOR_MAP = {
     0: (238, 238, 238),  # White
     1: (30, 147, 255),  # Blue
@@ -70,7 +71,13 @@ class Grid:
         Positive k means clockwise rotation, negative k means counter-clockwise.
         """
         new_matrix = np.rot90(self.matrix, k=-k)
-        return Grid(new_matrix, self.puzzle_id, self.set_type, self.index, f"{self.io_type}_rotated{k*90}")
+        return Grid(
+            new_matrix,
+            self.puzzle_id,
+            self.set_type,
+            self.index,
+            f"{self.io_type}_rotated{k*90}",
+        )
 
     def flip(self, axis=0):
         """
@@ -79,7 +86,13 @@ class Grid:
         """
         new_matrix = np.flip(self.matrix, axis=axis)
         flip_type = "vertical" if axis == 0 else "horizontal"
-        return Grid(new_matrix, self.puzzle_id, self.set_type, self.index, f"{self.io_type}_flipped_{flip_type}")
+        return Grid(
+            new_matrix,
+            self.puzzle_id,
+            self.set_type,
+            self.index,
+            f"{self.io_type}_flipped_{flip_type}",
+        )
 
     def to_string(self, row_delimiter="\n", cell_delimiter=" "):
         return row_delimiter.join(
@@ -103,7 +116,7 @@ class Grid:
 
         for y in range(grid.height):
             for x in range(grid.width):
-                color = COLOR_MAP.get(grid.matrix[y, x], (128, 128, 128))
+                color = COLOR_MAP.get(grid.matrix[y, x], (0, 0, 0))
                 draw.rectangle(
                     [
                         x * cell_size + border,
@@ -126,5 +139,3 @@ class Grid:
                     draw.text((text_x + 1, text_y - 1), value, fill="black", font=font)
 
         return image
-
-

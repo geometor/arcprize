@@ -69,6 +69,10 @@ class Puzzle:
 
     
     def nice_json_layout(puzzle):
+
+        def matrix_to_json_string(matrix):
+            return "[\n" + ",\n".join(f"          {row}" for row in matrix.tolist()) + "\n        ]"
+
         json_str = "{\n"
         json_str += f'  "id": "{puzzle.id}",\n'
         json_str += '  "train": [\n'
