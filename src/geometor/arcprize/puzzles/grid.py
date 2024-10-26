@@ -18,8 +18,8 @@ COLOR_MAP = {
 
 
 class Grid:
-    def __init__(self, matrix, puzzle_id, set_type, index, io_type):
-        self.matrix = np.array(matrix, dtype=int)
+    def __init__(self, grid, puzzle_id, set_type, index, io_type):
+        self.grid = np.array(grid, dtype=int)
         self.puzzle_id = puzzle_id
         self.set_type = set_type  # 'train' or 'test'
         self.index = index
@@ -32,23 +32,23 @@ class Grid:
 
     @property
     def height(self):
-        return self.matrix.shape[0]
+        return self.grid.shape[0]
 
     @property
     def width(self):
-        return self.matrix.shape[1]
+        return self.grid.shape[1]
 
     @property
     def size(self):
-        return self.matrix.size
+        return self.grid.size
 
     @property
     def colors(self):
-        return set(np.unique(self.matrix))
+        return set(np.unique(self.grid))
 
     @property
     def color_counts(self):
-        unique, counts = np.unique(self.matrix, return_counts=True)
+        unique, counts = np.unique(self.grid, return_counts=True)
         return dict(zip(unique, counts))
 
     @property
@@ -61,7 +61,7 @@ class Grid:
         model = Model(self.name)
         for y in range(self.height):
             for x in range(self.width):
-                val = self.matrix[y, x]
+                val = self.grid[y, x]
                 model.set_point(x, y, classes=[str(val)], label=f"({x},{y})")
         return model
 
@@ -70,9 +70,9 @@ class Grid:
         Rotate the grid by 90 degrees k times.
         Positive k means clockwise rotation, negative k means counter-clockwise.
         """
-        new_matrix = np.rot90(self.matrix, k=-k)
+        new_grid = np.rot90(self.grid, k=-k)
         return Grid(
-            new_matrix,
+            new_grid,
             self.puzzle_id,
             self.set_type,
             self.index,
@@ -84,10 +84,10 @@ class Grid:
         Flip the grid along the specified axis.
         axis=0 flips vertically, axis=1 flips horizontally.
         """
-        new_matrix = np.flip(self.matrix, axis=axis)
+        new_grid = np.flip(self.grid, axis=axis)
         flip_type = "vertical" if axis == 0 else "horizontal"
         return Grid(
-            new_matrix,
+            new_grid,
             self.puzzle_id,
             self.set_type,
             self.index,
@@ -96,11 +96,11 @@ class Grid:
 
     def to_string(self, row_delimiter="\n", cell_delimiter=" "):
         return row_delimiter.join(
-            cell_delimiter.join(str(cell) for cell in row) for row in self.matrix
+            cell_delimiter.join(str(cell) for cell in row) for row in self.grid
         )
 
-    def to_image(grid, cell_size=32, add_text=False):
-        border = 1
+    def to_image(grid, cell_size=64, add_text=True):
+        border = 2
         color_size = cell_size - 2 * border
         width = grid.width * cell_size
         height = grid.height * cell_size
@@ -116,7 +116,7 @@ class Grid:
 
         for y in range(grid.height):
             for x in range(grid.width):
-                color = COLOR_MAP.get(grid.matrix[y, x], (0, 0, 0))
+                color = COLOR_MAP.get(grid.grid[y, x], (0, 0, 0))
                 draw.rectangle(
                     [
                         x * cell_size + border,
@@ -128,7 +128,7 @@ class Grid:
                 )
 
                 if add_text:
-                    value = str(grid.matrix[y, x])
+                    value = str(grid.grid[y, x])
                     text_bbox = draw.textbbox((0, 0), value, font=font)
                     text_width = text_bbox[2] - text_bbox[0]
                     text_height = text_bbox[3] - text_bbox[1]

@@ -51,23 +51,34 @@ def solve_puzzle(puzzle):
 
     for i, pair in enumerate(puzzle.train, 1):
         prompt = [
-            f"train_{i}\n\n",
-            f"input\n\n",
-            pair.input.to_string(),
+            f"train_{i}\n",
+            f"input\n",
+            #  pair.input.to_string(),
+            str(pair.input.grid),
             f"\n\n",
             pair.input.to_image(),
-            f"output\n\n",
-            pair.output.to_string(),
+            f"\n\n",
+            f"output\n",
+            #  pair.output.to_string(),
+            str(pair.output.grid),
             f"\n\n",
             pair.output.to_image(),
+            f"\n\n",
+            "you may generate and run code to closely examine the patterns and differences in the grids",
         ]
-        #  print(prompt)
-        response = chat.send_message(prompt)
+        for p in prompt:
+            print(p)
+
+        response = chat.send_message(prompt, tools="code_execution")
         log_response(response)
 
-    prompt = "summarize your observations to explain the transformation of the input to output"
-    response = chat.send_message(prompt)
+    prompt = [
+            "summarize your observations to explain the transformation of the input to output",
+            "you may generate and run code to closely examine the patterns and differences in the grids",
+            ]
+    response = chat.send_message(prompt, tools="code_execution")
     log_response(response)
+    #  print(response)
 
     # test functions
     working_grid = []
@@ -99,7 +110,7 @@ def solve_puzzle(puzzle):
         """
         # TODO: set value in working_grid
         nonlocal working_grid
-        working_grid.matrix[int(row), int(column)] = color
+        working_grid.grid[int(row), int(column)] = color
         print("set_pixel")
         return "pixel set"
 
@@ -112,7 +123,7 @@ def solve_puzzle(puzzle):
         c1 = int(column1)
         r2 = int(row2)
         c2 = int(column2)
-        working_grid.matrix[r1:r2, c1, c2] = color
+        working_grid.matrix[r1:r2, c1:c2] = color
         print("set_range")
         return "range set"
 
@@ -142,6 +153,7 @@ def solve_puzzle(puzzle):
 
     # test ##############################
 
+    # present test input
     test_pair = puzzle.test[0]
     prompt = [
         f"test\n\n",
@@ -150,10 +162,19 @@ def solve_puzzle(puzzle):
         f"\n\n",
         test_pair.input.to_image(),
         f"\n\n",
-        "build the output grid step by step using tool functions",
-        "your first choice is to initialize the output grid - you can copy the input or or set a fresh grid by size",
+        "summarize your observations to explain the transformation of the input to output",
+        "you may generate and run code to closely examine the patterns and differences in the grids",
     ]
+    response = chat.send_message(
+        prompt,
+        tools="code_execution",
+    )
+    log_response(response)
 
+    # initialize working grid
+    prompt = [
+        "initialize the working output grid",
+    ]
     functions = {
         "initialize_output_from_input": initialize_output_from_input,
         "initilize_output_by_size": initilize_output_by_size,
@@ -162,7 +183,8 @@ def solve_puzzle(puzzle):
         prompt,
         tools=functions.values(),
     )
-    print(response)
+    #  print(response)
+    #  log_response(response)
 
     part = response.candidates[0].content.parts[0]
     if part.function_call:
@@ -195,7 +217,8 @@ def solve_puzzle(puzzle):
             prompt,
             tools=functions.values(),
         )
-        print(response)
+        #  print(response)
+        #  log_response(response)
 
         part = response.candidates[0].content.parts[0]
         if part.function_call:
