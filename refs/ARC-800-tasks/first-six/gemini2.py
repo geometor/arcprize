@@ -1,5 +1,6 @@
 from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
 from rich import print
+from datetime import datetime
 from pathlib import Path
 import json
 import numpy as np
@@ -17,15 +18,34 @@ def get_model():
     model = genai.GenerativeModel(
         "models/gemini-1.5-pro", 
         #  "models/gemini-1.5-flash", 
+        #  "models/gemini-1.5-flash-8b", 
         system_instruction=instruction
     )
 
     return model
 
 
+def create_output_dir():
+    """Create timestamped output directory for reports and logs"""
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_dir = Path("outputs") / timestamp
+
+    # Create main output directory
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Create subdirectories for different types of output
+    (output_dir / "reports").mkdir(exist_ok=True)
+    (output_dir / "logs").mkdir(exist_ok=True)
+
+    return output_dir
+
+
 def solve_all_puzzles(puzzle_set):
+    output_dir = create_output_dir()
+    print(f"Output directory: {output_dir}")
+
     for puzzle in puzzle_set.puzzles:
-        solve_puzzle(puzzle)
+        solve_puzzle(puzzle, output_dir)
 
 
 def log_response(response):
@@ -63,21 +83,6 @@ class PuzzleSolver:
         """
         self.working_grid.grid[int(row), int(column)] = int(color)
         return "pixel set"
-
-    #  def set_range(
-    #  self, row1: int, column1: int, row2: int, column2: int, color: int
-    #  ) -> str:
-    #  """
-    #  Set grid values for a range of pixels.
-    #  """
-    #  r1 = int(row1)
-    #  c1 = int(column1)
-    #  r2 = int(row2)
-    #  c2 = int(column2)
-    #  self.working_grid.grid[r1:r2, c1:c2] = int(color)
-    #  breakpoint()
-    #  print("set_range")
-    #  return "range set"
 
     def set_range(
         self, row1: int, column1: int, row2: int, column2: int, color: int
@@ -134,7 +139,7 @@ class PuzzleSolver:
         return "submit"
 
 
-def solve_puzzle(puzzle):
+def solve_puzzle(puzzle, output_dir):
     model = get_model()
     conversation_log = []
 
@@ -153,16 +158,16 @@ def solve_puzzle(puzzle):
     # Process training examples
     for i, pair in enumerate(puzzle.train, 1):
         prompt = [
-            f"# example_{i}",
-            "## input",
+            f"# example_{i}\n",
+            "## input\n",
             str(pair.input.grid),
-            "",
+            "\n",
             pair.input.to_image(),
-            f"## output",
+            f"## output\n",
             str(pair.output.grid),
-            "",
+            "\n",
             pair.output.to_image(),
-            #  "",
+            #  "\n",
             #  "you may generate and run code to closely examine the patterns and differences in the grids",
         ]
         print(prompt)
@@ -174,8 +179,8 @@ def solve_puzzle(puzzle):
 
     # Summarize observations
     prompt = [
-        "summarize your observations to explain the transformation of the input to output",
-        "you may generate and run code to closely examine the patterns and differences in the grids",
+        "summarize your observations to explain the transformation of the input to output\n",
+        "you may generate and run code to closely examine the patterns and differences in the grids\n",
     ]
     conversation_log.append({"role": "user", "content": prompt})
     response = chat.send_message(prompt, tools="code_execution")
@@ -194,16 +199,12 @@ def solve_puzzle(puzzle):
     # Present test input
     test_pair = puzzle.test[0]
     prompt = [
-        "# test",
-        "## input",
+        "# test\n",
+        "## input\n",
         str(test_pair.input.grid),
-        "",
+        "\n",
         test_pair.input.to_image(),
-        #  "",
-        #  "summarize your observations to explain the transformation of the input to output",
-        #  "you may generate and run code to closely examine the patterns and differences in the grids",
     ]
-    #  prompt_text = ''.join(prompt)
     response = chat.send_message(
         prompt,
         tools="code_execution",
@@ -228,7 +229,7 @@ def solve_puzzle(puzzle):
     if function_call:
         result = call_function(function_call, functions, conversation_log)
 
-    print(result)
+        print(result)
 
     # Define functions for setting pixels
     functions = {
@@ -244,12 +245,12 @@ def solve_puzzle(puzzle):
         print("LOOP:", loop)
         # first present the current working grid
         prompt = [
-            "# working output grid",
+            "# working output grid\n",
             str(solver.working_grid.grid),
-            "",
+            "\n",
             solver.working_grid.to_image(),
-            "",
-            "assess current state",
+            "\n",
+            "assess current state\n",
             #  "you can use code execution to analyze",
         ]
         response = chat.send_message(
@@ -261,8 +262,8 @@ def solve_puzzle(puzzle):
 
         # next select the function for next update
         prompt = [
-            "select next function to update the working grid",
-            "when you think you have completed the output, call the submit function",
+            "select next function to update the working grid\n",
+            "when you think you have completed the output, call the submit function\n",
         ]
         response = chat.send_message(
             prompt,
@@ -284,7 +285,8 @@ def solve_puzzle(puzzle):
     print(chat.history)
     #  breakpoint()
 
-    generate_report(chat.history, puzzle.id)
+    report_path = generate_report(chat.history, puzzle.id, output_dir)
+    print("report path:", report_path)
 
     # Save conversation log to JSON
     output_dir = Path("logs")
@@ -337,7 +339,7 @@ def markdown_filter(text):
     return markdown.markdown(text)
 
 
-def generate_report(chat_history, puzzle_id):
+def generate_report(chat_history, puzzle_id, output_dir):
     """Generate HTML report from chat history"""
     # Read template
     template_path = "gemini_report_2.html.j2"
@@ -352,22 +354,18 @@ def generate_report(chat_history, puzzle_id):
     html = template.render(history=chat_history)
 
     # Save report
-    output_dir = "reports"
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, f"puzzle_{puzzle_id}.html")
+    report_path = output_dir / "reports" / f"puzzle_{puzzle_id}.html"
+    report_path.write_text(html)
 
-    with open(output_path, "w") as f:
-        f.write(html)
-
-    return output_path
+    return report_path
 
 
 def run():
     puzzle_set = PuzzleSet()
     print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
 
-    #  solve_all_puzzles(puzzle_set)
-    solve_puzzle(puzzle_set.puzzles[1])
+    solve_all_puzzles(puzzle_set)
+    #  solve_puzzle(puzzle_set.puzzles[1])
 
 
 if __name__ == "__main__":
