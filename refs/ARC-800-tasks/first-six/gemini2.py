@@ -15,7 +15,9 @@ def get_model():
         instruction = f.read().strip()
 
     model = genai.GenerativeModel(
-        "models/gemini-1.5-flash", system_instruction=instruction
+        "models/gemini-1.5-pro", 
+        #  "models/gemini-1.5-flash", 
+        system_instruction=instruction
     )
 
     return model
@@ -46,10 +48,10 @@ class PuzzleSolver:
         self.working_grid = deepcopy(self.puzzle.test[0].input)
         return "input copied"
 
-    def initilize_output_by_size(self, width: int, height: int, color: int = 0) -> str:
+    def initialize_output_by_size(self, width: int, height: int, color: int = 0) -> str:
         """
         Initialize the test output grid with a specific width and height filled
-        with a color.  
+        with a color.
         """
         new_grid = np.full((int(height), int(width)), int(color))
         self.working_grid = Grid(new_grid, self.puzzle.id, "test", 0, "output")
@@ -63,21 +65,23 @@ class PuzzleSolver:
         return "pixel set"
 
     #  def set_range(
-        #  self, row1: int, column1: int, row2: int, column2: int, color: int
+    #  self, row1: int, column1: int, row2: int, column2: int, color: int
     #  ) -> str:
-        #  """
-        #  Set grid values for a range of pixels.
-        #  """
-        #  r1 = int(row1)
-        #  c1 = int(column1)
-        #  r2 = int(row2)
-        #  c2 = int(column2)
-        #  self.working_grid.grid[r1:r2, c1:c2] = int(color)
-        #  breakpoint()
-        #  print("set_range")
-        #  return "range set"
+    #  """
+    #  Set grid values for a range of pixels.
+    #  """
+    #  r1 = int(row1)
+    #  c1 = int(column1)
+    #  r2 = int(row2)
+    #  c2 = int(column2)
+    #  self.working_grid.grid[r1:r2, c1:c2] = int(color)
+    #  breakpoint()
+    #  print("set_range")
+    #  return "range set"
 
-    def set_range(self, row1: int, column1: int, row2: int, column2: int, color: int) -> str:
+    def set_range(
+        self, row1: int, column1: int, row2: int, column2: int, color: int
+    ) -> str:
         """
         Set grid values for a range of pixels by iterating through each cell.
 
@@ -109,9 +113,10 @@ class PuzzleSolver:
                 self.working_grid.grid[row, col] = int(color)
 
         cells_modified = (r2 - r1) * (c2 - c1)
-        print(f"set_range: {cells_modified} cells modified from ({r1},{c1}) to ({r2-1},{c2-1})")
+        print(
+            f"set_range: {cells_modified} cells modified from ({r1},{c1}) to ({r2-1},{c2-1})"
+        )
         return "range set"
-
 
     def set_contiguous(self, row: int, column: int, color: int) -> str:
         """
@@ -148,12 +153,17 @@ def solve_puzzle(puzzle):
     # Process training examples
     for i, pair in enumerate(puzzle.train, 1):
         prompt = [
-            f"train_{i}\ninput\n{str(pair.input.grid)}\n\n",
+            f"# example_{i}",
+            "## input",
+            str(pair.input.grid),
+            "",
             pair.input.to_image(),
-            f"\noutput\n{str(pair.output.grid)}\n\n",
+            f"## output",
+            str(pair.output.grid),
+            "",
             pair.output.to_image(),
-            f"\n\n",
-            "you may generate and run code to closely examine the patterns and differences in the grids",
+            #  "",
+            #  "you may generate and run code to closely examine the patterns and differences in the grids",
         ]
         print(prompt)
         conversation_log.append({"role": "user", "content": prompt})
@@ -178,20 +188,20 @@ def solve_puzzle(puzzle):
     # Define functions for initialization
     functions = {
         "initialize_output_from_input": solver.initialize_output_from_input,
-        "initilize_output_by_size": solver.initilize_output_by_size,
+        "initialize_output_by_size": solver.initialize_output_by_size,
     }
 
     # Present test input
     test_pair = puzzle.test[0]
     prompt = [
-        f"test\n\n",
-        f"input\n\n",
+        "# test",
+        "## input",
         str(test_pair.input.grid),
-        f"\n\n",
+        "",
         test_pair.input.to_image(),
-        f"\n\n",
-        "summarize your observations to explain the transformation of the input to output",
-        "you may generate and run code to closely examine the patterns and differences in the grids",
+        #  "",
+        #  "summarize your observations to explain the transformation of the input to output",
+        #  "you may generate and run code to closely examine the patterns and differences in the grids",
     ]
     #  prompt_text = ''.join(prompt)
     response = chat.send_message(
@@ -234,11 +244,11 @@ def solve_puzzle(puzzle):
         print("LOOP:", loop)
         # first present the current working grid
         prompt = [
-            f"working output grid\n\n",
+            "# working output grid",
             str(solver.working_grid.grid),
-            f"\n\n",
+            "",
             solver.working_grid.to_image(),
-            f"\n\n",
+            "",
             "assess current state",
             #  "you can use code execution to analyze",
         ]
@@ -305,6 +315,7 @@ def call_function(function_call, functions, conversation_log):
 from jinja2 import Template
 import os
 import base64
+import markdown
 
 
 def clean_base64(data):
@@ -322,6 +333,9 @@ def clean_base64(data):
             return base64.b64encode(byte_str).decode("utf-8")
     return data
 
+def markdown_filter(text):
+    return markdown.markdown(text)
+
 
 def generate_report(chat_history, puzzle_id):
     """Generate HTML report from chat history"""
@@ -332,6 +346,7 @@ def generate_report(chat_history, puzzle_id):
 
     # Register the custom filter
     template.environment.filters["clean_base64"] = clean_base64
+    template.environment.filters["markdown"] = markdown_filter
 
     # Render template
     html = template.render(history=chat_history)

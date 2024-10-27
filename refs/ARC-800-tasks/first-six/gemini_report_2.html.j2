@@ -109,11 +109,11 @@
     <div class="role">{{ entry.role }}</div>
     {% for part in entry.parts %}
       <div class="part">
-        {% if part.text %}
-          <div class="part-type">text</div>
-          <div class="text-content">{{ part.text }}</div>
-        {% endif %}
-
+        {% if part.text.strip().startswith('[[') %}
+            <pre><code>{{ part.text }}</code></pre>
+          {% else %}
+          {{ part.text | markdown }}
+          {% endif %}
         {% if part.inline_data %}
           {% set image_data = part.inline_data.data | clean_base64 %}
           <div class="part-type">inline_data ({{ part.inline_data.mime_type }})</div>
@@ -121,18 +121,15 @@
                src="data:{{ part.inline_data.mime_type }};base64,{{ image_data }}"
                alt="Grid State">
         {% endif %}
-
         {% if part.executable_code %}
           <div class="part-type">executable_code ({{ part.executable_code.language }})</div>
           <pre><code>{{ part.executable_code.code }}</code></pre>
         {% endif %}
-
         {% if part.code_execution_result %}
           <div class="part-type">code_execution_result ({{
               part.code_execution_result.outcome }})</div>
           <pre><code>{{ part.code_execution_result.output }}</code></pre>
         {% endif %}
-
         {% if part.function_call %}
           <div class="part-type">function_call</div>
           <div><strong>{{ part.function_call.name }}</strong></div>
