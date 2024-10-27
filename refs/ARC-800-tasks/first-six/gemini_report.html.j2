@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ARC Puzzle Analysis</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    .history-entry {
+      background: white;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .role {
+      font-weight: 500;
+      color: #666;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .part {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+    .part-type {
+      font-family: monospace;
+      color: #666;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+    }
+    .grid-image {
+      image-rendering: pixelated;
+      border: 1px solid #ddd;
+      max-width: 100%;
+    }
+    pre {
+      background: #f6f8fa;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+    }
+    .function-args {
+      margin-left: 1rem;
+      font-family: monospace;
+      color: #444;
+    }
+    .code-output {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: #f0fff4;
+      border-left: 3px solid #68d391;
+    }
+  </style>
+</head>
+<body>
+  {% for entry in history %}
+  <div class="history-entry">
+    <div class="role">{{ entry.role }}</div>
+    {% for part in entry.parts %}
+      <div class="part">
+        {% if part.text %}
+          <div class="part-type">text</div>
+          <p>{{ part.text }}</p>
+        {% endif %}
+
+        {% if part.inline_data %}
+          {% set image_data = part.inline_data.data | clean_base64 %}
+          <div class="part-type">inline_data ({{ part.inline_data.mime_type }})</div>
+          <img class="grid-image"
+               src="data:{{ part.inline_data.mime_type }};base64,{{ image_data }}"
+               alt="Grid State">
+        {% endif %}
+
+        {% if part.executable_code %}
+          <div class="part-type">executable_code ({{ part.executable_code.language }})</div>
+          <pre><code>{{ part.executable_code.code }}</code></pre>
+          {% if part.code_execution_result %}
+            <div class="code-output">{{ part.code_execution_result.output }}</div>
+          {% endif %}
+        {% endif %}
+
+        {% if part.function_call %}
+          <div class="part-type">function_call</div>
+          <div><strong>{{ part.function_call.name }}</strong></div>
+          <div class="function-args">
+            { for arg in part.function_call.args %}
+              {{ part.function_call.args }}
+            { endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</body>
+</html>
