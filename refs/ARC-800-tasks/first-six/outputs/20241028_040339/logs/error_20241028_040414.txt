@@ -1,0 +1,3 @@
+Error generating content: whichOneof
+Prompt parts:
+initialize the working output grid

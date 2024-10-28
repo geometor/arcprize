@@ -1,0 +1,2 @@
+Error generating content: name 'parts' is not defined
+Prompt parts:

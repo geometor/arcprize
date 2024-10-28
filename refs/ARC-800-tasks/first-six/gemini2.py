@@ -17,7 +17,8 @@ def get_model():
 
     model = genai.GenerativeModel(
         #  "models/gemini-1.5-pro-002", 
-        "models/gemini-1.5-flash-002", 
+        "models/gemini-1.5-flash", 
+        #  "models/gemini-1.5-flash-002", 
         #  "models/gemini-1.5-flash-8b", 
         system_instruction=instruction
     )
@@ -364,8 +365,8 @@ def run():
     puzzle_set = PuzzleSet()
     print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
 
-    solve_all_puzzles(puzzle_set)
-    #  solve_puzzle(puzzle_set.puzzles[1])
+    #  solve_all_puzzles(puzzle_set)
+    solve_puzzle(puzzle_set.puzzles[0], create_output_dir())
 
 
 if __name__ == "__main__":

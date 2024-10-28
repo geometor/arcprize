@@ -11,16 +11,18 @@ import google.generativeai as genai
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
+DEFAULT_MODEL = "models/gemini-1.5-flash"
+#  DEFAULT_MODEL = "models/gemini-1.5-flash-002"
+#  DEFAULT_MODEL = "models/gemini-1.5-pro-002"
+DEFAULT_INSTRUCTIONS_FILE = "gemini_instructions.md"
 
-def get_model():
-    with open("gemini_instructions.md", "r") as f:
+
+def get_model(model_name=DEFAULT_MODEL, instructions_file=DEFAULT_INSTRUCTIONS_FILE):
+    with open(instructions_file, "r") as f:
         instruction = f.read().strip()
 
     model = genai.GenerativeModel(
-        #  "models/gemini-1.5-pro-002",
-        #  "models/gemini-1.5-flash-002",
-        "models/gemini-1.5-flash",
-        #  "models/gemini-1.5-flash-8b",
+        model_name,
         system_instruction=instruction,
     )
 
@@ -50,10 +52,14 @@ def solve_all_puzzles(puzzle_set):
         solve_puzzle(puzzle, output_dir)
 
 
+def log_prompt(prompt):
+    print("-" * 40)
+    print(prompt)
+
+
 def log_response(response):
-    print("-" * 10)
-    print(response.text)
-    print(response.usage_metadata)
+    print("-" * 20)
+    print(response.to_dict())
 
 
 class PuzzleSolver:
@@ -68,23 +74,37 @@ class PuzzleSolver:
         from copy import deepcopy
 
         self.working_grid = deepcopy(self.puzzle.test[0].input)
-        return "input copied"
+        return "initialize_output_from_input()"
 
     def initialize_output_by_size(self, width: int, height: int, color: int = 0) -> str:
         """
         Initialize the test output grid with a specific width and height filled
         with a color.
         """
-        new_grid = np.full((int(height), int(width)), int(color))
+        width = int(width)
+        height = int(height)
+        color = int(color)
+        new_grid = np.full((height, width), int(color))
         self.working_grid = Grid(new_grid, self.puzzle.id, "test", 0, "output")
-        return "grid set"
+        return f"initialize_output_by_size({width=}, {height=}, {color=})"
 
     def set_pixel(self, row: int, column: int, color: int) -> str:
         """
         Set grid value at a specific coordinate.
         """
-        self.working_grid.grid[int(row), int(column)] = int(color)
-        return "pixel set"
+        height, width = self.working_grid.grid.shape
+        row = int(row)
+        column = int(column)
+        color = int(color)
+
+        if not (0 <= row < height):
+            raise ValueError(f"Row {row} is out of bounds. Grid height is {height}")
+
+        if not (0 <= column < width):
+            raise ValueError(f"Column {column} is out of bounds. Grid width is {width}")
+
+        self.working_grid.grid[row, column] = color
+        return f"set_pixel({row=}, {column=}, {color=})"
 
     def set_range(
         self, row1: int, column1: int, row2: int, column2: int, color: int
@@ -109,6 +129,11 @@ class PuzzleSolver:
 
         # Ensure we're within grid bounds
         height, width = self.working_grid.grid.shape
+
+        # Check if any part of the range is within bounds
+        if (r1 >= height and r2 >= height) or (c1 >= width and c2 >= width):
+            raise ValueError(f"Entire range is outside grid bounds ({height}x{width})")
+
         r1 = max(0, min(r1, height))
         r2 = max(0, min(r2, height))
         c1 = max(0, min(c1, width))
@@ -123,13 +148,13 @@ class PuzzleSolver:
         print(
             f"set_range: {cells_modified} cells modified from ({r1},{c1}) to ({r2-1},{c2-1})"
         )
-        return "range set"
+        return f"set_range({row1}, {column1}, {row2}, {column2}, {color}) -> str:"
 
     def set_contiguous(self, row: int, column: int, color: int) -> str:
         """
         Set all contiguous pixels that are the same color as the selected pixel.
         """
-        # Implement contiguous pixel setting
+        # TODO: Implement contiguous pixel setting
         print("set_contiguous")
         return "contiguous set"
 
@@ -143,7 +168,6 @@ class PuzzleSolver:
 
 def solve_puzzle(puzzle, output_dir):
     model = get_model()
-    conversation_log = []
 
     chat = model.start_chat(
         history=[
@@ -152,9 +176,7 @@ def solve_puzzle(puzzle, output_dir):
         ],
     )
 
-    conversation_log.extend(chat.history)
-
-    print("-" * 40)
+    print("=" * 60)
     print(puzzle.id)
 
     # Process training examples
@@ -165,34 +187,28 @@ def solve_puzzle(puzzle, output_dir):
             str(pair.input.grid),
             "\n",
             pair.input.to_image(),
-            f"## output\n",
+            "\n",
+            "## output\n",
             str(pair.output.grid),
             "\n",
             pair.output.to_image(),
-            #  "\n",
-            #  "you may generate and run code to closely examine the patterns and differences in the grids",
+            "\n",
         ]
-        print(prompt)
-        conversation_log.append({"role": "user", "content": prompt})
-
+        log_prompt(prompt)
         response = chat.send_message(prompt, tools="code_execution")
         log_response(response)
-        conversation_log.append({"role": "model", "content": response.text})
 
     # Summarize observations
     prompt = [
         "summarize your observations to explain the transformation of the input to output\n",
         "you may generate and run code to closely examine the patterns and differences in the grids\n",
     ]
-    conversation_log.append({"role": "user", "content": prompt})
+    log_prompt(prompt)
     response = chat.send_message(prompt, tools="code_execution")
     log_response(response)
-    conversation_log.append({"role": "model", "content": response.text})
 
-    # Initialize PuzzleSolver
     solver = PuzzleSolver(puzzle)
 
-    # Define functions for initialization
     functions = {
         "initialize_output_from_input": solver.initialize_output_from_input,
         "initialize_output_by_size": solver.initialize_output_by_size,
@@ -206,30 +222,33 @@ def solve_puzzle(puzzle, output_dir):
         str(test_pair.input.grid),
         "\n",
         test_pair.input.to_image(),
+        "\n",
+        "generate report as per instructions\n",
+        "use code execution to investigate properties"
+
     ]
+    log_prompt(prompt)
     response = chat.send_message(
         prompt,
         tools="code_execution",
     )
     log_response(response)
-    #  conversation_log.append({'role': 'user', 'content': prompt})
-    #  conversation_log.append({'role': 'model', 'content': response.text})
 
     # Initialize working grid
     prompt = [
         "initialize the working output grid",
     ]
+    log_prompt(prompt)
     response = chat.send_message(
         prompt,
         tools=functions.values(),
     )
-    #  log_response(response)
-    #  conversation_log.append({'role': 'user', 'content': prompt})
+    log_response(response)
 
     # Process function call
     function_call = response.candidates[0].content.parts[0].function_call
     if function_call:
-        result = call_function(function_call, functions, conversation_log)
+        result = call_function(function_call, functions)
 
         print(result)
 
@@ -237,83 +256,79 @@ def solve_puzzle(puzzle, output_dir):
     functions = {
         "set_pixel": solver.set_pixel,
         "set_range": solver.set_range,
-        "set_contiguous": solver.set_contiguous,
+        #  "set_contiguous": solver.set_contiguous,
         "submit": solver.submit,
         # TODO: add undo last
     }
+
+    prompt = [
+        "clearing tools for next phase",
+    ]
+    log_prompt(prompt)
+    response = chat.send_message(
+        prompt,
+        tools=None,
+    )
+    log_response(response)
 
     # Interaction loop
     for loop in range(5):
         print("LOOP:", loop)
         # first present the current working grid
+        # TODO: after functions have been added to tools - can't return to code execution
         prompt = [
             "# working output grid\n",
+            "updated with your changes\n",
             str(solver.working_grid.grid),
             "\n",
             solver.working_grid.to_image(),
             "\n",
-            "assess current state\n",
+            "take a moment to review that the changes are in keeping with the rule\n",
             #  "you can use code execution to analyze",
+            #  "use code execution to investigate properties"
         ]
+        log_prompt(prompt)
         response = chat.send_message(
             prompt,
             #  tools="code_execution",
         )
         log_response(response)
-        #  conversation_log.append({'role': 'user', 'content': prompt})
 
         # next select the function for next update
         prompt = [
-            "select next function to update the working grid\n",
+            "select the next function to update the working grid\n",
             "when you think you have completed the output, call the submit function\n",
         ]
+        log_prompt(prompt)
         response = chat.send_message(
             prompt,
             tools=functions.values(),
         )
-        #  conversation_log.append({'role': 'user', 'content': prompt})
+        log_response(response)
 
         # Process function call
         function_call = response.candidates[0].content.parts[0].function_call
         print(function_call)
         if function_call:
-            result = call_function(function_call, functions, conversation_log)
+            result = call_function(function_call, functions)
 
-        print(result)
-        if result == "submit":
-            break
+            print(result)
+            if result == "submit":
+                break
 
-    print("\n\nHISTORY")
-    print(chat.history)
+    #  print("\n\nHISTORY")
+    #  print(chat.history)
     #  breakpoint()
 
     reporter = Reporter()
     report_path = reporter.generate(chat.history, puzzle.id, output_dir)
     print("report path:", report_path)
 
-    # Save conversation log to JSON
-    #  output_dir = Path("logs")
-    #  output_dir.mkdir(parents=True, exist_ok=True)
-    #  with open(output_dir / f"{puzzle.id}_conversation.json", "w") as f:
-    #  json.dump(conversation_log, f, indent=2)
-    #  with open(output_dir / f"{puzzle.id}_history.json", "w") as f:
-    #  json.dump(chat.history, f, indent=2)
 
-
-def call_function(function_call, functions, conversation_log):
+def call_function(function_call, functions):
     function_name = function_call.name
     function_args = function_call.args
     result = functions[function_name](**function_args)
-    # Log the function call and result
-    conversation_log.append(
-        {
-            "function_call": {
-                "name": function_name,
-                "args": function_args,
-                "result": result,
-            }
-        }
-    )
     return result
 
 
@@ -323,7 +338,7 @@ def run():
 
     output_dir = create_output_dir()
     solve_all_puzzles(puzzle_set)
-    #  solve_puzzle(puzzle_set.puzzles[1], output_dir)
+    #  solve_puzzle(puzzle_set.puzzles[0], output_dir)
 
 
 if __name__ == "__main__":

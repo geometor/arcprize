@@ -1,0 +1,61 @@
+{
+  "timestamp": "20241028_090203",
+  "prompt_parts": [
+    "select the next function to update the working grid\n",
+    "when you think you have completed the output, call the submit function\n"
+  ],
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "function_call": {
+                "name": "set_pixel",
+                "args": {
+                  "color": 3.0,
+                  "column": 0.0,
+                  "row": 0.0
+                }
+              }
+            }
+          ],
+          "role": "model"
+        },
+        "finish_reason": 1,
+        "index": 0,
+        "safety_ratings": [
+          {
+            "category": 10,
+            "probability": 1,
+            "blocked": false
+          },
+          {
+            "category": 7,
+            "probability": 1,
+            "blocked": false
+          },
+          {
+            "category": 8,
+            "probability": 1,
+            "blocked": false
+          },
+          {
+            "category": 9,
+            "probability": 1,
+            "blocked": false
+          }
+        ],
+        "token_count": 0,
+        "grounding_attributions": [],
+        "avg_logprobs": 0.0
+      }
+    ],
+    "usage_metadata": {
+      "prompt_token_count": 1436,
+      "candidates_token_count": 25,
+      "total_token_count": 1461,
+      "cached_content_token_count": 0
+    }
+  }
+}

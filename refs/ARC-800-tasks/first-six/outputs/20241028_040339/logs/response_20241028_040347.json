@@ -1,0 +1,18 @@
+{
+  "timestamp": "20241028_040347",
+  "prompt_parts": [
+    "# example_2\n",
+    "## input\n",
+    "[[0 0 0 0 8 8 0]\n [0 0 0 0 0 8 0]\n [0 0 8 0 0 0 0]\n [0 0 8 8 0 0 0]\n [0 0 0 0 0 0 0]\n [0 0 0 0 8 0 0]\n [0 0 0 8 8 0 0]]",
+    "\n",
+    "<PIL.Image.Image image mode=RGB size=448x448 at 0x7696E0BB96F0>",
+    "\n",
+    "## output\n",
+    "[[0 0 0 0 8 8 0]\n [0 0 0 0 1 8 0]\n [0 0 8 1 0 0 0]\n [0 0 8 8 0 0 0]\n [0 0 0 0 0 0 0]\n [0 0 0 1 8 0 0]\n [0 0 0 8 8 0 0]]",
+    "\n",
+    "<PIL.Image.Image image mode=RGB size=448x448 at 0x7696E0B177F0>",
+    "\n"
+  ],
+  "response_text": "```python\ninput:\n  width: 7\n  height: 7\n  colors:\n    - 0: (42)\n    - 8: (9)\n  objects:\n    - size: 4, position: (2, 2), color: azure\n    - size: 2, position: (4, 5), color: azure\n    - size: 2, position: (0, 5), color: azure\n    - size: 2, position: (6, 4), color: azure\n  output:\n    width: 7\n    height: 7\n    colors:\n      - 0: (41)\n      - 1: (4)\n      - 8: (9)\n  objects:\n    - size: 4, position: (2, 2), color: azure\n    - size: 2, position: (4, 5), color: azure\n    - size: 2, position: (0, 5), color: azure\n    - size: 2, position: (6, 4), color: azure\n    - size: 1, position: (1, 4), color: blue\n    - size: 1, position: (2, 3), color: blue\n    - size: 1, position: (5, 3), color: blue\n    - size: 1, position: (6, 1), color: blue\n  differences:\n    cells_changed: 4\n    colors_changed: 1 blue pixel added\n  transformation:\n    - add 1 blue pixel to the center of each azure object\n```",
+  "usage": "prompt_token_count: 1912\ncandidates_token_count: 368\ntotal_token_count: 2280\n"
+}

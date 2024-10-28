@@ -1,0 +1,6 @@
+Error generating content: Column 4 is out of bounds. Grid width is 4
+Prompt:
+select the next function to update the working grid
+
+when you think you have completed the output, call the submit function
+

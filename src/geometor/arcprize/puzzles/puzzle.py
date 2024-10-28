@@ -115,7 +115,7 @@ class PuzzleSet:
 
     def _load_puzzles(self, folder_path):
         puzzles = []
-        for file_path in folder_path.glob("*.json"):
+        for file_path in sorted(folder_path.glob("*.json")):
             puzzle_id = file_path.stem  # Get filename without extension
             with file_path.open("r") as f:
                 data = json.load(f)
