@@ -5,6 +5,7 @@ from pathlib import Path
 import json
 import numpy as np
 import os
+from gemini_reporter import Reporter
 
 import google.generativeai as genai
 
@@ -16,10 +17,11 @@ def get_model():
         instruction = f.read().strip()
 
     model = genai.GenerativeModel(
-        #  "models/gemini-1.5-pro-002", 
-        "models/gemini-1.5-flash-002", 
-        #  "models/gemini-1.5-flash-8b", 
-        system_instruction=instruction
+        #  "models/gemini-1.5-pro-002",
+        #  "models/gemini-1.5-flash-002",
+        "models/gemini-1.5-flash",
+        #  "models/gemini-1.5-flash-8b",
+        system_instruction=instruction,
     )
 
     return model
@@ -285,12 +287,13 @@ def solve_puzzle(puzzle, output_dir):
     print(chat.history)
     #  breakpoint()
 
-    report_path = generate_report(chat.history, puzzle.id, output_dir)
+    reporter = Reporter()
+    report_path = reporter.generate(chat.history, puzzle.id, output_dir)
     print("report path:", report_path)
 
     # Save conversation log to JSON
-    output_dir = Path("logs")
-    output_dir.mkdir(parents=True, exist_ok=True)
+    #  output_dir = Path("logs")
+    #  output_dir.mkdir(parents=True, exist_ok=True)
     #  with open(output_dir / f"{puzzle.id}_conversation.json", "w") as f:
     #  json.dump(conversation_log, f, indent=2)
     #  with open(output_dir / f"{puzzle.id}_history.json", "w") as f:
@@ -314,58 +317,13 @@ def call_function(function_call, functions, conversation_log):
     return result
 
 
-from jinja2 import Template
-import os
-import base64
-import markdown
-
-
-def clean_base64(data):
-    """Clean and format base64 data for HTML embedding"""
-    if isinstance(data, bytes):
-        # Convert raw bytes directly to base64
-        return base64.b64encode(data).decode("utf-8")
-    elif isinstance(data, str):
-        if data.startswith("b'") or data.startswith('b"'):
-            # Remove b prefix and quotes
-            raw_str = data[2:-1]
-            # Convert escaped bytes to actual bytes
-            byte_str = bytes(raw_str, "utf-8").decode("unicode-escape").encode("latin1")
-            # Convert to base64
-            return base64.b64encode(byte_str).decode("utf-8")
-    return data
-
-def markdown_filter(text):
-    return markdown.markdown(text)
-
-
-def generate_report(chat_history, puzzle_id, output_dir):
-    """Generate HTML report from chat history"""
-    # Read template
-    template_path = "gemini_report_2.html.j2"
-    with open(template_path) as f:
-        template = Template(f.read())
-
-    # Register the custom filter
-    template.environment.filters["clean_base64"] = clean_base64
-    template.environment.filters["markdown"] = markdown_filter
-
-    # Render template
-    html = template.render(history=chat_history)
-
-    # Save report
-    report_path = output_dir / "reports" / f"puzzle_{puzzle_id}.html"
-    report_path.write_text(html)
-
-    return report_path
-
-
 def run():
     puzzle_set = PuzzleSet()
     print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
 
+    output_dir = create_output_dir()
     solve_all_puzzles(puzzle_set)
-    #  solve_puzzle(puzzle_set.puzzles[1])
+    #  solve_puzzle(puzzle_set.puzzles[1], output_dir)
 
 
 if __name__ == "__main__":
