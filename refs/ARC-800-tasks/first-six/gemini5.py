@@ -12,8 +12,8 @@ import google.generativeai as genai
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
-DEFAULT_MODEL = "models/gemini-1.5-flash"
-#  DEFAULT_MODEL = "models/gemini-1.5-flash-002"
+#  DEFAULT_MODEL = "models/gemini-1.5-flash"
+DEFAULT_MODEL = "models/gemini-1.5-flash-002"
 #  DEFAULT_MODEL = "models/gemini-1.5-pro-002"
 DEFAULT_INSTRUCTIONS_FILE = "gemini_instructions.md"
 
@@ -332,33 +332,54 @@ def call_function(function_call, functions):
     return result
 
 
+def write_markdown_log(output_dir, timestamp, total_prompt, response_parts):
+    """
+    Write prompt and response content to a markdown file.
+    
+    Args:
+        output_dir: Path object for output directory
+        timestamp: String timestamp for the log
+        total_prompt: List of prompt parts
+        response_parts: List of response parts
+    """
+    log_file = output_dir / "logs" / f"conversation_{timestamp}.md"
+    
+    with open(log_file, "w") as f:
+        # Write header with timestamp
+        f.write(f"# Conversation Log - {timestamp}\n\n")
+        
+        # Write prompt section
+        f.write("## Prompt\n\n")
+        for part in total_prompt:
+            # Handle different types of content
+            if isinstance(part, str):
+                f.write(f"{part}\n")
+            else:
+                # For non-string content (like images), write a description
+                f.write(f"[{type(part).__name__}]\n")
+        
+        # Write response section
+        f.write("\n## Response\n\n")
+        for part in response_parts:
+            f.write(f"{part}\n")
+
 def generate_content(model, history, prompt, instructions, tools=None, functions=None, output_dir=None):
     """
     Generate content from the model with standardized logging.
-
-    Args:
-        model: The Gemini model instance
-        prompt_parts: List of content parts to send to model
-        tools: Optional tools configuration
-        output_dir: Optional output directory for logging
-
-    Returns:
-        The model's response
     """
-    # Log the prompt
     print("=" * 40)
     print("PROMPT:")
-    #  print("-" * 20)
     for part in prompt:
         print(part)
 
     total_prompt = history + prompt + instructions
     history = history + prompt
+    
     try:
         # Generate the response
         response = model.generate_content(total_prompt, tools=tools, request_options={'retry':retry.Retry()})
 
-        # TODO: part parser function
+        # Process response parts
         response_parts = []
         if hasattr(response.candidates[0].content, "parts"):
             for part in response.candidates[0].content.parts:
@@ -393,82 +414,28 @@ def generate_content(model, history, prompt, instructions, tools=None, functions
         # Log the response
         print("\nRESPONSE:")
         print("-" * 20)
-        print(f"{response_parts}")
+        for part in response_parts:
+            print(part)
         history = history + response_parts
 
-        # Log detailed response data if output directory is provided
+        # Write to markdown log file if output directory is provided
         if output_dir:
             timestamp = datetime.now().strftime("%y.%j.%H%M%S")
-            log_file = output_dir / "logs" / f"response_{timestamp}.json"
-
-            # Extract serializable data from response
-            log_data = {
-                "timestamp": timestamp,
-                "usage": str(response.usage_metadata),
-                "total_prompt": total_prompt,
-                "response": response_parts,
-            }
-
-            log_data = serialize_for_log(total_prompt, response_parts)
-            with open(log_file, "w") as f:
-                json.dump(log_data, f, indent=2)
+            write_markdown_log(output_dir, timestamp, total_prompt, response_parts)
 
         return history
 
     except Exception as e:
         print(f"\nERROR generating content: {str(e)}")
         if output_dir:
-            error_file = (
-                output_dir
-                / "logs"
-                / f"error_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-            )
+            error_file = output_dir / "logs" / f"error_{datetime.now().strftime('%y.%j.%H%M%S')}.md"
             with open(error_file, "w") as f:
-                f.write(f"Error generating content: {str(e)}\n")
-                f.write(f"Prompt:\n")
+                f.write("# Error Log\n\n")
+                f.write(f"## Error Message\n\n{str(e)}\n\n")
+                f.write("## Prompt Content\n\n")
                 for part in prompt:
                     f.write(f"{str(part)}\n")
         raise
-
-
-def serialize_prompt_part(part):
-    """
-    Convert a prompt part into a serializable format.
-
-    Args:
-        part: A prompt part that could be string, PIL.Image, or other type
-
-    Returns:
-        A serializable representation of the part
-    """
-    import PIL.Image
-
-    if isinstance(part, PIL.Image.Image):
-        return f"<Image: size={part.size} mode={part.mode}>"
-    elif isinstance(part, str):
-        return part
-    else:
-        return str(part)
-
-
-def serialize_for_log(prompt_parts, response_parts):
-    """
-    Prepare prompt and response data for JSON serialization.
-
-    Args:
-        prompt_parts: List of prompt parts
-        response: Model response object
-
-    Returns:
-        Dict of serializable data
-    """
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    return {
-        "timestamp": timestamp,
-        "prompt": [serialize_prompt_part(p) for p in prompt_parts],
-        "response": response_parts,
-    }
 
 
 

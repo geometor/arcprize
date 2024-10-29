@@ -1,0 +1,16 @@
+Error generating content: 500 An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting
+Prompt:
+# test
+
+## input
+
+[[1 0 1 5 1 0 1]
+ [0 1 0 5 1 0 1]
+ [1 0 1 5 0 1 0]]
+
+
+<PIL.Image.Image image mode=RGB size=448x192 at 0x785D91B31630>
+
+
+## observations:
+
