@@ -319,7 +319,6 @@ def solve_puzzle(puzzle, output_dir):
 
         # TODO: still need to break on submit here
 
-
     reporter = Reporter()
     #  report_path = reporter.generate(chat.history, puzzle.id, output_dir=output_dir)
     #  print("report path:", report_path)
@@ -335,7 +334,7 @@ def call_function(function_call, functions):
 def write_markdown_log(output_dir, timestamp, total_prompt, response_parts):
     """
     Write prompt and response content to a markdown file.
-    
+
     Args:
         output_dir: Path object for output directory
         timestamp: String timestamp for the log
@@ -343,11 +342,11 @@ def write_markdown_log(output_dir, timestamp, total_prompt, response_parts):
         response_parts: List of response parts
     """
     log_file = output_dir / "logs" / f"conversation_{timestamp}.md"
-    
+
     with open(log_file, "w") as f:
         # Write header with timestamp
         f.write(f"# Conversation Log - {timestamp}\n\n")
-        
+
         # Write prompt section
         f.write("## Prompt\n\n")
         for part in total_prompt:
@@ -357,13 +356,16 @@ def write_markdown_log(output_dir, timestamp, total_prompt, response_parts):
             else:
                 # For non-string content (like images), write a description
                 f.write(f"[{type(part).__name__}]\n")
-        
+
         # Write response section
         f.write("\n## Response\n\n")
         for part in response_parts:
             f.write(f"{part}\n")
 
-def generate_content(model, history, prompt, instructions, tools=None, functions=None, output_dir=None):
+
+def generate_content(
+    model, history, prompt, instructions, tools=None, functions=None, output_dir=None
+):
     """
     Generate content from the model with standardized logging.
     """
@@ -374,10 +376,12 @@ def generate_content(model, history, prompt, instructions, tools=None, functions
 
     total_prompt = history + prompt + instructions
     history = history + prompt
-    
+
     try:
         # Generate the response
-        response = model.generate_content(total_prompt, tools=tools, request_options={'retry':retry.Retry()})
+        response = model.generate_content(
+            total_prompt, tools=tools, request_options={"retry": retry.Retry()}
+        )
 
         # Process response parts
         response_parts = []
@@ -428,7 +432,11 @@ def generate_content(model, history, prompt, instructions, tools=None, functions
     except Exception as e:
         print(f"\nERROR generating content: {str(e)}")
         if output_dir:
-            error_file = output_dir / "logs" / f"error_{datetime.now().strftime('%y.%j.%H%M%S')}.md"
+            error_file = (
+                output_dir
+                / "logs"
+                / f"error_{datetime.now().strftime('%y.%j.%H%M%S')}.md"
+            )
             with open(error_file, "w") as f:
                 f.write("# Error Log\n\n")
                 f.write(f"## Error Message\n\n{str(e)}\n\n")
@@ -436,8 +444,6 @@ def generate_content(model, history, prompt, instructions, tools=None, functions
                 for part in prompt:
                     f.write(f"{str(part)}\n")
         raise
-
-
 
 
 def run():
