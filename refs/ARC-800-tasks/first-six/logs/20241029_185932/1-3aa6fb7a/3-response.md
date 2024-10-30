@@ -1,0 +1,3 @@
+The transformation rule appears to be consistent across both examples:  Azure pixels (8) on the perimeter of a connected cluster of azure pixels are changed to blue (1) *only if* they are adjacent to at least one other azure pixel.  This preserves the connectivity of the main azure cluster while adding blue pixels to its outer edges.  The precise number of pixels changed seems to depend on the shape and size of the initial cluster, and more examples would help refine this hypothesis.  There's no apparent mathematical relationship between the input and output beyond the transformation of those edge pixels.
+
+

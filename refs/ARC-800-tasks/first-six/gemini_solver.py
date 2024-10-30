@@ -38,14 +38,12 @@ class PuzzleSolver:
             log_prefix: Prefix for log files
             timestamp: Optional timestamp for logging (defaults to current time)
         """
-        from datetime import datetime
-        from pathlib import Path
-
         # Core components
         self.puzzle = puzzle
         self.model_name = model_name
         self.instructions_file = instructions_file
         self.max_iterations = max_iterations
+        self.call_count = 0
 
         # Working state
         self.working_grid = None
@@ -58,12 +56,12 @@ class PuzzleSolver:
 
         if output_dir:
             self.output_dir = Path(output_dir)
-            self.logs_dir = self.output_dir / "logs"
-            self.reports_dir = self.output_dir / "reports"
+            self.logs_dir = self.output_dir / "logs" / self.timestamp / self.puzzle.id
+            #  self.reports_dir = self.output_dir / "reports"
 
             # Ensure directories exist
             self.logs_dir.mkdir(parents=True, exist_ok=True)
-            self.reports_dir.mkdir(parents=True, exist_ok=True)
+            #  self.reports_dir.mkdir(parents=True, exist_ok=True)
         else:
             self.output_dir = None
 
@@ -169,9 +167,6 @@ class PuzzleSolver:
         if not self.output_dir:
             return
 
-        import json
-        from datetime import datetime
-
         state = {
             "timestamp": datetime.now().isoformat(),
             "iteration": self.current_iteration,
@@ -186,20 +181,17 @@ class PuzzleSolver:
 
         # Write current state to log file
         log_file = self.logs_dir / f"{self.log_prefix}_{self.puzzle.id}_{self.timestamp}_states.jsonl"
-        with open(log_file, "a") as f:
-            breakpoint()
-            f.write(json.dumps(state) + "\n")
+        #  with open(log_file, "a") as f:
+            #  #  breakpoint()
+            #  f.write(json.dumps(state) + "\n")
 
     def log_function_call(self, function_name: str, args: dict, result: str):
         """Log details of function calls."""
         if not self.output_dir:
             return
 
-        import json
-        from datetime import datetime
-
         call_info = {
-            "timestamp": datetime.now().isoformat(),
+            "timestamp": self.timestamp,
             "iteration": self.current_iteration,
             "function": function_name,
             "arguments": args,
@@ -211,8 +203,8 @@ class PuzzleSolver:
 
         # Write to log file
         log_file = self.logs_dir / f"{self.log_prefix}_{self.puzzle.id}_{self.timestamp}_calls.jsonl"
-        with open(log_file, "a") as f:
-            f.write(json.dumps(call_info) + "\n")
+        #  with open(log_file, "a") as f:
+            #  f.write(json.dumps(call_info) + "\n")
 
     def save_metadata(self):
         """Save all metadata to a JSON file."""
@@ -221,15 +213,15 @@ class PuzzleSolver:
 
         import json
         metadata_file = self.output_dir / f"{self.log_prefix}_{self.puzzle.id}_{self.timestamp}_metadata.json"
-        with open(metadata_file, "w") as f:
-            json.dump(self.metadata, f, indent=2)
+        #  with open(metadata_file, "w") as f:
+            #  json.dump(self.metadata, f, indent=2)
 
     def solve(self):
         """
         Main method to orchestrate the puzzle solving workflow.
         """
-        import google.generativeai as genai
-        from google.api_core import retry
+        #  import google.generativeai as genai
+        #  from google.api_core import retry
 
         # Initialize model
         with open(self.instructions_file, "r") as f:
@@ -318,7 +310,7 @@ class PuzzleSolver:
             "## initialize the working output grid\n",
         ]
         instructions = [
-            "select a function to start:\n",
+            "use function_call to initialize the working output grid:\n",
             "- initialize_output_from_input: good when examples show few differences between input and output\n",
             "- initialize_output_by_size: create a fresh grid from size and color\n",
         ]
@@ -351,7 +343,7 @@ class PuzzleSolver:
                 "\n",
             ]
             instructions = [
-                "- take a moment to review that the changes are in keeping with the rule\n",
+                "- take a moment to review that the changes in the working output grid are in keeping with the rule\n",
                 "- use code_execution to investigate properties",
             ]
             self._generate_content(
@@ -363,12 +355,13 @@ class PuzzleSolver:
 
             # Get next action
             prompt = [
-                "select the next function to update the working grid\n",
-                "when you think you have completed the output, call the submit function\n",
+                    "## update working grid\n"
             ]
             instructions = [
-                "- take a moment to review that the changes are in keeping with the rule\n",
-                "- use code_execution to investigate properties",
+                "- use function_call to set pixels on the grid to achieve the solution\n",
+                "  - set_pixel: update one pixel at a time\n"
+                "  - set_range: update a rectangular subset of pixel\n"
+                "- when you think you have completed the output, call the submit function\n",
             ]
             result = self._generate_content(
                 model,
@@ -393,13 +386,22 @@ class PuzzleSolver:
         """
         from datetime import datetime
 
+        self.call_count += 1
+
         print("=" * 40)
         print("PROMPT:")
         for part in prompt:
             print(part)
 
+        print("INSTRUCTIONS:")
+        for part in instructions:
+            print(part)
+
+        self._write_markdown_log(prompt + instructions, "prompt")
+
         total_prompt = self.history + prompt + instructions
         self.history = self.history + prompt
+        self._write_markdown_log(total_prompt, "total_prompt")
 
         try:
             # Generate the response
@@ -409,7 +411,6 @@ class PuzzleSolver:
                 request_options={"retry": retry.Retry()}
             )
 
-            # Process response parts
             response_parts = []
             last_result = None
 
@@ -443,9 +444,7 @@ class PuzzleSolver:
                 print(part)
             self.history = self.history + response_parts
 
-            # Write to markdown log file
-            if self.output_dir:
-                self._write_markdown_log(total_prompt, response_parts)
+            self._write_markdown_log(response_parts, "response")
 
             return last_result
 
@@ -469,29 +468,22 @@ class PuzzleSolver:
         result = functions[function_name](**function_args)
 
         # Log the function call
-        self.log_function_call(function_name, function_args, result)
+        #  self.log_function_call(function_name, function_args, result)
 
         return result
 
-    def _write_markdown_log(self, total_prompt, response_parts):
+    def _write_markdown_log(self, log_list, log_type):
         """Write prompt and response to markdown log."""
         from datetime import datetime
 
-        log_file = self.logs_dir / f"{self.log_prefix}_{self.puzzle.id}_{self.timestamp}_{self.current_iteration}.md"
+        log_file = self.logs_dir / f"{self.call_count}-{log_type}.md"
 
         with open(log_file, "w") as f:
-            f.write(f"# Conversation Log - {self.timestamp}\n\n")
-            f.write("## Prompt\n\n")
-
-            for part in total_prompt:
+            for part in log_list:
                 if isinstance(part, str):
                     f.write(f"{part}\n")
                 else:
                     f.write(f"[{type(part).__name__}]\n")
-
-            f.write("\n## Response\n\n")
-            for part in response_parts:
-                f.write(f"{part}\n")
 
     def _log_error(self, error_message, prompt):
         """Log errors to a file."""
