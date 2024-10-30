@@ -1,0 +1,58 @@
+Puzzle 3-1e0a9b12 - History 1
+=============================
+
+
+.. meta::
+   :puzzle_id: 3-1e0a9b12
+   :timestamp: 24.304.091044
+   :call_count: 1
+
+
+.. code-block::
+
+    Begin puzzle: 3-1e0a9b12
+    
+    
+
+
+.. code-block::
+
+    # example_1
+    
+
+## input:
+
+
+.. code-block::
+
+    [[0 4 0 9]
+     [0 0 0 0]
+     [0 4 6 0]
+     [1 0 0 0]]
+
+
+
+[Image]
+
+
+## output:
+
+
+.. code-block::
+
+    [[0 0 0 0]
+     [0 0 0 0]
+     [0 4 0 0]
+     [1 4 6 9]]
+
+
+
+[Image]
+
+
+## observations:
+
+- review the example grids
+
+- check for differences and patterns
+

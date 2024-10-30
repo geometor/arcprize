@@ -1,0 +1,3 @@
+The transformation rule, as evidenced by both examples, involves identifying contiguous blocks of azure (color 8) pixels.  Only blocks that are at least 2x2 in size are affected.  For each qualifying block, a single blue (color 1) pixel is added to the top-right corner of the block.  The `transform_grid` function in the code execution accurately implements this rule.  The function first identifies connected blocks using a depth-first search (`find_connected_blocks`), then iterates through each block, determining its minimum and maximum row and column indices to pinpoint the top-right corner.  Finally, it adds the blue pixel to the output grid only if the block meets the minimum size requirement.  This approach correctly reproduces the output for both examples.
+
+
