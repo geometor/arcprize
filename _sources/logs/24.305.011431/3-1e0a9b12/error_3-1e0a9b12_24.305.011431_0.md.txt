@@ -1,0 +1,10 @@
+# Error Log
+
+## Error Message
+
+name 'Grid' is not defined
+
+## Prompt Content
+
+## initialize the working output grid
+
