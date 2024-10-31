@@ -149,8 +149,25 @@ class Logger:
                 f.write(".. toctree::\n")
                 f.write("   :maxdepth: 2\n\n")
 
+    #  def _append_to_toctree(self, index_path: Path, entry: str):
+        #  """Add entry to toctree if not present."""
+        #  with open(index_path, "r") as f:
+            #  content = f.read()
+
+        #  if entry not in content:
+            #  # Find the toctree directive
+            #  toctree_pos = content.find(".. toctree::")
+            #  if toctree_pos != -1:
+                #  # Find the end of the directive options
+                #  pos = content.find("\n\n", toctree_pos)
+                #  if pos != -1:
+                    #  # Insert new entry
+                    #  content = content[: pos + 2] + f"   {entry}\n" + content[pos + 2 :]
+                    #  with open(index_path, "w") as f:
+                        #  f.write(content)
+
     def _append_to_toctree(self, index_path: Path, entry: str):
-        """Add entry to toctree if not present."""
+        """Add entry to toctree if not present, maintaining order."""
         with open(index_path, "r") as f:
             content = f.read()
 
@@ -158,14 +175,31 @@ class Logger:
             # Find the toctree directive
             toctree_pos = content.find(".. toctree::")
             if toctree_pos != -1:
-                # Find the end of the directive options
-                pos = content.find("\n\n", toctree_pos)
-                if pos != -1:
-                    # Insert new entry
-                    content = content[: pos + 2] + f"   {entry}\n" + content[pos + 2 :]
-                    with open(index_path, "w") as f:
-                        f.write(content)
+                # Find the end of the directive options (look for :maxdepth: line)
+                lines = content.split("\n")
+                header_end = -1
+                for i, line in enumerate(lines):
+                    if ":maxdepth:" in line:
+                        header_end = i
+                        break
 
+                if header_end != -1:
+                    # Reconstruct the content
+                    header = lines[:header_end + 1]
+                    # Get existing entries, filtering out empty lines
+                    entries = [line[3:] for line in lines[header_end + 1:]
+                             if line.strip() and line.startswith("   ")]
+
+                    # Add new entry and sort
+                    entries.append(entry)
+                    entries = sorted(set(entries))
+
+                    # Rebuild content
+                    new_content = "\n".join(header) + "\n\n"  # Keep original header
+                    new_content += "\n".join(f"   {e}" for e in entries) + "\n"
+
+                    with open(index_path, "w") as f:
+                        f.write(new_content)
 
     def _update_puzzle_index(self):
         """Update puzzle index with prompt/response pairs."""

@@ -1,13 +1,11 @@
 """
-arcprize
-========
+geometor.arcprize
+=================
 
-GEOMETOR
---------
-
-
+tools for solving the ARC challenge
 
 """
+
 __author__ = "phiarchitect"
 __maintainer__ = "GEOMETOR"
 __email__ = "github@phiarchitect.com"
