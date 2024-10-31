@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geometor.arcprize.puzzles.grid &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/rtd-dark.css?v=20e01aad" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/_modules/geometor/arcprize/puzzles/grid/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../demos/">demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../refs/">references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../todos/">todos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog/">changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../connect/">connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about/">about</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../">Module code</a></li>
+      <li class="breadcrumb-item active">geometor.arcprize.puzzles.grid</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <h1>Source code for geometor.arcprize.puzzles.grid</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">geometor.model</span> <span class="kn">import</span> <span class="n">Model</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+
+<span class="n">COLOR_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="mi">238</span><span class="p">,</span> <span class="mi">238</span><span class="p">,</span> <span class="mi">238</span><span class="p">),</span>  <span class="c1"># White</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># Blue</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>  <span class="c1"># Red</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">79</span><span class="p">,</span> <span class="mi">204</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span>  <span class="c1"># Green</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># Yellow</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>  <span class="c1"># Gray</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="p">(</span><span class="mi">229</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">163</span><span class="p">),</span>  <span class="c1"># Magenta</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="p">(</span><span class="mi">230</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>  <span class="c1"># Orange</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="p">(</span><span class="mi">135</span><span class="p">,</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">241</span><span class="p">),</span>  <span class="c1"># Azure</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="p">(</span><span class="mi">146</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>  <span class="c1"># Maroon</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="Grid">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid">[docs]</a>
+<span class="k">class</span> <span class="nc">Grid</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">io_type</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">puzzle_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_type</span> <span class="o">=</span> <span class="n">set_type</span>  <span class="c1"># &#39;train&#39; or &#39;test&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">io_type</span> <span class="o">=</span> <span class="n">io_type</span>  <span class="c1"># &#39;input&#39; or &#39;output&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">set_type</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">io_type</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">unique</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_model</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span>
+
+    <span class="k">def</span> <span class="nf">_create_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">set_point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+<div class="viewcode-block" id="Grid.rotate">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.rotate">[docs]</a>
+    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rotate the grid by 90 degrees k times.</span>
+<span class="sd">        Positive k means clockwise rotation, negative k means counter-clockwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Grid</span><span class="p">(</span>
+            <span class="n">new_grid</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">io_type</span><span class="si">}</span><span class="s2">_rotated</span><span class="si">{</span><span class="n">k</span><span class="o">*</span><span class="mi">90</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Grid.flip">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.flip">[docs]</a>
+    <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flip the grid along the specified axis.</span>
+<span class="sd">        axis=0 flips vertically, axis=1 flips horizontally.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">flip_type</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span> <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;horizontal&quot;</span>
+        <span class="k">return</span> <span class="n">Grid</span><span class="p">(</span>
+            <span class="n">new_grid</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">io_type</span><span class="si">}</span><span class="s2">_flipped_</span><span class="si">{</span><span class="n">flip_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Grid.to_string">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.to_string">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cell_delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">row_delimiter</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">cell_delimiter</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Grid.to_image">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.to_image">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_image</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">border</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">color_size</span> <span class="o">=</span> <span class="n">cell_size</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">border</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">cell_size</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">cell_size</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">font_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cell_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  <span class="c1"># Adjust font size based on cell size</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="s2">&quot;arial.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">height</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">width</span><span class="p">):</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="n">COLOR_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">x</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">+</span> <span class="n">border</span><span class="p">,</span>
+                        <span class="n">y</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">+</span> <span class="n">border</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">-</span> <span class="n">border</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">fill</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">add_text</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">])</span>
+                    <span class="n">text_bbox</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">textbbox</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">value</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+                    <span class="n">text_width</span> <span class="o">=</span> <span class="n">text_bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">text_bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">text_height</span> <span class="o">=</span> <span class="n">text_bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">text_bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+                    <span class="n">text_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">cell_size</span> <span class="o">-</span> <span class="n">text_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+                    <span class="n">text_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">cell_size</span> <span class="o">+</span> <span class="p">(</span><span class="n">cell_size</span> <span class="o">-</span> <span class="n">text_height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+                    <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">text_x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">text_y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">value</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">image</span></div>
+</div>
+
+</pre></div>
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -6,6 +6,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="modules/geometor.arcprize.puzzles/" />
 <meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="geometor.arcprize.puzzles:" />
+<meta name="description" content="geometor.arcprize.puzzles:" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>geometor.arcprize.puzzles &mdash; geometor • arcprize</title>
@@ -120,8 +122,149 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <section id="geometor-arcprize-puzzles">
-<h1>geometor.arcprize.puzzles<a class="headerlink" href="#geometor-arcprize-puzzles" title="Link to this heading"></a></h1>
+              <section id="module-geometor.arcprize.puzzles">
+<span id="geometor-arcprize-puzzles"></span><h1>geometor.arcprize.puzzles<a class="headerlink" href="#module-geometor.arcprize.puzzles" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>geometor.arcprize.puzzles<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<dl class="py class" id="module-geometor.arcprize.puzzles.grid">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.arcprize.puzzles.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">puzzle_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">io_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/grid/#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.height" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.colors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.colors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.color_counts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color_counts</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.color_counts" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.model">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/grid/#Grid.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.rotate" title="Link to this definition"></a></dt>
+<dd><p>Rotate the grid by 90 degrees k times.
+Positive k means clockwise rotation, negative k means counter-clockwise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.flip">
+<span class="sig-name descname"><span class="pre">flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/grid/#Grid.flip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.flip" title="Link to this definition"></a></dt>
+<dd><p>Flip the grid along the specified axis.
+axis=0 flips vertically, axis=1 flips horizontally.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_delimiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/grid/#Grid.to_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.grid.Grid.to_image">
+<span class="sig-name descname"><span class="pre">to_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/grid/#Grid.to_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.grid.Grid.to_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-geometor.arcprize.puzzles.puzzle">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzlePair">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.arcprize.puzzles.puzzle.</span></span><span class="sig-name descname"><span class="pre">PuzzlePair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">puzzle_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#PuzzlePair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzlePair.weight">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">weight</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzlePair.size_change">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size_change</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.size_change" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzlePair.colors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.colors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzlePair.color_changes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color_changes</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.color_changes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.Puzzle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.arcprize.puzzles.puzzle.</span></span><span class="sig-name descname"><span class="pre">Puzzle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#Puzzle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.Puzzle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.Puzzle.all_pairs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">all_pairs</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.Puzzle.all_pairs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.Puzzle.weight">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">weight</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.Puzzle.weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.Puzzle.colors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.Puzzle.colors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.Puzzle.nice_json_layout">
+<span class="sig-name descname"><span class="pre">nice_json_layout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#Puzzle.nice_json_layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.Puzzle.nice_json_layout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzleSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.arcprize.puzzles.puzzle.</span></span><span class="sig-name descname"><span class="pre">PuzzleSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#PuzzleSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzleSet.get_ordered_puzzles">
+<span class="sig-name descname"><span class="pre">get_ordered_puzzles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#PuzzleSet.get_ordered_puzzles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_ordered_puzzles" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_color_count">
+<span class="sig-name descname"><span class="pre">get_puzzles_by_color_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#PuzzleSet.get_puzzles_by_color_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_color_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_size_change">
+<span class="sig-name descname"><span class="pre">get_puzzles_by_size_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">change_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'total'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/puzzles/puzzle/#PuzzleSet.get_puzzles_by_size_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_size_change" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 <div class="section">
