@@ -23,6 +23,7 @@ dependencies = [
 [project.scripts]
 arcgen = "geometor.arcprize.__main__:run"
 gridgen = "geometor.arcprize.img_gen:text_to_image"
+arcsolver = "geometor.arcprize.solvers.__main__:run"
 
 [build-system]
 requires = ["setuptools", "setuptools-scm"]
