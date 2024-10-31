@@ -16,5 +16,5 @@ jobs:
     - name: photon-platform/action-deploy-sphinx-gh-pages
       uses: photon-platform/action-deploy-sphinx-gh-pages@v15
       with:
-        modules_repo_urls: 'https://github.com/geometor/arcprize.git'
+        modules_repo_urls: 'https://github.com/geometor/model.git,https://github.com/geometor/arcprize.git'
         python_version: '3.10'  
