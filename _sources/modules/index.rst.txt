@@ -2,9 +2,8 @@
 modules
 =======
 
-.. automodule:: geometor.arcprize
-   :members:
-   :undoc-members:
-   :show-inheritance:
+- :doc:`geometor.arcprize`
+  
+- :doc:`geometor.arcprize.puzzles`
 
 
