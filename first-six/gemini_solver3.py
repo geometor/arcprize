@@ -8,7 +8,7 @@ import os
 from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
 
 from gemini_client import GeminiClient as Client
-from gemini_logger3 import Logger
+from gemini_logger4 import Logger
 #  from gemini_reporter import Reporter
 
 #  DEFAULT_MODEL = "models/gemini-1.5-flash"
