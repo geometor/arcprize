@@ -2,15 +2,13 @@
 
 ```py
 """
-arcprize
-========
+geometor.arcprize
+=================
 
-GEOMETOR
---------
-
-
+tools for solving the ARC challenge
 
 """
+
 __author__ = "phiarchitect"
 __maintainer__ = "GEOMETOR"
 __email__ = "github@phiarchitect.com"
@@ -22,16 +20,94 @@ __licence__ = "MIT"
 ## src/geometor/arcprize/__main__.py
 
 ```py
-from geometor.arcprize.puzzles.puzzle import *
+# src/geometor/arcprize/__main__.py
+
+from geometor.arcprize.puzzles import PuzzleSet
 from geometor.arcprize.img_gen import process_all_puzzles
 from rich import print
+from pathlib import Path
+import json
+import numpy as np
+
+
+#  def matrix_to_json_string(matrix):
+    #  return "[\n" + ",\n".join(f"        {row}" for row in matrix.tolist()) + "\n      ]"
+
+def matrix_to_json_string(matrix):
+    return "[\n" + ",\n".join(f"          {row}" for row in matrix.tolist()) + "\n        ]"
+
+
+def generate_artifacts(puzzle_set, output_dir):
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for puzzle in puzzle_set.puzzles:
+        puzzle_dir = output_dir / puzzle.id
+        puzzle_dir.mkdir(exist_ok=True)
+
+        # Generate folders and files for each train pair
+        for i, pair in enumerate(puzzle.train, 1):
+            pair_dir = puzzle_dir / f"train_{i}"
+            pair_dir.mkdir(exist_ok=True)
+            (pair_dir / "input.txt").write_text(pair.input.to_string())
+            (pair_dir / "output.txt").write_text(pair.output.to_string())
+
+        # Generate folders and files for each test pair
+        for i, pair in enumerate(puzzle.test, 1):
+            pair_dir = puzzle_dir / f"test_{i}"
+            pair_dir.mkdir(exist_ok=True)
+            (pair_dir / "input.txt").write_text(pair.input.to_string())
+            if pair.output:
+                (pair_dir / "output.txt").write_text(pair.output.to_string())
+
+        # Generate JSON file
+        json_str = "{\n"
+        json_str += f'  "id": "{puzzle.id}",\n'
+        json_str += '  "train": [\n'
+        for pair in puzzle.train:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            json_str += (
+                '      "output": ' + matrix_to_json_string(pair.output.matrix) + "\n"
+            )
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ],\n"
+        json_str += '  "test": [\n'
+        for pair in puzzle.test:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            if pair.output:
+                json_str += (
+                    '      "output": '
+                    + matrix_to_json_string(pair.output.matrix)
+                    + "\n"
+                )
+            else:
+                json_str += '      "output": null\n'
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ]\n"
+        json_str += "}"
+        json_path = puzzle_dir / f"{puzzle.id}.json"
+        with json_path.open("w") as f:
+            f.write(json_str)
+
+    # Generate images
+    process_all_puzzles(puzzle_set, output_dir)
+
 
 def run():
-   puzzleset = PuzzleSet() 
-   print(puzzleset.puzzles)
-   process_all_puzzles(puzzleset, "images")
+    puzzle_set = PuzzleSet()
+    print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
 
-
+    output_dir = Path("artifacts")
+    generate_artifacts(puzzle_set, output_dir)
+    print(f"Generated artifacts in {output_dir}")
 
 
 if __name__ == "__main__":
@@ -195,27 +271,10 @@ import json
 import os
 from pathlib import Path
 import glob
-from PIL import Image, ImageDraw
-from geometor.arcprize.puzzles import Puzzle, PuzzleSet
+from PIL import Image, ImageDraw, ImageFont
+from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
+import numpy as np
 
-# Color mapping from arcprize.org
-# 0 --white: #EEEEEE;
-# 1 --blue: #1E93FF;
-# 2 --red: #F93C31;
-# 3 --green: #4FCC30;
-# 4 --yellow: #FFDC00;
-# 5 --gray: #555555;
-#  --magenta-light: #ff7bcc;
-# 6 --magenta: #E53AA3;
-# 7 --orange: #FF851B;
-# 8 --blue-light: #87D8F1;
-# 9 --maroon: #921231;
-#  --black: #000000;
-#  --offwhite: #C0C0C0;
-#  --gray-light: #999999;
-# replaced Gray with Pink
-# darkened red, orange, yellow
-#  5: (255, 123, 204),  # Pink
 
 COLOR_MAP = {
     0: (238, 238, 238),  # White
@@ -231,53 +290,112 @@ COLOR_MAP = {
 }
 
 
-def create_grid_image(grid, filename):
-    cell_size = 8
+def create_grid_image(grid, filename, cell_size=8, add_text=False):
     border = 1
-    color_size = 6
+    color_size = cell_size - 2 * border
     width = grid.width * cell_size
     height = grid.height * cell_size
 
     image = Image.new("RGB", (width, height), color="black")
     draw = ImageDraw.Draw(image)
 
+    try:
+        font_size = max(cell_size // 2, 8)  # Adjust font size based on cell size
+        font = ImageFont.truetype("arial.ttf", font_size)
+    except IOError:
+        font = ImageFont.load_default()
+
     for y in range(grid.height):
         for x in range(grid.width):
-            color = COLOR_MAP.get(
-                grid.matrix[y, x], (128, 128, 128)
-            )  # Default to gray if color not found
+            color = COLOR_MAP.get(grid.matrix[y, x], (128, 128, 128))
             draw.rectangle(
                 [
                     x * cell_size + border,
                     y * cell_size + border,
-                    x * cell_size + color_size,
-                    y * cell_size + color_size,
+                    (x + 1) * cell_size - border,
+                    (y + 1) * cell_size - border,
                 ],
                 fill=color,
             )
 
+            if add_text:
+                value = str(grid.matrix[y, x])
+                text_bbox = draw.textbbox((0, 0), value, font=font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+
+                text_x = x * cell_size + (cell_size - text_width) // 2
+                text_y = y * cell_size + (cell_size - text_height) // 2
+
+                draw.text((text_x + 1, text_y - 1), value, fill="black", font=font)
+
     image.save(filename)
 
 
-def create_puzzle_images(puzzle: Puzzle, output_dir: Path):
+def text_to_grid(file_path):
+    with open(file_path, "r") as file:
+        lines = file.readlines()
+
+    #  grid = [list(map(int, line.strip().split())) for line in lines]
+    #  grid = [[int(num) for num in line.strip().split()] for line in lines]
+    grid = []
+    for line in lines:
+        row = [int(num) for num in line.strip().split()]
+        print(row)
+        if row:  # Only add non-empty rows
+            grid.append(row)
+
+    return Grid(grid, "0", "test", 0, "output")
+
+
+def text_to_image(input_file="proposed.txt", output_file="proposed.png"):
+    grid = text_to_grid(input_file)
+    print(grid)
+    create_grid_image(grid, output_file, cell_size=16, add_text=True)
+
+
+def create_puzzle_pair(input_grid, output_grid, output_dir: Path):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    for i, pair in enumerate(puzzle.train):
-        create_grid_image(pair.input, output_dir / f"train_{i+1}_input.png")
-        create_grid_image(pair.output, output_dir / f"train_{i+1}_output.png")
+    def create_image_size(basename, grid):
+        sizes = [8, 16, 32]
+        for size in sizes:
+            create_grid_image(
+                grid, output_dir / f"{basename}_{size}.png", cell_size=size
+            )
+            if size in (16, 32):
+                create_grid_image(
+                    grid,
+                    output_dir / f"{basename}_{size}_numbered.png",
+                    cell_size=size,
+                    add_text=True,
+                )
 
-    for i, pair in enumerate(puzzle.test):
-        create_grid_image(pair.input, output_dir / f"test_{i+1}_input.png")
-        if pair.output:
-            create_grid_image(pair.output, output_dir / f"test_{i+1}_output.png")
+    create_image_size("input", input_grid)
+    create_image_size("output", output_grid)
 
 
 def process_all_puzzles(puzzle_set: PuzzleSet, output_base_dir: Path):
     output_base_dir = Path(output_base_dir)
+
+    # Create color map image and text file in root artifacts folder
+    create_color_map_image(output_base_dir)
+    create_color_map_text(output_base_dir)
+
     for puzzle in puzzle_set.puzzles:
-        output_dir = output_base_dir / str(puzzle.id)
-        create_puzzle_images(puzzle, output_dir)
+        puzzle_dir = output_base_dir / str(puzzle.id)
+
+        for i, pair in enumerate(puzzle.train, 1):
+            pair_dir = puzzle_dir / f"train_{i}"
+            pair_dir.mkdir(parents=True, exist_ok=True)
+            create_puzzle_pair(pair.input, pair.output, pair_dir)
+
+        for i, pair in enumerate(puzzle.test, 1):
+            pair_dir = puzzle_dir / f"test_{i}"
+            pair_dir.mkdir(parents=True, exist_ok=True)
+            create_puzzle_pair(pair.input, pair.output, pair_dir)
+
         print(f"Processed puzzle: {puzzle.id}")
 
 
@@ -285,6 +403,68 @@ def image_to_base64(image):
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
+
+    from PIL import Image, ImageDraw, ImageFont
+
+
+def create_color_map_image(output_dir: Path):
+    swatch_size = 100
+    font_size = 60  # This is now correctly used
+    padding = 20
+    text_width = 300
+
+    image_width = swatch_size + padding * 3 + text_width
+    image_height = (swatch_size + padding) * len(COLOR_MAP) + padding
+
+    image = Image.new("RGB", (image_width, image_height), color="black")
+    draw = ImageDraw.Draw(image)
+
+    try:
+        font = ImageFont.truetype("arial.ttf", font_size)
+    except IOError:
+        font = ImageFont.load_default()
+        font = font.font_variant(size=font_size)  # Resize the default font
+
+    for i, (index, color) in enumerate(COLOR_MAP.items()):
+        y = padding + i * (swatch_size + padding)
+
+        # Draw color swatch
+        draw.rectangle([padding, y, padding + swatch_size, y + swatch_size], fill=color)
+
+        # Draw index number and color name
+        text = f"{index}: {color_name(index)}"
+        text_bbox = draw.textbbox((0, 0), text, font=font)
+        text_height = text_bbox[3] - text_bbox[1]
+        text_y = (
+            y + (swatch_size - text_height) // 2
+        )  # Center text vertically with swatch
+        draw.text((padding * 2 + swatch_size, text_y), text, fill="white", font=font)
+
+    image.save(output_dir / "color_map.png")
+
+
+def create_color_map_text(output_dir: Path):
+    with open(output_dir / "color_map.txt", "w") as f:
+        f.write("COLOR_MAP = {\n")
+        for index, color in COLOR_MAP.items():
+            f.write(f"    {index}: {color},  # {color_name(index)}\n")
+        f.write("}\n")
+
+
+def color_name(index):
+    names = [
+        "White",
+        "Blue",
+        "Red",
+        "Green",
+        "Yellow",
+        "Gray",
+        "Magenta",
+        "Orange",
+        "Azure",
+        "Maroon",
+    ]
+    return names[index] if index < len(names) else f"Color {index}"
 
 ```
 
@@ -1977,6 +2157,11 @@ if __name__ == "__main__":
 ## src/geometor/arcprize/puzzles/__init__.py
 
 ```py
+"""
+geometor.arcprize.puzzles
+=========================
+
+"""
 from .puzzle import *
 from .grid import *
 
@@ -1988,9 +2173,25 @@ from .grid import *
 import numpy as np
 from geometor.model import Model
 
+from PIL import Image, ImageDraw, ImageFont
+
+COLOR_MAP = {
+    0: (238, 238, 238),  # White
+    1: (30, 147, 255),  # Blue
+    2: (220, 50, 40),  # Red
+    3: (79, 204, 48),  # Green
+    4: (230, 200, 0),  # Yellow
+    5: (85, 85, 85),  # Gray
+    6: (229, 58, 163),  # Magenta
+    7: (230, 120, 20),  # Orange
+    8: (135, 216, 241),  # Azure
+    9: (146, 18, 49),  # Maroon
+}
+
+
 class Grid:
-    def __init__(self, matrix, puzzle_id, set_type, index, io_type):
-        self.matrix = np.array(matrix, dtype=int)
+    def __init__(self, grid, puzzle_id, set_type, index, io_type):
+        self.grid = np.array(grid, dtype=int)
         self.puzzle_id = puzzle_id
         self.set_type = set_type  # 'train' or 'test'
         self.index = index
@@ -2003,23 +2204,23 @@ class Grid:
 
     @property
     def height(self):
-        return self.matrix.shape[0]
+        return self.grid.shape[0]
 
     @property
     def width(self):
-        return self.matrix.shape[1]
+        return self.grid.shape[1]
 
     @property
     def size(self):
-        return self.matrix.size
+        return self.grid.size
 
     @property
     def colors(self):
-        return set(np.unique(self.matrix))
+        return set(np.unique(self.grid))
 
     @property
     def color_counts(self):
-        unique, counts = np.unique(self.matrix, return_counts=True)
+        unique, counts = np.unique(self.grid, return_counts=True)
         return dict(zip(unique, counts))
 
     @property
@@ -2032,7 +2233,7 @@ class Grid:
         model = Model(self.name)
         for y in range(self.height):
             for x in range(self.width):
-                val = self.matrix[y, x]
+                val = self.grid[y, x]
                 model.set_point(x, y, classes=[str(val)], label=f"({x},{y})")
         return model
 
@@ -2041,23 +2242,75 @@ class Grid:
         Rotate the grid by 90 degrees k times.
         Positive k means clockwise rotation, negative k means counter-clockwise.
         """
-        new_matrix = np.rot90(self.matrix, k=-k)
-        return Grid(new_matrix, self.puzzle_id, self.set_type, self.index, f"{self.io_type}_rotated{k*90}")
+        new_grid = np.rot90(self.grid, k=-k)
+        return Grid(
+            new_grid,
+            self.puzzle_id,
+            self.set_type,
+            self.index,
+            f"{self.io_type}_rotated{k*90}",
+        )
 
     def flip(self, axis=0):
         """
         Flip the grid along the specified axis.
         axis=0 flips vertically, axis=1 flips horizontally.
         """
-        new_matrix = np.flip(self.matrix, axis=axis)
+        new_grid = np.flip(self.grid, axis=axis)
         flip_type = "vertical" if axis == 0 else "horizontal"
-        return Grid(new_matrix, self.puzzle_id, self.set_type, self.index, f"{self.io_type}_flipped_{flip_type}")
+        return Grid(
+            new_grid,
+            self.puzzle_id,
+            self.set_type,
+            self.index,
+            f"{self.io_type}_flipped_{flip_type}",
+        )
 
     def to_string(self, row_delimiter="\n", cell_delimiter=" "):
         return row_delimiter.join(
-            cell_delimiter.join(str(cell) for cell in row) for row in self.matrix
+            cell_delimiter.join(str(cell) for cell in row) for row in self.grid
         )
 
+    def to_image(grid, cell_size=64, add_text=True):
+        border = 2
+        color_size = cell_size - 2 * border
+        width = grid.width * cell_size
+        height = grid.height * cell_size
+
+        image = Image.new("RGB", (width, height), color="black")
+        draw = ImageDraw.Draw(image)
+
+        try:
+            font_size = max(cell_size // 2, 8)  # Adjust font size based on cell size
+            font = ImageFont.truetype("arial.ttf", font_size)
+        except IOError:
+            font = ImageFont.load_default()
+
+        for y in range(grid.height):
+            for x in range(grid.width):
+                color = COLOR_MAP.get(grid.grid[y, x], (0, 0, 0))
+                draw.rectangle(
+                    [
+                        x * cell_size + border,
+                        y * cell_size + border,
+                        (x + 1) * cell_size - border,
+                        (y + 1) * cell_size - border,
+                    ],
+                    fill=color,
+                )
+
+                if add_text:
+                    value = str(grid.grid[y, x])
+                    text_bbox = draw.textbbox((0, 0), value, font=font)
+                    text_width = text_bbox[2] - text_bbox[0]
+                    text_height = text_bbox[3] - text_bbox[1]
+
+                    text_x = x * cell_size + (cell_size - text_width) // 2
+                    text_y = y * cell_size + (cell_size - text_height) // 2
+
+                    draw.text((text_x + 1, text_y - 1), value, fill="black", font=font)
+
+        return image
 
 ```
 
@@ -2133,6 +2386,47 @@ class Puzzle:
     def colors(self):
         return set.union(*(pair.colors for pair in self.all_pairs))
 
+    
+    def nice_json_layout(puzzle):
+
+        def matrix_to_json_string(matrix):
+            return "[\n" + ",\n".join(f"          {row}" for row in matrix.tolist()) + "\n        ]"
+
+        json_str = "{\n"
+        json_str += f'  "id": "{puzzle.id}",\n'
+        json_str += '  "train": [\n'
+        for pair in puzzle.train:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            json_str += (
+                '      "output": ' + matrix_to_json_string(pair.output.matrix) + "\n"
+            )
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ],\n"
+        json_str += '  "test": [\n'
+        for pair in puzzle.test:
+            json_str += "    {\n"
+            json_str += (
+                '      "input": ' + matrix_to_json_string(pair.input.matrix) + ",\n"
+            )
+            if pair.output:
+                json_str += (
+                    '      "output": '
+                    + matrix_to_json_string(pair.output.matrix)
+                    + "\n"
+                )
+            else:
+                json_str += '      "output": null\n'
+            json_str += "    },\n"
+        json_str = json_str.rstrip(",\n") + "\n"
+        json_str += "  ]\n"
+        json_str += "}"
+
+        return json_str
+
 
 class PuzzleSet:
     def __init__(self, folder_path="."):
@@ -2140,7 +2434,7 @@ class PuzzleSet:
 
     def _load_puzzles(self, folder_path):
         puzzles = []
-        for file_path in folder_path.glob("*.json"):
+        for file_path in sorted(folder_path.glob("*.json")):
             puzzle_id = file_path.stem  # Get filename without extension
             with file_path.open("r") as f:
                 data = json.load(f)
@@ -2222,6 +2516,830 @@ if __name__ == "__main__":
                 print(f"Test output name: {first_test_pair.output.name}")
                 print(f"Test output:\n{first_test_pair.output.matrix}")
                 print(f"Test output model name: {first_test_pair.output.model.name}")
+
+```
+
+## src/geometor/arcprize/solvers/__init__.py
+
+```py
+
+```
+
+## src/geometor/arcprize/solvers/__main__.py
+
+```py
+from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
+from rich import print
+from datetime import datetime
+from pathlib import Path
+import json
+import os
+from .gemini_solver import PuzzleSolver
+
+def solve_all_puzzles(puzzle_set):
+    timestamp = datetime.now().strftime("%y.%j.%H%M%S")
+    for puzzle in puzzle_set.puzzles:
+
+        solver = PuzzleSolver(puzzle, timestamp=timestamp, output_dir="../docsrc")
+        solver.solve()
+
+def run():
+    puzzle_set = PuzzleSet()
+    print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
+
+    solve_all_puzzles(puzzle_set)
+
+    #  timestamp = datetime.now().strftime("%y.%j.%H%M%S")
+    #  solver = PuzzleSolver(puzzle_set.puzzles[0], timestamp=timestamp, output_dir="../docsrc")
+    #  solver.solve()
+
+
+if __name__ == "__main__":
+    run()
+
+
+```
+
+## src/geometor/arcprize/solvers/gemini_client.py
+
+```py
+import os
+from pathlib import Path
+import google.generativeai as genai
+from google.api_core import retry
+
+
+class GeminiClient:
+    def __init__(self, model_name: str, instructions_file: str):
+        """
+        Initialize the GeminiClient with model configuration and system instructions.
+
+        Args:
+            model_name: Name of the Gemini model to use.
+            instructions_file: Path to the instructions file.
+        """
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+        self.model_name = model_name
+
+        script_dir = Path(__file__).parent.absolute()
+        instructions_file = script_dir / instructions_file
+
+        with open(instructions_file, "r") as f:
+            instruction = f.read().strip()
+
+        self.model = genai.GenerativeModel(
+            model_name=self.model_name,
+            system_instruction=instruction,
+        )
+
+    def generate_content(self, prompt: list, tools=None):
+        """
+        Generate content from the Gemini model based on the provided prompt.
+
+        Args:
+            prompt: The prompt to send to the model.
+            tools: Optional tools or functions the model can use.
+
+        Returns:
+            The model's response.
+        """
+        try:
+            if tools and tools != "code_execution":
+                tool_config={"function_calling_config": {"mode": "ANY"}}
+            else:
+                tool_config = None
+
+            response = self.model.generate_content(
+                prompt,
+                tools=tools,
+                request_options={"retry": retry.Retry()},
+                tool_config=tool_config,
+            )
+            return response
+        except Exception as e:
+            # Handle exceptions as needed
+            raise e
+
+```
+
+## src/geometor/arcprize/solvers/gemini_logger.py
+
+```py
+import json
+from datetime import datetime
+from pathlib import Path
+
+
+class Logger:
+    def __init__(self, output_dir: str, puzzle_id: str, timestamp: str):
+        self.output_dir = Path(output_dir)
+        self.puzzle_id = puzzle_id
+        self.timestamp = timestamp
+
+        # Setup directory structure
+        self.sessions_dir = self.output_dir / "sessions"
+        self.session_dir = self.sessions_dir / self.timestamp
+        self.puzzle_dir = self.session_dir / self.puzzle_id
+        
+        # Create directory for images
+        self.images_dir = self.puzzle_dir / "_images"
+        self._ensure_directory_structure()
+        self._ensure_indices()
+
+    def _ensure_directory_structure(self):
+        """Create required directories if they don't exist."""
+        self.sessions_dir.mkdir(parents=True, exist_ok=True)
+        self.session_dir.mkdir(parents=True, exist_ok=True)
+        self.puzzle_dir.mkdir(parents=True, exist_ok=True)
+        self.images_dir.mkdir(parents=True, exist_ok=True)
+
+    def write_rst_log(self, log_list: list, log_type: str, call_count: int):
+        """Write log as RST file and handle any images."""
+        log_file = self.puzzle_dir / f"{call_count:03d}-{log_type}.rst"
+
+        with open(log_file, "w") as f:
+            # Write title
+            title = f"{call_count:03d} • {log_type.title()}"
+            f.write(self._rst_header(title, "="))
+
+            # Add metadata section
+            f.write("\n.. meta::\n")
+            f.write(f"   :puzzle_id: {self.puzzle_id}\n")
+            f.write(f"   :timestamp: {self.timestamp}\n")
+            f.write(f"   :call_count: {call_count}\n\n")
+
+            # Process content
+            for part in log_list:
+                if isinstance(part, str):
+                    if part == "[Image]":
+                        # Skip placeholder - real image was handled in previous iteration
+                        continue
+                        
+                    if part.startswith("```python"):
+                        f.write("\n.. code-block:: python\n\n")
+                        code = part.replace("```python", "").replace("```", "").strip()
+                        for line in code.split("\n"):
+                            f.write(f"    {line}\n")
+                        f.write("\n")
+
+                    elif part.startswith("[["):
+                        # Grid display followed by image
+                        f.write("\n.. code-block::\n\n")
+                        for line in part.split("\n"):
+                            f.write(f"    {line}\n")
+                        f.write("\n")
+
+                    else:
+                        if part.strip():
+                            f.write(f"{part.strip()}\n\n")
+
+                elif hasattr(part, 'save'): # PIL Image object
+                    # Save the image
+                    image_filename = f"{call_count:03d}-{self._get_image_count(call_count)}.png"
+                    image_path = self.images_dir / image_filename
+                    part.save(image_path)
+                    
+                    # Add image directive to RST
+                    f.write(f"\n.. image:: _images/{image_filename}\n")
+                    f.write("   :alt: Grid visualization\n")
+                    f.write("   :align: center\n\n")
+
+                else:
+                    f.write(f"[{type(part).__name__}]\n\n")
+
+            # Add navigation links
+            self._add_navigation_links(f, log_type, call_count)
+
+             # Append to puzzle toctree if this is a prompt or response
+            if log_type in ["prompt", "response"]:
+                self._append_to_toctree(
+                    self.puzzle_dir / "index.rst",
+                    f"{call_count:03d}-{log_type}"  # No .rst extension in toctree
+                )
+
+    def _get_image_count(self, call_count: int) -> int:
+        """Get the next available image number for this call."""
+        pattern = f"{call_count:03d}-*.png"
+        existing_images = list(self.images_dir.glob(pattern))
+        return len(existing_images) + 1
+
+    def _add_navigation_links(self, file, log_type: str, call_count: int):
+        """Add appropriate navigation links based on log type."""
+        file.write("\n.. seealso::\n\n")
+        if log_type == "prompt":
+            file.write(f"   - :doc:`{call_count:03d}-history`\n")
+            file.write(f"   - :doc:`{call_count:03d}-response`\n\n")
+        elif log_type == "response":
+            file.write(f"   - :doc:`{call_count:03d}-history`\n")
+            file.write(f"   - :doc:`{call_count:03d}-prompt`\n\n")
+        elif log_type == "history":
+            file.write(f"   - :doc:`{call_count:03d}-prompt`\n")
+            file.write(f"   - :doc:`{call_count:03d}-response`\n\n")
+
+
+    def _ensure_indices(self):
+        """Create or update index files at each level."""
+        self._ensure_sessions_index()
+        self._ensure_session_index()
+        self._ensure_puzzle_index()
+
+    def _ensure_sessions_index(self):
+        """Create/update main sessions index."""
+        index_path = self.sessions_dir / "index.rst"
+        if not index_path.exists():
+            with open(index_path, "w") as f:
+                f.write(self._rst_header("sessions", "="))
+                f.write(".. toctree::\n")
+                f.write("   :maxdepth: 2\n\n")
+
+        # Add session to toctree if not present
+        self._append_to_toctree(index_path, f"{self.timestamp}/index.rst")
+
+    def _ensure_session_index(self):
+        """Create/update session index."""
+        index_path = self.session_dir / "index.rst"
+        if not index_path.exists():
+            with open(index_path, "w") as f:
+                f.write(self._rst_header(f"{self.timestamp}", "="))
+                f.write(".. toctree::\n")
+                f.write("   :maxdepth: 2\n\n")
+
+        # Add puzzle to toctree if not present
+        self._append_to_toctree(index_path, f"{self.puzzle_id}/index.rst")
+
+    def _ensure_puzzle_index(self):
+        """Create/update puzzle index."""
+        index_path = self.puzzle_dir / "index.rst"
+        if not index_path.exists():
+            with open(index_path, "w") as f:
+                f.write(self._rst_header(f"{self.puzzle_id}", "="))
+                f.write(".. toctree::\n")
+                f.write("   :maxdepth: 2\n\n")
+
+    #  def _append_to_toctree(self, index_path: Path, entry: str):
+        #  """Add entry to toctree if not present."""
+        #  with open(index_path, "r") as f:
+            #  content = f.read()
+
+        #  if entry not in content:
+            #  # Find the toctree directive
+            #  toctree_pos = content.find(".. toctree::")
+            #  if toctree_pos != -1:
+                #  # Find the end of the directive options
+                #  pos = content.find("\n\n", toctree_pos)
+                #  if pos != -1:
+                    #  # Insert new entry
+                    #  content = content[: pos + 2] + f"   {entry}\n" + content[pos + 2 :]
+                    #  with open(index_path, "w") as f:
+                        #  f.write(content)
+
+    def _append_to_toctree(self, index_path: Path, entry: str):
+        """Add entry to toctree if not present, maintaining order."""
+        with open(index_path, "r") as f:
+            content = f.read()
+
+        if entry not in content:
+            # Find the toctree directive
+            toctree_pos = content.find(".. toctree::")
+            if toctree_pos != -1:
+                # Find the end of the directive options (look for :maxdepth: line)
+                lines = content.split("\n")
+                header_end = -1
+                for i, line in enumerate(lines):
+                    if ":maxdepth:" in line:
+                        header_end = i
+                        break
+
+                if header_end != -1:
+                    # Reconstruct the content
+                    header = lines[:header_end + 1]
+                    # Get existing entries, filtering out empty lines
+                    entries = [line[3:] for line in lines[header_end + 1:]
+                             if line.strip() and line.startswith("   ")]
+
+                    # Add new entry and sort
+                    entries.append(entry)
+                    entries = sorted(set(entries))
+
+                    # Rebuild content
+                    new_content = "\n".join(header) + "\n\n"  # Keep original header
+                    new_content += "\n".join(f"   {e}" for e in entries) + "\n"
+
+                    with open(index_path, "w") as f:
+                        f.write(new_content)
+
+    def _update_puzzle_index(self):
+        """Update puzzle index with prompt/response pairs."""
+        index_path = self.puzzle_dir / "index.rst"
+        with open(index_path, "w") as f:
+            f.write(self._rst_header(f"Puzzle {self.puzzle_id}", "="))
+            f.write(".. toctree::\n")
+            f.write("   :maxdepth: 2\n\n")
+
+            # Add all prompt/response pairs
+            for prompt_file in sorted(
+                self.puzzle_dir.glob("[0-9][0-9][0-9]-prompt.rst")
+            ):
+                stem = prompt_file.stem[:-7]  # Remove '-prompt'
+                f.write(f"   {stem}-prompt.rst\n")
+                f.write(f"   {stem}-response.rst\n")
+
+    def _rst_header(self, text: str, char: str) -> str:
+        """Create RST header with proper underline."""
+        return f"{text}\n{char * len(text)}\n\n"
+
+```
+
+## src/geometor/arcprize/solvers/gemini_solver.py
+
+```py
+from rich import print
+from datetime import datetime
+from pathlib import Path
+import json
+import numpy as np
+import os
+
+from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
+
+from .gemini_client import GeminiClient as Client
+from .gemini_logger import Logger
+#  from gemini_reporter import Reporter
+
+#  DEFAULT_MODEL = "models/gemini-1.5-flash"
+DEFAULT_MODEL = "models/gemini-1.5-flash-002"
+#  DEFAULT_MODEL = "models/gemini-1.5-pro-002"
+DEFAULT_INSTRUCTIONS_FILE = "gemini_instructions.md"
+
+
+class PuzzleSolver:
+    def __init__(
+        self,
+        puzzle,
+        model_name: str = DEFAULT_MODEL,
+        instructions_file: str = DEFAULT_INSTRUCTIONS_FILE,
+        output_dir: str = ".",
+        max_iterations: int = 5,
+        timestamp: str = None,
+        client: Client = None,
+        logger: Logger = None,
+    ):
+        """
+        Initialize the PuzzleSolver with all necessary components for solving and logging.
+
+        Args:
+            puzzle: The puzzle object to solve.
+            model_name: Name of the Gemini model to use.
+            instructions_file: Path to the instructions file.
+            output_dir: Directory for output files and logs.
+            max_iterations: Maximum number of iterations for solving.
+            timestamp: Optional timestamp for logging (defaults to current time).
+            client: An instance of Client.
+            logger: An instance of Logger.
+        """
+        # Core components
+        self.puzzle = puzzle
+        self.model_name = model_name
+        self.instructions_file = instructions_file
+        self.max_iterations = max_iterations
+        self.call_count = 0
+        self.current_iteration = 0
+
+        # Initialize GeminiClient
+        self.client = client or Client(model_name, instructions_file)
+
+        # Initialize timestamp
+        self.timestamp = timestamp or datetime.now().strftime("%y.%j.%H%M%S")
+
+        # Initialize Logger
+        self.logger = logger or Logger(
+            output_dir, puzzle.id, self.timestamp, 
+        )
+
+        # Initialize working state
+        self.working_grid = None
+        self.history = []
+
+        # Initialize metadata for logging
+        self.metadata = {
+            "puzzle_id": puzzle.id,
+            "model": model_name,
+            "timestamp": self.timestamp,
+            "max_iterations": max_iterations,
+            "history": [],
+            "grid_states": [],
+            "function_calls": [],
+        }
+
+    def initialize_output_from_input(self) -> str:
+        """Initialize the test output grid with a copy of the input grid."""
+        from copy import deepcopy
+
+        self.working_grid = deepcopy(self.puzzle.test[0].input)
+        print(str(self.working_grid.grid))
+
+        # Log the initialization
+        #  self.logger.log_grid_state("initialization", "copy_input")
+        return "initialize_output_from_input()"
+
+    def initialize_output_by_size(self, width: int, height: int, color: int = 0) -> str:
+        """Initialize the test output grid with specific dimensions."""
+
+        width, height, color = int(width), int(height), int(color)
+        new_grid = np.full((height, width), color)
+        self.working_grid = Grid(new_grid, self.puzzle.id, "test", 0, "output")
+        print(str(self.working_grid.grid))
+
+        # Log the initialization
+        #  self.logger.log_grid_state("initialization", f"new_grid_{width}x{height}")
+        return f"initialize_output_by_size({width=}, {height=}, {color=})"
+
+    def set_pixel(self, row: int, column: int, color: int) -> str:
+        """Set grid value at a specific coordinate."""
+        if self.working_grid is None:
+            raise ValueError("Working grid not initialized")
+
+        height, width = self.working_grid.grid.shape
+        row, column, color = int(row), int(column), int(color)
+
+        if not (0 <= row < height):
+            raise ValueError(f"Row {row} is out of bounds. Grid height is {height}")
+        if not (0 <= column < width):
+            raise ValueError(f"Column {column} is out of bounds. Grid width is {width}")
+
+        self.working_grid.grid[row, column] = color
+
+        # Log the pixel change
+        #  self.logger.log_grid_state("pixel_set", f"r{row}c{column}={color}")
+        return f"set_pixel({row=}, {column=}, {color=})"
+
+    def set_range(
+        self, row1: int, column1: int, row2: int, column2: int, color: int
+    ) -> str:
+        """Set grid values for a range of pixels."""
+        if self.working_grid is None:
+            raise ValueError("Working grid not initialized")
+
+        # Convert to int and ensure proper order
+        r1, r2 = sorted([int(row1), int(row2)])
+        c1, c2 = sorted([int(column1), int(column2)])
+        color = int(color)
+
+        # Add 1 to end indices to make them inclusive
+        r2 += 1
+        c2 += 1
+
+        # Validate bounds
+        height, width = self.working_grid.grid.shape
+        if (r1 >= height and r2 >= height) or (c1 >= width and c2 >= width):
+            raise ValueError(f"Entire range is outside grid bounds ({height}x{width})")
+
+        r1 = max(0, min(r1, height))
+        r2 = max(0, min(r2, height))
+        c1 = max(0, min(c1, width))
+        c2 = max(0, min(c2, width))
+
+        # Set the range
+        for row in range(r1, r2):
+            for col in range(c1, c2):
+                self.working_grid.grid[row, col] = color
+
+        # Log the range change
+        cells_modified = (r2 - r1) * (c2 - c1)
+        #  self.logger.log_grid_state(
+            #  "range_set", f"from_r{r1}c{c1}_to_r{r2-1}c{c2-1}={color}"
+        #  )
+
+        return f"set_range({row1}, {column1}, {row2}, {column2}, {color})"
+
+    def submit(self) -> str:
+        """Submit the working grid and check for correctness."""
+        if self.working_grid is None:
+            raise ValueError("No working grid to submit")
+
+        # TODO: Implement actual submission logic and correctness checking
+        #  self.logger.log_grid_state("submission", "final")
+        return "submit"
+
+    def solve(self):
+        """
+        Main method to orchestrate the puzzle solving workflow.
+        Returns the working grid if solution is found, None otherwise.
+        """
+        try:
+            # Initialize solving state
+            self.history = [f"Begin puzzle: {self.puzzle.id}\n\n"]
+
+            self._process_training_examples()
+            self._summarize_observations()
+            self._process_test_input()
+            self._initialize_working_grid()
+            self._run_solution_loop()
+
+        except Exception as e:
+            print(f"Solve failed: {str(e)}")
+            self.logger.log_error(f"Solve failed: {str(e)}", self.history)
+            raise
+
+    def _process_training_examples(self):
+        for i, pair in enumerate(self.puzzle.train, 1):
+            prompt = [
+                f"**example_{i}**\n",
+                "**input**\n",
+                str(pair.input.grid),
+                "\n",
+                pair.input.to_image(),
+                "\n",
+                "**output**\n",
+                str(pair.output.grid),
+                "\n",
+                pair.output.to_image(),
+                "\n",
+                "**observations**\n",
+            ]
+            instructions = [
+                "- review the example grids\n",
+                "- check for differences and patterns\n",
+            ]
+            self._generate_content(
+                prompt,
+                instructions,
+                tools="code_execution",
+            )
+
+    def _summarize_observations(self):
+        prompt = [
+            "**examples summary**\n",
+        ]
+        instructions = [
+            "- summarize your observations to explain the transformation of the input to output\n",
+            "- use code_execution to investigate properties, patterns and differences in the grids",
+        ]
+        self._generate_content(
+            prompt,
+            instructions,
+            tools="code_execution",
+        )
+
+    def _process_test_input(self):
+        test_pair = self.puzzle.test[0]
+        prompt = [
+            "**test**\n",
+            "**input**\n",
+            str(test_pair.input.grid),
+            "\n",
+            test_pair.input.to_image(),
+            "\n",
+            "**observations:**\n",
+        ]
+        instructions = [
+            "- generate report as per instructions\n",
+            "- use code_execution to investigate properties",
+        ]
+        self._generate_content(
+            prompt,
+            instructions,
+            tools="code_execution",
+        )
+
+    def _initialize_working_grid(self):
+        init_functions = {
+            "initialize_output_from_input": self.initialize_output_from_input,
+            "initialize_output_by_size": self.initialize_output_by_size,
+        }
+        prompt = [
+                "**initialize the working output grid:**\n",
+        ]
+        instructions = [
+            "use function_call to initialize the working output grid:\n",
+            "- initialize_output_from_input: good when examples show few differences between input and output\n",
+            "- initialize_output_by_size: create a fresh grid from size and color\n",
+        ]
+        self._generate_content(
+            prompt,
+            instructions,
+            tools=init_functions.values(),
+            functions=init_functions,
+        )
+
+    def _present_working_grid(self):
+        prompt = [
+            "**working output grid**\n",
+            "updated with your changes\n",
+            str(self.working_grid.grid),
+            "\n",
+            self.working_grid.to_image(),
+            "\n",
+        ]
+        instructions = [
+            "- take a moment to review that the changes in the working output grid are in keeping with the rule\n",
+            "- use code_execution to investigate properties",
+        ]
+        self._generate_content(
+            prompt,
+            instructions,
+            tools="code_execution",
+        )
+
+    def _run_solution_loop(self):
+        """
+        Run the main solution loop with proper submission handling.
+        Returns the working grid if solution is found, None otherwise.
+        """
+        set_functions = {
+            "set_pixel": self.set_pixel,
+            "set_range": self.set_range,
+            "submit": self.submit,
+        }
+
+        for iteration in range(self.max_iterations):
+            self.current_iteration = iteration
+
+            # Present and analyze current state
+            self._present_working_grid()
+
+            # Get next action
+            result = self._get_next_action(set_functions)
+
+            # Handle submission
+            if result == "submit":
+                print(f"Solution submitted after {iteration + 1} iterations")
+                break
+
+        print(f"Max iertions ({self.max_iterations}) reached without submission")
+        return None
+
+    def _get_next_action(self, functions):
+        """
+        Get and process the next action from the model.
+        """
+        prompt = ["**update working grid**\n"]
+        instructions = [
+            "- use function_call to set pixels on the grid to achieve the solution\n",
+            "  - set_pixel: update one pixel at a time\n"
+            "  - set_range: update a rectangular subset of pixel\n"
+            "- when you think you have completed the output, call the submit function\n",
+        ]
+
+        return self._generate_content(
+            prompt,
+            instructions,
+            tools=functions.values(),
+            functions=functions,
+        )
+
+    def _generate_content(self, prompt, instructions, tools=None, functions=None):
+        """
+        Generate content from the model with standardized logging and function call handling.
+        """
+        MAX_RETRIES = 3
+        self.call_count += 1
+
+        print("=" * 40)
+        print("PROMPT:")
+        for part in prompt:
+            print(part)
+
+        print("INSTRUCTIONS:")
+        for part in instructions:
+            print(part)
+
+        self.logger.write_rst_log(prompt + instructions, "prompt", self.call_count)
+
+        total_prompt = self.history + prompt + instructions
+        self.history = self.history + prompt
+        self.logger.write_rst_log(total_prompt, "history", self.call_count)
+
+        for attempt in range(MAX_RETRIES):
+            try:
+                # Generate the response
+                response = self.client.generate_content(
+                    total_prompt,
+                    tools=tools,
+                )
+
+                response_parts = []
+                function_call_found = False
+                last_result = None
+
+                if hasattr(response.candidates[0].content, "parts"):
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            response_parts.append(part.text + "\n")
+                        if part.executable_code:
+                            response_parts.append("code_execution:\n")
+                            response_parts.append(
+                                f"```python\n{part.executable_code.code}\n```\n"
+                            )
+                        if part.code_execution_result:
+                            response_parts.append(
+                                f"code_execution_result: {part.code_execution_result.outcome}\n"
+                            )
+                            response_parts.append(
+                                f"```\n{part.code_execution_result.output}\n```\n"
+                            )
+                        if part.function_call:
+                            if function_call_found:
+                                # More than one function call found - this should trigger a retry
+                                raise MultipleFunctionCallsError("Multiple function calls detected")
+                            
+                            function_call_found = True
+                            response_parts.append("function_call:\n")
+                            response_parts.append(part.function_call.name + "\n")
+
+                            result = self._call_function(part.function_call, functions)
+                            last_result = result
+
+                            response_parts.append("\nresult:\n")
+                            response_parts.append(result + "\n")
+
+                            if result == "submit":
+                                break
+
+                # If functions were provided but no function call was found
+                if functions and not function_call_found and attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nNo function call found in your response. Please provide exactly one function call using the available functions.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(f"\nRetrying function call request (attempt {attempt + 2}/{MAX_RETRIES})")
+                    continue
+
+                # Log the response
+                print("\nRESPONSE:")
+                print("-" * 20)
+                for part in response_parts:
+                    print(part)
+                self.history = self.history + response_parts
+
+                self.logger.write_rst_log(response_parts, "response", self.call_count)
+
+                return last_result
+
+            except MultipleFunctionCallsError as e:
+                if attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nPlease provide exactly one function call in your response.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(f"\nRetrying due to multiple function calls (attempt {attempt + 2}/{MAX_RETRIES})")
+                    continue
+                else:
+                    print(f"\nERROR: {str(e)} - Max retries exceeded")
+                    self.logger.log_error(str(e), prompt)
+                    raise
+
+            except Exception as e:
+                print(f"\nERROR generating content: {str(e)}")
+                self.logger.log_error(str(e), prompt)
+                raise
+
+        # If we get here, we've exhausted retries without success
+        error_msg = "Failed to get valid function call after maximum retries"
+        print(f"\nERROR: {error_msg}")
+        self.logger.log_error(error_msg, prompt)
+        raise MaxRetriesExceededError(error_msg)
+
+    def _call_function(self, function_call, functions):
+        """Execute a function call with improved error handling."""
+        if not functions:
+            raise ValueError("No functions provided")
+
+        function_name = function_call.name
+        function_args = function_call.args
+
+        if function_name not in functions:
+            raise UnknownFunctionError(f"Unknown function: {function_name}")
+
+        try:
+            result = functions[function_name](**function_args)
+            return result
+        except TypeError as e:
+            raise FunctionArgumentError(f"Invalid arguments for {function_name}: {str(e)}")
+        except Exception as e:
+            raise FunctionExecutionError(f"Error executing {function_name}: {str(e)}")
+
+
+# Custom exceptions for better error handling
+class MultipleFunctionCallsError(Exception):
+    """Raised when multiple function calls are detected in a single response."""
+    pass
+
+class MaxRetriesExceededError(Exception):
+    """Raised when maximum retry attempts are exhausted."""
+    pass
+
+class UnknownFunctionError(Exception):
+    """Raised when an unknown function is called."""
+    pass
+
+class FunctionArgumentError(Exception):
+    """Raised when invalid arguments are provided to a function."""
+    pass
+
+class FunctionExecutionError(Exception):
+    """Raised when a function fails during execution."""
+    pass
 
 ```
 

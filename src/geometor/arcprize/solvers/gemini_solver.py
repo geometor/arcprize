@@ -12,8 +12,8 @@ from .gemini_logger import Logger
 #  from gemini_reporter import Reporter
 
 #  DEFAULT_MODEL = "models/gemini-1.5-flash"
-#  DEFAULT_MODEL = "models/gemini-1.5-flash-002"
-DEFAULT_MODEL = "models/gemini-1.5-pro-002"
+DEFAULT_MODEL = "models/gemini-1.5-flash-002"
+#  DEFAULT_MODEL = "models/gemini-1.5-pro-002"
 DEFAULT_INSTRUCTIONS_FILE = "gemini_instructions.md"
 
 
@@ -335,9 +335,9 @@ class PuzzleSolver:
 
     def _generate_content(self, prompt, instructions, tools=None, functions=None):
         """
-        Generate content from the model with standardized logging.
+        Generate content from the model with standardized logging and function call handling.
         """
-
+        MAX_RETRIES = 3
         self.call_count += 1
 
         print("=" * 40)
@@ -355,64 +355,98 @@ class PuzzleSolver:
         self.history = self.history + prompt
         self.logger.write_rst_log(total_prompt, "history", self.call_count)
 
-        try:
-            # Generate the response
-            response = self.client.generate_content(
-                total_prompt,
-                tools=tools,
-            )
-            # TODO: validate function call when expected
+        for attempt in range(MAX_RETRIES):
+            try:
+                # Generate the response
+                response = self.client.generate_content(
+                    total_prompt,
+                    tools=tools,
+                )
 
-            response_parts = []
-            last_result = None
+                response_parts = []
+                function_call_found = False
+                last_result = None
 
-            if hasattr(response.candidates[0].content, "parts"):
-                for part in response.candidates[0].content.parts:
-                    if part.text:
-                        response_parts.append(part.text + "\n")
-                    if part.executable_code:
-                        response_parts.append("code_execution:\n")
-                        response_parts.append(
-                            f"```python\n{part.executable_code.code}\n```\n"
-                        )
-                    if part.code_execution_result:
-                        response_parts.append(
-                            f"code_execution_result: {part.code_execution_result.outcome}\n"
-                        )
-                        response_parts.append(
-                            f"```\n{part.code_execution_result.output}\n```\n"
-                        )
-                    if part.function_call:
-                        response_parts.append("function_call:\n")
-                        response_parts.append(part.function_call.name + "\n")
+                if hasattr(response.candidates[0].content, "parts"):
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            response_parts.append(part.text + "\n")
+                        if part.executable_code:
+                            response_parts.append("code_execution:\n")
+                            response_parts.append(
+                                f"```python\n{part.executable_code.code}\n```\n"
+                            )
+                        if part.code_execution_result:
+                            response_parts.append(
+                                f"code_execution_result: {part.code_execution_result.outcome}\n"
+                            )
+                            response_parts.append(
+                                f"```\n{part.code_execution_result.output}\n```\n"
+                            )
+                        if part.function_call:
+                            if function_call_found:
+                                # More than one function call found - this should trigger a retry
+                                raise MultipleFunctionCallsError("Multiple function calls detected")
+                            
+                            function_call_found = True
+                            response_parts.append("function_call:\n")
+                            response_parts.append(part.function_call.name + "\n")
 
-                        result = self._call_function(part.function_call, functions)
-                        last_result = result
+                            result = self._call_function(part.function_call, functions)
+                            last_result = result
 
-                        response_parts.append("\nresult:\n")
-                        response_parts.append(result + "\n")
+                            response_parts.append("\nresult:\n")
+                            response_parts.append(result + "\n")
 
-                        if result == "submit":
-                            break
+                            if result == "submit":
+                                break
 
-            # Log the response
-            print("\nRESPONSE:")
-            print("-" * 20)
-            for part in response_parts:
-                print(part)
-            self.history = self.history + response_parts
+                # If functions were provided but no function call was found
+                if functions and not function_call_found and attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nNo function call found in your response. Please provide exactly one function call using the available functions.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(f"\nRetrying function call request (attempt {attempt + 2}/{MAX_RETRIES})")
+                    continue
 
-            self.logger.write_rst_log(response_parts, "response", self.call_count)
+                # Log the response
+                print("\nRESPONSE:")
+                print("-" * 20)
+                for part in response_parts:
+                    print(part)
+                self.history = self.history + response_parts
 
-            return last_result
+                self.logger.write_rst_log(response_parts, "response", self.call_count)
 
-        except Exception as e:
-            print(f"\nERROR generating content: {str(e)}")
-            self.logger.log_error(str(e), prompt)
-            raise
+                return last_result
+
+            except MultipleFunctionCallsError as e:
+                if attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nPlease provide exactly one function call in your response.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(f"\nRetrying due to multiple function calls (attempt {attempt + 2}/{MAX_RETRIES})")
+                    continue
+                else:
+                    print(f"\nERROR: {str(e)} - Max retries exceeded")
+                    self.logger.log_error(str(e), prompt)
+                    raise
+
+            except Exception as e:
+                print(f"\nERROR generating content: {str(e)}")
+                self.logger.log_error(str(e), prompt)
+                raise
+
+        # If we get here, we've exhausted retries without success
+        error_msg = "Failed to get valid function call after maximum retries"
+        print(f"\nERROR: {error_msg}")
+        self.logger.log_error(error_msg, prompt)
+        raise MaxRetriesExceededError(error_msg)
 
     def _call_function(self, function_call, functions):
-        """Execute a function call and log it."""
+        """Execute a function call with improved error handling."""
         if not functions:
             raise ValueError("No functions provided")
 
@@ -420,11 +454,34 @@ class PuzzleSolver:
         function_args = function_call.args
 
         if function_name not in functions:
-            raise ValueError(f"Unknown function: {function_name}")
+            raise UnknownFunctionError(f"Unknown function: {function_name}")
 
-        result = functions[function_name](**function_args)
+        try:
+            result = functions[function_name](**function_args)
+            return result
+        except TypeError as e:
+            raise FunctionArgumentError(f"Invalid arguments for {function_name}: {str(e)}")
+        except Exception as e:
+            raise FunctionExecutionError(f"Error executing {function_name}: {str(e)}")
 
-        # Log the function call
-        #  self.log_function_call(function_name, function_args, result)
 
-        return result
+# Custom exceptions for better error handling
+class MultipleFunctionCallsError(Exception):
+    """Raised when multiple function calls are detected in a single response."""
+    pass
+
+class MaxRetriesExceededError(Exception):
+    """Raised when maximum retry attempts are exhausted."""
+    pass
+
+class UnknownFunctionError(Exception):
+    """Raised when an unknown function is called."""
+    pass
+
+class FunctionArgumentError(Exception):
+    """Raised when invalid arguments are provided to a function."""
+    pass
+
+class FunctionExecutionError(Exception):
+    """Raised when a function fails during execution."""
+    pass
