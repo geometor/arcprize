@@ -1,6 +1,8 @@
 arcprize
 ========
 
+:subject: puzzles
+
 .. include:: intro.rst
 
 time to get this started
@@ -8,9 +10,10 @@ time to get this started
 .. sidebar:: Optional Sidebar Title
    :subtitle: Optional Sidebar Subtitle
 
-   Subsequent indented lines comprise
-   the body of the sidebar, and are
-   interpreted as body elements.
+   here are some facts
+
+   :name: test
+   :id: 001
    
 
 
