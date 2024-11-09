@@ -1,0 +1,23 @@
+﻿geometor.arcprize.solvers
+=========================
+
+
+.. automodule:: geometor.arcprize.solvers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: geometor.arcprize.solvers.gemini_solver
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: geometor.arcprize.solvers.gemini_client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: geometor.arcprize.solvers.gemini_logger
+   :members:
+   :undoc-members:
+   :show-inheritance:

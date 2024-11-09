@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geometor.arcprize.solvers.gemini_solver &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/rtd-dark.css?v=20e01aad" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/_modules/geometor/arcprize/solvers/gemini_solver/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../demos/">demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../refs/">references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sessions/">sessions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../">Module code</a></li>
+      <li class="breadcrumb-item active">geometor.arcprize.solvers.gemini_solver</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <h1>Source code for geometor.arcprize.solvers.gemini_solver</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">geometor.arcprize.puzzles</span> <span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
+
+<span class="kn">from</span> <span class="nn">.gemini_client</span> <span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="c1">#  from gemini_reporter import Reporter</span>
+
+<span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash&quot;</span>
+<span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
+<span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-pro-002&quot;</span>
+<span class="n">DEFAULT_INSTRUCTIONS_FILE</span> <span class="o">=</span> <span class="s2">&quot;gemini_instructions.md&quot;</span>
+
+
+<div class="viewcode-block" id="PuzzleSolver">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver">[docs]</a>
+<span class="k">class</span> <span class="nc">PuzzleSolver</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">puzzle</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_MODEL</span><span class="p">,</span>
+        <span class="n">instructions_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_INSTRUCTIONS_FILE</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+        <span class="n">max_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">client</span><span class="p">:</span> <span class="n">Client</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the PuzzleSolver with all necessary components for solving and logging.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            puzzle: The puzzle object to solve.</span>
+<span class="sd">            model_name: Name of the Gemini model to use.</span>
+<span class="sd">            instructions_file: Path to the instructions file.</span>
+<span class="sd">            output_dir: Directory for output files and logs.</span>
+<span class="sd">            max_iterations: Maximum number of iterations for solving.</span>
+<span class="sd">            timestamp: Optional timestamp for logging (defaults to current time).</span>
+<span class="sd">            client: An instance of Client.</span>
+<span class="sd">            logger: An instance of Logger.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Track individual response times</span>
+
+        <span class="c1"># Core components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span> <span class="o">=</span> <span class="n">puzzle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instructions_file</span> <span class="o">=</span> <span class="n">instructions_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span> <span class="o">=</span> <span class="n">max_iterations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_iteration</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Initialize GeminiClient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">Client</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">instructions_file</span><span class="p">)</span>
+
+        <span class="c1"># Initialize timestamp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="ow">or</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y.%j.%H%M%S&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Initialize Logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span> <span class="ow">or</span> <span class="n">Logger</span><span class="p">(</span>
+            <span class="n">output_dir</span><span class="p">,</span> <span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Initialize working state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Initialize metadata for logging</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;puzzle_id&quot;</span><span class="p">:</span> <span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+            <span class="s2">&quot;max_iterations&quot;</span><span class="p">:</span> <span class="n">max_iterations</span><span class="p">,</span>
+            <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s2">&quot;grid_states&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s2">&quot;function_calls&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;start_time&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="s1">&#39;response_times&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Initialize token tracking</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;prompt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;candidates&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;cached&#39;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+
+
+
+
+
+<div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with a copy of the input grid.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
+
+        <span class="c1"># Log the initialization</span>
+        <span class="c1">#  self.logger.log_grid_state(&quot;initialization&quot;, &quot;copy_input&quot;)</span>
+        <span class="k">return</span> <span class="s2">&quot;initialize_output_from_input()&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.initialize_output_by_size">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with specific dimensions.&quot;&quot;&quot;</span>
+
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
+
+        <span class="c1"># Log the initialization</span>
+        <span class="c1">#  self.logger.log_grid_state(&quot;initialization&quot;, f&quot;new_grid_{width}x{height}&quot;)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;initialize_output_by_size(</span><span class="si">{</span><span class="n">width</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">height</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.set_pixel">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid value at a specific coordinate.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Working grid not initialized&quot;</span><span class="p">)</span>
+
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2"> is out of bounds. Grid height is </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> is out of bounds. Grid width is </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="c1"># Log the pixel change</span>
+        <span class="c1">#  self.logger.log_grid_state(&quot;pixel_set&quot;, f&quot;r{row}c{column}={color}&quot;)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;set_pixel(</span><span class="si">{</span><span class="n">row</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.set_range">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid values for a range of pixels.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Working grid not initialized&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Convert to int and ensure proper order</span>
+        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">row1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row2</span><span class="p">)])</span>
+        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">column1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column2</span><span class="p">)])</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="c1"># Add 1 to end indices to make them inclusive</span>
+        <span class="n">r2</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">c2</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Validate bounds</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r1</span> <span class="o">&gt;=</span> <span class="n">height</span> <span class="ow">and</span> <span class="n">r2</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c1</span> <span class="o">&gt;=</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">c2</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entire range is outside grid bounds (</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+        <span class="n">r1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+
+        <span class="c1"># Set the range</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="c1"># Log the range change</span>
+        <span class="n">cells_modified</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">r1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span>
+        <span class="c1">#  self.logger.log_grid_state(</span>
+            <span class="c1">#  &quot;range_set&quot;, f&quot;from_r{r1}c{c1}_to_r{r2-1}c{c2-1}={color}&quot;</span>
+        <span class="c1">#  )</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;set_range(</span><span class="si">{</span><span class="n">row1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.submit">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
+    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit the working grid and check for correctness.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No working grid to submit&quot;</span><span class="p">)</span>
+
+        <span class="c1"># TODO: Implement actual submission logic and correctness checking</span>
+        <span class="c1">#  self.logger.log_grid_state(&quot;submission&quot;, &quot;final&quot;)</span>
+        <span class="k">return</span> <span class="s2">&quot;submit&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.solve">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main method to orchestrate the puzzle solving workflow.</span>
+<span class="sd">        Returns the working grid if solution is found, None otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Initialize solving state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Begin puzzle: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process_training_examples</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_summarize_observations</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_process_test_input</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_working_grid</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_run_solution_loop</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solve failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solve failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_process_training_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_input&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_output&quot;</span><span class="p">)</span>
+
+            <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;**example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**input**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**output**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;- review the example grids</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;- check for differences and patterns</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+                <span class="n">prompt</span><span class="p">,</span>
+                <span class="n">instructions</span><span class="p">,</span>
+                <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_summarize_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;**examples summary**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;- summarize your observations to explain the transformation of the input to output</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- use code_execution to investigate properties, patterns and differences in the grids&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">instructions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">test_pair</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;test_input&quot;</span><span class="p">)</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;**test**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**input**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;- generate report as per instructions</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- use code_execution to investigate propertiesi</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">instructions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">init_functions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;initialize_output_from_input&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_from_input</span><span class="p">,</span>
+            <span class="s2">&quot;initialize_output_by_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_by_size</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;use function_call to initialize the working output grid:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- initialize_output_from_input: good when examples show few differences between input and output</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- initialize_output_by_size: create a fresh grid from size and color</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">instructions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">init_functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+            <span class="n">functions</span><span class="o">=</span><span class="n">init_functions</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_present_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span><span class="p">)</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;**working output grid**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;updated with your changes</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
+            <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;- take a moment to review that the changes in the working output grid are in keeping with the rule</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;- use code_execution to investigate properties&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">instructions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_run_solution_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the main solution loop with proper submission handling.</span>
+<span class="sd">        Returns the working grid if solution is found, None otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">set_functions</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;set_pixel&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">,</span>
+            <span class="s2">&quot;set_range&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_range</span><span class="p">,</span>
+            <span class="s2">&quot;submit&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_iteration</span> <span class="o">=</span> <span class="n">iteration</span>
+
+            <span class="c1"># Present and analyze current state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_present_working_grid</span><span class="p">()</span>
+
+            <span class="c1"># Get next action</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_next_action</span><span class="p">(</span><span class="n">set_functions</span><span class="p">)</span>
+
+            <span class="c1"># Handle submission</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;submit&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution submitted after </span><span class="si">{</span><span class="n">iteration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> iterations&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max iertions (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span><span class="si">}</span><span class="s2">) reached without submission&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_get_next_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get and process the next action from the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;**update working grid**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;- use function_call to set pixels on the grid to achieve the solution</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;  - set_pixel: update one pixel at a time</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;  - set_range: update a rectangular subset of pixel</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- when you think you have completed the output, call the submit function</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
+            <span class="n">prompt</span><span class="p">,</span>
+            <span class="n">instructions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+            <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">functions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate content from the model with standardized logging and function call handling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">MAX_RETRIES</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="si">}</span><span class="s2"> • PROMPT&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">prompt</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+
+        <span class="n">instructions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">INSTRUCTIONS:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">instructions</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">instructions</span><span class="p">,</span> <span class="s2">&quot;prompt&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
+
+        <span class="n">total_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">====</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">instructions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">total_prompt</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_RETRIES</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response_start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+                    <span class="n">total_prompt</span><span class="p">,</span>
+                    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">response_end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+                <span class="n">response_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">response_end</span> <span class="o">-</span> <span class="n">response_start</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+                <span class="c1"># Update timing metadata</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response_time</span><span class="p">)</span>
+                <span class="n">total_elapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">response_end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+                <span class="c1"># Update token counts immediately</span>
+                <span class="n">metadata</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;usage_metadata&#39;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;prompt&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prompt_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;candidates&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;candidates_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;total_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;cached&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cached_content_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+                <span class="c1"># Save response with current totals</span>
+                <span class="n">response_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="n">response_data</span><span class="p">[</span><span class="s1">&#39;token_totals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">response_data</span><span class="p">[</span><span class="s1">&#39;timing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
+                        <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="n">total_elapsed</span><span class="p">,</span>
+                        <span class="s1">&#39;response_times&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="p">}</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_response</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
+
+                <span class="n">response_parts</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">function_call_found</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">last_result</span> <span class="o">=</span> <span class="kc">None</span>
+
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;parts&quot;</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">parts</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">executable_code</span><span class="p">:</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code_execution:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;```python</span><span class="se">\n</span><span class="si">{</span><span class="n">part</span><span class="o">.</span><span class="n">executable_code</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span>
+                            <span class="p">)</span>
+                        <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">code_execution_result</span><span class="p">:</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;code_execution_result: </span><span class="si">{</span><span class="n">part</span><span class="o">.</span><span class="n">code_execution_result</span><span class="o">.</span><span class="n">outcome</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                            <span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;```</span><span class="se">\n</span><span class="si">{</span><span class="n">part</span><span class="o">.</span><span class="n">code_execution_result</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span>
+                            <span class="p">)</span>
+                        <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">function_call_found</span><span class="p">:</span>
+                                <span class="c1"># More than one function call found - this should trigger a retry</span>
+                                <span class="k">raise</span> <span class="n">MultipleFunctionCallsError</span><span class="p">(</span><span class="s2">&quot;Multiple function calls detected&quot;</span><span class="p">)</span>
+
+                            <span class="n">function_call_found</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function_call:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_function</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">)</span>
+                            <span class="n">last_result</span> <span class="o">=</span> <span class="n">result</span>
+
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">result:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;submit&quot;</span><span class="p">:</span>
+                                <span class="k">break</span>
+
+                <span class="c1"># If functions were provided but no function call was found</span>
+                <span class="k">if</span> <span class="n">functions</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">function_call_found</span> <span class="ow">and</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">MAX_RETRIES</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">retry_prompt</span> <span class="o">=</span> <span class="n">total_prompt</span> <span class="o">+</span> <span class="p">[</span>
+                        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No function call found in your response. Please provide exactly one function call using the available functions.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">]</span>
+                    <span class="n">total_prompt</span> <span class="o">=</span> <span class="n">retry_prompt</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying function call request (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># Log the response</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="si">}</span><span class="s2"> • RESPONSE&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">response_parts</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">response_parts</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span>
+                    <span class="n">response_parts</span><span class="p">,</span>
+                    <span class="s2">&quot;response&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;current&#39;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+                        <span class="s1">&#39;totals&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">,</span>
+                        <span class="s1">&#39;timing&#39;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
+                            <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="n">total_elapsed</span>
+                        <span class="p">},</span>
+                        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">last_result</span>
+
+            <span class="k">except</span> <span class="n">MultipleFunctionCallsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">MAX_RETRIES</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">retry_prompt</span> <span class="o">=</span> <span class="n">total_prompt</span> <span class="o">+</span> <span class="p">[</span>
+                        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please provide exactly one function call in your response.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">]</span>
+                    <span class="n">total_prompt</span> <span class="o">=</span> <span class="n">retry_prompt</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying due to multiple function calls (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ERROR: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2"> - Max retries exceeded&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">prompt</span><span class="p">)</span>
+                    <span class="k">raise</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ERROR generating content: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">prompt</span><span class="p">)</span>
+                <span class="k">raise</span>
+
+        <span class="c1"># If we get here, we&#39;ve exhausted retries without success</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;Failed to get valid function call after maximum retries&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ERROR: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">error_msg</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">MaxRetriesExceededError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_call_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute a function call with improved error handling.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">functions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No functions provided&quot;</span><span class="p">)</span>
+
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">function_call</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">function_args</span> <span class="o">=</span> <span class="n">function_call</span><span class="o">.</span><span class="n">args</span>
+
+        <span class="k">if</span> <span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownFunctionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown function: </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FunctionArgumentError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid arguments for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FunctionExecutionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error executing </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># Custom exceptions for better error handling</span>
+<div class="viewcode-block" id="MultipleFunctionCallsError">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError">[docs]</a>
+<span class="k">class</span> <span class="nc">MultipleFunctionCallsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when multiple function calls are detected in a single response.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="MaxRetriesExceededError">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.MaxRetriesExceededError">[docs]</a>
+<span class="k">class</span> <span class="nc">MaxRetriesExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when maximum retry attempts are exhausted.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UnknownFunctionError">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.UnknownFunctionError">[docs]</a>
+<span class="k">class</span> <span class="nc">UnknownFunctionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when an unknown function is called.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="FunctionArgumentError">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.FunctionArgumentError">[docs]</a>
+<span class="k">class</span> <span class="nc">FunctionArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when invalid arguments are provided to a function.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="FunctionExecutionError">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.FunctionExecutionError">[docs]</a>
+<span class="k">class</span> <span class="nc">FunctionExecutionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a function fails during execution.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+</pre></div>
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

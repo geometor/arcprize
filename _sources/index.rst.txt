@@ -5,20 +5,6 @@ arcprize
 
 .. include:: intro.rst
 
-time to get this started
-
-.. sidebar:: Optional Sidebar Title
-   :subtitle: Optional Sidebar Subtitle
-
-   here are some facts
-
-   :name: test
-   :id: 001
-   
-
-
-more stuff to get started
-
 recent logs
 -----------
 
@@ -34,14 +20,15 @@ recent logs
    mission/index.rst
    usage/index.rst
    modules/index.rst
-   logs.rst
+   logs/index.rst
    demos/index.rst
    refs/index.rst
    sessions/index.rst
-   todos.rst
-   changelog.rst
-   connect.rst
-   about.rst
+
+   .. todos.rst
+   .. changelog.rst
+   .. connect.rst
+   .. about.rst
 
 
 indices

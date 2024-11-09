@@ -6,4 +6,12 @@ modules
   
 - :doc:`geometor.arcprize.puzzles`
 
+- :doc:`geometor.arcprize.solvers`
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   geometor.arcprize
+   geometor.arcprize.puzzles
+   geometor.arcprize.solvers

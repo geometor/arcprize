@@ -30,7 +30,9 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
-    <link rel="search" title="Search" href="../../search/" />   
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="geometor.arcprize.solvers" href="../geometor.arcprize.solvers/" />
+    <link rel="prev" title="geometor.arcprize" href="../geometor.arcprize/" />   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -85,18 +87,56 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../mission/">mission</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/">usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../">modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize/">geometor.arcprize</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">geometor.arcprize.puzzles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">geometor.arcprize.puzzles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.name"><code class="docutils literal notranslate"><span class="pre">Grid.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.height"><code class="docutils literal notranslate"><span class="pre">Grid.height</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.width"><code class="docutils literal notranslate"><span class="pre">Grid.width</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.size"><code class="docutils literal notranslate"><span class="pre">Grid.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.colors"><code class="docutils literal notranslate"><span class="pre">Grid.colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.color_counts"><code class="docutils literal notranslate"><span class="pre">Grid.color_counts</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.model"><code class="docutils literal notranslate"><span class="pre">Grid.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.rotate"><code class="docutils literal notranslate"><span class="pre">Grid.rotate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.flip"><code class="docutils literal notranslate"><span class="pre">Grid.flip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.to_string"><code class="docutils literal notranslate"><span class="pre">Grid.to_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.grid.Grid.to_image"><code class="docutils literal notranslate"><span class="pre">Grid.to_image()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair"><code class="docutils literal notranslate"><span class="pre">PuzzlePair</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.weight"><code class="docutils literal notranslate"><span class="pre">PuzzlePair.weight</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.size_change"><code class="docutils literal notranslate"><span class="pre">PuzzlePair.size_change</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.colors"><code class="docutils literal notranslate"><span class="pre">PuzzlePair.colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzlePair.color_changes"><code class="docutils literal notranslate"><span class="pre">PuzzlePair.color_changes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.Puzzle"><code class="docutils literal notranslate"><span class="pre">Puzzle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.Puzzle.all_pairs"><code class="docutils literal notranslate"><span class="pre">Puzzle.all_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.Puzzle.weight"><code class="docutils literal notranslate"><span class="pre">Puzzle.weight</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.Puzzle.colors"><code class="docutils literal notranslate"><span class="pre">Puzzle.colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.Puzzle.nice_json_layout"><code class="docutils literal notranslate"><span class="pre">Puzzle.nice_json_layout()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet"><code class="docutils literal notranslate"><span class="pre">PuzzleSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_ordered_puzzles"><code class="docutils literal notranslate"><span class="pre">PuzzleSet.get_ordered_puzzles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_color_count"><code class="docutils literal notranslate"><span class="pre">PuzzleSet.get_puzzles_by_color_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_size_change"><code class="docutils literal notranslate"><span class="pre">PuzzleSet.get_puzzles_by_size_change()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize.solvers/">geometor.arcprize.solvers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../logs/">logs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sessions/">sessions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../todos/">todos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog/">changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../connect/">connect</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about/">about</a></li>
 </ul>
 
         </div>
@@ -113,11 +153,15 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../">modules</a></li>
       <li class="breadcrumb-item active">geometor.arcprize.puzzles</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/geometor/arcprize/blob/main/docsrc/modules/geometor.arcprize.puzzles.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../geometor.arcprize/" class="btn btn-neutral float-left" title="geometor.arcprize" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geometor.arcprize.solvers/" class="btn btn-neutral float-right" title="geometor.arcprize.solvers" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -273,7 +317,10 @@ axis=0 flips vertically, axis=1 flips horizontally.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../geometor.arcprize/" class="btn btn-neutral float-left" title="geometor.arcprize" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geometor.arcprize.solvers/" class="btn btn-neutral float-right" title="geometor.arcprize.solvers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
