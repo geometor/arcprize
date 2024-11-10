@@ -1,0 +1,50 @@
+papers
+======
+
+
+Inline citations use [AuthorYear]_ format:
+
+As discussed by [Chollet2019]_, the ARC challenge represents a new approach to measuring AI capabilities.
+
+Multiple citations can be grouped [Chollet2019]_ [Fleuret2024]_.
+
+
+Footnote Citations
+-----------------
+
+For detailed citations, use footnotes:
+
+François Chollet proposed the ARC challenge [#Chollet2019]_ as a benchmark for measuring artificial general intelligence.
+
+.. [#Chollet2019] Chollet, F. (2019). "On the Measure of Intelligence."
+   arXiv:1911.01547.
+
+Citation Targets
+---------------
+
+.. target-notes::
+
+.. [Chollet2019] Chollet, F. (2019). "On the Measure of Intelligence."
+   arXiv:1911.01547.
+
+.. [Fleuret2024] Fleuret, F. (2024). "The Little Book of Deep Learning."
+   https://fleuret.org/public/lbdl.pdf.
+
+
+Bibliography Section
+------------------
+
+References
+~~~~~~~~~~
+
+.. bibliography:: papers.bib
+   :style: alpha
+   :all:
+
+Custom Citation Roles
+-------------------
+
+.. role:: paper
+   :class: citation
+
+This approach was first described in :paper:`Chollet2019`.
