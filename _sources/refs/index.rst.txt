@@ -2,6 +2,8 @@ references
 ==========
 
 .. toctree::
+   :maxdepth: 1
+
    anaximander/popper-knowledge-summary.rst
    claude-popper-arc.rst
    papers.rst
