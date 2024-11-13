@@ -1,8 +1,6 @@
 arcprize
 ========
 
-:subject: puzzles
-
 .. include:: intro.rst
 
 recent logs
@@ -25,10 +23,10 @@ recent logs
    refs/index.rst
    sessions/index.rst
 
-   .. todos.rst
-   .. changelog.rst
-   .. connect.rst
-   .. about.rst
+.. todos.rst
+.. changelog.rst
+.. connect.rst
+.. about.rst
 
 
 indices

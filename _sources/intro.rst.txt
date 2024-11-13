@@ -1,6 +1,14 @@
-``-`` 
+this project is essentially a container for my musings about the ARC challenge
 
 
-    tools and research for the arcprize contest
 
-.. todo:: complete project description in intro.rst
+.. |ytimg| image::  https://img.youtube.com/vi/CMr2NoIaZn8/2.jpg
+
+
+.. list-table::
+
+   * - |ytimg|
+     - https://www.youtube.com/watch?v=CMr2NoIaZn8
+
+tools and research for the arcprize contest
+
