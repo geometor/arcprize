@@ -1,0 +1,25 @@
+papers
+======
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   measure.rst
+
+
+- :ref:`measure`
+
+  François Chollet, 2019
+
+
+
+Bibliography Section
+------------------
+
+References
+~~~~~~~~~~
+
+.. bibliography:: 
+   :all:
+
