@@ -6,7 +6,6 @@
   <title>geometor.arcprize.solvers.gemini_logger &mdash; geometor • arcprize</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/rtd-dark.css?v=20e01aad" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
   
@@ -112,14 +111,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
               <h1>Source code for geometor.arcprize.solvers.gemini_logger</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span></span><span class="sd">&quot;&quot;&quot;RST Documentation Generator for ARC Solution Sessions</span>
+
+<span class="sd">Creates comprehensive documentation of the puzzle-solving process using</span>
+<span class="sd">ReStructuredText (RST) format, enabling detailed analysis and review.</span>
+
+<span class="sd">Features:</span>
+
+<span class="sd">- Hierarchical session organization</span>
+<span class="sd">- Image handling and deduplication</span>
+<span class="sd">- Markdown conversion</span>
+<span class="sd">- Navigation link management</span>
+<span class="sd">- Token and timing metrics</span>
+<span class="sd">- Error logging</span>
+
+<span class="sd">The logger creates a browsable documentation structure that captures the</span>
+<span class="sd">complete problem-solving process, including:</span>
+
+<span class="sd">- Grid states and transformations</span>
+<span class="sd">- Code execution results</span>
+<span class="sd">- Model interactions</span>
+<span class="sd">- Performance metrics</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">m2r2</span> <span class="kn">import</span> <span class="n">convert</span>
 
 
 <div class="viewcode-block" id="Logger">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_logger.Logger">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger">[docs]</a>
 <span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
@@ -142,7 +164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">image_registry</span> <span class="o">=</span> <span class="p">{}</span>
 
 <div class="viewcode-block" id="Logger.save_response">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_logger.Logger.save_response">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.save_response">[docs]</a>
     <span class="k">def</span> <span class="nf">save_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save raw response data as JSON.</span>
 
@@ -157,7 +179,7 @@
 
 
 <div class="viewcode-block" id="Logger.save_grid_image">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image">[docs]</a>
     <span class="k">def</span> <span class="nf">save_grid_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_image</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a grid image with deduplication.</span>
 
@@ -195,7 +217,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">images_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Logger.write_rst_log">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log">[docs]</a>
     <span class="k">def</span> <span class="nf">write_rst_log</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">log_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">log_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">usage_data</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>

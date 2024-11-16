@@ -6,7 +6,6 @@
   <title>geometor.arcprize.solvers.gemini_solver &mdash; geometor • arcprize</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/rtd-dark.css?v=20e01aad" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
   
@@ -112,7 +111,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
               <h1>Source code for geometor.arcprize.solvers.gemini_solver</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<span></span><span class="sd">&quot;&quot;&quot;Dialogue-Based ARC Puzzle Solver</span>
+
+<span class="sd">Implements a structured workflow for solving ARC puzzles through conversation</span>
+<span class="sd">with LLMs, focusing on building understanding before attempting solutions.</span>
+
+<span class="sd">The solver follows a systematic process:</span>
+
+<span class="sd">1. Examine training examples individually</span>
+<span class="sd">2. Build comprehensive observations</span>
+<span class="sd">3. Validate understanding through pre-testing</span>
+<span class="sd">4. Implement solution through standard operations</span>
+
+<span class="sd">Key Features:</span>
+
+<span class="sd">- Progressive observation building</span>
+<span class="sd">- Code-validated pattern discovery</span>
+<span class="sd">- Natural language program development</span>
+<span class="sd">- Iterative refinement through dialogue</span>
+<span class="sd">- Comprehensive session logging</span>
+
+<span class="sd">The solver maintains a conversation history and working grid state, allowing</span>
+<span class="sd">for cumulative understanding and step-by-step solution development.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -132,7 +155,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver">[docs]</a>
 <span class="k">class</span> <span class="nc">PuzzleSolver</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -211,7 +234,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
     <span class="k">def</span> <span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with a copy of the input grid.&quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
@@ -225,7 +248,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.initialize_output_by_size">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
     <span class="k">def</span> <span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with specific dimensions.&quot;&quot;&quot;</span>
 
@@ -240,7 +263,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.set_pixel">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
     <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid value at a specific coordinate.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -262,7 +285,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.set_range">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
     <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -304,7 +327,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.submit">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
     <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit the working grid and check for correctness.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -316,7 +339,7 @@
 
 
 <div class="viewcode-block" id="PuzzleSolver.solve">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">[docs]</a>
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Main method to orchestrate the puzzle solving workflow.</span>
@@ -663,35 +686,35 @@
 
 <span class="c1"># Custom exceptions for better error handling</span>
 <div class="viewcode-block" id="MultipleFunctionCallsError">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError">[docs]</a>
 <span class="k">class</span> <span class="nc">MultipleFunctionCallsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when multiple function calls are detected in a single response.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="MaxRetriesExceededError">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.MaxRetriesExceededError">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MaxRetriesExceededError">[docs]</a>
 <span class="k">class</span> <span class="nc">MaxRetriesExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when maximum retry attempts are exhausted.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="UnknownFunctionError">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.UnknownFunctionError">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.UnknownFunctionError">[docs]</a>
 <span class="k">class</span> <span class="nc">UnknownFunctionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when an unknown function is called.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="FunctionArgumentError">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.FunctionArgumentError">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionArgumentError">[docs]</a>
 <span class="k">class</span> <span class="nc">FunctionArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when invalid arguments are provided to a function.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="FunctionExecutionError">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_solver.FunctionExecutionError">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionExecutionError">[docs]</a>
 <span class="k">class</span> <span class="nc">FunctionExecutionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a function fails during execution.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>

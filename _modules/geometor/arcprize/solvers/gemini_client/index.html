@@ -6,7 +6,6 @@
   <title>geometor.arcprize.solvers.gemini_client &mdash; geometor • arcprize</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/rtd-dark.css?v=20e01aad" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
   
@@ -112,14 +111,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
               <h1>Source code for geometor.arcprize.solvers.gemini_client</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sd">&quot;&quot;&quot;Google Gemini Model Interface for ARC Challenge</span>
+
+<span class="sd">Provides a streamlined interface to Google&#39;s Gemini model, configured specifically</span>
+<span class="sd">for the dialogue-based ARC solving approach.</span>
+
+<span class="sd">Features:</span>
+<span class="sd">    </span>
+<span class="sd">- Structured conversation management</span>
+<span class="sd">- Code execution capabilities</span>
+<span class="sd">- Function calling support</span>
+<span class="sd">- System instruction integration</span>
+<span class="sd">- Error handling and retry logic</span>
+
+<span class="sd">The client is designed to maintain consistent context while allowing for</span>
+<span class="sd">flexible interaction patterns including code exploration and function calls.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">google.generativeai</span> <span class="k">as</span> <span class="nn">genai</span>
 <span class="kn">from</span> <span class="nn">google.api_core</span> <span class="kn">import</span> <span class="n">retry</span>
 
 
 <div class="viewcode-block" id="GeminiClient">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_client.GeminiClient">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_client/#geometor.arcprize.solvers.gemini_client.GeminiClient">[docs]</a>
 <span class="k">class</span> <span class="nc">GeminiClient</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">instructions_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -144,7 +160,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="GeminiClient.generate_content">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers/#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_client/#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content">[docs]</a>
     <span class="k">def</span> <span class="nf">generate_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate content from the Gemini model based on the provided prompt.</span>

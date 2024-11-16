@@ -4,10 +4,9 @@ https://arcprize.org
 
 began my journey with ARC think that I it might be fun to build a system 
 
-realized the intention in `On the Measure of Intelligence`_ is for an agent to address the puzzles with
+realized the intention in measure_ is for an agent to address the puzzles with
 no previous knowledge about the puzzles
 
-cite link :cite:p:`chollet2019measureintelligence`
 
 if I were to design a system (if I could) then I would be demonstrating my
 intelligence
