@@ -22,8 +22,8 @@ recent logs
    demos/index.rst
    refs/index.rst
    sessions/index.rst
+   todos.rst
 
-.. todos.rst
 .. changelog.rst
 .. connect.rst
 .. about.rst

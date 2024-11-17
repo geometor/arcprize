@@ -1,18 +1,11 @@
 ﻿geometor.arcprize.puzzles
 =========================
 
-
 .. automodule:: geometor.arcprize.puzzles
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
-.. automodule:: geometor.arcprize.puzzles.grid
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 1
+   :hidden:
 
-.. automodule:: geometor.arcprize.puzzles.puzzle
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   geometor.arcprize.puzzles.grid
+   geometor.arcprize.puzzles.puzzle

@@ -90,18 +90,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../mission/">mission</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/">usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize/">geometor.arcprize</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize.puzzles/">geometor.arcprize.puzzles</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../geometor.arcprize.solvers/">geometor.arcprize.solvers</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/">geometor.arcprize.solvers.gemini_solver</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">geometor.arcprize.solvers.gemini_client</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_client.GeminiClient"><code class="docutils literal notranslate"><span class="pre">GeminiClient</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content"><code class="docutils literal notranslate"><span class="pre">GeminiClient.generate_content()</span></code></a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../geometor.arcprize/">geometor.arcprize</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.puzzles/">geometor.arcprize.puzzles</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../geometor.arcprize.solvers/">geometor.arcprize.solvers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/">geometor.arcprize.solvers.gemini_solver</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">geometor.arcprize.solvers.gemini_client</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_client.GeminiClient"><code class="docutils literal notranslate"><span class="pre">GeminiClient</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content"><code class="docutils literal notranslate"><span class="pre">GeminiClient.generate_content()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/">geometor.arcprize.solvers.gemini_logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/">geometor.arcprize.solvers.gemini_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.perception/">geometor.arcprize.perception</a></li>
 </ul>
 </li>
 </ul>
@@ -110,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todos/">todos</a></li>
 </ul>
 
         </div>
@@ -127,6 +131,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../">modules</a></li>
+          <li class="breadcrumb-item"><a href="../geometor.arcprize/">geometor.arcprize</a></li>
           <li class="breadcrumb-item"><a href="../geometor.arcprize.solvers/">geometor.arcprize.solvers</a></li>
       <li class="breadcrumb-item active">geometor.arcprize.solvers.gemini_client</li>
       <li class="wy-breadcrumbs-aside">
@@ -159,19 +164,39 @@ flexible interaction patterns including code exploration and function calls.</p>
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_client.GeminiClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geometor.arcprize.solvers.gemini_client.</span></span><span class="sig-name descname"><span class="pre">GeminiClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">instructions_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_client/#GeminiClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_client.GeminiClient" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content">
-<span class="sig-name descname"><span class="pre">generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_client/#GeminiClient.generate_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content" title="Link to this definition"></a></dt>
-<dd><p>Generate content from the Gemini model based on the provided prompt.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>prompt: The prompt to send to the model.
-tools: Optional tools or functions the model can use.</p>
+<p>Initialize the GeminiClient with model configuration and system instructions.</p>
+<section id="parameters">
+<h2>parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl>
+<dt>model_name<span class="classifier"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>Name of the Gemini model to use.</p>
 </dd>
-<dt>Returns:</dt><dd><p>The model’s response.</p>
+<dt>instructions_file<span class="classifier"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>Path to the instructions file.</p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content">
+<span class="sig-name descname"><span class="pre">generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><span class="pre">object</span></a></span></span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_client/#GeminiClient.generate_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_client.GeminiClient.generate_content" title="Link to this definition"></a></dt>
+<dd><p>Generate content from the Gemini model based on the provided prompt.</p>
+<section id="id1">
+<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>prompt<span class="classifier">list</span></dt><dd><p>The prompt to send to the model.</p>
+</dd>
+<dt>tools<span class="classifier">str or list</span></dt><dd><p>Optional tools or functions the model can use.
+“code_execution”</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>response<span class="classifier">GeminiResponse</span></dt><dd><p>the model’s response.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 </section>

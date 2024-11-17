@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../todos/">todos</a></li>
 </ul>
 
         </div>
@@ -146,7 +147,6 @@
 
 <span class="kn">from</span> <span class="nn">.gemini_client</span> <span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
 <span class="kn">from</span> <span class="nn">.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="c1">#  from gemini_reporter import Reporter</span>
 
 <span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash&quot;</span>
 <span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
@@ -157,9 +157,40 @@
 <div class="viewcode-block" id="PuzzleSolver">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver">[docs]</a>
 <span class="k">class</span> <span class="nc">PuzzleSolver</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the PuzzleSolver with all necessary components for solving and logging.</span>
+
+
+<span class="sd">    parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    puzzle : :class:`Puzzle &lt;geometor.arcprize.puzzles.puzzle.Puzzle&gt;`</span>
+<span class="sd">        object containing all the elements of the Puzzle</span>
+<span class="sd">    model_name : :class:`python:str`</span>
+<span class="sd">        name of the Gemini model</span>
+<span class="sd">    instructions_file : str</span>
+<span class="sd">        path to file with system instructions</span>
+<span class="sd">    output_dir : optional str</span>
+<span class="sd">        default &#39;.&#39;</span>
+<span class="sd">    max_iterations : int</span>
+<span class="sd">        max loops in the test phase</span>
+<span class="sd">    timestamp : optional :class:`python:str`</span>
+<span class="sd">        in the format %y.%j.%H%M%S</span>
+<span class="sd">    client : optional :class:`GeminiClient &lt;geometor.arcprize.solvers.gemini_client.GeminiClient&gt;`</span>
+<span class="sd">        pass in client with previous context</span>
+<span class="sd">    logger : optional :class:`Logger &lt;geometor.arcprize.solvers.gemini_logger.Logger&gt;`</span>
+<span class="sd">        pass in previous logger</span>
+
+<span class="sd">    attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start_time : datetime</span>
+
+<span class="sd">    working_grid : :class:`Grid &lt;geometor.arcprize.puzzles.grid.Grid&gt;`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">puzzle</span><span class="p">,</span>
+        <span class="n">puzzle</span><span class="p">:</span> <span class="n">Puzzle</span><span class="p">,</span>
         <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_MODEL</span><span class="p">,</span>
         <span class="n">instructions_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_INSTRUCTIONS_FILE</span><span class="p">,</span>
         <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
@@ -168,19 +199,6 @@
         <span class="n">client</span><span class="p">:</span> <span class="n">Client</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initialize the PuzzleSolver with all necessary components for solving and logging.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            puzzle: The puzzle object to solve.</span>
-<span class="sd">            model_name: Name of the Gemini model to use.</span>
-<span class="sd">            instructions_file: Path to the instructions file.</span>
-<span class="sd">            output_dir: Directory for output files and logs.</span>
-<span class="sd">            max_iterations: Maximum number of iterations for solving.</span>
-<span class="sd">            timestamp: Optional timestamp for logging (defaults to current time).</span>
-<span class="sd">            client: An instance of Client.</span>
-<span class="sd">            logger: An instance of Logger.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Track individual response times</span>
 
@@ -200,7 +218,9 @@
 
         <span class="c1"># Initialize Logger</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span> <span class="ow">or</span> <span class="n">Logger</span><span class="p">(</span>
-            <span class="n">output_dir</span><span class="p">,</span> <span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="p">,</span>
+            <span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Initialize working state</span>
@@ -216,22 +236,13 @@
             <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>
             <span class="s2">&quot;grid_states&quot;</span><span class="p">:</span> <span class="p">[],</span>
             <span class="s2">&quot;function_calls&quot;</span><span class="p">:</span> <span class="p">[],</span>
-            <span class="s1">&#39;start_time&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-            <span class="s1">&#39;response_times&#39;</span><span class="p">:</span> <span class="p">[],</span>
-            <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="s2">&quot;start_time&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="s2">&quot;response_times&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s2">&quot;total_elapsed&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="c1"># Initialize token tracking</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;prompt&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s1">&#39;candidates&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s1">&#39;cached&#39;</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">}</span>
-
-
-
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;candidates&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;cached&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
 
 <div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
@@ -320,7 +331,7 @@
         <span class="c1"># Log the range change</span>
         <span class="n">cells_modified</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">r1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span>
         <span class="c1">#  self.logger.log_grid_state(</span>
-            <span class="c1">#  &quot;range_set&quot;, f&quot;from_r{r1}c{c1}_to_r{r2-1}c{c2-1}={color}&quot;</span>
+        <span class="c1">#  &quot;range_set&quot;, f&quot;from_r{r1}c{c1}_to_r{r2-1}c{c2-1}={color}&quot;</span>
         <span class="c1">#  )</span>
 
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;set_range(</span><span class="si">{</span><span class="n">row1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">)&quot;</span></div>
@@ -363,8 +374,12 @@
 
     <span class="k">def</span> <span class="nf">_process_training_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_input&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_output&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
+                <span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_input&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
+                <span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_output&quot;</span>
+            <span class="p">)</span>
 
             <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="sa">f</span><span class="s2">&quot;**example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -406,7 +421,9 @@
 
     <span class="k">def</span> <span class="nf">_process_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">test_pair</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;test_input&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
+            <span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;test_input&quot;</span>
+        <span class="p">)</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;**test**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**input**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -432,7 +449,7 @@
             <span class="s2">&quot;initialize_output_by_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_by_size</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;use function_call to initialize the working output grid:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -447,7 +464,9 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_present_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span>
+        <span class="p">)</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;**working output grid**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;updated with your changes</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -551,20 +570,24 @@
                 <span class="n">total_elapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">response_end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
 
                 <span class="c1"># Update token counts immediately</span>
-                <span class="n">metadata</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;usage_metadata&#39;</span><span class="p">,</span> <span class="p">{})</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;prompt&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;prompt_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;candidates&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;candidates_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;total_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s1">&#39;cached&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cached_content_token_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">metadata</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;usage_metadata&quot;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prompt_token_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s2">&quot;candidates&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="s2">&quot;candidates_token_count&quot;</span><span class="p">,</span> <span class="mi">0</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;total_token_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">[</span><span class="s2">&quot;cached&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="s2">&quot;cached_content_token_count&quot;</span><span class="p">,</span> <span class="mi">0</span>
+                <span class="p">)</span>
 
                 <span class="c1"># Save response with current totals</span>
                 <span class="n">response_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-                <span class="n">response_data</span><span class="p">[</span><span class="s1">&#39;token_totals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-                <span class="n">response_data</span><span class="p">[</span><span class="s1">&#39;timing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                        <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
-                        <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="n">total_elapsed</span><span class="p">,</span>
-                        <span class="s1">&#39;response_times&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-                    <span class="p">}</span>
+                <span class="n">response_data</span><span class="p">[</span><span class="s2">&quot;token_totals&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">response_data</span><span class="p">[</span><span class="s2">&quot;timing&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
+                    <span class="s2">&quot;total_elapsed&quot;</span><span class="p">:</span> <span class="n">total_elapsed</span><span class="p">,</span>
+                    <span class="s2">&quot;response_times&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+                <span class="p">}</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_response</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
 
@@ -591,7 +614,9 @@
                         <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">:</span>
                             <span class="k">if</span> <span class="n">function_call_found</span><span class="p">:</span>
                                 <span class="c1"># More than one function call found - this should trigger a retry</span>
-                                <span class="k">raise</span> <span class="n">MultipleFunctionCallsError</span><span class="p">(</span><span class="s2">&quot;Multiple function calls detected&quot;</span><span class="p">)</span>
+                                <span class="k">raise</span> <span class="n">MultipleFunctionCallsError</span><span class="p">(</span>
+                                    <span class="s2">&quot;Multiple function calls detected&quot;</span>
+                                <span class="p">)</span>
 
                             <span class="n">function_call_found</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function_call:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -612,7 +637,9 @@
                         <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No function call found in your response. Please provide exactly one function call using the available functions.</span><span class="se">\n</span><span class="s2">&quot;</span>
                     <span class="p">]</span>
                     <span class="n">total_prompt</span> <span class="o">=</span> <span class="n">retry_prompt</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying function call request (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying function call request (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
                     <span class="k">continue</span>
 
                 <span class="c1"># Log the response</span>
@@ -627,14 +654,14 @@
                     <span class="s2">&quot;response&quot;</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span>
                     <span class="p">{</span>
-                        <span class="s1">&#39;current&#39;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
-                        <span class="s1">&#39;totals&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">,</span>
-                        <span class="s1">&#39;timing&#39;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s1">&#39;response_time&#39;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
-                            <span class="s1">&#39;total_elapsed&#39;</span><span class="p">:</span> <span class="n">total_elapsed</span>
+                        <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">,</span>
+                        <span class="s2">&quot;totals&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span><span class="p">,</span>
+                        <span class="s2">&quot;timing&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="n">response_time</span><span class="p">,</span>
+                            <span class="s2">&quot;total_elapsed&quot;</span><span class="p">:</span> <span class="n">total_elapsed</span><span class="p">,</span>
                         <span class="p">},</span>
-                        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
-                    <span class="p">}</span>
+                        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
+                    <span class="p">},</span>
                 <span class="p">)</span>
 
                 <span class="k">return</span> <span class="n">last_result</span>
@@ -645,7 +672,9 @@
                         <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please provide exactly one function call in your response.</span><span class="se">\n</span><span class="s2">&quot;</span>
                     <span class="p">]</span>
                     <span class="n">total_prompt</span> <span class="o">=</span> <span class="n">retry_prompt</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying due to multiple function calls (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Retrying due to multiple function calls (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">MAX_RETRIES</span><span class="si">}</span><span class="s2">)&quot;</span>
+                    <span class="p">)</span>
                     <span class="k">continue</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ERROR: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2"> - Max retries exceeded&quot;</span><span class="p">)</span>
@@ -678,7 +707,9 @@
             <span class="n">result</span> <span class="o">=</span> <span class="n">functions</span><span class="p">[</span><span class="n">function_name</span><span class="p">](</span><span class="o">**</span><span class="n">function_args</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">result</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">FunctionArgumentError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid arguments for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">FunctionArgumentError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid arguments for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">FunctionExecutionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error executing </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
@@ -689,34 +720,43 @@
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError">[docs]</a>
 <span class="k">class</span> <span class="nc">MultipleFunctionCallsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when multiple function calls are detected in a single response.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
+
 
 
 <div class="viewcode-block" id="MaxRetriesExceededError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MaxRetriesExceededError">[docs]</a>
 <span class="k">class</span> <span class="nc">MaxRetriesExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when maximum retry attempts are exhausted.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
+
 
 
 <div class="viewcode-block" id="UnknownFunctionError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.UnknownFunctionError">[docs]</a>
 <span class="k">class</span> <span class="nc">UnknownFunctionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when an unknown function is called.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
+
 
 
 <div class="viewcode-block" id="FunctionArgumentError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionArgumentError">[docs]</a>
 <span class="k">class</span> <span class="nc">FunctionArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when invalid arguments are provided to a function.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
+
 
 
 <div class="viewcode-block" id="FunctionExecutionError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionExecutionError">[docs]</a>
 <span class="k">class</span> <span class="nc">FunctionExecutionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a function fails during execution.&quot;&quot;&quot;</span>
+
     <span class="k">pass</span></div>
 
 </pre></div>

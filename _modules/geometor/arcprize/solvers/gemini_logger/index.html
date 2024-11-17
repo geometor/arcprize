@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../todos/">todos</a></li>
 </ul>
 
         </div>
@@ -143,6 +144,22 @@
 <div class="viewcode-block" id="Logger">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger">[docs]</a>
 <span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the Logger</span>
+
+<span class="sd">    - set up folders</span>
+<span class="sd">    - index files</span>
+
+<span class="sd">    parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    output_dir : :class:`python:str`</span>
+<span class="sd">        path to the session folder</span>
+<span class="sd">    puzzle_id : :class:`python:str`</span>
+<span class="sd">        unique id of the puzzle</span>
+<span class="sd">    timestamp : :class:`python:str`</span>
+<span class="sd">        unique timestamp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">puzzle_id</span>
@@ -168,9 +185,12 @@
     <span class="k">def</span> <span class="nf">save_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save raw response data as JSON.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            response: Gemini response object convert to_dict()</span>
-<span class="sd">            call_count: Current call number</span>
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        response :</span>
+<span class="sd">            Gemini response object convert to_dict()</span>
+<span class="sd">        call_count :</span>
+<span class="sd">            Current call number</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_count</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">-response.json&quot;</span>
 
@@ -181,15 +201,21 @@
 <div class="viewcode-block" id="Logger.save_grid_image">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image">[docs]</a>
     <span class="k">def</span> <span class="nf">save_grid_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_image</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save a grid image with deduplication.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save a grid image with deduplication.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            grid_image: PIL Image to save</span>
-<span class="sd">            call_count: Current call number</span>
-<span class="sd">            context: Image context (e.g., &#39;example_1_input&#39;, &#39;working&#39;)</span>
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grid_image :</span>
+<span class="sd">            PIL Image to save</span>
+<span class="sd">        call_count :</span>
+<span class="sd">            Current call number</span>
+<span class="sd">        context: Image context (e.g., &#39;example_1_input&#39;, &#39;working&#39;)</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Path: Relative path to the image file</span>
+<span class="sd">        returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        rel_path : Path</span>
+<span class="sd">            Relative path to the image file</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#  Use image content as key for deduplication</span>
         <span class="n">image_bytes</span> <span class="o">=</span> <span class="n">grid_image</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
@@ -221,7 +247,18 @@
     <span class="k">def</span> <span class="nf">write_rst_log</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">log_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">log_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">usage_data</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write log as RST file and handle any images.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write log as RST file and handle any images.</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        log_list : list</span>
+
+<span class="sd">        log_type : str</span>
+
+<span class="sd">        call_count : int</span>
+
+<span class="sd">        usage_data :</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">log_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_count</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">log_type</span><span class="si">}</span><span class="s2">.rst&quot;</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -300,9 +337,7 @@
                 <span class="n">totals</span> <span class="o">=</span> <span class="n">usage_data</span><span class="p">[</span><span class="s2">&quot;totals&quot;</span><span class="p">]</span>
 
                 <span class="k">def</span> <span class="nf">write_row</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">curr_val</span><span class="p">,</span> <span class="n">total_val</span><span class="p">):</span>
-                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">curr_val</span><span class="si">:</span><span class="s2">&gt;12,</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">total_val</span><span class="si">:</span><span class="s2">&gt;11,</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;| </span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">curr_val</span><span class="si">:</span><span class="s2">&gt;12,</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">total_val</span><span class="si">:</span><span class="s2">&gt;11,</span><span class="si">}</span><span class="s2"> |</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;+----------------+--------------+-------------+</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
                 <span class="n">write_row</span><span class="p">(</span><span class="s2">&quot;Prompt&quot;</span><span class="p">,</span> <span class="n">current</span><span class="p">[</span><span class="s2">&quot;prompt_token_count&quot;</span><span class="p">],</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">])</span>
@@ -317,7 +352,13 @@
 
 
     <span class="k">def</span> <span class="nf">_get_image_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the next available image number for this call.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the next available image number for this call.</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pattern</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_count</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">-*.png&quot;</span>
         <span class="n">existing_images</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">existing_images</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>

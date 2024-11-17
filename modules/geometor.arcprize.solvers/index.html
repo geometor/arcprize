@@ -6,6 +6,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="modules/geometor.arcprize.solvers/" />
 <meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="tools to facilitate Agent solvers first proof of concept framed around the Gemini API submodules: gemini_solver- PuzzleSolver., gemini_logger- Logger., gemini_client- GeminiClient.." />
+<meta name="description" content="tools to facilitate Agent solvers first proof of concept framed around the Gemini API submodules: gemini_solver- PuzzleSolver., gemini_logger- Logger., gemini_client- GeminiClient.." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>geometor.arcprize.solvers &mdash; geometor • arcprize</title>
@@ -29,7 +31,7 @@
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="geometor.arcprize.solvers.gemini_solver" href="../geometor.arcprize.solvers.gemini_solver/" />
-    <link rel="prev" title="geometor.arcprize.puzzles" href="../geometor.arcprize.puzzles/" />   
+    <link rel="prev" title="geometor.arcprize.puzzles.puzzle" href="../geometor.arcprize.puzzles.puzzle/" />   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -88,12 +90,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../mission/">mission</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/">usage</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize/">geometor.arcprize</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../geometor.arcprize.puzzles/">geometor.arcprize.puzzles</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">geometor.arcprize.solvers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/">geometor.arcprize.solvers.gemini_solver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/">geometor.arcprize.solvers.gemini_client</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/">geometor.arcprize.solvers.gemini_logger</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../geometor.arcprize/">geometor.arcprize</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.puzzles/">geometor.arcprize.puzzles</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">geometor.arcprize.solvers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/">geometor.arcprize.solvers.gemini_solver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/">geometor.arcprize.solvers.gemini_client</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/">geometor.arcprize.solvers.gemini_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../geometor.arcprize.perception/">geometor.arcprize.perception</a></li>
 </ul>
 </li>
 </ul>
@@ -102,6 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todos/">todos</a></li>
 </ul>
 
         </div>
@@ -119,12 +125,13 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../">modules</a></li>
+          <li class="breadcrumb-item"><a href="../geometor.arcprize/">geometor.arcprize</a></li>
       <li class="breadcrumb-item active">geometor.arcprize.solvers</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/geometor/arcprize/blob/main/docsrc/modules/geometor.arcprize.solvers.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="../geometor.arcprize.puzzles/" class="btn btn-neutral float-left" title="geometor.arcprize.puzzles" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geometor.arcprize.puzzles.puzzle/" class="btn btn-neutral float-left" title="geometor.arcprize.puzzles.puzzle" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../geometor.arcprize.solvers.gemini_solver/" class="btn btn-neutral float-right" title="geometor.arcprize.solvers.gemini_solver" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -133,6 +140,26 @@
            <div itemprop="articleBody">
               <section id="module-geometor.arcprize.solvers">
 <span id="geometor-arcprize-solvers"></span><h1>geometor.arcprize.solvers<a class="headerlink" href="#module-geometor.arcprize.solvers" title="Link to this heading"></a></h1>
+<p>tools to facilitate Agent solvers</p>
+<p>first proof of concept framed around the Gemini API</p>
+<p>submodules:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/#module-geometor.arcprize.solvers.gemini_solver" title="geometor.arcprize.solvers.gemini_solver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gemini_solver</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver" title="geometor.arcprize.solvers.gemini_solver.PuzzleSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">PuzzleSolver</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/#module-geometor.arcprize.solvers.gemini_logger" title="geometor.arcprize.solvers.gemini_logger"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gemini_logger</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger" title="geometor.arcprize.solvers.gemini_logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/#module-geometor.arcprize.solvers.gemini_client" title="geometor.arcprize.solvers.gemini_client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gemini_client</span></code></a></p>
+<ul>
+<li><p><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/#geometor.arcprize.solvers.gemini_client.GeminiClient" title="geometor.arcprize.solvers.gemini_client.GeminiClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeminiClient</span></code></a></p></li>
+</ul>
+</li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -144,7 +171,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../geometor.arcprize.puzzles/" class="btn btn-neutral float-left" title="geometor.arcprize.puzzles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../geometor.arcprize.puzzles.puzzle/" class="btn btn-neutral float-left" title="geometor.arcprize.puzzles.puzzle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../geometor.arcprize.solvers.gemini_solver/" class="btn btn-neutral float-right" title="geometor.arcprize.solvers.gemini_solver" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

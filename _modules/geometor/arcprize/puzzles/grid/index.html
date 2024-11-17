@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../demos/">demos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../refs/">references</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../todos/">todos</a></li>
 </ul>
 
         </div>
@@ -131,7 +132,7 @@
 
 
 <div class="viewcode-block" id="Grid">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid">[docs]</a>
 <span class="k">class</span> <span class="nc">Grid</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">io_type</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -181,7 +182,7 @@
         <span class="k">return</span> <span class="n">model</span>
 
 <div class="viewcode-block" id="Grid.rotate">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.rotate">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.rotate">[docs]</a>
     <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rotate the grid by 90 degrees k times.</span>
@@ -198,7 +199,7 @@
 
 
 <div class="viewcode-block" id="Grid.flip">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.flip">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.flip">[docs]</a>
     <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Flip the grid along the specified axis.</span>
@@ -216,7 +217,7 @@
 
 
 <div class="viewcode-block" id="Grid.to_string">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.to_string">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.to_string">[docs]</a>
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cell_delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">row_delimiter</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
             <span class="n">cell_delimiter</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span>
@@ -224,7 +225,7 @@
 
 
 <div class="viewcode-block" id="Grid.to_image">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles/#geometor.arcprize.puzzles.grid.Grid.to_image">[docs]</a>
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.to_image">[docs]</a>
     <span class="k">def</span> <span class="nf">to_image</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">border</span> <span class="o">=</span> <span class="mi">2</span>
         <span class="n">color_size</span> <span class="o">=</span> <span class="n">cell_size</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">border</span>
