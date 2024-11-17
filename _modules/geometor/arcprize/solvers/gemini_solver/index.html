@@ -395,58 +395,59 @@
                 <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">]</span>
-            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;&quot;&quot;</span>
+            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 
-<span class="s2">- Review Examples Phase</span>
+<span class="sd">- Review Examples Phase</span>
 
-<span class="s2">  pairs of input and output grids will be shown to you one at a time</span>
+<span class="sd">  pairs of input and output grids will be shown to you one at a time</span>
 
-<span class="s2">  you will examine and analyze the text and image for each example</span>
+<span class="sd">  you will examine and analyze the text and image for each example</span>
 
-<span class="s2">  you may use code execution with tools like numpy to examine patterns</span>
-<span class="s2">  after examining the grids, document the attributes of each as such</span>
+<span class="sd">  you may use code execution with tools like numpy to examine patterns</span>
+<span class="sd">  after examining the grids, document the attributes of each as such</span>
 
-<span class="s2">  use a yaml block for the details</span>
+<span class="sd">  use a yaml block for the details</span>
 
-<span class="s2">  ```yaml</span>
-<span class="s2">  input:</span>
-<span class="s2">    width: X</span>
-<span class="s2">    height: Y</span>
-<span class="s2">    colors:</span>
-<span class="s2">      - N: (count)</span>
-<span class="s2">    objects:</span>
-<span class="s2">      - size, position and color - desc</span>
-<span class="s2">  ```</span>
+<span class="sd">  ```yaml</span>
+<span class="sd">  input:</span>
+<span class="sd">    width: X</span>
+<span class="sd">    height: Y</span>
+<span class="sd">    colors:</span>
+<span class="sd">      - N: (count)</span>
+<span class="sd">    objects:</span>
+<span class="sd">      - size, position and color - desc</span>
+<span class="sd">  ```</span>
 
-<span class="s2">  ```yaml</span>
-<span class="s2">  output:</span>
-<span class="s2">    width: X</span>
-<span class="s2">    height: Y</span>
-<span class="s2">    colors:</span>
-<span class="s2">      - N: (count)</span>
-<span class="s2">    objects:</span>
-<span class="s2">      - size, position and color - desc</span>
-<span class="s2">  ```</span>
+<span class="sd">  ```yaml</span>
+<span class="sd">  output:</span>
+<span class="sd">    width: X</span>
+<span class="sd">    height: Y</span>
+<span class="sd">    colors:</span>
+<span class="sd">      - N: (count)</span>
+<span class="sd">    objects:</span>
+<span class="sd">      - size, position and color - desc</span>
+<span class="sd">  ```</span>
 
-<span class="s2">  ```yaml</span>
-<span class="s2">  differences:</span>
-<span class="s2">    cells_changed: N</span>
-<span class="s2">    colors_changed: desc</span>
-<span class="s2">  transformation:</span>
-<span class="s2">    - speculate on transformation rules</span>
-<span class="s2">  ```</span>
+<span class="sd">  ```yaml</span>
+<span class="sd">  differences:</span>
+<span class="sd">    cells_changed: N</span>
+<span class="sd">    colors_changed: desc</span>
+<span class="sd">  transformation:</span>
+<span class="sd">    - speculate on transformation rules</span>
+<span class="sd">  ```</span>
 
-<span class="s2">  your response for this phase should contain the following content parts</span>
+<span class="sd">  your response for this phase should contain the following content parts</span>
 
-<span class="s2">  - begin with a verbal description of your perception of the input and output</span>
-<span class="s2">    grid</span>
-<span class="s2">  - run a `code_execution` part to test your perceptions - since the code you</span>
-<span class="s2">    use may not be carried forward on following prompts, be sure to have the code print</span>
-<span class="s2">    you findings in the output</span>
-<span class="s2">    remember that you have access to many python libraries for analyzing the grids and validating patterns</span>
-<span class="s2">  - review your findings and try to determine what the natural language program is for the transformation</span>
+<span class="sd">  - begin with a verbal description of your perception of the input and output</span>
+<span class="sd">    grid</span>
+<span class="sd">  - run a `code_execution` part to test your perceptions - since the code you</span>
+<span class="sd">    use may not be carried forward on following prompts, be sure to have the code print</span>
+<span class="sd">    you findings in the output</span>
+<span class="sd">    remember that you have access to many python libraries for analyzing the grids and validating patterns</span>
+<span class="sd">  - review your findings and try to determine what the natural language program is for the transformation</span>
 
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
             <span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
                 <span class="n">prompt</span><span class="p">,</span>
@@ -458,11 +459,12 @@
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;**examples summary**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 
-<span class="s2">- summarize your observations to explain the transformation of the input to output</span>
-<span class="s2">- use code_execution to investigate properties, patterns and differences in the grids</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">- summarize your observations to explain the transformation of the input to output</span>
+<span class="sd">- use code_execution to investigate properties, patterns and differences in the grids</span>
+<span class="sd">&quot;&quot;&quot;</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
@@ -485,14 +487,32 @@
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;- generate report as per instructions</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;- use code_execution to investigate propertiesi</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">- generate report as per instructions</span>
+<span class="sd">- use code_execution to investigate properties&quot;&quot;&quot;</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
         <span class="p">)</span>
+
+    <span class="c1">#  begin building the working output grid step by step using the functions</span>
+    <span class="c1">#  - Initialize output grid</span>
+    <span class="c1">#  if output is highly related to the input, start with</span>
+    <span class="c1">#  `initialize_output_from_input`</span>
+    <span class="c1">#  if output is largely unrelated, `initialize_output_by_size`</span>
+    <span class="c1">#  - Set Pixels</span>
+    <span class="c1">#  next we enter a loop to update pixels on the output grid to render the</span>
+    <span class="c1">#  solutions</span>
+    <span class="c1">#  after each rendering you will be given a chance to review the grid before</span>
+    <span class="c1">#  deciding on the next action</span>
+    <span class="c1">#  - `set_pixel` change one color at location</span>
+    <span class="c1">#  - `set_range` change rectangular subset of pixels to one color</span>
+    <span class="c1">#  - Submit</span>
+    <span class="c1">#  when the working grid meets the perceived transformation rules, we are</span>
+    <span class="c1">#  complete and can select submit to complete the test</span>
 
     <span class="k">def</span> <span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">init_functions</span> <span class="o">=</span> <span class="p">{</span>
@@ -503,9 +523,13 @@
             <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;use function_call to initialize the working output grid:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;- initialize_output_from_input: good when examples show few differences between input and output</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;- initialize_output_by_size: create a fresh grid from size and color</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">use function_call to initialize the working output grid:</span>
+
+<span class="sd">- initialize_output_from_input: good when examples show few differences between</span>
+<span class="sd">  input and output</span>
+<span class="sd">- initialize_output_by_size: create a fresh grid from size and color&quot;&quot;&quot;</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
