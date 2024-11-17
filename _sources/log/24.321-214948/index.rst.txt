@@ -1,4 +1,4 @@
-:og:image: 043.png
+:og:image: https://geometor.github.io/arcprize/_images/043.png
 
 dreams
 ======
