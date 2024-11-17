@@ -149,8 +149,8 @@
 <span class="kn">from</span> <span class="nn">.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
 
 <span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash&quot;</span>
-<span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
-<span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-pro-002&quot;</span>
+<span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash-002&quot;</span>
+<span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-pro-002&quot;</span>
 <span class="n">DEFAULT_INSTRUCTIONS_FILE</span> <span class="o">=</span> <span class="s2">&quot;gemini_instructions.md&quot;</span>
 
 
@@ -395,9 +395,58 @@
                 <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">]</span>
-            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="s2">&quot;- review the example grids</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;- check for differences and patterns</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">- Review Examples Phase</span>
+
+<span class="s2">  pairs of input and output grids will be shown to you one at a time</span>
+
+<span class="s2">  you will examine and analyze the text and image for each example</span>
+
+<span class="s2">  you may use code execution with tools like numpy to examine patterns</span>
+<span class="s2">  after examining the grids, document the attributes of each as such</span>
+
+<span class="s2">  use a yaml block for the details</span>
+
+<span class="s2">  ```yaml</span>
+<span class="s2">  input:</span>
+<span class="s2">    width: X</span>
+<span class="s2">    height: Y</span>
+<span class="s2">    colors:</span>
+<span class="s2">      - N: (count)</span>
+<span class="s2">    objects:</span>
+<span class="s2">      - size, position and color - desc</span>
+<span class="s2">  ```</span>
+
+<span class="s2">  ```yaml</span>
+<span class="s2">  output:</span>
+<span class="s2">    width: X</span>
+<span class="s2">    height: Y</span>
+<span class="s2">    colors:</span>
+<span class="s2">      - N: (count)</span>
+<span class="s2">    objects:</span>
+<span class="s2">      - size, position and color - desc</span>
+<span class="s2">  ```</span>
+
+<span class="s2">  ```yaml</span>
+<span class="s2">  differences:</span>
+<span class="s2">    cells_changed: N</span>
+<span class="s2">    colors_changed: desc</span>
+<span class="s2">  transformation:</span>
+<span class="s2">    - speculate on transformation rules</span>
+<span class="s2">  ```</span>
+
+<span class="s2">  your response for this phase should contain the following content parts</span>
+
+<span class="s2">  - begin with a verbal description of your perception of the input and output</span>
+<span class="s2">    grid</span>
+<span class="s2">  - run a `code_execution` part to test your perceptions - since the code you</span>
+<span class="s2">    use may not be carried forward on following prompts, be sure to have the code print</span>
+<span class="s2">    you findings in the output</span>
+<span class="s2">    remember that you have access to many python libraries for analyzing the grids and validating patterns</span>
+<span class="s2">  - review your findings and try to determine what the natural language program is for the transformation</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
             <span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
                 <span class="n">prompt</span><span class="p">,</span>
@@ -409,9 +458,11 @@
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">&quot;**examples summary**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;- summarize your observations to explain the transformation of the input to output</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;- use code_execution to investigate properties, patterns and differences in the grids&quot;</span><span class="p">,</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">- summarize your observations to explain the transformation of the input to output</span>
+<span class="s2">- use code_execution to investigate properties, patterns and differences in the grids</span>
+<span class="s2">&quot;&quot;&quot;</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>

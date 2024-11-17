@@ -6,6 +6,7 @@ On the Measure of Intelligence
 :author: Chollet, Francois
 
 .. code-block::
+
    @misc{chollet2019measureintelligence,
       title={On the Measure of Intelligence},
       author={François Chollet},
@@ -16,6 +17,7 @@ On the Measure of Intelligence
       url={https://arxiv.org/abs/1911.01547},
    }
 
+`PDF <https://arxiv.org/pdf/1911.01547>`
 
 To make deliberate progress towards more intelligent and more human-like
 artificial systems, we need to be following an appropriate feedback signal: we
