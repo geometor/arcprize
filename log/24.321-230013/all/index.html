@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="<no title>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="log/24.321-230013/all/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Okay, so in a recent interview, Sholey made a statement that skill is not intelligence. Intelligence is knowing which tool to pick. So as we consider this in the context of ARC, what we want the ma..." />
+<meta name="description" content="Okay, so in a recent interview, Sholey made a statement that skill is not intelligence. Intelligence is knowing which tool to pick. So as we consider this in the context of ARC, what we want the ma..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/log/24.321-230013/all/" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos/">demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../refs/">references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/log/24.321-230013/all.txt" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <p>Okay, so in a recent interview, Sholey made a statement that skill is not intelligence.
+Intelligence is knowing which tool to pick.
+So as we consider this in the context of ARC, what we want the machine to be able to do is look at the patterns of the puzzle,
+then go on an exploration with code to examine the patterns in the puzzle, confirm them, and then develop a narrative, a natural language program,
+on the instructions to create the solution from the input.
+So something that just keeps coming back to me as I think about this is that these systems are not deterministic.
+We can even have situations where the same input generates different results.
+So I think we have to take a step back from that and say that ARC is probably not an engineering problem.
+ARC is probably more of an artistic and creative problem in how we interact and interface with intelligence systems.
+They’re not like us. I think that’s the other important consideration.
+They can’t put human kinds of understandings onto these systems.
+They are different. They don’t see like we do. They don’t hear like we do. They don’t have experience of time like we do.
+I think that’s probably one of the most important considerations in all of this.
+Because the transformation of the input to the output is a transformation that happens over time.
+This idea of sequence and time and things are to be able to project that within an LLM may not really be possible.
+But we’ll see. We’re going to see. We’re going to try to get there.
+So the goal from my perspective right now is to review the examples from each puzzle and develop that natural language program.
+The spoken word description of the context of the puzzle and what the idea of the solution is, the transformation that happens.
+Okay, so I thought I would just record myself talking about the ARC Prize and the ARC Challenge.
+And I’m just talking about the themes and the concerns and not concerns, observations
+that I’ve had about it, and tried to pull all that together into a written introduction
+that I hope you’ll help me with.
+So first, I think, you know, some context about my thinking about it, and probably like
+many people when they first hear about the contest, you start thinking about, well, how
+could I write a program to solve these puzzles?
+And you know, that was certainly how I began to investigate ARC and thought that I might
+be able to apply my geometor library to it.
+But you know, it suddenly started to wonder if AI systems could actually understand the
+puzzles in the first place in order to be able to kind of solve them geometrically.
+And that just started a series of kind of taking backward steps to ask more fundamental questions.
+That started with just doing some basic perceptual tests, because I think the key was that,
+the key was that I think many approaches towards how to solve the puzzle were looking
+merely at some kind of pattern translation, but I was actually wanting to ask the question
+about whether the puzzle could be perceived, whether a machine could actually tell me what
+the puzzle was about, and how it could be solved, like a person could, like almost any
+person could.
+And you know, I think we probably want to pull together some examples of this, but on the
+ARC prize, X account, they started posting some daily puzzles and people were responding
+with their solution to the puzzle, and everyone was different, it was really amazing.
+It was so interesting to see how people arrived at and described the answer to the puzzle.
+And I thought that there was something there, there was something uniquely human in being
+able to do that.
+Later I learned about a project called LARC, L-A-R-C, and that is geared towards this
+idea of a natural language description of the function.
+And I think that that’s really the place to go.
+So I’ve started creating a new test harness that can be able to present the puzzle in
+a more controllable way, and for us to see if we can figure out the pattern, document
+that as a natural language function, and then figure out how to translate that into a series
+of actions to solve the puzzle, much like a human one.
+Okay, let’s talk about the approach towards this system and I do think that LLMs are
+probably our best bet for being able to pick apart the puzzles and examine the aspects
+of them. But that raises a lot of questions and then suddenly you’re looking at a system
+that becomes quite complicated in all of the variables, not so much in the mechanics, but
+in the variables that can potentially influence whether we get a right or a wrong answer.
+So we want to get to the place where we are understanding and identifying these variables
+and testing around them appropriately. Another reason I think that LLMs are really good
+is that I think dialogue is the way in which we solve these kinds of problems. I do think
+that in my own problem solving I am going through some kind of a discussion in my mind
+about what’s going on in the puzzle and I think that the LLMs need to have an opportunity
+to do that too. So I’m working towards facilitating the presentation of the puzzle step by step
+so that the LLM has an opportunity to think about each part and document its observations
+that can then be used as we go further into looking at the next part. So we’re building
+observations incrementally over pieces of information which is basically the pair of
+input and output grids in the examples. So in the course of doing that there are so many
+different aspects of what we should be looking at. So the first is the selection of the model
+that we’re going to use. And of course there are different models with different capabilities.
+There’s trade-offs of size and performance and all kinds of things that come into play.
+Particularly though around the capabilities. They’re all kind of heading in the same direction
+but they may be implemented in a slightly different way in some of the special capabilities
+that they have. So for instance all LLMs take a text prompt but what you get back can be
+structured in various ways. So whether we’re doing function calling or we’re creating structured
+outputs and particularly in the case of Gemini which we are using for our first round of tests
+they have the opportunity to specify code execution. So during the processing of these
+examples it can go through and generate its own code to answer its own questions about
+the grid. And I think this is really an important aspect of this and I think it’s really where
+the glimmers of AGI are going to start to come about. Where observation and investigation
+are a part of a chain. And so as we take a step back we’re looking at understanding the
+perceptual capabilities of these LLMs. And their ability then once they actually perceive
+something to discern that natural language story of how what they’re perceiving is transformed
+into the output for the grid. So models. Models each have their own parameters as well. So
+things like temperature and top K and I have no idea what any of these will do towards either
+helping or hurting us in identifying answers. And I think probably what should happen in the
+course of actually trying to solve our problems during the real tests is that we are trying a
+number of different options with each puzzle with different settings. And then we have some kind
+of a system that’s gathering all of that information from all of the different investigations
+and tries to find the best path through that. So that could be an interesting way to approach this.
+So next comes the system instructions. And these are at the heart of setting the context for the
+LLM around what we’re doing. And in this case, you know, it’s kind of a story. So we want the
+LLM to perceive that it is an agent that is being trained on doing these puzzles. And that for our
+efforts right now, it’s the training that’s important, not necessarily getting the puzzles right.
+And in the course of this, as we focus on dialogue as the way to tease out this information,
+Okay, am I recording? I hope I’m recording. We’ll see what happens here. We’re
+going to be looking for, let’s make sure we have our audio volumes up. I don’t
+want to be speaking probably about like this. This is good. We’re going to be
+looking for a transcript out of this, so let’s see what happens.
+Okay, let’s talk about the workflow next.
+This is the process of arriving at an answer with the puzzle.
+So we want to take all of the examples, go through them one at a time, and make sure
+the agent has had an opportunity to really examine them.
+And then after that, we want to give the agent a time to kind of summarize everything
+that’s learned about all the examples.
+We ask questions, do some more code processing.
+And currently, we’ve then begun the test after that.
+But I think what we’re going to do is a pre-test as we move into this next phase.
+So with the pre-test, what we’re going to do is take one of the inputs from one of
+the examples and have the system, have the agent, derive the answer to see if it can
+create the same answer that was in the example output, basically.
+And we can just keep running on that.
+We can just keep experimenting until we get it right.
+And we know whether we’re getting it right, because we actually know the answer to that
+one.
+If we try to just immediately move into the test, then we don’t know if we’re getting
+the right answer.
+We don’t know if our guesses are being validated.
+We have to validate our guesses.
+And if we can validate it on both of the example, or all of the example inputs, and come up
+with the correct output for all of them, then we’re going to have a really high reliability
+on the test answer that we arrive at.
+I think this is really key.
+So right now, it’s been a little difficult getting the workflow just right around this
+moment to get the agent to do proper investigation.
+And I think a lot of times what I’m seeing is it’s kind of arriving at the answer sometimes
+in code, but then it can’t translate that into the operations for finishing the puzzle.
+So finishing a puzzle.
+How does that happen?
+The instructions at that moment will give you the test input, and then you’re given
+a set of commands that you can call.
+And at first, there’s the initialization commands.
+You want to initialize your output grid.
+You could do that as an empty field of a single color, or you can do that by copying the input
+grid.
+And the input grid, many of the puzzles have the same input and output grid, and many of
+the pixels are carried over.
+There’s only something that’s changing.
+Some minor things are changing.
+So that can be a really good start.
+And when we’re doing our pre-test, we can give immediate feedback on whether that was
+the best answer or not, and have the agent kind of think through why it didn’t make the
+correct answer and how to get to the correct answer.
+And then the operations, once the puzzle is initialized, the outputs initialized, we call
+that the working grid.
+We want to start changing pixels on the working grid to arrive at the answer, and we do that
+in much the same way that a human would interact with the UI on the web page.
+The agent can call a setPixel function.
+So give the address of a pixel and the color that they want to set, or arrange.
+We’re also going to provide a flood fill shortly, too.
+So we can do that.
+I think that that would be handy, and we’ll see what happens with that.
+All right, so the next area to talk about is reporting.
+We’re generating an awful lot of information, not only, you know,
+tracking the history of our own prompt and the building of this report as we do it,
+but, you know, all of the code and things that are generated and all of that is this is information for us to have to kind of pour through and see just what is the logical path that is being taken through this.
+And is it all over the place or does it, you know, kind of quickly get to the right kind of idea about what’s going on?
+And, you know, then that’s where we want to then tune our instructions in order to help.
+You know, kind of remove bottlenecks or remove confusion and get the agent to the right kind of effect that we’re looking for.
+So that’s going to be in reports and then right now what I’ve settled on is creating restructured text RST files that get put into the website for the project.
+That we then can navigate through and look at and be an easier way for us to kind of, you know, at least, you know, flip through all of the information and see what’s in there, navigate it.
+Of course, all the files, you know, are there as well and easy to look at and can be annotated, you know, which I think is kind of important thing we can put notes and annotations in at key spots to kind of highlight, you know,
+interesting things that are going on.
+There’s certainly interesting things going on all over the place.
+So more on the reporting.
+We’re capturing a lot of the details.
+So we definitely want to capture all of the variables.
+We want to know all of them and that becomes a part of a session.
+So look at like we’re recording a session of, you know, puzzles that have a particular set of variables, you know, at that time and, you know, and then we can compare that to other sessions that we’re we’re going to run.
+And so hopefully they all have a kind of consistent, you know, format, whether we’re using Gemini or we’re using open AI or Claude or whatever in the future or even, you know, local models.
+I’m really looking forward to trying 53.5 with all of this as well.
+And seeing if it will all run on my local machine, even if it’s slow, it’d be pretty, pretty interesting.
+So along with the context of the model and its parameters, you know, and the prompts that we’re using, we also want to know.
+Kind of usage information, the usage metadata about the number of tokens that have been transacted.
+I am also tracking the amount of time, the processing time.
+I think, you know, we’re also going to be tracking errors better and that kind of thing.
+And then roll all of this information up to the highest levels so that you can see the overall results of the reports, you know, so how many puzzles were done correctly or.
+You know, I think as a part of our reporting, you know, we may want to know like how many, how many pixels in the output were correct.
+You know, and other various, you know, attributes like, you know, is it the correct size are the colors that are being used, correct?
+Maybe they’re just placed in the wrong way.
+You know, there’s, you know, all of these can be reported in our, in a matrix that helps us to understand, you know, maybe why some puzzles are more difficult than others or, you know, how we might be able to tune things to get better answers out of the system.
+So a bit more on the system instructions and the subjective to get to a natural language
+program that can solve the puzzle.
+okay we’ll come back to instructions here in a minute but I also want to talk about with the
+models there can be different ways of interacting with them the primary way is just to have it
+provide a completion response to your your your prompt the other is a chat context where you have
+the user and the model going back and forth exchanging ideas I don’t know just how much of
+an impact these this context has for our kind of investigation but you know I think it’s important
+that we we look into it but as I’ve been investigating with with Gemini I started running into I started
+with the chat context and then found as I was proceeding through the chat context I was having
+difficulty changing the options for function calling for instance to have it request a different
+set of function calls because I think what’s happening is in the chat everything’s being
+saved in the history and you can’t undo something unless you kind of do that manually so I resorted
+towards building a context that we submit in the prompt so the prompt grows each time as we are adding
+to it and at the end I give the specific instructions for the task at hand at that moment the thing that I
+I want the LLM to add to the system or excuse me to add to our investigation
+so come back to the system instructions again my focus is that they provide excellent context around the
+puzzle and the objectives of the puzzle and even the objectives of ARC as a scientific exploration that
+understand that this is what we’re we’re trying to get to the bottom of and that it’s a participant in
+us helping with that and I don’t think I want to give it any puzzles as examples maybe a few simple things of
+just talking about grids and how we’re going to talk about grids I think establishing the vocabulary
+around communicating about the grids and the colors and all of that is really important so I’m doing
+that in the system instructions as well
+and so I want to give a context of the overall workflow of the processing of the puzzle and
+what’s being expected of the agent but I want to leave the very specific instructions at each system
+step in our process to the last to be the last thing now as what I’m doing with that is we are
+building up our history of discussion is that I remove the instructions before bringing the next prompt in
+so so we’re just kind of appending the context that’s being established and the response so it should be
+making a report at the end that is the presentation of the information and then the you know exploration of that information
+and then this context that we are resubmitting each times growing as we’re adding a little bit of information to it that that’s something that we really need to look at
+as well um is it necessary that all of the information from the discussion be carried forward each time you know I’m I’m wondering if things like um the code that’s used in the code execution should be
+carried forward I think it’s useful at the moment but it actually can be quite confusing uh when it if it stays in the conversation um it’s a distraction I think and and I’ve also noticed that um
+agents will tend to keep kind of going back to the same patterns that were used in code previously uh so they’re not as free thinking if if you’ve got too much context I think that’s really an important thing we don’t want to have too much context
+context however I’ll come back to another related uh subject with that you know I think another um thing to investigate is whether we do just one puzzle per context or whether we do one puzzle and then go right into the next and and keep growing our context and with Gemini we can grow
+quite large we can probably do 50 or so puzzles uh at our current rate but if we condense our our history like I was talking about taking code execution out and maybe even taking previous images out uh uh you know I think that you know we can just kind of give it this idea that it’s working through a set of puzzles and it’s encountering different things and I think that that will help to keep the mind open uh about different potentials
+you know I think that’s um you know I think that’s um you know an important consideration for the system instructions too that um the agents should be prepared to be open-minded about what it’s going to see in the puzzle
+and it should be kind of freewheeling around interpretations I think that’s really important it should feel free and creative in its um interpretations
+so that we can get to uh get to uh get to the next stage of you know kind of formalizing those um those perceptions
+so another important aspect of what we are doing um I definitely want to focus on using multimodal models
+which allows us to actually provide an image uh in our context so
+when we’re working with text-based llms
+you have to consider how the grid is being interpreted
+you know we we look at text on the screen or on the printed page
+you know we see the two-dimensional result of that
+but I think it’s really important for us to remember that
+the puzzle is being presented as a stream of characters
+to
+um to the system
+you know the carriage returns are delimiters
+uh in that information and we
+um
+so we want to
+we want to make sure we’re clear about
+you know the presentation of the puzzle basically
+um but you know as I was kind of getting at you know this
+stream presentation of the grid means that relationships
+across rows
+uh or diagonal relationships
+relationships um that are some distance away
+may be like really hard to see in just a text
+configuration
+so um I want to include images of the puzzles and
+um
+so we generate
+uh a single image for each grid and include those in our submission
+uh in in the prompt
+uh that’s submitted
+big questions about
+what size that image should be
+um
+I’ve heard some things about 8 pixel by 8 pixel chunking
+uh the chunking may be more than that
+I don’t know
+um
+I know that the images are also
+um
+converted to base 64
+and I don’t know
+if
+I don’t know if that comes back to being pixels at all
+I mean I just
+we just don’t know
+you know we just don’t know
+I think we need to get to some more fundamental testing which
+we’ll talk about later with the perceptual tests
+perception tests that we’re doing
+so uh another option with the images
+um
+of course he’s mapping the color
+and so you know
+there’s so many other variables around
+um
+the separation of the colors in the grid
+like how
+how much
+are the separation lines
+uh
+in the presentation
+as a proportion of the
+of the whole
+um
+I’ve also been doing
+some experiments with
+actually putting the numeric symbol
+inside the cell
+inside the pixel
+so you have the color
+and the symbol
+uh in there
+and I think that that could help to
+um
+kind of separate
+things
+you know
+make sure that
+um
+the agent is seeing
+separate pixels
+uh
+it might
+make it easier for
+it to count that
+too
+I’m not
+just not sure
+you know really
+it’s um
+it’s a bit of a mystery
+it’s just what is
+what is it able to see
+and then you know
+the grids themselves
+the
+you know
+as I was saying
+we present them as a stream
+but
+should that be
+in a JSON format
+or should that just be
+um
+rows of characters
+should the
+characters be
+space delimited
+or have some
+some delimiter
+so what’s the row delimiter
+what’s the space
+what’s the cell delimiter
+um
+these are all
+things that
+are variables
+that I think
+can impact the result
+tremendously
+um
+and I think
+you know
+going from system
+to system
+we could see
+very very different
+kinds of things
+and the only way
+to find out
+is to actually test
+so I think
+this test harness
+is really
+you know
+about that
+consideration
+here
+so that’s it
+for the
+um
+the system
+instructions
+and the
+uh
+and the other
+variables that we
+have
+and
+and how we’re
+presenting the
+puzzles
+.
+You
+.
+You
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+So something we may want to train on though is our excellent descriptions of what’s happening
+in the puzzle. So we can refer back to the LARC project, L-A-R-C, and some of the descriptions
+that are in there, but we may want to start building our own as part of this test to develop
+a vocabulary. I think what’s going to be very important is that we have a consistent way
+of discussing things and talking about movements so that we get as close to a computational
+program as we can through natural language.
+So, our examples phase is a fixed number of iterations, but the test phase is really
+unknown to us at this point. The end will be when the agent says submit my answer,
+but the process we want to be in dialogue. So, the agent will submit an action like a
+set pixel action, and then we’ll receive the result back to examine. And it should then have an
+assessment period where maybe it’s using code execution to examine this grid that’s been created
+to see if it is actually achieving the directive of the natural language program that it came
+up with. So, it’s that translation of the natural language program into a set of operations,
+and then to be able to confirm that those operations were done correctly. It’s going to be very
+interesting to see. Another aspect of the investigations are, at least with the Gemini
+version that we’re using, is the opportunity for all of the Python libraries to be an assistant in
+discerning the information in the grid. The Python environment in Gemini has NumPy,
+Sympy, Scikit-learn. There’s all kinds of data analysis tools that we can use to help us to see
+the image. We want to give the LLM a better pair of glasses for being able to actually see what’s
+inside the grid in a comprehensive way, and to test that. And code execution is really an
+excellent way to do that.
+So, a bit more about the workflow.
+Some part of our process for the puzzles are iterative.
+So, at the beginning we are iterating through all of the examples.
+And then we go through an iteration in the solutions phase, be both in the pre-test and
+in the test, where we are just going to keep cycling until we feel some sort of confidence
+in what we are doing and then we can submit the answer for that.
+So, well, I definitely don’t want to fine-tune on, on puzzles, on actual puzzles in the course
+of doing this. But I think what I do want to do is kind of set the context for the creative
+investigation of revealing patterns. And I think that there might be some discussion
+of various kinds of organizing principles. We can think of like architectural organizing
+principles, layout, graphic design, organizing principles, game play, because it is kind
+of like a game field in a way. You can look at, you know, kind of movement and options
+and other, you know, other kinds of considerations. And so I think we want to coach towards those
+ideas. So to encourage open-mindedness, you know, I think that’s really an important thing that the
+agent shouldn’t have any preconceived notions about, about the puzzles, even after experiencing them.
+It should anticipate that every puzzle is going to have a different vibe, a different idea being
+tested.</p>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

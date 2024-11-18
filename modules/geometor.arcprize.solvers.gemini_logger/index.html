@@ -97,6 +97,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/">geometor.arcprize.solvers.gemini_client</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">geometor.arcprize.solvers.gemini_logger</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Logger.log_error"><code class="docutils literal notranslate"><span class="pre">Logger.log_error()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Logger.save_response"><code class="docutils literal notranslate"><span class="pre">Logger.save_response()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image"><code class="docutils literal notranslate"><span class="pre">Logger.save_grid_image()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log"><code class="docutils literal notranslate"><span class="pre">Logger.write_rst_log()</span></code></a></li>
@@ -189,11 +190,26 @@ complete problem-solving process, including:</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Logger.log_error">
+<span class="sig-name descname"><span class="pre">log_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">error_message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Logger.log_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Logger.log_error" title="Link to this definition"></a></dt>
+<dd><p>Log an error message to a file.</p>
+<section id="id1">
+<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>error_message<span class="classifier">str</span></dt><dd><p>The error message to be logged.</p>
+</dd>
+<dt>context<span class="classifier">str</span></dt><dd><p>Additional context or history information to provide.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Logger.save_response">
 <span class="sig-name descname"><span class="pre">save_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Logger.save_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Logger.save_response" title="Link to this definition"></a></dt>
 <dd><p>Save raw response data as JSON.</p>
-<section id="id1">
-<h3>parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="id2">
+<h3>parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt>response :</dt><dd><p>Gemini response object convert to_dict()</p>
 </dd>
@@ -207,8 +223,8 @@ complete problem-solving process, including:</p>
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image">
 <span class="sig-name descname"><span class="pre">save_grid_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.9/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><span class="pre">Path</span></a></span></span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Logger.save_grid_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Logger.save_grid_image" title="Link to this definition"></a></dt>
 <dd><p>Save a grid image with deduplication.</p>
-<section id="id2">
-<h3>parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h3>parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <dl class="simple">
 <dt>grid_image :</dt><dd><p>PIL Image to save</p>
 </dd>
@@ -230,8 +246,8 @@ complete problem-solving process, including:</p>
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log">
 <span class="sig-name descname"><span class="pre">write_rst_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.9/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Logger.write_rst_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log" title="Link to this definition"></a></dt>
 <dd><p>Write log as RST file and handle any images.</p>
-<section id="id3">
-<h3>parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id4">
+<h3>parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <p>log_list : list</p>
 <p>log_type : str</p>
 <p>call_count : int</p>

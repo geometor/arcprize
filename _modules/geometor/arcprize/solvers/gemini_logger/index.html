@@ -139,6 +139,7 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">m2r2</span> <span class="kn">import</span> <span class="n">convert</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
 
 <div class="viewcode-block" id="Logger">
@@ -159,6 +160,27 @@
 <span class="sd">    timestamp : :class:`python:str`</span>
 <span class="sd">        unique timestamp</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Logger.log_error">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.log_error">[docs]</a>
+    <span class="k">def</span> <span class="nf">log_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an error message to a file.</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        error_message : str</span>
+<span class="sd">            The error message to be logged.</span>
+<span class="sd">        context : str</span>
+<span class="sd">            Additional context or history information to provide.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">error_log_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;error_log.txt&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">error_log_file</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2">] ERROR: </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
@@ -195,7 +217,8 @@
         <span class="n">response_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_count</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">-response.json&quot;</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">response_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_indices</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Logger.save_grid_image">
@@ -227,6 +250,7 @@
         <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_count</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">.png&quot;</span>
         <span class="n">image_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">images_dir</span> <span class="o">/</span> <span class="n">filename</span>
         <span class="n">grid_image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_indices</span><span class="p">()</span>
 
         <span class="c1"># Store relative path for RST references</span>
         <span class="n">rel_path</span> <span class="o">=</span> <span class="n">image_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="p">)</span>
@@ -306,6 +330,7 @@
 
             <span class="c1"># Add navigation links</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_navigation_links</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">log_type</span><span class="p">,</span> <span class="n">call_count</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_indices</span><span class="p">()</span>
 
             <span class="c1"># Append to puzzle toctree if this is a prompt or response</span>
             <span class="k">if</span> <span class="n">log_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">,</span> <span class="s2">&quot;response&quot;</span><span class="p">]:</span>
@@ -412,15 +437,15 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">index_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">index_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rst_header</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">))</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-<span class="w">                    </span><span class="sd">&quot;&quot;&quot;\n.. image:: _images/000-example_1_input.png</span>
-<span class="sd">   :width: 40%</span>
-<span class="sd">   :align: left</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">.. image:: _images/000-example_1_input.png</span>
+<span class="s2">   :width: 40%</span>
+<span class="s2">   :align: left</span>
 
-<span class="sd">.. image:: _images/000-example_1_output.png</span>
-<span class="sd">   :width: 40%</span>
+<span class="s2">.. image:: _images/000-example_1_output.png</span>
+<span class="s2">   :width: 40%</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
                 <span class="p">)</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;.. toctree::</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;   :maxdepth: 1</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -465,7 +490,227 @@
 
     <span class="k">def</span> <span class="nf">_rst_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">char</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create RST header with proper underline.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_generate_puzzle_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a summary table for the puzzle index.&quot;&quot;&quot;</span>
+        <span class="c1"># Get all prompt/response pairs</span>
+        <span class="n">prompt_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9][0-9]-prompt.rst&quot;</span><span class="p">))</span>
+
+        <span class="c1"># Build the summary table</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">.. list-table:: Session Summary&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :header-rows: 1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :widths: 5 45 25 25&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   * - #&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Description&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Response Time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Tokens Used&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">total_response_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_tokens</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">prompt_file</span> <span class="ow">in</span> <span class="n">prompt_files</span><span class="p">:</span>
+            <span class="n">call_num</span> <span class="o">=</span> <span class="n">prompt_file</span><span class="o">.</span><span class="n">stem</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">response_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">call_num</span><span class="si">}</span><span class="s2">-response.json&quot;</span>
+
+            <span class="k">if</span> <span class="n">response_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">response_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">response_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+                <span class="c1"># Extract timing and token data</span>
+                <span class="n">timing</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timing&quot;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="n">response_time</span> <span class="o">=</span> <span class="n">timing</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_time&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">token_data</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token_totals&quot;</span><span class="p">,</span> <span class="p">{})</span>
+                <span class="n">total_response_time</span> <span class="o">+=</span> <span class="n">response_time</span>
+
+                <span class="c1"># Get the first few words of the prompt for description</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">prompt_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                    <span class="n">desc_lines</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">line</span>
+                        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+                    <span class="p">]</span>
+                    <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">desc_lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">desc_lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="s2">&quot;Step&quot;</span>
+                    <span class="p">)</span>  <span class="c1"># Skip header lines</span>
+
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   * - :doc:`</span><span class="si">{</span><span class="n">call_num</span><span class="si">}</span><span class="s2">-prompt`&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">description</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span>
+                <span class="p">)</span>  <span class="c1"># Truncate long descriptions</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">response_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">token_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+                <span class="n">total_tokens</span> <span class="o">=</span> <span class="n">token_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Get final total</span>
+
+        <span class="c1"># Add summary statistics</span>
+        <span class="n">summary</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">.. list-table:: Overall Statistics&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;   :header-rows: 1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;   :widths: 50 50&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;   * - Metric&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;     - Value&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;   * - Total Steps&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">prompt_files</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;   * - Total Response Time&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">total_response_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;   * - Total Tokens Used&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">total_tokens</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;   * - Average Response Time&quot;</span><span class="p">,</span>
+                <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">total_response_time</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">prompt_files</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                    <span class="k">else</span> <span class="s2">&quot;     - N/A&quot;</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_session_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a summary table for the session index.&quot;&quot;&quot;</span>
+        <span class="n">puzzle_dirs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;[0-9]*-*&quot;</span><span class="p">))</span>
+
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">.. list-table:: Puzzle Summary&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :header-rows: 1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   :widths: 30 20 25 25&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;   * - Puzzle ID&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Steps&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Total Time&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;     - Total Tokens&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">session_total_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">session_total_tokens</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_puzzles</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">puzzle_dir</span> <span class="ow">in</span> <span class="n">puzzle_dirs</span><span class="p">:</span>
+            <span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">puzzle_dir</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">response_dir</span> <span class="o">=</span> <span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_responses&quot;</span>
+
+            <span class="k">if</span> <span class="n">response_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">responses</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">response_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*-response.json&quot;</span><span class="p">))</span>
+                <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">latest_token_total</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="k">for</span> <span class="n">resp_file</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">resp_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">total_time</span> <span class="o">+=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timing&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_time&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="n">latest_token_total</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token_totals&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                            <span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="mi">0</span>
+                        <span class="p">)</span>
+
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   * - :doc:`</span><span class="si">{</span><span class="n">puzzle_id</span><span class="si">}</span><span class="s2">/index`&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">latest_token_total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">summary</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+                <span class="n">session_total_time</span> <span class="o">+=</span> <span class="n">total_time</span>
+                <span class="n">session_total_tokens</span> <span class="o">+=</span> <span class="n">latest_token_total</span>
+                <span class="n">total_puzzles</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Add session statistics</span>
+        <span class="k">if</span> <span class="n">total_puzzles</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">summary</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">.. list-table:: Session Statistics&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;   :header-rows: 1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;   :widths: 50 50&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;   * - Metric&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;     - Value&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;   * - Total Puzzles&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">total_puzzles</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;   * - Total Session Time&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">session_total_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;   * - Total Tokens Used&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">session_total_tokens</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;   * - Average Time per Puzzle&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - </span><span class="si">{</span><span class="n">session_total_time</span><span class="o">/</span><span class="n">total_puzzles</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_update_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update all index files with enhanced content by appending new summaries.&quot;&quot;&quot;</span>
+        <span class="c1"># Helper function to append a new row to an existing list-table</span>
+        <span class="k">def</span> <span class="nf">append_to_list_table</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">table_title</span><span class="p">,</span> <span class="n">new_row</span><span class="p">):</span>
+            <span class="n">table_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+                <span class="sa">rf</span><span class="s2">&quot;(\.. list-table:: </span><span class="si">{</span><span class="n">table_title</span><span class="si">}</span><span class="s2">.*?:header-rows: 1.*?:widths:.*?\n)(.*?)(\n\.. list-table|$)&quot;</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span>
+            <span class="p">)</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">table_pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">header</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">existing_rows</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">remaining_content</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">end</span><span class="p">():]</span> <span class="k">if</span> <span class="n">match</span><span class="o">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+                <span class="c1"># Append the new row to the existing rows</span>
+                <span class="n">updated_rows</span> <span class="o">=</span> <span class="n">existing_rows</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">new_row</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="c1"># Rebuild the content</span>
+                <span class="n">updated_content</span> <span class="o">=</span> <span class="n">header</span> <span class="o">+</span> <span class="n">updated_rows</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">remaining_content</span>
+                <span class="k">return</span> <span class="n">updated_content</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If the table does not exist, create it with the new row</span>
+                <span class="n">new_table</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;.. list-table:: </span><span class="si">{</span><span class="n">table_title</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;   :header-rows: 1</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;   :widths: 5 45 25 25</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;   * - #</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - Description</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - Response Time</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;     - Tokens Used</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">new_row</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="n">content</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">new_table</span>
+
+        <span class="c1"># Update puzzle index</span>
+        <span class="n">puzzle_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;index.rst&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">puzzle_index</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># Generate new puzzle summary</span>
+        <span class="n">new_summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_puzzle_summary</span><span class="p">()</span>
+
+        <span class="c1"># Append new puzzle summary entry</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">append_to_list_table</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;Session Summary&quot;</span><span class="p">,</span> <span class="n">new_summary</span><span class="p">)</span>
+
+        <span class="c1"># Write the updated content back to the file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">puzzle_index</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+        <span class="c1"># Update session index</span>
+        <span class="n">session_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s2">&quot;index.rst&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">session_index</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="c1"># Generate new session summary</span>
+        <span class="n">new_summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_session_summary</span><span class="p">()</span>
+
+        <span class="c1"># Append new session summary entry</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">append_to_list_table</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;Session Summary&quot;</span><span class="p">,</span> <span class="n">new_summary</span><span class="p">)</span>
+
+        <span class="c1"># Write the updated content back to the file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">session_index</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
+
 
 </pre></div>
 <div class="section">
