@@ -1,25 +1,12 @@
 papers
 ======
 
+abstracts and summaries from arXiv and other sources
+
 .. toctree::
-   :hidden:
+   :glob:
    :maxdepth: 1
 
-   measure.rst
+   */index
 
-
-- :ref:`measure`
-
-  François Chollet, 2019
-
-
-
-Bibliography Section
-------------------
-
-References
-~~~~~~~~~~
-
-.. bibliography:: 
-   :all:
 

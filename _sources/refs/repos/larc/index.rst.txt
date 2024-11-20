@@ -1,0 +1,26 @@
+.. _larc:
+
+LARC
+====
+
+:Full Name: samacqua/LARC
+:Description: Language-annotated Abstraction and Reasoning Corpus
+:Homepage: https://samacquaviva.com/LARC/explore/
+:Created: 2021-01-31
+:Last Updated: 2024-10-22
+:Stars: 78
+:Forks: 10
+:Primary Language: JavaScript
+:License: Other
+:Latest Release: v.1.0.0
+:GitHub: https://github.com/samacqua/LARC
+
+:github_url: https://github.com/samacqua/LARC
+
+readme
+------
+.. code-block:: markdown
+
+    README content not available
+
+.. include:: notes.rst

@@ -4,7 +4,8 @@ references
 .. toctree::
    :maxdepth: 1
 
+   papers/index.rst
+   repos/index.rst
    anaximander/popper-knowledge-summary.rst
    claude-popper-arc.rst
-   papers/index.rst
    training/index.rst
