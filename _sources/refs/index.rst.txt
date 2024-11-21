@@ -6,6 +6,7 @@ references
 
    papers/index.rst
    repos/index.rst
+   pages/index.rst
    anaximander/popper-knowledge-summary.rst
    claude-popper-arc.rst
    training/index.rst

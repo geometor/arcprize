@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Algorithm for ARC Challenge - by Alexander Naumenko" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/pages/Algorithm for ARC Challenge/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="source: In his 2019 paper “On the Measure of Intelligence” (https://arxiv.org/abs/1911.01547), François Chollet, an AI researcher from Google, proposed Abstraction and Reasoning Corpus for Artifici..." />
+<meta name="description" content="source: In his 2019 paper “On the Measure of Intelligence” (https://arxiv.org/abs/1911.01547), François Chollet, an AI researcher from Google, proposed Abstraction and Reasoning Corpus for Artifici..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithm for ARC Challenge - by Alexander Naumenko &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/pages/Algorithm for ARC Challenge/" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI" href="../FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/" />
+    <link rel="prev" title="pages" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../papers/">papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../repos/">repos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../">pages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Algorithm for ARC Challenge - by Alexander Naumenko</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#objects-and-actions-vs-properties">Objects and Actions vs Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generalization">Generalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objects-and-properties">Objects and properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hypotheses">Hypotheses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conditionals">Conditionals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorithm">Algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-list-of-basic-transformations">The List of Basic Transformations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#wish-me-luck-or-better-help">Wish Me Luck or Better - Help!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscribe-to-i-solve-intelligence-it-s-symbolic">Subscribe to I Solve Intelligence - it’s Symbolic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/">FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Gemini API    Google AI for Developers/">Gemini API  |  Google AI for Developers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../I Solve Intelligence - it's Symbolic/">I Solve Intelligence - it’s Symbolic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Mediaserver - dlc-video-1-1-from-anns-to-deep-learning/">Mediaserver - dlc-video-1-1-from-anns-to-deep-learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Putting the Horse Before the Cart May Lead the Way to Artificial General Intelligence/">Putting the Horse Before the Cart May Lead the Way to Artificial General Intelligence | Emerj Artificial Intelligence Research</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Sudheer Kumar Yedunuri  Phi3.5-vision  Kaggle/">Sudheer Kumar Yedunuri | Phi3.5-vision | Kaggle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Weights &amp; Biases/">How to fine-tune Phi-3 Vision on a custom dataset | mlnews3 – Weights &amp; Biases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../">pages</a></li>
+      <li class="breadcrumb-item active">Algorithm for ARC Challenge - by Alexander Naumenko</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/pages/Algorithm for ARC Challenge.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="pages" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/" class="btn btn-neutral float-right" title="FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="algorithm-for-arc-challenge-by-alexander-naumenko">
+<h1>Algorithm for ARC Challenge - by Alexander Naumenko<a class="headerlink" href="#algorithm-for-arc-challenge-by-alexander-naumenko" title="Link to this heading"></a></h1>
+<p>source: <a class="reference external" href="https://alexandernaumenko.substack.com/p/algorithm-for-arc-challenge"></a></p>
+<blockquote>
+<div><p>In his 2019 paper “On the Measure of Intelligence” (https://arxiv.org/abs/1911.01547), François Chollet, an AI researcher from Google, proposed Abstraction and Reasoning Corpus for Artificial General Intelligence (ARC-AGI) (https://github.com/fchollet/ARC-AGI</p>
+</div></blockquote>
+<p>In his 2019 paper “On the Measure of Intelligence” (<a class="reference external" href="https://arxiv.org/abs/1911.01547">https://arxiv.org/abs/1911.01547</a>), François Chollet, an AI researcher from Google, proposed Abstraction and Reasoning Corpus for Artificial General Intelligence (ARC-AGI) (<a class="reference external" href="https://github.com/fchollet/ARC-AGI">https://github.com/fchollet/ARC-AGI</a>). You may consider it an IQ test for AI systems. The test was designed to resist memorization-based approaches as each task has only a few examples and includes a novel transformation to figure out.</p>
+<p>In short, in each task, we are given a 2d array of maximum size 30x30 that may contain digits from 0 to 9. According to some transformation, the input array transforms into an output array with the same limitations, but the output array may be of different size and may contain different digits or in different positions. There are only a few examples provided for an AI system to figure out the transformation and based on those findings the system has to transform a provided test input array.</p>
+<p>Sounds simple? It seems so if we take into account that humans easily solve more than 80% of tasks. But think again. The challenge is to program or train an AI system so that it can solve the challenge without any help from humans. So far, the best score on Kaggle is 41%, which is far from ideal.</p>
+<p>The author of the challenge believes that the program that will break the 85% threshold will most likely demonstrate novel approaches and may contribute to the development of AGI. François Chollet proposes to use some form of program synthesis when a task transformation is broken down into primitive transformations, each one of which may be easily implemented. Then the system will only need to “somehow” determine the combination of basic transformations to apply in each task. Basically, we only need that “somehow”. This is what we will discuss in this post.</p>
+<section id="objects-and-actions-vs-properties">
+<h2>Objects and Actions vs Properties<a class="headerlink" href="#objects-and-actions-vs-properties" title="Link to this heading"></a></h2>
+<p>My theory of intelligence, to reiterate once again, is based on the need to shift our focus from thinking in terms of objects and actions to thinking in terms of comparable properties. Let’s consider what benefits it may provide based on the example of the ARC Challenge.</p>
+<p>Consider the following two examples related to one task. To make it easier for humans, François Chollet considered the possibility of visualizing tasks. This is my version of visualizing them.</p>
+<p>[</p>
+<p><img alt="" src="refs/pages/Algorithm%20for%20ARC%20Challenge/https%253A%252F%252Fsubstack-post-media.s3.amazonaws.com%252Fpublic%252Fimages%252F8e6af692-9a3d-4ed0-b722-f60745c5f2c3_1245x260.jpeg" /></p>
+<p>](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e6af692-9a3d-4ed0-b722-f60745c5f2c3_1245x260.jpeg)</p>
+<p>In the raw form, the same is represented as the following arrays of digits:</p>
+<p>[[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 2 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 2 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 2 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 2 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 2 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]</p>
+<p>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]]</p>
+<p>[[2 2 2 2 2]</p>
+<p>[2 0 1 0 2]</p>
+<p>[2 1 0 1 2]</p>
+<p>[2 1 0 1 2]</p>
+<p>[2 2 2 2 2]]</p>
+<p>Many tasks use 0s as background and other digits to represent “objects” - groups of “pixels”. Then the abovementioned transformations are “actions” applied to “objects”. In this particular example, the transformation includes several primitive ones - movement, scaling, crop.</p>
+<p>Let’s express the same in terms of properties. “Objects” are different from the background. They are characterized by a bounding rectangle, coordinates, “color”, scale factor, etc. How can we tell that “movement” was applied? Because the relative positions of two objects changed. What about scaling? Can we compare blue objects in input and output? No, but we can try to scale up its input version and then compare them. Or we can check the output object and confirm that it can be scaled down to the input one. What about crop? The crop transformation changes the array dimensions, which is observed here.</p>
+<p>Transformations not only change properties. They have their own properties. For example, “movement” needs “direction” and “distance” along with an “object”. Scale needs an object and a scale ratio. Crop needs a rectangular area to keep. In this example, there is always a yellow rectangular edge in input and output arrays. The other object of “whatever non-background color” moves to the center of the yellow rectangular area. That area also defines the scale ratio for that object as well as coordinates for the crop operation.</p>
+</section>
+<section id="generalization">
+<h2>Generalization<a class="headerlink" href="#generalization" title="Link to this heading"></a></h2>
+<p>“Whatever non-background color” is the first example of generalization. Let me remind you how I define it - the process of specialization introduces defining differences of subclasses, the process of generalization “forgets” differences to return to the parent class level.</p>
+<p>Another example of generalization from ARC Challenge is this task:</p>
+<p>[</p>
+<p><img alt="" src="refs/pages/Algorithm%20for%20ARC%20Challenge/https%253A%252F%252Fsubstack-post-media.s3.amazonaws.com%252Fpublic%252Fimages%252F3aca55c1-87dd-407c-9fab-7c726c99de61_611x553.jpeg" /></p>
+<p>](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3aca55c1-87dd-407c-9fab-7c726c99de61_611x553.jpeg)</p>
+<p>We clearly see that objects colored yellow are not all the same pixel-wise but they have “defining features”, that the other objects don’t have.</p>
+<p>Generalization applies to transformations as well. Movement may be for a fixed distance or for a distance defined by some object, in the same direction or in the one dependent on some factor, but if we observe a change in position (relative or absolute) we may suspect that movement was involved.</p>
+</section>
+<section id="objects-and-properties">
+<h2>Objects and properties<a class="headerlink" href="#objects-and-properties" title="Link to this heading"></a></h2>
+<p>Consider another example:</p>
+<p>[</p>
+<p><img alt="" src="refs/pages/Algorithm%20for%20ARC%20Challenge/https%253A%252F%252Fsubstack-post-media.s3.amazonaws.com%252Fpublic%252Fimages%252F91fd4da0-8922-40e4-b443-77331c1e1d75_604x258.jpeg" /></p>
+<p>](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F91fd4da0-8922-40e4-b443-77331c1e1d75_604x258.jpeg)</p>
+<p>Obviously, we may say that the color of vertexes in the output depends on the convexity/concavity of each vertex. But how can we define it? In fact this definition is interesting in that it hints at what information about each “object” we may need to collect.</p>
+<p>Can we define it via the orientation of adjacent edges? No. Via the number of neighbor pixels outside and inside? Closer, but do not forget objects in corners. But most importantly, you need to keep track of pixels inside and outside. Probably, it is enough to remember “inside” pixels only. Then blue vertexes are those with only 1 inside neighbor, while yellow vertexes have at least 3.</p>
+<p>“Object” is not only a set of pixels, it is also edges and vertexes, inside pixels and outside neighbors, quarters, symmetry, non-background colors statistics, “holes”, and much more.</p>
+</section>
+<section id="hypotheses">
+<h2>Hypotheses<a class="headerlink" href="#hypotheses" title="Link to this heading"></a></h2>
+<p>In the first picture above, from the second example, we may decide that the scale factor is 3, a fixed value. But I propose to always consider options - fixed value and dependent value, in this case. Given these two options, we check them against all other examples and “fixed value” does not survive the test. Had we only that option to consider we would not be able to determine the right one.</p>
+<p>The same is true for transformations. When we observe smaller dimensions of output arrays, we may suspect crop. But what about downscaling? There are also other transformations that lead to the same result. Can we differentiate crop from downscaling based on smaller dimensions only? No. But smaller dimensions filter out other transformations. To differentiate further we need additional properties. For example, scale ratios of objects. Crop does not affect them compared to downscaling.</p>
+<p>Some objects mirrored are not different from those rotated by 180 degrees. Both are good as our initial options. Consider other examples to finalize the proper one.</p>
+<p>Forming hypotheses is an important step. Intelligence is about selecting fitting options from available ones. The selection process narrows down the set quickly. Do not be afraid of adding more options initially, be afraid of missing something.</p>
+</section>
+<section id="conditionals">
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Link to this heading"></a></h2>
+<p>Many tasks use what we can call conditionals or mapping. Given one shape color the other object in one color, given the other shape color that object differently. We can track the variability of options and mapped values in some kind of data structure (map, dictionary - depends on your programming language) but we need to have representations of colors, shapes, and other properties fitting for the use in those data structures.</p>
+<p>One type of task involves coloring neighbor cells. Diagonal neighbors are colored in one color, horizontal and vertical neighbors are colored in another color. “Diagonal” is a generalization for four different corners. Coloring may be defined differently for each of them. It’s another suggestion for what kind of details we may need to keep track of if we want to solve the ARC Challenge.</p>
+</section>
+<section id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading"></a></h2>
+<p>The algorithm to solve the ARC Challenge in my opinion does not require deep learning or any other statistical methods. It is a good old programming with if statements and sets and dictionaries.</p>
+<p>1 Step. Analyze inputs/outputs in one example. Collect as much information about objects as possible.</p>
+<p>2. Based on that information find differences imposed on the input array and its objects. Use those differences to filter out transformations that are not involved. At this stage, many hypotheses are OK. Also, form hypotheses about the source of parameters of each transformation.</p>
+<p>3. Go through the other examples and finalize proper hypotheses. ARC Challenge allows the submission of two options, so do not be confused by ambiguity.</p>
+<p>4. Figure out the sequence of basic transformation. Prepare the grand transformation.</p>
+<p>5. Set up an Expecto class about what objects to expect in a test input and what properties of those objects to pay attention to.</p>
+<p>6. Apply the grand transformation and Expecto class to a test input.</p>
+</section>
+<section id="the-list-of-basic-transformations">
+<h2>The List of Basic Transformations<a class="headerlink" href="#the-list-of-basic-transformations" title="Link to this heading"></a></h2>
+<p>The list below is my view on the basic transformations used in the ARC Challenge. Surely, I tried to populate it with items that are different, rely on different properties, and affect different properties. Feel free to add other items you may find fitting.</p>
+<p>1. Overlapping is about z-coordinate.</p>
+<p>2. Decomposition is about moving lines (or even pixels) of the object.</p>
+<p>3. Move is about changing position.</p>
+<p>4. Coloring is about changing color (digit).</p>
+<p>5. Mirroring is about symmetry.</p>
+<p>6. Rotating is about angles.</p>
+<p>7. Scaling is about scaling an object or the whole input.</p>
+<p>8. Inversion is about two colors substituting each other.</p>
+<p>9. Removal is about blending an object into the background.</p>
+<p>10. Replicating is about creating copies.</p>
+<p>11. Pattern continuation is about figuring out and continuing some sequence.</p>
+<p>12. Pattern restoration is about finding a missing piece in some pattern.</p>
+<p>13. Replacing is about replacing one thing with a different one (color for color or shape for symmetry axis - it can be anything).</p>
+<p>14. Crop is about removing space.</p>
+<p>15. Adding dimensions is about adding space.</p>
+<p>16. Logical operations are about pixel-wise logical operations.</p>
+<p>17. Stacking is about z-coordinate.</p>
+<p>18. Minmodel is about extreme generalization.</p>
+<p>Each of those transformations affects some properties. Observing respective changes from inputs to outputs hints at the possible use of that primitive.</p>
+<p>Combining several of them along with the variability of shapes and colors and options for sources of parameters explains well why the ARC Challenge poses such a problem for current AI systems.</p>
+</section>
+<section id="wish-me-luck-or-better-help">
+<h2>Wish Me Luck or Better - Help!<a class="headerlink" href="#wish-me-luck-or-better-help" title="Link to this heading"></a></h2>
+<p>I am working on implementing the above ideas but the process is slow. If anyone is interested in helping me with Python and cracking the ARC Challenge, I will be more than happy. It’s time to show the potential of this theory and to start developing a new AI paradigm!</p>
+</section>
+<section id="subscribe-to-i-solve-intelligence-it-s-symbolic">
+<h2>Subscribe to I Solve Intelligence - it’s Symbolic<a class="headerlink" href="#subscribe-to-i-solve-intelligence-it-s-symbolic" title="Link to this heading"></a></h2>
+<p>In this post, we start unraveling the mystery of intelligence by proposing its “atoms”.</p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/" class="btn btn-neutral float-right" title="FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

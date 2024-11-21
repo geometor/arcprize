@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/michaelhodel-arc-dsl/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Domain Specific Language for the Abstraction and Reasoning Corpus (ARC-DSL): The DSL was created with the aim of being expressive enough to allow programs solving arbitrary ARC tasks, and generic, ..." />
+<meta name="description" content="Domain Specific Language for the Abstraction and Reasoning Corpus (ARC-DSL): The DSL was created with the aim of being expressive enough to allow programs solving arbitrary ARC tasks, and generic, ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/michaelhodel-arc-dsl/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="michaelhodel/re-arc" href="../../michaelhodel-re-arc/" />
+    <link rel="prev" title="michaelhodel/arc-dsl" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">michaelhodel/arc-dsl</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-specific-language-for-the-abstraction-and-reasoning-corpus-arc-dsl">Domain Specific Language for the Abstraction and Reasoning Corpus (ARC-DSL)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#example-solver-program-for-task-00d62c1b-written-in-the-dsl">Example solver program for task 00d62c1b written in the DSL</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#another-solver-example-5521c0d9">Another solver example: 5521c0d9</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">michaelhodel/arc-dsl</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/michaelhodel-arc-dsl/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="michaelhodel/arc-dsl" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-re-arc/" class="btn btn-neutral float-right" title="michaelhodel/re-arc" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+</section>
+<section id="domain-specific-language-for-the-abstraction-and-reasoning-corpus-arc-dsl">
+<h1>Domain Specific Language for the Abstraction and Reasoning Corpus (ARC-DSL)<a class="headerlink" href="#domain-specific-language-for-the-abstraction-and-reasoning-corpus-arc-dsl" title="Link to this heading"></a></h1>
+<p>The DSL was created with the aim of being expressive enough to allow programs solving arbitrary ARC tasks, and generic, i.e. consisting of only few primitives, each useful for many tasks (see <a class="reference internal" href="#dsl.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">dsl.py</span></code></span></a>). As a proof of concept, solver programs for the training tasks were written (see <a class="reference internal" href="#solvers.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">solvers.py</span></code></span></a>). See <a class="reference internal" href="#arc_dsl_writeup.pdf"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">arc_dsl_writeup.pdf</span></code></span></a> for a more detailed description of the work.</p>
+<section id="example-solver-program-for-task-00d62c1b-written-in-the-dsl">
+<h2>Example solver program for task 00d62c1b written in the DSL<a class="headerlink" href="#example-solver-program-for-task-00d62c1b-written-in-the-dsl" title="Link to this heading"></a></h2>
+<p><img alt="Task 00d62c1b" src="refs/repos/michaelhodel-arc-dsl/00d62c1b.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_00d62c1b</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+    <span class="n">objs</span> <span class="o">=</span> <span class="n">objects</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">univalued</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="n">F</span><span class="p">,</span> <span class="n">without_bg</span><span class="o">=</span><span class="n">F</span><span class="p">)</span>
+    <span class="n">black_objs</span> <span class="o">=</span> <span class="n">colorfilter</span><span class="p">(</span><span class="n">objs</span><span class="o">=</span><span class="n">objs</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">ZERO</span><span class="p">)</span>
+    <span class="n">borders</span> <span class="o">=</span> <span class="n">rbind</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">bordering</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">I</span><span class="p">)</span>
+    <span class="n">does_not_border</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span><span class="n">outer</span><span class="o">=</span><span class="n">flip</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="n">borders</span><span class="p">)</span>
+    <span class="n">enclosed</span> <span class="o">=</span> <span class="n">mfilter</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">black_objs</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">does_not_border</span><span class="p">)</span>
+    <span class="n">O</span> <span class="o">=</span> <span class="n">fill</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">FOUR</span><span class="p">,</span> <span class="n">patch</span><span class="o">=</span><span class="n">enclosed</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">O</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">solve_00d62c1b</span></code> takes an input grid <code class="docutils literal notranslate"><span class="pre">I</span></code> and returns the correct output grid <code class="docutils literal notranslate"><span class="pre">O</span></code>. An explanation of what the variables store and how their values were computed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">objs</span></code>: the set of objects extracted from the input grid <code class="docutils literal notranslate"><span class="pre">I</span></code> that are single-color only, where individual objects may only have cells that are connected directly, and cells may be of the background color (black); the result of calling the <code class="docutils literal notranslate"><span class="pre">objects</span></code> primitive on <code class="docutils literal notranslate"><span class="pre">I</span></code> with <code class="docutils literal notranslate"><span class="pre">univalued=True</span></code>, <code class="docutils literal notranslate"><span class="pre">diagonal=False</span></code> and <code class="docutils literal notranslate"><span class="pre">without_background=True</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">black_objs</span></code>: the subset of the objects <code class="docutils literal notranslate"><span class="pre">objs</span></code> which are black; the result of filtering objects by their color, i.e. calling <code class="docutils literal notranslate"><span class="pre">colorfilter</span></code> with <code class="docutils literal notranslate"><span class="pre">objects=objs</span></code> and <code class="docutils literal notranslate"><span class="pre">color=ZERO</span></code> (black)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">borders</span></code>: a function taking an object and returning <code class="docutils literal notranslate"><span class="pre">True</span></code> iff that object is at the border of the grid; the result of fixing the right argument of the <code class="docutils literal notranslate"><span class="pre">bordering</span></code> primitive to <code class="docutils literal notranslate"><span class="pre">I</span></code> by calling the function <code class="docutils literal notranslate"><span class="pre">rbind</span></code> on <code class="docutils literal notranslate"><span class="pre">function=bordering</span></code> and <code class="docutils literal notranslate"><span class="pre">fixed=I</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">does_not_border</span></code>: a function that returns the inverse of the previous function, i.e. a function that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> iff an object does not touch the grid border; the result of composing the <code class="docutils literal notranslate"><span class="pre">flip</span></code> primitive (which simply negates a boolean) and <code class="docutils literal notranslate"><span class="pre">borders</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enclosed</span></code>: a single object defined as the union of objects <code class="docutils literal notranslate"><span class="pre">black_objs</span></code> for which function <code class="docutils literal notranslate"><span class="pre">does_not_border</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, i.e. the black objects which do not touch the grid border (corresponding to the “holes” in the green objects); the result of calling <code class="docutils literal notranslate"><span class="pre">mfilter</span></code> (which combines <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code>) with <code class="docutils literal notranslate"><span class="pre">container=black_objs</span></code> and <code class="docutils literal notranslate"><span class="pre">condition=does_not_border</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">O</span></code>: the output grid, created by coloring all pixels of the object <code class="docutils literal notranslate"><span class="pre">enclosed</span></code> yellow; the result of calling the <code class="docutils literal notranslate"><span class="pre">fill</span></code> primitive on <code class="docutils literal notranslate"><span class="pre">I</span></code> with <code class="docutils literal notranslate"><span class="pre">color=FOUR</span></code> (yellow) and <code class="docutils literal notranslate"><span class="pre">patch=enclosed</span></code></p></li>
+</ul>
+</section>
+<section id="another-solver-example-5521c0d9">
+<h2>Another solver example: 5521c0d9<a class="headerlink" href="#another-solver-example-5521c0d9" title="Link to this heading"></a></h2>
+<p><img alt="Task 5521c0d9" src="refs/repos/michaelhodel-arc-dsl/5521c0d9.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_5521c0d9</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+    <span class="n">objs</span> <span class="o">=</span> <span class="n">objects</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">univalued</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="n">F</span><span class="p">,</span> <span class="n">without_bgT</span><span class="p">)</span>
+    <span class="n">foreground</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">containers</span><span class="o">=</span><span class="n">objs</span><span class="p">)</span>
+    <span class="n">empty_grid</span> <span class="o">=</span> <span class="n">cover</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">patch</span><span class="o">=</span><span class="n">foreground</span><span class="p">)</span>
+    <span class="n">offset_getter</span> <span class="o">=</span> <span class="n">chain</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="n">toivec</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="n">invert</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">shifter</span> <span class="o">=</span> <span class="n">fork</span><span class="p">(</span><span class="n">outer</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">offset_getter</span><span class="p">)</span>
+    <span class="n">shifted</span> <span class="o">=</span> <span class="n">mapply</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">shifter</span><span class="p">,</span> <span class="n">container</span><span class="o">=</span><span class="n">objs</span><span class="p">)</span>
+    <span class="n">O</span> <span class="o">=</span> <span class="n">paint</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">empty_grid</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">shifted</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">O</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">objs</span></code>: the set of objects extracted from the input grid <code class="docutils literal notranslate"><span class="pre">I</span></code> that are single-color only, ignoring the background color; the result of calling the <code class="docutils literal notranslate"><span class="pre">objects</span></code> primitive on <code class="docutils literal notranslate"><span class="pre">I</span></code> with <code class="docutils literal notranslate"><span class="pre">univalued=True</span></code>, <code class="docutils literal notranslate"><span class="pre">diagonal=False</span></code> and <code class="docutils literal notranslate"><span class="pre">without_background=True</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">foreground</span></code>: all the objects treated as a single object, the result of calling the <code class="docutils literal notranslate"><span class="pre">merge</span></code> primitive on the objects <code class="docutils literal notranslate"><span class="pre">objs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">empty_grid</span></code>: a new grid, where <code class="docutils literal notranslate"><span class="pre">foreground</span></code> is removed (covered), i.e. replaced with the background color (black); the result of calling the <code class="docutils literal notranslate"><span class="pre">cover</span></code> primitive with <code class="docutils literal notranslate"><span class="pre">grid=I</span></code> and <code class="docutils literal notranslate"><span class="pre">patch=foreground</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset_getter</span></code>: a function that takes an object and returns a vector pointing up by as much as that object is high; the result of composing the three functions <code class="docutils literal notranslate"><span class="pre">toivec</span></code>, <code class="docutils literal notranslate"><span class="pre">invert</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>; the result of calling the <code class="docutils literal notranslate"><span class="pre">chain</span></code> primitive with <code class="docutils literal notranslate"><span class="pre">h=toivec</span></code>, <code class="docutils literal notranslate"><span class="pre">g=invert</span></code> and <code class="docutils literal notranslate"><span class="pre">f=height</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shifter</span></code>: a function that takes an object and shifts it as much upwards as it is high; the result of calling the <code class="docutils literal notranslate"><span class="pre">fork</span></code> primitive with <code class="docutils literal notranslate"><span class="pre">outer=shift</span></code>, <code class="docutils literal notranslate"><span class="pre">a=identity</span></code> and <code class="docutils literal notranslate"><span class="pre">b=offset_getter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shifted</span></code>: all the objects shifted up by their heights, as a single object, obtained by appling the constructed function on the set of objects and merging the results; the result of calling the <code class="docutils literal notranslate"><span class="pre">mapply</span></code> primitive on <code class="docutils literal notranslate"><span class="pre">function=shifter</span></code> and <code class="docutils literal notranslate"><span class="pre">container=objs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">O</span></code> the desired output grid, obtained by painting the resulting object onto the grid <code class="docutils literal notranslate"><span class="pre">empty_grid</span></code> where the original objects were removed from; the result of calling the <code class="docutils literal notranslate"><span class="pre">paint</span></code> primitive on <code class="docutils literal notranslate"><span class="pre">grid=empty_grid</span></code> and <code class="docutils literal notranslate"><span class="pre">obj=shifted</span></code></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="michaelhodel/arc-dsl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-re-arc/" class="btn btn-neutral float-right" title="michaelhodel/re-arc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

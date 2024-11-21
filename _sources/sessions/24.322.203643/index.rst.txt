@@ -110,4 +110,8 @@ session summary
      - 88.82s
      - 90,363
 
+.. toctree::
+   :maxdepth: 1
+   :glob:
 
+   */index

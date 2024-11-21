@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/vllm-project-vllm/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Latest News 🔥[2024/11] We hosted the seventh vLLM meetup with Snowflake! Please find the meetup slides here.,[2024/10] We have just created a developer slack ( slack.vllm.ai) focusing on coordinati..." />
+<meta name="description" content="Latest News 🔥[2024/11] We hosted the seventh vLLM meetup with Snowflake! Please find the meetup slides here.,[2024/10] We have just created a developer slack ( slack.vllm.ai) focusing on coordinati..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/vllm-project-vllm/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="xu3kev/BARC" href="../../xu3kev-barc/" />
+    <link rel="prev" title="vllm-project/vllm" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">vllm-project/vllm</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sponsors">Sponsors</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#citation">Citation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#contact-us">Contact Us</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">vllm-project/vllm</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/vllm-project-vllm/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="vllm-project/vllm" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../xu3kev-barc/" class="btn btn-neutral float-right" title="xu3kev/BARC" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vllm-project/vllm/main/docs/source/assets/logos/vllm-logo-text-dark.png">
+    <img alt="vLLM" src="https://raw.githubusercontent.com/vllm-project/vllm/main/docs/source/assets/logos/vllm-logo-text-light.png" width=55%>
+  </picture>
+</p>
+<h3 align="center">
+Easy, fast, and cheap LLM serving for everyone
+</h3>
+<p align="center">
+| <a href="https://docs.vllm.ai"><b>Documentation</b></a> | <a href="https://vllm.ai"><b>Blog</b></a> | <a href="https://arxiv.org/abs/2309.06180"><b>Paper</b></a> | <a href="https://discord.gg/jz7wjKhh6g"><b>Discord</b></a> | <a href="https://x.com/vllm_project"><b>Twitter/X</b></a> | <a href="https://slack.vllm.ai"><b>Developer Slack</b></a> |
+</p>
+<hr class="docutils" />
+<p><em>Latest News</em> 🔥</p>
+<ul class="simple">
+<li><p>[2024/11] We hosted <a class="reference external" href="https://lu.ma/h0qvrajz">the seventh vLLM meetup</a> with Snowflake! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1e3CxQBV3JsfGp30SwyvS3eM_tW-ghOhJ9PAJGK6KR54/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2024/10] We have just created a developer slack (<a class="reference external" href="https://slack.vllm.ai">slack.vllm.ai</a>) focusing on coordinating contributions and discussing features. Please feel free to join us there!</p></li>
+<li><p>[2024/10] Ray Summit 2024 held a special track for vLLM! Please find the opening talk slides from the vLLM team <a class="reference external" href="https://docs.google.com/presentation/d/1B_KQxpHBTRa_mDF-tR6i8rWdOU5QoTZNcEg2MKZxEHM/edit?usp=sharing">here</a>. Learn more from the <a class="reference external" href="https://raysummit.anyscale.com/flow/anyscale/raysummit2024/landing/page/sessioncatalog?tab.day=20241001&amp;amp;search.sessiontracks=1719251906298001uzJ2">talks</a> from other vLLM contributors and users!</p></li>
+<li><p>[2024/09] We hosted <a class="reference external" href="https://lu.ma/87q3nvnh">the sixth vLLM meetup</a> with NVIDIA! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1wrLGwytQfaOTd5wCGSPNhoaW3nq0E-9wqyP7ny93xRs/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2024/07] We hosted <a class="reference external" href="https://lu.ma/lp0gyjqr">the fifth vLLM meetup</a> with AWS! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1RgUD8aCfcHocghoP3zmXzck9vX3RCI9yfUAB2Bbcl4Y/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2024/07] In partnership with Meta, vLLM officially supports Llama 3.1 with FP8 quantization and pipeline parallelism! Please check out our blog post <a class="reference external" href="https://blog.vllm.ai/2024/07/23/llama31.html">here</a>.</p></li>
+<li><p>[2024/06] We hosted <a class="reference external" href="https://lu.ma/agivllm">the fourth vLLM meetup</a> with Cloudflare and BentoML! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1iJ8o7V2bQEi0BFEljLTwc5G1S10_Rhv3beed5oB0NJ4/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2024/04] We hosted <a class="reference external" href="https://robloxandvllmmeetup2024.splashthat.com/">the third vLLM meetup</a> with Roblox! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1A--47JAK4BJ39t954HyTkvtfwn0fkqtsL8NGFuslReM/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2024/01] We hosted <a class="reference external" href="https://lu.ma/ygxbpzhl">the second vLLM meetup</a> with IBM! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/12mI2sKABnUw5RBWXDYY-HtHth4iMSNcEoQ10jDQbxgA/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2023/10] We hosted <a class="reference external" href="https://lu.ma/first-vllm-meetup">the first vLLM meetup</a> with a16z! Please find the meetup slides <a class="reference external" href="https://docs.google.com/presentation/d/1QL-XPFXiFpDBh86DbEegFXBXFXjix4v032GhShbKf3s/edit?usp=sharing">here</a>.</p></li>
+<li><p>[2023/08] We would like to express our sincere gratitude to <a class="reference external" href="https://a16z.com/2023/08/30/supporting-the-open-source-ai-community/">Andreessen Horowitz</a> (a16z) for providing a generous grant to support the open-source development and research of vLLM.</p></li>
+<li><p>[2023/06] We officially released vLLM! FastChat-vLLM integration has powered <a class="reference external" href="https://chat.lmsys.org">LMSYS Vicuna and Chatbot Arena</a> since mid-April. Check out our <a class="reference external" href="https://vllm.ai">blog post</a>.</p></li>
+</ul>
+<hr class="docutils" />
+<section id="about">
+<h2>About<a class="headerlink" href="#about" title="Link to this heading"></a></h2>
+<p>vLLM is a fast and easy-to-use library for LLM inference and serving.</p>
+<p>vLLM is fast with:</p>
+<ul class="simple">
+<li><p>State-of-the-art serving throughput</p></li>
+<li><p>Efficient management of attention key and value memory with <strong>PagedAttention</strong></p></li>
+<li><p>Continuous batching of incoming requests</p></li>
+<li><p>Fast model execution with CUDA/HIP graph</p></li>
+<li><p>Quantizations: <a class="reference external" href="https://arxiv.org/abs/2210.17323">GPTQ</a>, <a class="reference external" href="https://arxiv.org/abs/2306.00978">AWQ</a>, INT4, INT8, and FP8.</p></li>
+<li><p>Optimized CUDA kernels, including integration with FlashAttention and FlashInfer.</p></li>
+<li><p>Speculative decoding</p></li>
+<li><p>Chunked prefill</p></li>
+</ul>
+<p><strong>Performance benchmark</strong>: We include a performance benchmark at the end of <a class="reference external" href="https://blog.vllm.ai/2024/09/05/perf-update.html">our blog post</a>. It compares the performance of vLLM against other LLM serving engines (<a class="reference external" href="https://github.com/NVIDIA/TensorRT-LLM">TensorRT-LLM</a>, <a class="reference external" href="https://github.com/sgl-project/sglang">SGLang</a> and <a class="reference external" href="https://github.com/InternLM/lmdeploy">LMDeploy</a>). The implementation is under <a class="reference internal" href="#.buildkite/nightly-benchmarks/"><span class="xref myst">nightly-benchmarks folder</span></a> and you can <a class="reference external" href="https://github.com/vllm-project/vllm/issues/8176">reproduce</a> this benchmark using our one-click runnable script.</p>
+<p>vLLM is flexible and easy to use with:</p>
+<ul class="simple">
+<li><p>Seamless integration with popular Hugging Face models</p></li>
+<li><p>High-throughput serving with various decoding algorithms, including <em>parallel sampling</em>, <em>beam search</em>, and more</p></li>
+<li><p>Tensor parallelism and pipeline parallelism support for distributed inference</p></li>
+<li><p>Streaming outputs</p></li>
+<li><p>OpenAI-compatible API server</p></li>
+<li><p>Support NVIDIA GPUs, AMD CPUs and GPUs, Intel CPUs and GPUs, PowerPC CPUs, TPU, and AWS Neuron.</p></li>
+<li><p>Prefix caching support</p></li>
+<li><p>Multi-lora support</p></li>
+</ul>
+<p>vLLM seamlessly supports most popular open-source models on HuggingFace, including:</p>
+<ul class="simple">
+<li><p>Transformer-like LLMs (e.g., Llama)</p></li>
+<li><p>Mixture-of-Expert LLMs (e.g., Mixtral)</p></li>
+<li><p>Embedding Models (e.g. E5-Mistral)</p></li>
+<li><p>Multi-modal LLMs (e.g., LLaVA)</p></li>
+</ul>
+<p>Find the full list of supported models <a class="reference external" href="https://docs.vllm.ai/en/latest/models/supported_models.html">here</a>.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>Install vLLM with <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <a class="reference external" href="https://vllm.readthedocs.io/en/latest/getting_started/installation.html#build-from-source">from source</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>vllm
+</pre></div>
+</div>
+<p>Visit our <a class="reference external" href="https://vllm.readthedocs.io/en/latest/">documentation</a> to learn more.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://vllm.readthedocs.io/en/latest/getting_started/installation.html">Installation</a></p></li>
+<li><p><a class="reference external" href="https://vllm.readthedocs.io/en/latest/getting_started/quickstart.html">Quickstart</a></p></li>
+<li><p><a class="reference external" href="https://vllm.readthedocs.io/en/latest/models/supported_models.html">Supported Models</a></p></li>
+</ul>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>We welcome and value any contributions and collaborations.
+Please check out <a class="reference internal" href="#./CONTRIBUTING.md"><span class="xref myst">CONTRIBUTING.md</span></a> for how to get involved.</p>
+</section>
+<section id="sponsors">
+<h2>Sponsors<a class="headerlink" href="#sponsors" title="Link to this heading"></a></h2>
+<p>vLLM is a community project. Our compute resources for development and testing are supported by the following organizations. Thank you for your support!</p>
+<!-- Note: Please sort them in alphabetical order. -->
+<!-- Note: Please keep these consistent with docs/source/community/sponsors.md -->
+<ul class="simple">
+<li><p>a16z</p></li>
+<li><p>AMD</p></li>
+<li><p>Anyscale</p></li>
+<li><p>AWS</p></li>
+<li><p>Crusoe Cloud</p></li>
+<li><p>Databricks</p></li>
+<li><p>DeepInfra</p></li>
+<li><p>Dropbox</p></li>
+<li><p>Google Cloud</p></li>
+<li><p>Lambda Lab</p></li>
+<li><p>Nebius</p></li>
+<li><p>NVIDIA</p></li>
+<li><p>Replicate</p></li>
+<li><p>Roblox</p></li>
+<li><p>RunPod</p></li>
+<li><p>Sequoia Capital</p></li>
+<li><p>Skywork AI</p></li>
+<li><p>Trainy</p></li>
+<li><p>UC Berkeley</p></li>
+<li><p>UC San Diego</p></li>
+<li><p>ZhenFund</p></li>
+</ul>
+<p>We also have an official fundraising venue through <a class="reference external" href="https://opencollective.com/vllm">OpenCollective</a>. We plan to use the fund to support the development, maintenance, and adoption of vLLM.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
+<p>If you use vLLM for your research, please cite our <a class="reference external" href="https://arxiv.org/abs/2309.06180">paper</a>:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">kwon2023efficient</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Efficient Memory Management for Large Language Model Serving with PagedAttention}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Woosuk Kwon and Zhuohan Li and Siyuan Zhuang and Ying Sheng and Lianmin Zheng and Cody Hao Yu and Joseph E. Gonzalez and Hao Zhang and Ion Stoica}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="p">=</span><span class="s">{Proceedings of the ACM SIGOPS 29th Symposium on Operating Systems Principles}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="contact-us">
+<h2>Contact Us<a class="headerlink" href="#contact-us" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>For technical questions and feature requests, please use Github issues or discussions.</p></li>
+<li><p>For discussing with fellow users, please use Discord.</p></li>
+<li><p>For coordinating contributions and development, please use Slack.</p></li>
+<li><p>For security disclosures, please use Github’s security advisory feature.</p></li>
+<li><p>For collaborations and partnerships, please contact us at vllm-questions AT lists.berkeley.edu.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="vllm-project/vllm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../xu3kev-barc/" class="btn btn-neutral float-right" title="xu3kev/BARC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/anthropics-anthropic-cookbook/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Anthropic Cookbook: The Anthropic Cookbook provides code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own proje..." />
+<meta name="description" content="Anthropic Cookbook: The Anthropic Cookbook provides code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own proje..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/anthropics-anthropic-cookbook/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="anthropics/anthropic-quickstarts" href="../../anthropics-anthropic-quickstarts/" />
+    <link rel="prev" title="anthropics/anthropic-cookbook" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../">anthropics/anthropic-cookbook</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anthropic-cookbook">Anthropic Cookbook</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#explore-further">Explore Further</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#table-of-recipes">Table of recipes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#skills">Skills</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#tool-use-and-integration">Tool Use and Integration</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#third-party-integrations">Third-Party Integrations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#multimodal-capabilities">Multimodal Capabilities</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#advanced-techniques">Advanced Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">anthropics/anthropic-cookbook</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/anthropics-anthropic-cookbook/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="anthropics/anthropic-cookbook" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../anthropics-anthropic-quickstarts/" class="btn btn-neutral float-right" title="anthropics/anthropic-quickstarts" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+</section>
+<section id="anthropic-cookbook">
+<h1>Anthropic Cookbook<a class="headerlink" href="#anthropic-cookbook" title="Link to this heading"></a></h1>
+<p>The Anthropic Cookbook provides code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own projects.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>To make the most of the examples in this cookbook, you’ll need an Anthropic API key (sign up for free <a class="reference external" href="https://www.anthropic.com">here</a>).</p>
+<p>While the code examples are primarily written in Python, the concepts can be adapted to any programming language that supports interaction with the Anthropic API.</p>
+<p>If you’re new to working with the Anthropic API, we recommend starting with our <a class="reference external" href="https://github.com/anthropics/courses/tree/master/anthropic_api_fundamentals">Anthropic API Fundamentals course</a> to get a solid foundation.</p>
+</section>
+<section id="explore-further">
+<h2>Explore Further<a class="headerlink" href="#explore-further" title="Link to this heading"></a></h2>
+<p>Looking for more resources to enhance your experience with Claude and AI assistants? Check out these helpful links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.anthropic.com/claude/docs/guide-to-anthropics-prompt-engineering-resources">Anthropic developer documentation</a></p></li>
+<li><p><a class="reference external" href="https://support.anthropic.com">Anthropic support docs</a></p></li>
+<li><p><a class="reference external" href="https://www.anthropic.com/discord">Anthropic Discord community</a></p></li>
+</ul>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>The Anthropic Cookbook thrives on the contributions of the developer community. We value your input, whether it’s submitting an idea, fixing a typo, adding a new guide, or improving an existing one. By contributing, you help make this resource even more valuable for everyone.</p>
+<p>To avoid duplication of efforts, please review the existing issues and pull requests before contributing.</p>
+<p>If you have ideas for new examples or guides, share them on the <a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/issues">issues page</a>.</p>
+</section>
+<section id="table-of-recipes">
+<h2>Table of recipes<a class="headerlink" href="#table-of-recipes" title="Link to this heading"></a></h2>
+<section id="skills">
+<h3>Skills<a class="headerlink" href="#skills" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/skills/citations">Citations</a>: Learn how to prompt Claude to cite sources in its responses.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/skills/classification">Classification</a>: Explore techniques for text and data classification using Claude.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/skills/retrieval_augmented_generation">Retrieval Augmented Generation</a>: Learn how to enhance Claude’s responses with external knowledge.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/skills/summarization">Summarization</a>: Discover techniques for effective text summarization with Claude.</p></li>
+</ul>
+</section>
+<section id="tool-use-and-integration">
+<h3>Tool Use and Integration<a class="headerlink" href="#tool-use-and-integration" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/tool_use">Tool use</a>: Learn how to integrate Claude with external tools and functions to extend its capabilities.</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/tool_use/customer_service_agent.ipynb">Customer service agent</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/tool_use/calculator_tool.ipynb">Calculator integration</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/how_to_make_sql_queries.ipynb">SQL queries</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="third-party-integrations">
+<h3>Third-Party Integrations<a class="headerlink" href="#third-party-integrations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/third_party">Retrieval augmented generation</a>: Supplement Claude’s knowledge with external data sources.</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/third_party/Pinecone/rag_using_pinecone.ipynb">Vector databases (Pinecone)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/third_party/Wikipedia/wikipedia-search-cookbook.ipynb/">Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/read_web_pages_with_haiku.ipynb">Web pages</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/third_party/Brave/web_search_using_brave.ipynb">Internet search (Brave)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/third_party/VoyageAI/how_to_create_embeddings.md">Embeddings with Voyage AI</a></p></li>
+</ul>
+</section>
+<section id="multimodal-capabilities">
+<h3>Multimodal Capabilities<a class="headerlink" href="#multimodal-capabilities" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/tree/main/multimodal">Vision with Claude</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/getting_started_with_vision.ipynb">Getting started with images</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/best_practices_for_vision.ipynb">Best practices for vision</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/reading_charts_graphs_powerpoints.ipynb">Interpreting charts and graphs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/how_to_transcribe_text.ipynb">Extracting content from forms</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/illustrated_responses.ipynb">Generate images with Claude</a>: Use Claude with Stable Diffusion for image generation.</p></li>
+</ul>
+</section>
+<section id="advanced-techniques">
+<h3>Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/multimodal/using_sub_agents.ipynb">Sub-agents</a>: Learn how to use Haiku as a sub-agent in combination with Opus.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/pdf_upload_summarization.ipynb">Upload PDFs to Claude</a>: Parse and pass PDFs as text to Claude.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/building_evals.ipynb">Automated evaluations</a>: Use Claude to automate the prompt evaluation process.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/how_to_enable_json_mode.ipynb">Enable JSON mode</a>: Ensure consistent JSON output from Claude.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/building_moderation_filter.ipynb">Create a moderation filter</a>: Use Claude to create a content moderation filter for your application.</p></li>
+<li><p><a class="reference external" href="https://github.com/anthropics/anthropic-cookbook/blob/main/misc/prompt_caching.ipynb">Prompt caching</a>: Learn techniques for efficient prompt caching with Claude.</p></li>
+</ul>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/aws-samples/anthropic-on-aws">Anthropic on AWS</a>: Explore examples and solutions for using Claude on AWS infrastructure.</p></li>
+<li><p><a class="reference external" href="https://github.com/aws-samples/">AWS Samples</a>: A collection of code samples from AWS which can be adapted for use with Claude. Note that some samples may require modification to work optimally with Claude.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="anthropics/anthropic-cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../anthropics-anthropic-quickstarts/" class="btn btn-neutral float-right" title="anthropics/anthropic-quickstarts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Training Language Models to Self-Correct via Reinforcement Learning" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/papers/training-language-models-to-self-correct-via-reinforcement-learning/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="id, 2409.12917,, Authors, Aviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, Lei M Zhang, Kay McKinney, Dis..." />
+<meta name="description" content="id, 2409.12917,, Authors, Aviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, Lei M Zhang, Kay McKinney, Dis..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Language Models to Self-Correct via Reinforcement Learning &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/papers/training-language-models-to-self-correct-via-reinforcement-learning/" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="repos" href="../../repos/" />
+    <link rel="prev" title="Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle" href="../tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../">references</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../">papers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../addressing-the-abstraction-and-reasoning-corpus-via-procedural-example-generation/">Addressing the Abstraction and Reasoning Corpus via Procedural Example Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/">Alice in Wonderland: Simple Tasks Showing Complete Reasoning Breakdown in State-Of-the-Art Large Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning/">Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../attention-heads-of-large-language-models-a-survey/">Attention Heads of Large Language Models: A Survey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../combining-induction-and-transduction-for-abstract-reasoning/">Combining Induction and Transduction for Abstract Reasoning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/">Communicating Natural Programs to Humans and Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/">Diffusion for World Modeling: Visual Details Matter in Atari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-on-syntax-trees-for-program-synthesis/">Diffusion On Syntax Trees For Program Synthesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../florence-2-advancing-a-unified-representation-for-a-variety-of-vision-tasks/">Florence-2: Advancing a Unified Representation for a Variety of Vision Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/">On the Measure of Intelligence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/">Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../principled-instructions-are-all-you-need-for-questioning-llama-1-2-gpt-3-5-4/">Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle/">Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Training Language Models to Self-Correct via Reinforcement Learning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abstract">abstract</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#premise">premise</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outline">outline</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#quotes">quotes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../repos/">repos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../">papers</a></li>
+      <li class="breadcrumb-item active">Training Language Models to Self-Correct via Reinforcement Learning</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/papers/training-language-models-to-self-correct-via-reinforcement-learning/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle/" class="btn btn-neutral float-left" title="Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../repos/" class="btn btn-neutral float-right" title="repos" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="training-language-models-to-self-correct-via-reinforcement-learning">
+<span id="id1"></span><h1>Training Language Models to Self-Correct via Reinforcement Learning<a class="headerlink" href="#training-language-models-to-self-correct-via-reinforcement-learning" title="Link to this heading"></a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">id<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2409.12917</p>
+</dd>
+<dt class="field-even">Authors<span class="colon">:</span></dt>
+<dd class="field-even"><p>Aviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, Lei M Zhang, Kay McKinney, Disha Shrivastava, Cosmin Paduraru, George Tucker, Doina Precup, Feryal Behbahani, Aleksandra Faust</p>
+</dd>
+<dt class="field-odd">Published<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2024-09-19</p>
+</dd>
+<dt class="field-even">arXiv<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://arxiv.org/abs/2409.12917">https://arxiv.org/abs/2409.12917</a></p>
+</dd>
+<dt class="field-odd">PDF<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://arxiv.org/pdf/2409.12917">https://arxiv.org/pdf/2409.12917</a></p>
+</dd>
+<dt class="field-even">DOI<span class="colon">:</span></dt>
+<dd class="field-even"><p>N/A</p>
+</dd>
+<dt class="field-odd">Journal Reference<span class="colon">:</span></dt>
+<dd class="field-odd"><p>N/A</p>
+</dd>
+<dt class="field-even">Primary Category<span class="colon">:</span></dt>
+<dd class="field-even"><p>cs.LG</p>
+</dd>
+<dt class="field-odd">Categories<span class="colon">:</span></dt>
+<dd class="field-odd"><p>cs.LG</p>
+</dd>
+<dt class="field-even">Comment<span class="colon">:</span></dt>
+<dd class="field-even"><p>N/A</p>
+</dd>
+<dt class="field-odd">github_url<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_</p>
+</dd>
+</dl>
+<section id="abstract">
+<h2>abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<p>Self-correction is a highly desirable capability of large language models
+(LLMs), yet it has consistently been found to be largely ineffective in modern
+LLMs. Current methods for training self-correction typically depend on either
+multiple models, a more advanced model, or additional forms of supervision. To
+address these shortcomings, we develop a multi-turn online reinforcement
+learning (RL) approach, SCoRe, that significantly improves an LLM’s
+self-correction ability using entirely self-generated data. To build SCoRe, we
+first show that variants of supervised fine-tuning (SFT) on offline
+model-generated correction traces are often insufficient for instilling
+self-correction behavior. In particular, we observe that training via SFT falls
+prey to either a distribution mismatch between mistakes made by the
+data-collection policy and the model’s own responses, or to behavior collapse,
+where learning implicitly prefers only a certain mode of correction behavior
+that is often not effective at self-correction on test problems. SCoRe
+addresses these challenges by training under the model’s own distribution of
+self-generated correction traces and using appropriate regularization to steer
+the learning process into learning a self-correction behavior that is effective
+at test time as opposed to fitting high-reward responses for a given prompt.
+This regularization process includes an initial phase of multi-turn RL on a
+base model to generate a policy initialization that is less susceptible to
+collapse, followed by using a reward bonus to amplify self-correction. With
+Gemini 1.0 Pro and 1.5 Flash models, we find that SCoRe achieves
+state-of-the-art self-correction performance, improving the base models’
+self-correction by 15.6% and 9.1% respectively on MATH and HumanEval.</p>
+<section id="premise">
+<h3>premise<a class="headerlink" href="#premise" title="Link to this heading"></a></h3>
+</section>
+<section id="outline">
+<h3>outline<a class="headerlink" href="#outline" title="Link to this heading"></a></h3>
+</section>
+<section id="quotes">
+<h3>quotes<a class="headerlink" href="#quotes" title="Link to this heading"></a></h3>
+</section>
+<section id="notes">
+<h3>notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle/" class="btn btn-neutral float-left" title="Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../repos/" class="btn btn-neutral float-right" title="repos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

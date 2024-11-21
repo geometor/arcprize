@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/google-gemini-cookbook/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Welcome to the Gemini API Cookbook: This is a collection of guides and examples for the Gemini API, including quickstart tutorials for writing prompts and using different features of the API, and e..." />
+<meta name="description" content="Welcome to the Gemini API Cookbook: This is a collection of guides and examples for the Gemini API, including quickstart tutorials for writing prompts and using different features of the API, and e..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/google-gemini-cookbook/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="google-gemini/generative-ai-python" href="../../google-gemini-generative-ai-python/" />
+    <link rel="prev" title="google-gemini/cookbook" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">google-gemini/cookbook</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#welcome-to-the-gemini-api-cookbook">Welcome to the Gemini API Cookbook</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#get-started-with-the-gemini-api">Get started with the Gemini API</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#start-developing">Start developing</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#what-s-new">What’s New?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#table-of-contents">Table of contents</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#official-sdks">Official SDKs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#get-help">Get help</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#the-gemini-api-on-google-cloud-vertex-ai">The Gemini API on Google Cloud Vertex AI</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">google-gemini/cookbook</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/google-gemini-cookbook/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="google-gemini/cookbook" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../google-gemini-generative-ai-python/" class="btn btn-neutral float-right" title="google-gemini/generative-ai-python" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+</section>
+<section id="welcome-to-the-gemini-api-cookbook">
+<h1>Welcome to the Gemini API Cookbook<a class="headerlink" href="#welcome-to-the-gemini-api-cookbook" title="Link to this heading"></a></h1>
+<p>This is a collection of guides and examples for the Gemini API, including <a class="reference external" href="https://github.com/google-gemini/cookbook/tree/main/quickstarts">quickstart</a> tutorials for writing prompts and using different features of the API, and <a class="reference external" href="https://github.com/google-gemini/cookbook/tree/main/examples">examples</a> of things you can build.</p>
+<section id="get-started-with-the-gemini-api">
+<h2>Get started with the Gemini API<a class="headerlink" href="#get-started-with-the-gemini-api" title="Link to this heading"></a></h2>
+<p>The Gemini API gives you access to Gemini <a class="reference external" href="https://ai.google.dev/models/gemini">models</a> created by <a class="reference external" href="https://deepmind.google/technologies/gemini/#introduction">Google DeepMind</a>. Gemini models are built from the ground up to be multimodal, so you can reason seamlessly across text, images, code, and audio. You can use these to develop a <a class="reference external" href="https://ai.google.dev/examples/">range of applications</a>.</p>
+<section id="start-developing">
+<h3>Start developing<a class="headerlink" href="#start-developing" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://aistudio.google.com/">Google AI Studio</a>.</p></li>
+<li><p>Login with your Google account.</p></li>
+<li><p><a class="reference external" href="https://aistudio.google.com/app/apikey">Create</a> an API key.</p></li>
+<li><p>Use a <a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Prompting.ipynb">quickstart</a> for Python, or call the REST API <a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/rest/Prompting_REST.ipynb">using curl</a>.</p></li>
+</ol>
+</section>
+</section>
+<section id="what-s-new">
+<h2>What’s New?<a class="headerlink" href="#what-s-new" title="Link to this heading"></a></h2>
+<p>We’re excited to show you the latest additions to the Gemini API, and new notebooks.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Code_Execution.ipynb">Code execution</a>: Solve complex tasks by generating and running python code based on plain-text instructions.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/examples/chromadb/Vectordb_with_chroma.ipynb">VectorDB</a>: Create a vector database and retrieve answers to questions from the database.</p></li>
+</ul>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<p>Learn about the capabilities of the Gemini API by checking out these quickstart tutorials.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Authentication.ipynb">Authentication</a>: Start here to learn how you can set up your API key so you can get access to the Gemini API.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Counting_Tokens.ipynb">Counting Tokens</a> Tokens are the basic inputs to the Gemini models. Through this notebook, you will gain a better understanding of tokens through an interactive experience.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/File_API.ipynb">Files</a>: Use the Gemini API to upload files (text, code, images, audio, video) and write prompts using them.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Audio.ipynb">Audio</a>: Learn how to use the Gemini API with audio files.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/JSON_mode.ipynb">JSON mode</a>: Discover how to use JSON mode.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Function_calling.ipynb">Function Calling</a>: The Gemini API works great with code. Use this quickstart to learn how to write prompts to understand and call functions. Then check out the <a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Function_calling_config.ipynb">function calling config</a> tutorial to learn more.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/System_instructions.ipynb">System Instructions</a>: Give models additional context on how to respond by setting system instructions.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Embeddings.ipynb">Embeddings</a>: Create high quality and task-specific embeddings.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Tuning.ipynb">Tuning</a>: Learn how to improve model performance on a specific task through tuning.</p></li>
+<li><p><a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/quickstarts/Code_Execution.ipynb">Code execution</a>: Solve complex tasks by Generating and runing python code based on plain-text instructions.</p></li>
+</ul>
+<p>You can find lots more in the <a class="reference external" href="https://github.com/google-gemini/cookbook/tree/main/quickstarts">quickstarts folder</a>, and check out the <a class="reference external" href="https://github.com/google-gemini/cookbook/tree/main/examples">examples folder</a> for fun examples. We’re also maintaining an <a class="reference internal" href="#Awesome_gemini.md"><span class="xref myst">Awesome Gemini</span></a> list of all the cool projects the community is building using Gemini.</p>
+</section>
+<section id="official-sdks">
+<h2>Official SDKs<a class="headerlink" href="#official-sdks" title="Link to this heading"></a></h2>
+<p>The Gemini API is a REST API. You can call the API using a command line tool like <code class="docutils literal notranslate"><span class="pre">curl</span></code> (and you can find REST examples <a class="reference external" href="https://github.com/google-gemini/cookbook/tree/main/quickstarts/rest">here</a>) , or by using one of our official SDKs:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-python">Python</a> - Note: all the notebooks in this cookbook install the Python SDK for you, and this cookbook is the best place to find Python examples.</p></li>
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-js">Node.js</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-dart">Dart (Flutter)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-android">Android</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-swift">Swift</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/generative-ai-go">Go</a></p></li>
+</ul>
+</section>
+<section id="get-help">
+<h2>Get help<a class="headerlink" href="#get-help" title="Link to this heading"></a></h2>
+<p>Ask a question on the <a class="reference external" href="https://discuss.ai.google.dev/">Google AI Developer Forum</a>.</p>
+</section>
+<section id="the-gemini-api-on-google-cloud-vertex-ai">
+<h2>The Gemini API on Google Cloud Vertex AI<a class="headerlink" href="#the-gemini-api-on-google-cloud-vertex-ai" title="Link to this heading"></a></h2>
+<p>If you’re an enterprise developer looking to build on a fully-managed platform, you can also use the Gemini API on Google Cloud. Check out this <a class="reference external" href="https://github.com/GoogleCloudPlatform/generative-ai">repo</a> for lots of cool examples.</p>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>Contributions are welcome. See <a class="reference external" href="https://github.com/google-gemini/cookbook/blob/main/CONTRIBUTING.md">contributing</a> to learn more.</p>
+<p>Thank you for developing with the Gemini API! We’re excited to see what you create.</p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="google-gemini/cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../google-gemini-generative-ai-python/" class="btn btn-neutral float-right" title="google-gemini/generative-ai-python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

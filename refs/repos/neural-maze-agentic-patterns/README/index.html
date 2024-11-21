@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/neural-maze-agentic-patterns/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="No LangChain, no LangGraph, no LlamaIndex, no CrewAI. Pure and simple API calls to Groq. Table of Contents: 1. Introduction- 1.1 Reflection Pattern, 1.2 Tool Pattern, 1.3 Planning Pattern, 1.4 Mult..." />
+<meta name="description" content="No LangChain, no LangGraph, no LlamaIndex, no CrewAI. Pure and simple API calls to Groq. Table of Contents: 1. Introduction- 1.1 Reflection Pattern, 1.2 Tool Pattern, 1.3 Planning Pattern, 1.4 Mult..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/neural-maze-agentic-patterns/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="NousResearch/Open-Reasoning-Tasks" href="../../nousresearch-open-reasoning-tasks/" />
+    <link rel="prev" title="neural-maze/agentic_patterns" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">neural-maze/agentic_patterns</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#the-4-agentic-patterns">The 4 Agentic patterns</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#reflection-pattern">Reflection Pattern 🤔</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#tool-pattern">Tool Pattern  🛠</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#planning-pattern">Planning Pattern 🧠</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#multiagent-pattern">Multiagent Pattern 🧑🏽‍🤝‍🧑🏻</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#option-1-use-poetry">Option 1: Use Poetry:</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#option-2-install-the-pypi-library">Option 2: Install the PyPi library</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#groq-api-key">Groq API Key</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#using-a-reflection-agent-reflection-pattern">Using a Reflection Agent - Reflection Pattern</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#creating-and-using-tools-tool-use-pattern">Creating and Using Tools - Tool Use Pattern</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#reasoning-with-a-react-agent-planning-pattern">Reasoning with a ReAct Agent - Planning Pattern</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#defining-and-running-a-crew-of-agents-multiagent-pattern">Defining and running a Crew of Agents - MultiAgent Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#recommended-workflow">Recommended Workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#star-history">Star History</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">neural-maze/agentic_patterns</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/neural-maze-agentic-patterns/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="neural-maze/agentic_patterns" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../nousresearch-open-reasoning-tasks/" class="btn btn-neutral float-right" title="NousResearch/Open-Reasoning-Tasks" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+<p align="center">
+    <img alt="logo" src="img/agentic_patterns.png" width=600 />
+    <h1 align="center">Agentic Patterns</h1>
+    <h3 align="center">Implementing the agentic patterns using Groq</h3>
+</p>
+<p align="center">
+    <img alt="logo" src="img/groq.png" width=200 />
+</p>
+<blockquote>
+<div><p>No LangChain, no LangGraph, no LlamaIndex, no CrewAI. Pure and simple API calls to Groq.</p>
+</div></blockquote>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.9/reference/introduction.html#introduction" title="Python 3.9"><span class="xref myst">1. Introduction</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#reflection-pattern-"><span class="xref myst">1.1 Reflection Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#tool-pattern--"><span class="xref myst">1.2 Tool Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#planning-pattern-"><span class="xref myst">1.3 Planning Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#multiagent-pattern-"><span class="xref myst">1.4 Multiagent Pattern</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-4-agentic-patterns"><span class="xref myst">2. The 4 Agentic Patterns</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.sympy.org/latest/install.html#installation" title="SymPy 1.13.3"><span class="xref myst">3. Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#groq-api-key"><span class="xref myst">4. Groq API Key</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.sympy.org/latest/modules/physics/mechanics/autolev_parser.html#usage" title="SymPy 1.13.3"><span class="xref myst">5. Usage</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#using-a-reflection-agent---reflection-pattern"><span class="xref myst">5.1 Using a Reflection Agent - Reflection Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#creating-and-using-tools---tool-use-pattern"><span class="xref myst">5.2 Creating and Using Tools - Tool Use Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#reasoning-with-a-react-agent---planning-pattern"><span class="xref myst">5.3 Reasoning with a ReAct Agent - Planning Pattern</span></a></p></li>
+<li><p><a class="reference internal" href="#defining-and-running-a-crew-of-agents---multiagent-pattern"><span class="xref myst">5.4 Defining and running a Crew of Agents - MultiAgent Pattern</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#recommended-workflow"><span class="xref myst">6. Recommended Workflow</span></a></p></li>
+<li><p><a class="reference internal" href="#star-history"><span class="xref myst">7. Star History</span></a></p></li>
+</ul>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This repository contains an implementation of the 4 agentic patterns as defined by Andrew Ng in his DeepLearning.AI <a class="reference external" href="https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/?ref=dl-staging-website.ghost.io">blog article series</a>.</p>
+<p>Here’s a description of the four patterns we will be implementing.</p>
+</section>
+<section id="the-4-agentic-patterns">
+<h2>The 4 Agentic patterns<a class="headerlink" href="#the-4-agentic-patterns" title="Link to this heading"></a></h2>
+<section id="reflection-pattern">
+<h3>Reflection Pattern 🤔<a class="headerlink" href="#reflection-pattern" title="Link to this heading"></a></h3>
+<p align="center">
+    <img alt="logo" src="img/reflection_pattern.png" width=500 />
+</p>
+<p>A very basic pattern but, despite its simplicity, it provides
+surprising performance gains for the LLM response.</p>
+<p>It allows the LLM to <strong>reflect on its results</strong>, suggesting
+modifications, additions, improvements in the writing style, etc.</p>
+<p>Want to see how this pattern is implemented? 💻</p>
+<ul class="simple">
+<li><p>Check the <a class="reference internal" href="#notebooks/reflection_pattern.ipynb"><span class="xref myst">notebook</span></a> for a step by step explanation</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/reflection_pattern/reflection_agent.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">ReflectionAgent</span></code></span></a> for a complete Python implementation</p></li>
+</ul>
+<p>Take a look at the YouTube video! 👇</p>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=0sAVI8bQdRc">
+    <img src="https://img.youtube.com/vi/0sAVI8bQdRc/0.jpg" alt="Watch the video" />
+  </a>
+</div>
+</section>
+<hr class="docutils" />
+<section id="tool-pattern">
+<h3>Tool Pattern  🛠<a class="headerlink" href="#tool-pattern" title="Link to this heading"></a></h3>
+<p align="center">
+    <img alt="logo" src="img/tool_pattern.png" width=600 />
+</p>
+<p>The information stored in the LLM weights is (usually) <strong>not enough</strong> to give accurate and insightful answers to our questions</p>
+<p>That’s why we need to provide the LLM with ways to access the outside world 🌍</p>
+<p>In practice, you can build tools for whatever you want (at the end of the day they are just functions the LLM can use), from a tool that let’s you access Wikipedia, another to analyse the content of YouTube videos or calculate difficult integrals in Wolfram Alpha.</p>
+<p><strong>Tools</strong> are the <strong>secret sauce of agentic applications</strong> and the possibilities are endless! 🥫</p>
+<p>Want to see how this pattern is implemented? 💻</p>
+<ul class="simple">
+<li><p>Check the <a class="reference internal" href="#notebooks/tool_pattern.ipynb"><span class="xref myst">notebook</span></a> for a step by step explanation</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/tool_pattern/tool_agent.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">ToolAgent</span></code></span></a> for a complete Python implementation</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/tool_pattern/tool.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Tool</span></code></span></a> for understanding how Tools work under the hood.</p></li>
+</ul>
+<p>Take a look at the YouTube video! 👇</p>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=ApoDzZP8_ck">
+    <img src="https://img.youtube.com/vi/ApoDzZP8_ck/0.jpg" alt="Watch the video" />
+  </a>
+</div>
+</section>
+<hr class="docutils" />
+<section id="planning-pattern">
+<h3>Planning Pattern 🧠<a class="headerlink" href="#planning-pattern" title="Link to this heading"></a></h3>
+<p align="center">
+    <img alt="logo" src="img/planning_pattern.png" width=500 />
+</p>
+<p>So, we’ve seen agents capable of reflecting and using tools to access the outside world. But … <strong>what about planning</strong>,
+i.e. deciding what sequence of steps to follow to accomplish a large task?</p>
+<p>That is exactly what the Planning Pattern provides; ways for the LLM to break a task into <strong>smaller, more easily accomplished subgoals</strong> without losing track of the end goal.</p>
+<p>The most paradigmatic example of the planning pattern is the <strong>ReAct</strong> technique, displayed in the diagram above.</p>
+<p>Want to see how this pattern is implemented? 💻</p>
+<ul class="simple">
+<li><p>Check the <a class="reference internal" href="#notebooks/planning_pattern.ipynb"><span class="xref myst">notebook</span></a> for a step by step explanation</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/planning_pattern/react_agent.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">ReactAgent</span></code></span></a> for a complete Python implementation</p></li>
+</ul>
+<p>Take a look at the YouTube video! 👇</p>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=4xkC069wrw8">
+    <img src="https://img.youtube.com/vi/4xkC069wrw8/0.jpg" alt="Watch the video" />
+  </a>
+</div>
+</section>
+<hr class="docutils" />
+<section id="multiagent-pattern">
+<h3>Multiagent Pattern 🧑🏽‍🤝‍🧑🏻<a class="headerlink" href="#multiagent-pattern" title="Link to this heading"></a></h3>
+<p align="center">
+    <img alt="logo" src="img/multiagent_pattern.png" width=500 />
+</p>
+<p>You may have heard about frameworks like crewAI or AutoGen, which allow you to create multi-agent applications.</p>
+<p>These frameworks implement different variations of the multi-agent pattern, in which tasks are divided into <strong>smaller subtasks executed by different roles</strong> (e.g. one agent can be a software engineer, another a project manager, etc.)</p>
+<p>Want to see how this pattern is implemented? 💻</p>
+<ul class="simple">
+<li><p>Check the <a class="reference internal" href="#notebooks/multiagent_pattern.ipynb"><span class="xref myst">notebook</span></a> for a step by step explanation</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/multiagent_pattern/agent.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Agent</span></code></span></a> to see how to implement
+an <code class="docutils literal notranslate"><span class="pre">Agent</span></code>, member of the <code class="docutils literal notranslate"><span class="pre">Crew</span></code>.</p></li>
+<li><p>Check the <a class="reference internal" href="#src/agentic_patterns/multiagent_pattern/crew.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">Crew</span></code></span></a> to see how to implement
+the <code class="docutils literal notranslate"><span class="pre">Crew</span></code></p></li>
+</ul>
+<p>Take a look at the YouTube video! 👇</p>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=os22Q7nEXPA">
+    <img src="https://img.youtube.com/vi/os22Q7nEXPA/0.jpg" alt="Watch the video" />
+  </a>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>If you take a look at any of the notebooks in the <a class="reference internal" href="#notebooks"><span class="xref myst">notebooks/</span></a> folder you’ll see some helper methods and classes being imported from this library: <code class="docutils literal notranslate"><span class="pre">agentic-patterns</span></code>.</p>
+<p>This is the library implemented in the <a class="reference internal" href="#src"><span class="xref myst">src/</span></a> folder, and contains a full implementation of the 4 patterns and related helper methods.</p>
+<p>To install this library, you have two options.</p>
+<section id="option-1-use-poetry">
+<h3>Option 1: Use <a class="reference external" href="https://python-poetry.org/">Poetry</a>:<a class="headerlink" href="#option-1-use-poetry" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">poetry</span> <span class="n">install</span>
+</pre></div>
+</div>
+</section>
+<section id="option-2-install-the-pypi-library">
+<h3>Option 2: Install the PyPi library<a class="headerlink" href="#option-2-install-the-pypi-library" title="Link to this heading"></a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>agentic-patterns
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="groq-api-key">
+<h2>Groq API Key<a class="headerlink" href="#groq-api-key" title="Link to this heading"></a></h2>
+<p>This project works with <a class="reference external" href="https://groq.com/">Groq</a> as the LLM provider, so you’ll need to create an API Key in this platform.</p>
+<p>When you have your API Key copy and paste it in an <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
+<p>The content of this <code class="docutils literal notranslate"><span class="pre">.env</span></code> file should match the structure of the <code class="docutils literal notranslate"><span class="pre">.env.example</span></code> I’ve created in the repo, but instead of an empty string, the <code class="docutils literal notranslate"><span class="pre">GROQ_API_KEY</span></code> var will contain your API Key.</p>
+</section>
+<hr class="docutils" />
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>Once you have both library installed and the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file created, you can start playing with the 4 patterns implementation (I’ll encourage you to take a look at the code, to fully understand what is happening under the  hood).</p>
+<p>Let’s see an example of how to put the 4 patterns into practise.</p>
+<hr class="docutils" />
+<section id="using-a-reflection-agent-reflection-pattern">
+<h3>Using a Reflection Agent - Reflection Pattern<a class="headerlink" href="#using-a-reflection-agent-reflection-pattern" title="Link to this heading"></a></h3>
+<p>Here is an example of how to use a Reflection Agent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns</span> <span class="kn">import</span> <span class="n">ReflectionAgent</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ReflectionAgent</span><span class="p">()</span>
+
+<span class="n">generation_system_prompt</span> <span class="o">=</span> <span class="s2">&quot;You are a Python programmer tasked with generating high quality Python code&quot;</span>
+
+<span class="n">reflection_system_prompt</span> <span class="o">=</span> <span class="s2">&quot;You are Andrej Karpathy, an experienced computer scientist&quot;</span>
+
+<span class="n">user_msg</span> <span class="o">=</span> <span class="s2">&quot;Generate a Python implementation of the Merge Sort algorithm&quot;</span>
+
+
+<span class="n">final_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">user_msg</span><span class="o">=</span><span class="n">user_msg</span><span class="p">,</span>
+    <span class="n">generation_system_prompt</span><span class="o">=</span><span class="n">generation_system_prompt</span><span class="p">,</span>
+    <span class="n">reflection_system_prompt</span><span class="o">=</span><span class="n">reflection_system_prompt</span><span class="p">,</span>
+    <span class="n">n_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">final_response</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-and-using-tools-tool-use-pattern">
+<h3>Creating and Using Tools - Tool Use Pattern<a class="headerlink" href="#creating-and-using-tools-tool-use-pattern" title="Link to this heading"></a></h3>
+<p>An example of how to create a custom tool and bind it to a Tool Agent.</p>
+<p>First, let’s create the tool. In this case, I’ll be creating a tool for interacting with Hacker News. To define a tool, we just need to decorate the Python function with the <code class="docutils literal notranslate"><span class="pre">&#64;tool</span></code>decorator.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">agentic_patterns.tool_pattern.tool</span> <span class="kn">import</span> <span class="n">tool</span>
+<span class="kn">from</span> <span class="nn">agentic_patterns.tool_pattern.tool_agent</span> <span class="kn">import</span> <span class="n">ToolAgent</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">fetch_top_hacker_news_stories</span><span class="p">(</span><span class="n">top_n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch the top stories from Hacker News.</span>
+
+<span class="sd">    This function retrieves the top `top_n` stories from Hacker News using the Hacker News API.</span>
+<span class="sd">    Each story contains the title, URL, score, author, and time of submission. The data is fetched</span>
+<span class="sd">    from the official Firebase Hacker News API, which returns story details in JSON format.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        top_n (int): The number of top stories to retrieve.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">top_stories_url</span> <span class="o">=</span> <span class="s1">&#39;https://hacker-news.firebaseio.com/v0/topstories.json&#39;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">top_stories_url</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Check for HTTP errors</span>
+
+        <span class="c1"># Get the top story IDs</span>
+        <span class="n">top_story_ids</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[:</span><span class="n">top_n</span><span class="p">]</span>
+
+        <span class="n">top_stories</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># For each story ID, fetch the story details</span>
+        <span class="k">for</span> <span class="n">story_id</span> <span class="ow">in</span> <span class="n">top_story_ids</span><span class="p">:</span>
+            <span class="n">story_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://hacker-news.firebaseio.com/v0/item/</span><span class="si">{</span><span class="n">story_id</span><span class="si">}</span><span class="s1">.json&#39;</span>
+            <span class="n">story_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">story_url</span><span class="p">)</span>
+            <span class="n">story_response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Check for HTTP errors</span>
+            <span class="n">story_data</span> <span class="o">=</span> <span class="n">story_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+            <span class="c1"># Append the story title and URL (or other relevant info) to the list</span>
+            <span class="n">top_stories</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">story_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;No title&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">story_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;No URL available&#39;</span><span class="p">),</span>
+            <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">top_stories</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>Next, let’s define the Agent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tool_agent</span> <span class="o">=</span> <span class="n">ToolAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">fetch_top_hacker_news_stories</span><span class="p">])</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">tool_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_msg</span><span class="o">=</span><span class="s2">&quot;Tell me the top 5 Hacker News stories right now&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="reasoning-with-a-react-agent-planning-pattern">
+<h3>Reasoning with a ReAct Agent - Planning Pattern<a class="headerlink" href="#reasoning-with-a-react-agent-planning-pattern" title="Link to this heading"></a></h3>
+<p>As a paradigmatic example of the Planning Pattern, <code class="docutils literal notranslate"><span class="pre">agentic-patterns</span></code> offers an implementation of a ReAct Agent.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ReactAgent</span></code> is an evolution of the <code class="docutils literal notranslate"><span class="pre">ToolAgent</span></code>, extending its planning and reasoning capabilities.</p>
+<p>As we did before, we’ll begin by defining the tools. In this case, I’ll create three.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">sum_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the sum of two integers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (int): The first integer to be summed.</span>
+<span class="sd">        b (int): The second integer to be summed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The sum of `a` and `b`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">multiply_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multiplies two integers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (int): The first integer to multiply.</span>
+<span class="sd">        b (int): The second integer to multiply.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int: The product of `a` and `b`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span> <span class="nf">compute_log</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the logarithm of an integer `x` with an optional base.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): The integer value for which the logarithm is computed. Must be greater than 0.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The logarithm of `x` to the specified `base`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Logarithm is undefined for values less than or equal to 0.&quot;</span>
+
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, let’s create the agent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns.planning_pattern.react_agent</span> <span class="kn">import</span> <span class="n">ReactAgent</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ReactAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">sum_two_elements</span><span class="p">,</span> <span class="n">multiply_two_elements</span><span class="p">,</span> <span class="n">compute_log</span><span class="p">])</span>
+
+<span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_msg</span><span class="o">=</span><span class="s2">&quot;I want to calculate the sum of 1234 and 5678 and multiply the result by 5. Then, I want to take the logarithm of this result&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="defining-and-running-a-crew-of-agents-multiagent-pattern">
+<h3>Defining and running a Crew of Agents - MultiAgent Pattern<a class="headerlink" href="#defining-and-running-a-crew-of-agents-multiagent-pattern" title="Link to this heading"></a></h3>
+<p>For the Multiagent Pattern, I decided to use two <a class="reference external" href="https://www.crewai.com/">CrewAI</a>’s abstractions: the Agent and the Crew.</p>
+<p>Additionally, I’ve also borrow some ideas from Airflow, defining the dependency between agents using the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator.</p>
+<p>Let’s see an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns.multiagent_pattern.crew</span> <span class="kn">import</span> <span class="n">Crew</span>
+
+
+<span class="k">with</span> <span class="n">Crew</span><span class="p">()</span> <span class="k">as</span> <span class="n">crew</span><span class="p">:</span>
+    <span class="n">agent_1</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Poet Agent&quot;</span><span class="p">,</span>
+        <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;You are a well-known poet, who enjoys creating high quality poetry.&quot;</span><span class="p">,</span>
+        <span class="n">task_description</span><span class="o">=</span><span class="s2">&quot;Write a poem about the meaning of life&quot;</span><span class="p">,</span>
+        <span class="n">task_expected_output</span><span class="o">=</span><span class="s2">&quot;Just output the poem, without any title or introductory sentences&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">agent_2</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Poem Translator Agent&quot;</span><span class="p">,</span>
+        <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;You are an expert translator especially skilled in Spanish&quot;</span><span class="p">,</span>
+        <span class="n">task_description</span><span class="o">=</span><span class="s2">&quot;Translate a poem into Spanish&quot;</span><span class="p">,</span>
+        <span class="n">task_expected_output</span><span class="o">=</span><span class="s2">&quot;Just output the translated poem and nothing else&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">agent_3</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Writer Agent&quot;</span><span class="p">,</span>
+        <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;You are an expert transcriber, that loves writing poems into txt files&quot;</span><span class="p">,</span>
+        <span class="n">task_description</span><span class="o">=</span><span class="s2">&quot;You&#39;ll receive a Spanish poem in your context. You need to write the poem into &#39;./poem.txt&#39; file&quot;</span><span class="p">,</span>
+        <span class="n">task_expected_output</span><span class="o">=</span><span class="s2">&quot;A txt file containing the greek poem received from the context&quot;</span><span class="p">,</span>
+        <span class="n">tools</span><span class="o">=</span><span class="n">write_str_to_txt</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">agent_1</span> <span class="o">&gt;&gt;</span> <span class="n">agent_2</span> <span class="o">&gt;&gt;</span> <span class="n">agent_3</span>
+</pre></div>
+</div>
+<p>We can also plot the Crew, to see the DAG structure, like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">crew</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For the previous Crew, you should get something like this:</p>
+<div align="center">
+  <img src="img/dag.svg" alt="alt text" />
+</div>
+<p>To run the Crew, simply run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">crew</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recommended-workflow">
+<h2>Recommended Workflow<a class="headerlink" href="#recommended-workflow" title="Link to this heading"></a></h2>
+<p>This is <strong>an educational project</strong> and not an agentic framework.</p>
+<p>The reason I’ve decided to implement the 4 Agentic Patterns from scratch was to deeply understand their basics and also to teach them to anyone interested.</p>
+<p>Given this, this is my recommended learning workflow:</p>
+<p>1️⃣ Start with the YouTube video, ideally following my explanations with your own Jupyter Notebook.</p>
+<p>2️⃣ Play with the code in the Jupyter Notebook: make changes, modify the prompts, create new examples etc. Get comfortable with the pattern fundamentals and basic concepts.</p>
+<p>3️⃣ (Optional) Read through the library implementation of each pattern. This will require more effort and more Python knowledge, but if you take the time, I can assure you you’ll benefit a lot from it.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart TD;
+    Video --&gt; Notebook;
+    Notebook --&gt; Code
+    classDef centered text-align:center;
+</pre></div>
+</div>
+</section>
+<section id="star-history">
+<h2>Star History<a class="headerlink" href="#star-history" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://star-history.com/#neural-maze/agentic_patterns&amp;amp;Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=neural-maze/agentic_patterns&amp;type=Date" /></a></p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="neural-maze/agentic_patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../nousresearch-open-reasoning-tasks/" class="btn btn-neutral float-right" title="NousResearch/Open-Reasoning-Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

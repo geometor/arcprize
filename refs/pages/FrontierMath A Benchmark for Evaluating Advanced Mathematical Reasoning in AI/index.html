@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/pages/FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="source: FrontierMath: a new benchmark of expert-level math problems designed to measure AI’s mathematical abilities. See how leading AI models perform against the collective mathematics community. ..." />
+<meta name="description" content="source: FrontierMath: a new benchmark of expert-level math problems designed to measure AI’s mathematical abilities. See how leading AI models perform against the collective mathematics community. ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/pages/FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI/" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Gemini API | Google AI for Developers" href="../Gemini API    Google AI for Developers/" />
+    <link rel="prev" title="Algorithm for ARC Challenge - by Alexander Naumenko" href="../Algorithm for ARC Challenge/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../papers/">papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../repos/">repos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../">pages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../Algorithm for ARC Challenge/">Algorithm for ARC Challenge - by Alexander Naumenko</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authors">Authors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-frontiermath-benchmark">The FrontierMath Benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#current-performance-on-frontiermath">Current Performance on FrontierMath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#our-next-steps">Our next steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#about-the-authors">About the authors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Gemini API    Google AI for Developers/">Gemini API  |  Google AI for Developers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../I Solve Intelligence - it's Symbolic/">I Solve Intelligence - it’s Symbolic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Mediaserver - dlc-video-1-1-from-anns-to-deep-learning/">Mediaserver - dlc-video-1-1-from-anns-to-deep-learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Putting the Horse Before the Cart May Lead the Way to Artificial General Intelligence/">Putting the Horse Before the Cart May Lead the Way to Artificial General Intelligence | Emerj Artificial Intelligence Research</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Sudheer Kumar Yedunuri  Phi3.5-vision  Kaggle/">Sudheer Kumar Yedunuri | Phi3.5-vision | Kaggle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Weights &amp; Biases/">How to fine-tune Phi-3 Vision on a custom dataset | mlnews3 – Weights &amp; Biases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../">pages</a></li>
+      <li class="breadcrumb-item active">FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/pages/FrontierMath A Benchmark for Evaluating Advanced Mathematical Reasoning in AI.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../Algorithm for ARC Challenge/" class="btn btn-neutral float-left" title="Algorithm for ARC Challenge - by Alexander Naumenko" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Gemini API    Google AI for Developers/" class="btn btn-neutral float-right" title="Gemini API | Google AI for Developers" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="frontiermath-evaluating-advanced-mathematical-reasoning-in-ai-epoch-ai-epoch-ai">
+<h1>FrontierMath: Evaluating Advanced Mathematical Reasoning in AI | Epoch AI | Epoch AI<a class="headerlink" href="#frontiermath-evaluating-advanced-mathematical-reasoning-in-ai-epoch-ai-epoch-ai" title="Link to this heading"></a></h1>
+<p>source: <a class="reference external" href="https://epoch.ai/frontiermath/the-benchmark"></a></p>
+<blockquote>
+<div><p>FrontierMath: a new benchmark of expert-level math problems designed to measure AI’s mathematical abilities. See how leading AI models perform against the collective mathematics community.</p>
+</div></blockquote>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h2>
+<p>We’re introducing FrontierMath, a benchmark of hundreds of original, expert-crafted mathematics problems designed to evaluate advanced reasoning capabilities in AI systems. These problems span major branches of modern mathematics—from computational number theory to abstract algebraic geometry—and typically require hours or days for expert mathematicians to solve.</p>
+<p>Figure 1. While leading AI models now achieve near-perfect scores on traditional benchmarks like GSM-8k and MATH, they solve less than 2% of FrontierMath problems, revealing a substantial gap between current AI capabilities and the collective prowess of the mathematics community. MMLU scores shown are for the College Mathematics category of the benchmark.</p>
+<p>To understand and measure progress in artificial intelligence, we need carefully designed benchmarks that can assess how well AI systems engage in complex scientific reasoning. Mathematics offers a unique opportunity for this assessment—it requires extended chains of precise reasoning, with each step building exactly on what came before. And, unlike many domains where evaluation requires subjective judgment or expensive tests, mathematical problems can be rigorously and automatically verified.</p>
+</section>
+<section id="the-frontiermath-benchmark">
+<h2>The FrontierMath Benchmark<a class="headerlink" href="#the-frontiermath-benchmark" title="Link to this heading"></a></h2>
+<p>FrontierMath is a benchmark of hundreds of original mathematics problems spanning the breadth of modern mathematical research. These range from computationally intensive problems in number theory and real analysis to abstract questions in algebraic geometry and category theory. We developed it through collaboration with over 60 mathematicians from leading institutions, including professors, IMO question writers, and Fields medalists.</p>
+<p>FrontierMath problems typically demand hours or even days for specialist mathematicians to solve. The following Fields Medalists shared their impressions after reviewing some of the research-level problems in the benchmark:</p>
+<blockquote>
+<div><p>“These are extremely challenging. I think that in the near term basically the only way to solve them, short of having a real domain expert in the area, is by a combination of a semi-expert like a graduate student in a related field, maybe paired with some combination of a modern AI and lots of other algebra packages…” —Terence Tao, Fields Medal (2006)</p>
+</div></blockquote>
+<blockquote>
+<div><p>“[The questions I looked at] were all not really in my area and all looked like things I had no idea how to solve…they appear to be at a different level of difficulty from IMO problems.” — Timothy Gowers, Fields Medal (2006)</p>
+</div></blockquote>
+<p>FrontierMath features hundreds of advanced mathematics problems that require hours for expert mathematicians to solve. We release representative samples, which you may download <a class="reference external" href="https://epoch.ai/files/sample_question_transcripts.zip">here</a>.</p>
+<p><em>Definitions.</em> For a positive integer</p>
+<p>, let</p>
+<p>denote the largest integer</p>
+<p>such that</p>
+<p>. For a prime</p>
+<p>and</p>
+<p>, let</p>
+<p>denote the smallest positive integer</p>
+<p>such that</p>
+<p>. For</p>
+<p>, let</p>
+<p><em>Problem.</em> Let</p>
+<p>denote the set of primes</p>
+<p>for which</p>
+<p>and let</p>
+<p>denote the density</p>
+<p>of</p>
+<p>in the primes. Let</p>
+<p>Compute</p>
+<p><strong>Answer</strong>: 367707</p>
+<p><strong>MSC classification</strong>: 11 Number theory</p>
+<p>Construct a degree 19 polynomial</p>
+<p>such that</p>
+<p>has at least 3 (but not all linear) irreducible components over</p>
+<p>. Choose</p>
+<p>to be odd, monic, have real coefficients and linear coefficient -19 and calculate</p>
+<p>.</p>
+<p><strong>Answer</strong>: 1876572071974094803391179</p>
+<p><strong>MSC classification</strong>: 14 Algebraic geometry; 20 Group theory and generalizations; 11 Number theory generalizations</p>
+<p>Let</p>
+<p>for</p>
+<p>be the sequence of integers satisfying the recurrence formula</p>
+<p>with initial conditions</p>
+<p>for</p>
+<p>. Find the smallest prime</p>
+<p>for which the function</p>
+<p>given by</p>
+<p>can be extended to a continuous function on</p>
+<p>.</p>
+<p><strong>Answer</strong>: 9811</p>
+<p><strong>MSC classification</strong>: 11 Number theory</p>
+<p>Each problem is carefully designed to test genuine mathematical understanding. Problems must be novel and unpublished, with answers that can be automatically verified through computation—either as exact integers or mathematical objects like matrices and symbolic expressions in SymPy. A verification script checks submissions through exact matching or by confirming the submitted answer matches the known solution.</p>
+<p>They are also designed to be “guessproof”—problems have large numerical answers or complex mathematical objects as solutions, with less than a 1% chance of guessing correctly without the mathematical work. Problems are reviewed specifically for this property, with reviewers checking that shortcuts or pattern matching generally cannot bypass the need for genuine understanding.</p>
+<p>Each problem undergoes peer review by expert mathematicians who verify correctness, check for ambiguities, and assess difficulty ratings. Additionally, we conducted second reviews on a random subsample of problems, finding that approximately 1 in 20 problems had errors requiring correction—comparable to error rates in other major machine learning benchmarks <a class="reference external" href="https://arxiv.org/abs/2103.14749">like ImageNet</a>. We recognize the importance of benchmark accuracy and are expanding both our expert review process and error-bounty program to reduce this error rate.</p>
+</section>
+<section id="current-performance-on-frontiermath">
+<h2>Current Performance on FrontierMath<a class="headerlink" href="#current-performance-on-frontiermath" title="Link to this heading"></a></h2>
+<p>To evaluate how well current AI models can tackle advanced mathematical problems, we provided them with extensive support to maximize their performance. Our evaluation framework grants models ample thinking time and the ability to experiment and iterate. Models interact with a Python environment where they can write and execute code to test hypotheses, verify intermediate results, and refine their approaches based on immediate feedback.</p>
+<p>Figure 2. Performance of leading language models on FrontierMath. All models show consistently poor performance, with even the best models solving less than 2% of problems.</p>
+<p>Despite this support framework, FrontierMath has proven exceptionally challenging for today’s AI systems. We evaluated six leading language models—including Claude 3.5 Sonnet, o1-preview, GPT-4o, and Gemini 1.5 Pro—and found that none could solve more than 2% of the problems. This is in sharp contrast to other popular mathematical benchmarks such as GSM-8K and MATH, where top models now achieve over 90% accuracy.</p>
+</section>
+<section id="our-next-steps">
+<h2>Our next steps<a class="headerlink" href="#our-next-steps" title="Link to this heading"></a></h2>
+<p>FrontierMath represents a significant step toward evaluating whether AI systems possess research-level mathematical reasoning capabilities. While current models solve less than 2% of problems, we expect this benchmark to become increasingly valuable as AI systems advance.</p>
+<p>Our next steps include:</p>
+<ul class="simple">
+<li><p><strong>Regular evaluations</strong>: Conducting and publishing ongoing assessments of leading AI models to provide a standardized measure of progress, and evaluating how advanced mathematical reasoning abilities improve over time and with scale.</p></li>
+<li><p><strong>Benchmark expansion</strong>: Adding more problems to FrontierMath while maintaining both our rigorous standards and the current distribution of problem types, difficulty levels, and mathematical domains.</p></li>
+<li><p><strong>Public problem release</strong>: Building on our initial release of five representative problems with solutions, we plan to release additional problems in the coming months to further engage the community and facilitate benchmarking.</p></li>
+<li><p><strong>Enhanced quality assurance</strong>: Strengthening our quality control through expanded expert review, increased error-bounties, and improved peer review processes.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>FrontierMath represents a significant step toward evaluating whether AI systems possess research-level mathematical reasoning capabilities. While current models solve less than 2% of problems—revealing a substantial gap between AI capabilities and the collective prowess of the mathematical community—we expect this benchmark to become increasingly valuable as AI systems advance.</p>
+<p>We look forward to working with both the mathematics and the AI research community to refine and expand this benchmark. By regularly evaluating state-of-the-art models and collaborating with the AI research community, we aim to deepen our understanding of AI’s capabilities and limitations.</p>
+<p>You can read more about FrontierMath in <a class="reference external" href="https://arxiv.org/abs/2411.04872">our technical report</a>. If you want to reach out to us about FrontierMath evaluations, please email us at <a class="reference external" href="mailto:math_evals&#37;&#52;&#48;epochai&#46;org">math_evals<span>&#64;</span>epochai<span>&#46;</span>org</a></p>
+<section id="about-the-authors">
+<h3>About the authors<a class="headerlink" href="#about-the-authors" title="Link to this heading"></a></h3>
+<p><img alt="" src="refs/pages/FrontierMath%20A%20Benchmark%20for%20Evaluating%20Advanced%20Mathematical%20Reasoning%20in%20AI/tamay-besiroglu.jpg" /></p>
+<p>Tamay Besiroglu is the associate director at Epoch AI. His work focuses on the economics of computing and big-picture trends in machine learning. Previously, he was a researcher at the Future Tech Lab at MIT, led strategy for Metaculus, consulted for the UK Government, and worked at the Future of Humanity Institute.</p>
+<p><img alt="" src="refs/pages/FrontierMath%20A%20Benchmark%20for%20Evaluating%20Advanced%20Mathematical%20Reasoning%20in%20AI/elliot-glazer.png" /></p>
+<p>Elliot Glazer holds a Ph.D. in Mathematics from Harvard under Hugh Woodin, with research in set theory and formal systems, especially paradoxes in the axiom of choice. He has recently worked on the foundations of proof assistants, and enjoys developing mathematical puzzles in both finite and infinite settings.</p>
+<p><img alt="" src="refs/pages/FrontierMath%20A%20Benchmark%20for%20Evaluating%20Advanced%20Mathematical%20Reasoning%20in%20AI/caroline-falkman-olsson.png" /></p>
+<p>Caroline Falkman Olsson is an Operations Associate at Epoch AI, with a background in Economics and Statistics. She has previously worked as a predoctoral researcher at LSE’s International Inequalities Institute (III) and as a data analyst at the Institute for International Economic Studies (IIES) at Stockholm University.</p>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Algorithm for ARC Challenge/" class="btn btn-neutral float-left" title="Algorithm for ARC Challenge - by Alexander Naumenko" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Gemini API    Google AI for Developers/" class="btn btn-neutral float-right" title="Gemini API | Google AI for Developers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
