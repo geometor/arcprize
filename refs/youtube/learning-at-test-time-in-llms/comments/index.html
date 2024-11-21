@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="<no title>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/youtube/learning-at-test-time-in-llms/comments/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="[, “SLIDES SO YOU CAN FOLLOW ALONG DURING THE TALK: https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&st=9cloopv9&dl=0 ”, “ - @@MachineLearningSt..." />
+<meta name="description" content="[, “SLIDES SO YOU CAN FOLLOW ALONG DURING THE TALK: https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&st=9cloopv9&dl=0 ”, “ - @@MachineLearningSt..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/youtube/learning-at-test-time-in-llms/comments/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../">references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/youtube/learning-at-test-time-in-llms/comments.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <dl class="simple">
+<dt>[</dt><dd><p>“SLIDES SO YOU CAN FOLLOW ALONG DURING THE TALK: <a class="reference external" href="https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&amp;st=9cloopv9&amp;dl=0">https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&amp;st=9cloopv9&amp;dl=0</a>”,
+“    - &#64;&#64;MachineLearningStreetTalk ud83eudd29 thanks!”,
+“I love the program, not the editing of the video at all; why do you keep switching back to the picture of the merely mildly gesticulating ape all the time, when all the data is on the slide, which you barely keep up long enough to read? What info do you imagine that picture of a human standing is transmitting?”,
+“Wow, the time stamps with info are really helpful.”,
+“Does that mean it can be unrelated and non-redundant data for local training? Itu2019s hard to see how that can help with inference. If not then, are you not imposing an inductive prior by your selection of data? And your bet effectively becomes the inductive prior.”,
+“Superb presentation but it would be better to show the slides while the presenter is talking may be as a separate window.”,
+“    - Do agree, we need the slides,  we donu2019t need to watch the guy. Or maybe putting the guy on a reduced window on a corner would be better”,
+“Local and Context based Learning is one area where more and more people should work. It may solve the huge energy-need problem to run LLMs and can have various applications from Query Retrieval in DBMS to Edge Learning devices.”,
+“Historically, betting against technology advancement, just you couldnt imaging how exactly it could work, was always a bad idea”,
+“I can’t concentrate on what this dude is saying because he’s so annoyingly handsome, jesus christ.”,
+“This is connected to the power consumption of AGI. Scaling laws of progress will be based on electricity flowing through systems.  Limited power is the main factor now”,
+“two serious problems for this paper 1. how do you know using embedding Nearest Neighbors can find the nearest data for training , embedding is not the right measurement especially for complex multiple dimensional similarity requirement  2. what’s the business application scenarios ,  this is method is complicated and most of business application has pretty stabilized tasks , why I need to hold a huge distributed index for highly flexible tasks ? nnI do not see much high potential from this paper .”,
+“When he says that the learned information becomes part of its beliefs, technically how does that work? nIu2019m really stuck on how providing new data u201cgets intou201d the model.”,
+“At 00:15 this is Geneva not Zurich ud83dude02ud83dude02”,
+“    - Same city, one is written in French the other in German ud83eudee0”,
+“    - &#64;pedrogorilla483 are you joking ? Not sure what you mean?”,
+“Is the answer to solve extrapolation and generalisation, interpolate bettter? Seems like this will get us to GenAI saturation faster, not take us beyond?”,
+“    - not about extrapolation / interpolation, so much about local vs global”,
+“    - &#64;MachineLearningStreetTalku00a0 local manifold interpolation rather than global manifold interpolation? I think I must be missing something?”,
+“How much is it really about just teaching what it needs to know at the last minute so that it can perform well on the expected question? Are we not simply engineering an answer given that if the local training is done on unrelated data then the result will be less good.”,
+“For me the presentation had too much jargons that it was difficult to follow and understand.”,
+“It’s not going to be easy to aggregate multiple queries into a batch and run inference with this technique. The TTT would need different fine tuning data for each query. It might be very good for small models running on personal  desktop machines.”,
+“There is no wall”,
+“Yesss I was waiting for this. Specifically looked for it in the channel last night and realized the paper only came out a week ago”,
+“It’s konda hard to follow when we don’t see what he’s talking about. Show the slides instead of the presenter. ud83dude4f”,
+“Wow.. what a discovery!  Self bootstrapping representations based on data selection at test time to boost information gain.  This will be major for model based RL!”,
+“A very keen and interested young man that clearly expressed his passion at  providing a solution. I really hope he continues to express willingness to share his thoughts and beliefs with others and that he fulfills the potential that he shows so fluently.”,
+“Working on ARC, Francois gave us some hints about this approach in his University tour. Now he’s left Google to work on ….? Something that we learned in ARC-AGI Challenge we hope!!!”,
+“editing is ridiculously bad”,
+“    - Yeah.. they really needed to cut to the equations when he was referring to them.  A bit if highlighting wouldn’t go astray either.”,
+“    - Sorry, we are expanding editing team and upskilling new starters - would be super helpful if you didnu2019t mind giving more detailed feedback.”,
+“    - &#64;&#64;MachineLearningStreetTalk When he is talking about and gesturing to a slide we should see it more-or-less in the same time frame.”,
+“    - &#64;&#64;KevinKreger Yeah that’s good feedback, we felt that the video would be more engaging if it didn’t have powerpoint presentation vibes and tried to make it more &quot;real&quot; and make you feel like you were in the room with the speaker. We tried various ways of showing the slide and the speaker at the same time and the camera angles didn’t work unfortunately (it was better on the AGI conference talks). We will take this feedback onboard”,
+“    - &#64;&#64;KevinKreger <a class="reference external" href="https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&amp;st=9cloopv9&amp;dl=0">https://www.dropbox.com/scl/fi/sys3iasc63lgj8lm5t0ld/JONAS_SLIDES.pdf?rlkey=ak6ir61a2pyhrfuwyvgrdvq66&amp;st=9cloopv9&amp;dl=0</a> here are the slides”,
+“Now this is scientific research!”,
+“Such a cool atmosphere!!”,
+“The market messed up in anthropremorphiszing AI, when ai is really more framed like a space.  We got that wrong and it has led, and leading us, to bad places.”,
+“    - Much of the analysis uses our human thinking process to imagine how the language model works or should work, so what is your point?”,
+“    - &#64; ai isnu2019t thinking or doing anything with knowledge, itu2019s closer to a search.  So all the comparisons of consciousness are because of this projection we put onto it.  You would never think the internet or a computer is conscious, but for some reason we spend a lot of effort and time discussing how evil AI could be once itu2019s smart enough.  Also the design of the products and uses are limited by this human like role we put onto ai.”,
+“Machine learning used to be about maths. Now it is about hardware, hype, opinions, and moving big software blocks around. A generation has come into being that lacks the basic ability to make the kinds of jumps in theory made in the 1980s and 1990s.”,
+“    - OK boomer”,
+“    - i disagree, the scaling does emerge something.”,
+“    - Um.. no.. it really isn’t.  Take a read of any of the major papers in the last 10 years.. you will see some pretty serious math in play.”,
+“    - ud83dude02exactly. Spent time listening to the presentation and I heard nothing important. Iu2019m trying to understand the mathematical framework behind what he was presenting. The easiest way to convey your message in machine learning is to use mathematics, algorithms etc. If I donu2019t hear any of that, I canu2019t take the presentation seriously.”,
+“    - &#64;&#64;marilynlucas5128 I found the git using google. and both papers are linked there. go for it.”,
+“I’m feeling the AGI while watching this…”,
+“    - Really? Why? Iu2019m not asking as an u201cAGI canu2019t happenu201d kind of thing; I donu2019t see any fundamental limit to prevent it.nBut I donu2019t see why these results, as neat as they are, would make you feel that way.nnEdit: Ah, were you responding to like 28:08  in particular ? About selecting the most informative data in order to inform belief about the situation at hand?”,
+“    - &#64;&#64;drdca8263 he’s probably new-ish to the machine learning sphere. I was once like that in the past everytime a new technique or algorithm reported ‘performance improvement’.”,
+“    - &#64;&#64;macchiato_1881 nah, I’ve been around since 2016, if that counts as long to you”,
+“    - &#64;&#64;drdca8263 Yeah I think similar methods will likely play a large role in further progress towards more general agents”,
+“Warping the state space to experience, such as by K-means clustering, is how knowledge is applied efficaciously (&quot;system 2&quot; thinking).  Interesting talk, thank you for sharing.”,
+“Oh man, my eyes lit up when I saw that oil and paint magnetic ferrofluid animation! I literally saved that exact videoclip from YouTube a few months ago because it was just sooooo 4k, awesome!!!”,
+“ud83dude02 I was literally geeking out about this paper two weeks ago. Entropy-based everything is clearly the answer. Data selection, pretraining sampling, fine-tuning, inferenceu2026everything should be driven by entropy, because in real-life there are no gold labels, onlynBest guesses based on evidence and accepted axioms.”,
+“    - Color me shocked that embedding a model in a closer to real time than training and then freezing that state was an effective way to for that model to learn betternnI mean it is cool that this approach is being taken serious and being actifely researched, but within the circles of debating AI sentience, consciousnes, reasoning etc.nnThis is not a novel point of speculation about the difference between machine intelligence and organic intelligence.nnI have been suggesting that during training for a model this analgous to the continuous experience of organic agenthood.nnI don’t find it surprising that there is something like a hyperwebster scaling pattern that seems to emerage at a more &quot;inuitive&quot; level.”,
+“    - &#64;&#64;memegazer Nicely put!”,
+“    - u200b&#64;&#64;memegazer is it a fair summation that it’s attempting to solve extrapolation, generalisation, abstract reasoning, with more of the same, more interpolation?”,
+“Nice complements to my recent active learning course :)”,
+“This TTT is very exciting. Only a matter of time (or coincidence) the the OS community achieves as good capability as internal OAI.  Were you able to see the robotics they’ve been working on, the anymal bot? I like their technical video updates they put out, but always wish there was an accompanying interview.”,
+“Top material as usual.”,
+“I am Compute poor”,
+“    - Me too, however, about 1Gigabyte of DNA is all the sperm needed to swim to the egg and build a &quot;brain&quot; and &quot;dumb animals&quot; like deer are superior to humans by learning to walk faster in hours instead of months.”</p>
+</dd>
+</dl>
+<p>]</p>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
