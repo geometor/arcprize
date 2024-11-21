@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="README.md" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="refs/repos/michaelhodel-re-arc/README/" />
+<meta property="og:url" content="refs/repos/clement-bonnet-lpn/README/" />
 <meta property="og:site_name" content="geometor • arcprize" />
-<meta property="og:description" content="RE-ARC: Reverse-Engineering the Abstraction and Reasoning Corpus: Addressing ARC via Procedural Example Generation: This repository presents code to procedurally generate examples for the ARC train..." />
-<meta name="description" content="RE-ARC: Reverse-Engineering the Abstraction and Reasoning Corpus: Addressing ARC via Procedural Example Generation: This repository presents code to procedurally generate examples for the ARC train..." />
+<meta property="og:description" content="Latent Program Network: Code for the paper Searching Latent Program Spaces, submitted to the ARC Prize 2024 competition. The paper is available here. Authors and maintainers: Clément Bonnet& Matthe..." />
+<meta name="description" content="Latent Program Network: Code for the paper Searching Latent Program Spaces, submitted to the ARC Prize 2024 competition. The paper is available here. Authors and maintainers: Clément Bonnet& Matthe..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>README.md &mdash; geometor • arcprize</title>
@@ -16,7 +16,7 @@
       <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
   
-    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/michaelhodel-re-arc/README/" />
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/clement-bonnet-lpn/README/" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,8 +30,8 @@
     <link rel="author" title="About these documents" href="../../../../about/" />
     <link rel="index" title="Index" href="../../../../genindex/" />
     <link rel="search" title="Search" href="../../../../search/" />
-    <link rel="next" title="microsoft/Phi-3CookBook" href="../../microsoft-phi-3cookbook/" />
-    <link rel="prev" title="michaelhodel/re-arc" href="../" />   
+    <link rel="next" title="da-fr/arc-prize-2024" href="../../da-fr-arc-prize-2024/" />
+    <link rel="prev" title="clement-bonnet/lpn" href="../" />   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -97,29 +97,19 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../clement-bonnet-lpn/">clement-bonnet/lpn</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">clement-bonnet/lpn</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#latent-program-network">Latent Program Network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../jax-ml-jax/">jax-ml/jax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../">michaelhodel/re-arc</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#re-arc-reverse-engineering-the-abstraction-and-reasoning-corpus">RE-ARC: Reverse-Engineering the Abstraction and Reasoning Corpus</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#addressing-arc-via-procedural-example-generation">Addressing ARC via Procedural Example Generation</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#example-usage">Example usage:</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#d62c1b-original">00d62c1b (original)</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#d62c1b-generated">00d62c1b (generated)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
@@ -157,14 +147,14 @@
       <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../">references</a></li>
           <li class="breadcrumb-item"><a href="../../">repos</a></li>
-          <li class="breadcrumb-item"><a href="../">michaelhodel/re-arc</a></li>
+          <li class="breadcrumb-item"><a href="../">clement-bonnet/lpn</a></li>
       <li class="breadcrumb-item active">README.md</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/michaelhodel-re-arc/README.md" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/clement-bonnet-lpn/README.md" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="../" class="btn btn-neutral float-left" title="michaelhodel/re-arc" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../microsoft-phi-3cookbook/" class="btn btn-neutral float-right" title="microsoft/Phi-3CookBook" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../" class="btn btn-neutral float-left" title="clement-bonnet/lpn" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../da-fr-arc-prize-2024/" class="btn btn-neutral float-right" title="da-fr/arc-prize-2024" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -173,28 +163,11 @@
               <section id="readme-md">
 <h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
 </section>
-<section id="re-arc-reverse-engineering-the-abstraction-and-reasoning-corpus">
-<h1>RE-ARC: Reverse-Engineering the Abstraction and Reasoning Corpus<a class="headerlink" href="#re-arc-reverse-engineering-the-abstraction-and-reasoning-corpus" title="Link to this heading"></a></h1>
-<section id="addressing-arc-via-procedural-example-generation">
-<h2><a class="reference external" href="https://arxiv.org/abs/2404.07353">Addressing ARC via Procedural Example Generation</a><a class="headerlink" href="#addressing-arc-via-procedural-example-generation" title="Link to this heading"></a></h2>
-<p>This repository presents code to procedurally generate examples for the <a class="reference external" href="https://github.com/fchollet/ARC">ARC</a> training tasks. For each of the 400 tasks, an example generator is provided. See the <a class="reference internal" href="#demo.ipynb"><span class="xref myst">demo notebook</span></a> for example usage of the code and a visualization of the data. The primary entry point is the <code class="docutils literal notranslate"><span class="pre">generate_dataset</span></code> function defined in <a class="reference internal" href="#main.py"><span class="xref myst">main.py</span></a>. The file <a class="reference internal" href="#re_arc.zip"><span class="xref myst">re_arc.zip</span></a> contains 1000 verified generated examples for each of the 400 training tasks (re_arc/tasks contains a json file for each ARC task containing an array of json objects each with keys “input” and “output”) alongside two difficulty metrics for each example and some task-level metadata about runtime and sample-efficiency, the result of running the notebook, which calls <code class="docutils literal notranslate"><span class="pre">generate_dataset</span></code> with the default parameter values. The only major dependency is the <a class="reference external" href="https://github.com/michaelhodel/arc-dsl">ARC-DSL</a>, which is however included as a single file in <a class="reference internal" href="#dsl.py"><span class="xref myst">dsl.py</span></a>, as it is not provided as a Python package. Other relevant files are <a class="reference internal" href="#generators.py"><span class="xref myst">generators.py</span></a>, which contains the task-specific example generators, and <a class="reference internal" href="#verifiers.py"><span class="xref myst">verifiers.py</span></a>, which contains the corresponding task solver programs used for keeping only generated examples that are valid.</p>
-<p>For a more in-depth description of the work, see the <a class="reference external" href="https://arxiv.org/abs/2404.07353">notes on arxiv</a>.</p>
-<section id="example-usage">
-<h3>Example usage:<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">main</span> <span class="kn">import</span> <span class="n">demo_generator</span>
-<span class="n">demo_generator</span><span class="p">(</span><span class="s1">&#39;00d62c1b&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<section id="d62c1b-original">
-<h4>00d62c1b (original)<a class="headerlink" href="#d62c1b-original" title="Link to this heading"></a></h4>
-<p><img alt="00d62c1b (original)" src="refs/repos/michaelhodel-re-arc/00d62c1b_original.png" /></p>
-</section>
-<section id="d62c1b-generated">
-<h4>00d62c1b (generated)<a class="headerlink" href="#d62c1b-generated" title="Link to this heading"></a></h4>
-<p><img alt="00d62c1b (generated)" src="refs/repos/michaelhodel-re-arc/00d62c1b_generated.png" /></p>
-</section>
-</section>
-</section>
+<section id="latent-program-network">
+<h1>Latent Program Network<a class="headerlink" href="#latent-program-network" title="Link to this heading"></a></h1>
+<p>Code for the paper <em>Searching Latent Program Spaces</em>, submitted to the <a class="reference external" href="https://www.kaggle.com/competitions/arc-prize-2024">ARC Prize 2024</a> competition. The paper is available <a class="reference internal" href="#paper.pdf"><span class="xref myst">here</span></a>.</p>
+<p>Authors and maintainers: <a class="reference external" href="https://github.com/clement-bonnet">Clément Bonnet</a> &amp; <a class="reference external" href="https://github.com/mvmacfarlane">Matthew V Macfarlane</a>.</p>
+<p>Interactive visualization of the latent space: <a class="reference external" href="https://huggingface.co/spaces/clement-bonnet/lpn">here</a>.</p>
 </section>
 
 <div class="section">
@@ -204,8 +177,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../" class="btn btn-neutral float-left" title="michaelhodel/re-arc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../microsoft-phi-3cookbook/" class="btn btn-neutral float-right" title="microsoft/Phi-3CookBook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../" class="btn btn-neutral float-left" title="clement-bonnet/lpn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../da-fr-arc-prize-2024/" class="btn btn-neutral float-right" title="da-fr/arc-prize-2024" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

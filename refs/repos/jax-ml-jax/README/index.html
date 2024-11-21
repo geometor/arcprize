@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/jax-ml-jax/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Transformable numerical computing at scale: Continuous integration PyPI version Quickstart| Transformations| Install guide| Neural net libraries| Change logs| Reference docs What is JAX?: JAX is a ..." />
+<meta name="description" content="Transformable numerical computing at scale: Continuous integration PyPI version Quickstart| Transformations| Install guide| Neural net libraries| Change logs| Reference docs What is JAX?: JAX is a ..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/jax-ml-jax/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="michaelhodel/arc-dsl" href="../../michaelhodel-arc-dsl/" />
+    <link rel="prev" title="jax-ml/jax" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../demos/">demos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clement-bonnet-lpn/">clement-bonnet/lpn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">jax-ml/jax</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transformable-numerical-computing-at-scale">Transformable numerical computing at scale</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#what-is-jax">What is JAX?</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#contents">Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#quickstart-colab-in-the-cloud">Quickstart: Colab in the Cloud</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#transformations">Transformations</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#automatic-differentiation-with-grad">Automatic differentiation with <code class="docutils literal notranslate"><span class="pre">grad</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#compilation-with-jit">Compilation with <code class="docutils literal notranslate"><span class="pre">jit</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#auto-vectorization-with-vmap">Auto-vectorization with <code class="docutils literal notranslate"><span class="pre">vmap</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#spmd-programming-with-pmap">SPMD programming with <code class="docutils literal notranslate"><span class="pre">pmap</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#current-gotchas">Current gotchas</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#instructions">Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#neural-network-libraries">Neural network libraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#citing-jax">Citing JAX</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#reference-documentation">Reference documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../anaximander/popper-knowledge-summary/">Karl Popper’s Ideas on Knowledge and Adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../claude-popper-arc/">Claude: Popper’s Philosophy and the Abstraction and Reasoning Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sessions/">sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">jax-ml/jax</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/jax-ml-jax/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="jax-ml/jax" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-arc-dsl/" class="btn btn-neutral float-right" title="michaelhodel/arc-dsl" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+<div align="center">
+<img src="https://raw.githubusercontent.com/jax-ml/jax/main/images/jax_logo_250px.png" alt="logo"></img>
+</div>
+</section>
+<section id="transformable-numerical-computing-at-scale">
+<h1>Transformable numerical computing at scale<a class="headerlink" href="#transformable-numerical-computing-at-scale" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://github.com/jax-ml/jax/actions/workflows/ci-build.yaml"><img alt="Continuous integration" src="https://github.com/jax-ml/jax/actions/workflows/ci-build.yaml/badge.svg" /></a>
+<a class="reference external" href="https://pypi.org/project/jax/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/jax" /></a></p>
+<p><a class="reference internal" href="#quickstart-colab-in-the-cloud"><span class="xref myst"><strong>Quickstart</strong></span></a>
+| <a class="reference internal" href="#transformations"><span class="xref myst"><strong>Transformations</strong></span></a>
+| <a class="reference external" href="https://docs.sympy.org/latest/install.html#installation" title="SymPy 1.13.3"><span class="xref myst"><strong>Install guide</strong></span></a>
+| <a class="reference internal" href="#neural-network-libraries"><span class="xref myst"><strong>Neural net libraries</strong></span></a>
+| <a class="reference external" href="https://jax.readthedocs.io/en/latest/changelog.html"><strong>Change logs</strong></a>
+| <a class="reference external" href="https://jax.readthedocs.io/en/latest/"><strong>Reference docs</strong></a></p>
+<section id="what-is-jax">
+<h2>What is JAX?<a class="headerlink" href="#what-is-jax" title="Link to this heading"></a></h2>
+<p>JAX is a Python library for accelerator-oriented array computation and program transformation,
+designed for high-performance numerical computing and large-scale machine learning.</p>
+<p>With its updated version of <a class="reference external" href="https://github.com/hips/autograd">Autograd</a>,
+JAX can automatically differentiate native
+Python and NumPy functions. It can differentiate through loops, branches,
+recursion, and closures, and it can take derivatives of derivatives of
+derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation)
+via <a class="reference internal" href="#automatic-differentiation-with-grad"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">grad</span></code></span></a> as well as forward-mode differentiation,
+and the two can be composed arbitrarily to any order.</p>
+<p>What’s new is that JAX uses <a class="reference external" href="https://www.tensorflow.org/xla">XLA</a>
+to compile and run your NumPy programs on GPUs and TPUs. Compilation happens
+under the hood by default, with library calls getting just-in-time compiled and
+executed. But JAX also lets you just-in-time compile your own Python functions
+into XLA-optimized kernels using a one-function API,
+<a class="reference internal" href="#compilation-with-jit"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">jit</span></code></span></a>. Compilation and automatic differentiation can be
+composed arbitrarily, so you can express sophisticated algorithms and get
+maximal performance without leaving Python. You can even program multiple GPUs
+or TPU cores at once using <a class="reference internal" href="#spmd-programming-with-pmap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">pmap</span></code></span></a>, and
+differentiate through the whole thing.</p>
+<p>Dig a little deeper, and you’ll see that JAX is really an extensible system for
+<a class="reference internal" href="#transformations"><span class="xref myst">composable function transformations</span></a>. Both
+<a class="reference internal" href="#automatic-differentiation-with-grad"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">grad</span></code></span></a> and <a class="reference internal" href="#compilation-with-jit"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">jit</span></code></span></a>
+are instances of such transformations. Others are
+<a class="reference internal" href="#auto-vectorization-with-vmap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">vmap</span></code></span></a> for automatic vectorization and
+<a class="reference internal" href="#spmd-programming-with-pmap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">pmap</span></code></span></a> for single-program multiple-data (SPMD)
+parallel programming of multiple accelerators, with more to come.</p>
+<p>This is a research project, not an official Google product. Expect bugs and
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html">sharp edges</a>.
+Please help by trying it out, <a class="reference external" href="https://github.com/jax-ml/jax/issues">reporting
+bugs</a>, and letting us know what you
+think!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span><span class="p">,</span> <span class="n">jit</span><span class="p">,</span> <span class="n">vmap</span>
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>  <span class="c1"># inputs to the next layer</span>
+  <span class="k">return</span> <span class="n">outputs</span>                <span class="c1"># no activation on last layer</span>
+
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+  <span class="n">preds</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">preds</span> <span class="o">-</span> <span class="n">targets</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">grad_loss</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">loss</span><span class="p">))</span>  <span class="c1"># compiled gradient evaluation function</span>
+<span class="n">perex_grads</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">vmap</span><span class="p">(</span><span class="n">grad_loss</span><span class="p">,</span> <span class="n">in_axes</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>  <span class="c1"># fast per-example grads</span>
+</pre></div>
+</div>
+<section id="contents">
+<h3>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="#quickstart-colab-in-the-cloud"><span class="xref myst">Quickstart: Colab in the Cloud</span></a></p></li>
+<li><p><a class="reference internal" href="#transformations"><span class="xref myst">Transformations</span></a></p></li>
+<li><p><a class="reference internal" href="#current-gotchas"><span class="xref myst">Current gotchas</span></a></p></li>
+<li><p><a class="reference external" href="https://docs.sympy.org/latest/install.html#installation" title="SymPy 1.13.3"><span class="xref myst">Installation</span></a></p></li>
+<li><p><a class="reference internal" href="#neural-network-libraries"><span class="xref myst">Neural net libraries</span></a></p></li>
+<li><p><a class="reference internal" href="#citing-jax"><span class="xref myst">Citing JAX</span></a></p></li>
+<li><p><a class="reference internal" href="#reference-documentation"><span class="xref myst">Reference documentation</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="quickstart-colab-in-the-cloud">
+<h2>Quickstart: Colab in the Cloud<a class="headerlink" href="#quickstart-colab-in-the-cloud" title="Link to this heading"></a></h2>
+<p>Jump right in using a notebook in your browser, connected to a Google Cloud GPU.
+Here are some starter notebooks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jax.readthedocs.io/en/latest/quickstart.html">The basics: NumPy on accelerators, <code class="docutils literal notranslate"><span class="pre">grad</span></code> for differentiation, <code class="docutils literal notranslate"><span class="pre">jit</span></code> for compilation, and <code class="docutils literal notranslate"><span class="pre">vmap</span></code> for vectorization</a></p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/github/jax-ml/jax/blob/main/docs/notebooks/neural_network_with_tfds_data.ipynb">Training a Simple Neural Network, with TensorFlow Dataset Data Loading</a></p></li>
+</ul>
+<p><strong>JAX now runs on Cloud TPUs.</strong> To try out the preview, see the <a class="reference external" href="https://github.com/jax-ml/jax/tree/main/cloud_tpu_colabs">Cloud TPU
+Colabs</a>.</p>
+<p>For a deeper dive into JAX:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/autodiff_cookbook.html">The Autodiff Cookbook, Part 1: easy and powerful automatic differentiation in JAX</a></p></li>
+<li><p><a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html">Common gotchas and sharp edges</a></p></li>
+<li><p>See the <a class="reference external" href="https://github.com/jax-ml/jax/tree/main/docs/notebooks">full list of
+notebooks</a>.</p></li>
+</ul>
+</section>
+<section id="transformations">
+<h2>Transformations<a class="headerlink" href="#transformations" title="Link to this heading"></a></h2>
+<p>At its core, JAX is an extensible system for transforming numerical functions.
+Here are four transformations of primary interest: <code class="docutils literal notranslate"><span class="pre">grad</span></code>, <code class="docutils literal notranslate"><span class="pre">jit</span></code>, <code class="docutils literal notranslate"><span class="pre">vmap</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">pmap</span></code>.</p>
+<section id="automatic-differentiation-with-grad">
+<h3>Automatic differentiation with <code class="docutils literal notranslate"><span class="pre">grad</span></code><a class="headerlink" href="#automatic-differentiation-with-grad" title="Link to this heading"></a></h3>
+<p>JAX has roughly the same API as <a class="reference external" href="https://github.com/hips/autograd">Autograd</a>.
+The most popular function is
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#jax.grad"><code class="docutils literal notranslate"><span class="pre">grad</span></code></a>
+for reverse-mode gradients:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+
+<span class="k">def</span> <span class="nf">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Define a function</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">grad_tanh</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">tanh</span><span class="p">)</span>  <span class="c1"># Obtain its gradient function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grad_tanh</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>   <span class="c1"># Evaluate it at x = 1.0</span>
+<span class="c1"># prints 0.4199743</span>
+</pre></div>
+</div>
+<p>You can differentiate to any order with <code class="docutils literal notranslate"><span class="pre">grad</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">tanh</span><span class="p">)))(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="c1"># prints 0.62162673</span>
+</pre></div>
+</div>
+<p>For more advanced autodiff, you can use
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#jax.vjp"><code class="docutils literal notranslate"><span class="pre">jax.vjp</span></code></a> for
+reverse-mode vector-Jacobian products and
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#jax.jvp"><code class="docutils literal notranslate"><span class="pre">jax.jvp</span></code></a> for
+forward-mode Jacobian-vector products. The two can be composed arbitrarily with
+one another, and with other JAX transformations. Here’s one way to compose those
+to make a function that efficiently computes <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.hessian.html#jax.hessian">full Hessian
+matrices</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">jacfwd</span><span class="p">,</span> <span class="n">jacrev</span>
+
+<span class="k">def</span> <span class="nf">hessian</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">jit</span><span class="p">(</span><span class="n">jacfwd</span><span class="p">(</span><span class="n">jacrev</span><span class="p">(</span><span class="n">fun</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>As with <a class="reference external" href="https://github.com/hips/autograd">Autograd</a>, you’re free to use
+differentiation with Python control structures:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">abs_val</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">x</span>
+
+<span class="n">abs_val_grad</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">abs_val</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">abs_val_grad</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>   <span class="c1"># prints 1.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">abs_val_grad</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">))</span>  <span class="c1"># prints -1.0 (abs_val is re-evaluated)</span>
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#automatic-differentiation">reference docs on automatic
+differentiation</a>
+and the <a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/autodiff_cookbook.html">JAX Autodiff
+Cookbook</a>
+for more.</p>
+</section>
+<section id="compilation-with-jit">
+<h3>Compilation with <code class="docutils literal notranslate"><span class="pre">jit</span></code><a class="headerlink" href="#compilation-with-jit" title="Link to this heading"></a></h3>
+<p>You can use XLA to compile your functions end-to-end with
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#just-in-time-compilation-jit"><code class="docutils literal notranslate"><span class="pre">jit</span></code></a>,
+used either as an <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> decorator or as a higher-order function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">jit</span>
+
+<span class="k">def</span> <span class="nf">slow_f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="c1"># Element-wise ops see a large benefit from fusion</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">2.0</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+<span class="n">fast_f</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">slow_f</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n10</span> <span class="o">-</span><span class="n">r3</span> <span class="n">fast_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># ~ 4.5 ms / loop on Titan X</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n10</span> <span class="o">-</span><span class="n">r3</span> <span class="n">slow_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># ~ 14.5 ms / loop (also on GPU via JAX)</span>
+</pre></div>
+</div>
+<p>You can mix <code class="docutils literal notranslate"><span class="pre">jit</span></code> and <code class="docutils literal notranslate"><span class="pre">grad</span></code> and any other JAX transformation however you like.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">jit</span></code> puts constraints on the kind of Python control flow
+the function can use; see
+the tutorial on <a class="reference external" href="https://jax.readthedocs.io/en/latest/control-flow.html">Control Flow and Logical Operators with JIT</a>
+for more.</p>
+</section>
+<section id="auto-vectorization-with-vmap">
+<h3>Auto-vectorization with <code class="docutils literal notranslate"><span class="pre">vmap</span></code><a class="headerlink" href="#auto-vectorization-with-vmap" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#vectorization-vmap"><code class="docutils literal notranslate"><span class="pre">vmap</span></code></a> is
+the vectorizing map.
+It has the familiar semantics of mapping a function along array axes, but
+instead of keeping the loop on the outside, it pushes the loop down into a
+function’s primitive operations for better performance.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">vmap</span></code> can save you from having to carry around batch dimensions in your
+code. For example, consider this simple <em>unbatched</em> neural network prediction
+function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">input_vec</span><span class="p">):</span>
+  <span class="k">assert</span> <span class="n">input_vec</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+  <span class="n">activations</span> <span class="o">=</span> <span class="n">input_vec</span>
+  <span class="k">for</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">activations</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># `activations` on the right-hand side!</span>
+    <span class="n">activations</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>        <span class="c1"># inputs to the next layer</span>
+  <span class="k">return</span> <span class="n">outputs</span>                           <span class="c1"># no activation on last layer</span>
+</pre></div>
+</div>
+<p>We often instead write <code class="docutils literal notranslate"><span class="pre">jnp.dot(activations,</span> <span class="pre">W)</span></code> to allow for a batch dimension on the
+left side of <code class="docutils literal notranslate"><span class="pre">activations</span></code>, but we’ve written this particular prediction function to
+apply only to single input vectors. If we wanted to apply this function to a
+batch of inputs at once, semantically we could just write</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">params</span><span class="p">),</span> <span class="n">input_batch</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>But pushing one example through the network at a time would be slow! It’s better
+to vectorize the computation, so that at every layer we’re doing matrix-matrix
+multiplication rather than matrix-vector multiplication.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">vmap</span></code> function does that transformation for us. That is, if we write</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">vmap</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">params</span><span class="p">))(</span><span class="n">input_batch</span><span class="p">)</span>
+<span class="c1"># or, alternatively</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">in_axes</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">))(</span><span class="n">params</span><span class="p">,</span> <span class="n">input_batch</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then the <code class="docutils literal notranslate"><span class="pre">vmap</span></code> function will push the outer loop inside the function, and our
+machine will end up executing matrix-matrix multiplications exactly as if we’d
+done the batching by hand.</p>
+<p>It’s easy enough to manually batch a simple neural network without <code class="docutils literal notranslate"><span class="pre">vmap</span></code>, but
+in other cases manual vectorization can be impractical or impossible. Take the
+problem of efficiently computing per-example gradients: that is, for a fixed set
+of parameters, we want to compute the gradient of our loss function evaluated
+separately at each example in a batch. With <code class="docutils literal notranslate"><span class="pre">vmap</span></code>, it’s easy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">per_example_gradients</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">loss</span><span class="p">),</span> <span class="n">params</span><span class="p">))(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Of course, <code class="docutils literal notranslate"><span class="pre">vmap</span></code> can be arbitrarily composed with <code class="docutils literal notranslate"><span class="pre">jit</span></code>, <code class="docutils literal notranslate"><span class="pre">grad</span></code>, and any other
+JAX transformation! We use <code class="docutils literal notranslate"><span class="pre">vmap</span></code> with both forward- and reverse-mode automatic
+differentiation for fast Jacobian and Hessian matrix calculations in
+<code class="docutils literal notranslate"><span class="pre">jax.jacfwd</span></code>, <code class="docutils literal notranslate"><span class="pre">jax.jacrev</span></code>, and <code class="docutils literal notranslate"><span class="pre">jax.hessian</span></code>.</p>
+</section>
+<section id="spmd-programming-with-pmap">
+<h3>SPMD programming with <code class="docutils literal notranslate"><span class="pre">pmap</span></code><a class="headerlink" href="#spmd-programming-with-pmap" title="Link to this heading"></a></h3>
+<p>For parallel programming of multiple accelerators, like multiple GPUs, use
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#parallelization-pmap"><code class="docutils literal notranslate"><span class="pre">pmap</span></code></a>.
+With <code class="docutils literal notranslate"><span class="pre">pmap</span></code> you write single-program multiple-data (SPMD) programs, including
+fast parallel collective communication operations. Applying <code class="docutils literal notranslate"><span class="pre">pmap</span></code> will mean
+that the function you write is compiled by XLA (similarly to <code class="docutils literal notranslate"><span class="pre">jit</span></code>), then
+replicated and executed in parallel across devices.</p>
+<p>Here’s an example on an 8-GPU machine:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">pmap</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="nn">jnp</span>
+
+<span class="c1"># Create 8 random 5000 x 6000 matrices, one per GPU</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">key</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">mats</span> <span class="o">=</span> <span class="n">pmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">key</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)))(</span><span class="n">keys</span><span class="p">)</span>
+
+<span class="c1"># Run a local matmul on each device in parallel (no data transfer)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">))(</span><span class="n">mats</span><span class="p">)</span>  <span class="c1"># result.shape is (8, 5000, 5000)</span>
+
+<span class="c1"># Compute the mean on each device in parallel and print the result</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pmap</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">mean</span><span class="p">)(</span><span class="n">result</span><span class="p">))</span>
+<span class="c1"># prints [1.1566595 1.1805978 ... 1.2321935 1.2015157]</span>
+</pre></div>
+</div>
+<p>In addition to expressing pure maps, you can use fast <a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.lax.html#parallel-operators">collective communication
+operations</a>
+between devices:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">lax</span>
+
+<span class="nd">@partial</span><span class="p">(</span><span class="n">pmap</span><span class="p">,</span> <span class="n">axis_name</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">lax</span><span class="o">.</span><span class="n">psum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">normalize</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">4.</span><span class="p">)))</span>
+<span class="c1"># prints [0.         0.16666667 0.33333334 0.5       ]</span>
+</pre></div>
+</div>
+<p>You can even <a class="reference external" href="https://colab.research.google.com/github/jax-ml/jax/blob/main/cloud_tpu_colabs/Pmap_Cookbook.ipynb#scrollTo=MdRscR5MONuN">nest <code class="docutils literal notranslate"><span class="pre">pmap</span></code> functions</a> for more
+sophisticated communication patterns.</p>
+<p>It all composes, so you’re free to differentiate through parallel computations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span>
+
+<span class="nd">@pmap</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="nd">@pmap</span>
+  <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">*</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">grad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">w</span><span class="p">)))(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1"># [[ 0.        , -0.7170853 ],</span>
+<span class="c1">#  [-3.1085174 , -0.4824318 ],</span>
+<span class="c1">#  [10.366636  , 13.135289  ],</span>
+<span class="c1">#  [ 0.22163185, -0.52112055]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)))(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1"># [[ -3.2369726,  -1.6356447],</span>
+<span class="c1">#  [  4.7572474,  11.606951 ],</span>
+<span class="c1">#  [-98.524414 ,  42.76499  ],</span>
+<span class="c1">#  [ -1.6007166,  -1.2568436]]</span>
+</pre></div>
+</div>
+<p>When reverse-mode differentiating a <code class="docutils literal notranslate"><span class="pre">pmap</span></code> function (e.g. with <code class="docutils literal notranslate"><span class="pre">grad</span></code>), the
+backward pass of the computation is parallelized just like the forward pass.</p>
+<p>See the <a class="reference external" href="https://colab.research.google.com/github/jax-ml/jax/blob/main/cloud_tpu_colabs/Pmap_Cookbook.ipynb">SPMD
+Cookbook</a>
+and the <a class="reference external" href="https://github.com/jax-ml/jax/blob/main/examples/spmd_mnist_classifier_fromscratch.py">SPMD MNIST classifier from scratch
+example</a>
+for more.</p>
+</section>
+</section>
+<section id="current-gotchas">
+<h2>Current gotchas<a class="headerlink" href="#current-gotchas" title="Link to this heading"></a></h2>
+<p>For a more thorough survey of current gotchas, with examples and explanations,
+we highly recommend reading the <a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html">Gotchas
+Notebook</a>.
+Some standouts:</p>
+<ol class="arabic simple">
+<li><p>JAX transformations only work on <a class="reference external" href="https://en.wikipedia.org/wiki/Pure_function">pure functions</a>, which don’t have side-effects and respect <a class="reference external" href="https://en.wikipedia.org/wiki/Referential_transparency">referential transparency</a> (i.e. object identity testing with <code class="docutils literal notranslate"><span class="pre">is</span></code> isn’t preserved). If you use a JAX transformation on an impure Python function, you might see an error like <code class="docutils literal notranslate"><span class="pre">Exception:</span> <span class="pre">Can't</span> <span class="pre">lift</span> <span class="pre">Traced...</span></code>  or <code class="docutils literal notranslate"><span class="pre">Exception:</span> <span class="pre">Different</span> <span class="pre">traces</span> <span class="pre">at</span> <span class="pre">same</span> <span class="pre">level</span></code>.</p></li>
+<li><p><a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#in-place-updates">In-place mutating updates of
+arrays</a>, like <code class="docutils literal notranslate"><span class="pre">x[i]</span> <span class="pre">+=</span> <span class="pre">y</span></code>, aren’t supported, but <a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.ops.html">there are functional alternatives</a>. Under a <code class="docutils literal notranslate"><span class="pre">jit</span></code>, those functional alternatives will reuse buffers in-place automatically.</p></li>
+<li><p><a class="reference external" href="https://jax.readthedocs.io/en/latest/random-numbers.html">Random numbers are
+different</a>, but for <a class="reference external" href="https://github.com/jax-ml/jax/blob/main/docs/jep/263-prng.md">good reasons</a>.</p></li>
+<li><p>If you’re looking for <a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/convolutions.html">convolution
+operators</a>,
+they’re in the <code class="docutils literal notranslate"><span class="pre">jax.lax</span></code> package.</p></li>
+<li><p>JAX enforces single-precision (32-bit, e.g. <code class="docutils literal notranslate"><span class="pre">float32</span></code>) values by default, and
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#double-64bit-precision">to enable
+double-precision</a>
+(64-bit, e.g. <code class="docutils literal notranslate"><span class="pre">float64</span></code>) one needs to set the <code class="docutils literal notranslate"><span class="pre">jax_enable_x64</span></code> variable at
+startup (or set the environment variable <code class="docutils literal notranslate"><span class="pre">JAX_ENABLE_X64=True</span></code>).
+On TPU, JAX uses 32-bit values by default for everything <em>except</em> internal
+temporary variables in ‘matmul-like’ operations, such as <code class="docutils literal notranslate"><span class="pre">jax.numpy.dot</span></code> and <code class="docutils literal notranslate"><span class="pre">lax.conv</span></code>.
+Those ops have a <code class="docutils literal notranslate"><span class="pre">precision</span></code> parameter which can be used to approximate 32-bit operations
+via three bfloat16 passes, with a cost of possibly slower runtime.
+Non-matmul operations on TPU lower to implementations that often emphasize speed over
+accuracy, so in practice computations on TPU will be less precise than similar
+computations on other backends.</p></li>
+<li><p>Some of NumPy’s dtype promotion semantics involving a mix of Python scalars
+and NumPy types aren’t preserved, namely <code class="docutils literal notranslate"><span class="pre">np.add(1,</span> <span class="pre">np.array([2],</span> <span class="pre">np.float32)).dtype</span></code> is <code class="docutils literal notranslate"><span class="pre">float64</span></code> rather than <code class="docutils literal notranslate"><span class="pre">float32</span></code>.</p></li>
+<li><p>Some transformations, like <code class="docutils literal notranslate"><span class="pre">jit</span></code>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/control-flow.html">constrain how you can use Python control
+flow</a>.
+You’ll always get loud errors if something goes wrong. You might have to use
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.html#just-in-time-compilation-jit"><code class="docutils literal notranslate"><span class="pre">jit</span></code>’s <code class="docutils literal notranslate"><span class="pre">static_argnums</span></code>
+parameter</a>,
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/jax.lax.html#control-flow-operators">structured control flow
+primitives</a>
+like
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan"><code class="docutils literal notranslate"><span class="pre">lax.scan</span></code></a>,
+or just use <code class="docutils literal notranslate"><span class="pre">jit</span></code> on smaller subfunctions.</p></li>
+</ol>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<section id="supported-platforms">
+<h3>Supported platforms<a class="headerlink" href="#supported-platforms" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Linux x86_64</p></th>
+<th class="head"><p>Linux aarch64</p></th>
+<th class="head"><p>Mac x86_64</p></th>
+<th class="head"><p>Mac aarch64</p></th>
+<th class="head"><p>Windows x86_64</p></th>
+<th class="head"><p>Windows WSL2 x86_64</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CPU</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>NVIDIA GPU</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>n/a</p></td>
+<td><p>no</p></td>
+<td><p>experimental</p></td>
+</tr>
+<tr class="row-even"><td><p>Google TPU</p></td>
+<td><p>yes</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD GPU</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+<td><p>experimental</p></td>
+<td><p>n/a</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-even"><td><p>Apple GPU</p></td>
+<td><p>n/a</p></td>
+<td><p>no</p></td>
+<td><p>n/a</p></td>
+<td><p>experimental</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel GPU</p></td>
+<td><p>experimental</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+<td><p>n/a</p></td>
+<td><p>no</p></td>
+<td><p>no</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="instructions">
+<h3>Instructions<a class="headerlink" href="#instructions" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Instructions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CPU</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">jax</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>NVIDIA GPU</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">&quot;jax[cuda12]&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Google TPU</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">&quot;jax[tpu]&quot;</span> <span class="pre">-f</span> <span class="pre">https://storage.googleapis.com/jax-releases/libtpu_releases.html</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD GPU (Linux)</p></td>
+<td><p>Use <a class="reference external" href="https://hub.docker.com/r/rocm/jax-community/tags">Docker</a>, <a class="reference external" href="https://github.com/ROCm/jax/releases">pre-built wheels</a>, or <a class="reference external" href="https://jax.readthedocs.io/en/latest/developer.html#additional-notes-for-building-a-rocm-jaxlib-for-amd-gpus">build from source</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mac GPU</p></td>
+<td><p>Follow <a class="reference external" href="https://developer.apple.com/metal/jax/">Apple’s instructions</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Intel GPU</p></td>
+<td><p>Follow <a class="reference external" href="https://github.com/intel/intel-extension-for-openxla/blob/main/docs/acc_jax.md">Intel’s instructions</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference external" href="https://jax.readthedocs.io/en/latest/installation.html">the documentation</a>
+for information on alternative installation strategies. These include compiling
+from source, installing with Docker, using other versions of CUDA, a
+community-supported conda build, and answers to some frequently-asked questions.</p>
+</section>
+</section>
+<section id="neural-network-libraries">
+<h2>Neural network libraries<a class="headerlink" href="#neural-network-libraries" title="Link to this heading"></a></h2>
+<p>Multiple Google research groups at Google DeepMind and Alphabet develop and share libraries
+for training neural networks in JAX. If you want a fully featured library for neural network
+training with examples and how-to guides, try
+<a class="reference external" href="https://github.com/google/flax">Flax</a> and its <a class="reference external" href="https://flax.readthedocs.io/en/latest/nnx/index.html">documentation site</a>.</p>
+<p>Check out the <a class="reference external" href="https://jax.readthedocs.io/en/latest/#ecosystem">JAX Ecosystem section</a>
+on the JAX documentation site for a list of JAX-based network libraries, which includes
+<a class="reference external" href="https://github.com/deepmind/optax">Optax</a> for gradient processing and
+optimization, <a class="reference external" href="https://github.com/deepmind/chex">chex</a> for reliable code and testing, and
+<a class="reference external" href="https://github.com/patrick-kidger/equinox">Equinox</a> for neural networks.
+(Watch the NeurIPS 2020 JAX Ecosystem at DeepMind talk
+<a class="reference external" href="https://www.youtube.com/watch?v=iDxJxIyzSiM">here</a> for additional details.)</p>
+</section>
+<section id="citing-jax">
+<h2>Citing JAX<a class="headerlink" href="#citing-jax" title="Link to this heading"></a></h2>
+<p>To cite this repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@software</span><span class="p">{</span><span class="n">jax2018github</span><span class="p">,</span>
+  <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">James</span> <span class="n">Bradbury</span> <span class="ow">and</span> <span class="n">Roy</span> <span class="n">Frostig</span> <span class="ow">and</span> <span class="n">Peter</span> <span class="n">Hawkins</span> <span class="ow">and</span> <span class="n">Matthew</span> <span class="n">James</span> <span class="n">Johnson</span> <span class="ow">and</span> <span class="n">Chris</span> <span class="n">Leary</span> <span class="ow">and</span> <span class="n">Dougal</span> <span class="n">Maclaurin</span> <span class="ow">and</span> <span class="n">George</span> <span class="n">Necula</span> <span class="ow">and</span> <span class="n">Adam</span> <span class="n">Paszke</span> <span class="ow">and</span> <span class="n">Jake</span> <span class="n">Vander</span><span class="p">{</span><span class="n">P</span><span class="p">}</span><span class="n">las</span> <span class="ow">and</span> <span class="n">Skye</span> <span class="n">Wanderman</span><span class="o">-</span><span class="p">{</span><span class="n">M</span><span class="p">}</span><span class="n">ilne</span> <span class="ow">and</span> <span class="n">Qiao</span> <span class="n">Zhang</span><span class="p">},</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="p">{{</span><span class="n">JAX</span><span class="p">}:</span> <span class="n">composable</span> <span class="n">transformations</span> <span class="n">of</span> <span class="p">{</span><span class="n">P</span><span class="p">}</span><span class="n">ython</span><span class="o">+</span><span class="p">{</span><span class="n">N</span><span class="p">}</span><span class="n">um</span><span class="p">{</span><span class="n">P</span><span class="p">}</span><span class="n">y</span> <span class="n">programs</span><span class="p">},</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="p">{</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jax</span><span class="o">-</span><span class="n">ml</span><span class="o">/</span><span class="n">jax</span><span class="p">},</span>
+  <span class="n">version</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.3.13</span><span class="p">},</span>
+  <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2018</span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above bibtex entry, names are in alphabetical order, the version number
+is intended to be that from <a class="reference internal" href="#../main/jax/version.py"><span class="xref myst">jax/version.py</span></a>, and
+the year corresponds to the project’s open-source release.</p>
+<p>A nascent version of JAX, supporting only automatic differentiation and
+compilation to XLA, was described in a <a class="reference external" href="https://mlsys.org/Conferences/2019/doc/2018/146.pdf">paper that appeared at SysML
+2018</a>. We’re currently working on
+covering JAX’s ideas and capabilities in a more comprehensive and up-to-date
+paper.</p>
+</section>
+<section id="reference-documentation">
+<h2>Reference documentation<a class="headerlink" href="#reference-documentation" title="Link to this heading"></a></h2>
+<p>For details about the JAX API, see the
+<a class="reference external" href="https://jax.readthedocs.io/">reference documentation</a>.</p>
+<p>For getting started as a JAX developer, see the
+<a class="reference external" href="https://jax.readthedocs.io/en/latest/developer.html">developer documentation</a>.</p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="jax-ml/jax" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-arc-dsl/" class="btn btn-neutral float-right" title="michaelhodel/arc-dsl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
