@@ -15,18 +15,17 @@ recent logs
    :hidden:
    :maxdepth: 2
 
-   mission/index.rst
-   usage/index.rst
-   modules/index.rst
-   logs/index.rst
-   demos/index.rst
+   mission/index
+   usage/index
+   modules/index
+   logs/index
+   .. demos/index.rst
    refs/index.rst
-   sessions/index.rst
+   .. sessions/index.rst
    todos.rst
-
-.. changelog.rst
-.. connect.rst
-.. about.rst
+   .. changelog.rst
+   .. connect.rst
+   .. about.rst
 
 
 indices

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="README.md" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/repos/laion-ai-aiw/README/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="Usage: Install requirements: pip install requirements.txt Collect experiments data: Collect using LiteLLM: Refer to the LiteLLM Docs on how to setup your account and API keys. Workflow init: Execut..." />
+<meta name="description" content="Usage: Install requirements: pip install requirements.txt Collect experiments data: Collect using LiteLLM: Refer to the LiteLLM Docs on how to setup your account and API keys. Workflow init: Execut..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README.md &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/laion-ai-aiw/README/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+    <link rel="next" title="michaelhodel/arc-dsl" href="../../michaelhodel-arc-dsl/" />
+    <link rel="prev" title="LAION-AI/AIW" href="../" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../">references</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../papers/">papers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../">repos</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-cookbook/">anthropics/anthropic-cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../anthropics-anthropic-quickstarts/">anthropics/anthropic-quickstarts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../arcprizeorg-model-baseline/">arcprizeorg/model_baseline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../clement-bonnet-lpn/">clement-bonnet/lpn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../da-fr-arc-prize-2024/">da-fr/arc-prize-2024</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ekinakyurek-marc/">ekinakyurek/marc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ellisk42-ec/">ellisk42/ec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../evanthebouncy-larc-gpt4/">evanthebouncy/larc_gpt4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gist-dslab-mc-larc/">GIST-DSLab/MC-LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-cookbook/">google-gemini/cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google-gemini-generative-ai-python/">google-gemini/generative-ai-python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ironbar-arc24/">ironbar/arc24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../jax-ml-jax/">jax-ml/jax</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">LAION-AI/AIW</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#collect-experiments-data">Collect experiments data</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#execution-example-for-a-single-selected-prompt-id">Execution example for a single selected prompt ID:</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#plot-the-data">Plot the data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pfletcherhill-mini-arc/">pfletcherhill/mini-arc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../samacqua-larc/">samacqua/LARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../star14ms-arc-with-neural-network/">star14ms/ARC-with-Neural-Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../theosech-ec/">theosech/ec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../treeleaves30760-phi-3-5-vision-playground/">treeleaves30760/phi-3.5-vision-playground</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../victorvikram-conceptarc/">victorvikram/ConceptARC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vllm-project-vllm/">vllm-project/vllm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../xu3kev-barc/">xu3kev/BARC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/">pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../youtube/">youtube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../training/">Training Grids</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../">references</a></li>
+          <li class="breadcrumb-item"><a href="../../">repos</a></li>
+          <li class="breadcrumb-item"><a href="../">LAION-AI/AIW</a></li>
+      <li class="breadcrumb-item active">README.md</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/laion-ai-aiw/README.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="../" class="btn btn-neutral float-left" title="LAION-AI/AIW" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-arc-dsl/" class="btn btn-neutral float-right" title="michaelhodel/arc-dsl" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="readme-md">
+<h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
+<h1 align="center">
+        🎩🐇 Alice in Wonderland: Simple Tasks Showing Complete Reasoning Breakdown in State-Of-the-Art Large Language Models
+    </h1>
+ <p align="center">Alice in Wonderland code base for experiments and raw experiments data</p>
+<h4 align="center"><a href="https://marianna13.github.io/aiw/" target="_blank">Homepage</a> | <a href="https://arxiv.org/pdf/2406.02061" target="_blank"> Paper</a> | <a href="https://arxiv.org/abs/2406.02061"target="_blank">ArXiv</a> | <a href="https://huggingface.co/spaces/marianna13/AIW-responses"target="_blank">Dataset explorer</a></h4>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>Install requirements:
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requirements.txt</span></code></p>
+<section id="collect-experiments-data">
+<h3>Collect experiments data<a class="headerlink" href="#collect-experiments-data" title="Link to this heading"></a></h3>
+<p><strong>Collect using <a class="reference external" href="https://github.com/BerriAI/litellm">LiteLLM</a>:</strong>
+Refer to the <a class="reference external" href="https://docs.litellm.ai/docs/">LiteLLM Docs</a> on how to setup your account and API keys.</p>
+<p>Workflow init:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SHARED_MINICONDA</span><span class="o">=</span>/path/to/miniconda_install
+<span class="nb">export</span><span class="w"> </span><span class="nv">CONDA_ENV</span><span class="o">=</span>/path/to/conda_env
+<span class="nb">export</span><span class="w"> </span><span class="nv">AIW_REPO_PATH</span><span class="o">=</span>/path/to_local_cloned_AIW_repo
+
+<span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">SHARED_MINICONDA</span><span class="si">}</span>/bin/activate<span class="w"> </span><span class="si">${</span><span class="nv">CONDA_ENV</span><span class="si">}</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PYTHONPATH</span>:<span class="nv">$AIW_REPO_PATH</span>
+
+<span class="c1"># export your API keys</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">TOGETHERAI_API_KEY</span><span class="o">=</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MISTRAL_API_KEY</span><span class="o">=</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">COHERE_API_KEY</span><span class="o">=</span>
+
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$AIW_REPO_PATH</span>
+</pre></div>
+</div>
+</section>
+<section id="execution-example-for-a-single-selected-prompt-id">
+<h3>Execution example for a single selected prompt ID:<a class="headerlink" href="#execution-example-for-a-single-selected-prompt-id" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># LiteLLM based experiments; 30 trials for STANDARD prompt type, AIW Variation 1 (Prompt ID 55 in prompts.json)</span>
+python<span class="w"> </span>examples/example_litellm.py<span class="w"> </span>--prompt_id<span class="o">=</span><span class="m">55</span><span class="w"> </span>--n_trials<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n_sessions<span class="o">=</span><span class="m">1</span><span class="w"> </span>--prompts_json<span class="o">=</span>lmsys_tools/prompts.json<span class="w"> </span>--models_json<span class="o">=</span>lmsys_tools/models_plot_set.json<span class="w"> </span>--exp_name<span class="o">=</span>model_set_STANDARD_run-1
+
+<span class="c1"># 30 trials for THINKING prompt type, AIW Variation 2 (Prompt ID 58 in prompts.json)</span>
+python<span class="w"> </span>examples/example_litellm.py<span class="w"> </span>--prompt_id<span class="o">=</span><span class="m">58</span><span class="w"> </span>--n_trials<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n_sessions<span class="o">=</span><span class="m">1</span><span class="w"> </span>--prompts_json<span class="o">=</span>lmsys_tools/prompts.json<span class="w"> </span>--models_json<span class="o">=</span>lmsys_tools/models_plot_set.json<span class="w"> </span>--exp_name<span class="o">=</span>model_set_THINKING_run-1
+
+<span class="c1"># 30 trials for RESTRICTED prompt type, AIW Variation 2 (Prompt ID 58 in prompts.json)</span>
+python<span class="w"> </span>examples/example_litellm.py<span class="w"> </span>--prompt_id<span class="o">=</span><span class="m">53</span><span class="w"> </span>--n_trials<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n_sessions<span class="o">=</span><span class="m">1</span><span class="w"> </span>--prompts_json<span class="o">=</span>lmsys_tools/prompts.json<span class="w"> </span>--models_json<span class="o">=</span>lmsys_tools/models_plot_set.json<span class="w"> </span>--exp_name<span class="o">=</span>model_set_RESTRICTED_run-1
+
+<span class="c1"># Same for LMSys based experiments</span>
+python<span class="w"> </span>examples/example_lmsys.py<span class="w"> </span>--prompt_id<span class="o">=</span><span class="m">53</span><span class="w"> </span>--n_trials<span class="o">=</span><span class="m">30</span><span class="w"> </span>--n_sessions<span class="o">=</span><span class="m">1</span><span class="w"> </span>--prompts_json<span class="o">=</span>lmsys_tools/prompts.json<span class="w"> </span>--models_json<span class="o">=</span>lmsys_tools/models_plot_set.json<span class="w"> </span>--exp_name<span class="o">=</span>model_set_RESTRICTED_run-1
+</pre></div>
+</div>
+<p>Hint: n_sessions is now purely a dummy, and can be set to 1; the only thing that matters is number of trials</p>
+<p><strong>Execution example for a whole range of ID:</strong></p>
+<p>Hint: rename script file names inside the script files, they have to be adapted, as those are using local own naming)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute experiments over LiteLLM: 30 trials, start with run counter set to 1, perform 2 rounds; for AIW Variations 1-2, prompt types STANDARD, THINKING, RESTRICTED (as defined in prompt ID)</span>
+<span class="nb">source</span><span class="w"> </span>execute_litellm_data_gathering.sh<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;55 56 57 58 53 54&quot;</span><span class="w"> </span><span class="s2">&quot;model_set_STANDARD model_set_STANDARD model_set_THINKING model_set_THINKING model_set_RESTRICTED model_set_RESTRICTED&quot;</span>
+
+<span class="c1"># Do the same for AIW Variation 3, prompt types STANDARD, THINKING, RESTRICTED (as defined in prompt ID)</span>
+<span class="nb">source</span><span class="w"> </span>execute_litellm_data_gathering.sh<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;63 64 65&quot;</span><span class="w"> </span><span class="s2">&quot;model_set_AIW-VAR-3_STANDARD model_set_AIW-VAR-3_THINKING model_set_AIW-VAR-3_RESTRICTED&quot;</span>
+
+<span class="c1"># Execute experiments over lmsys: 7 trials, start with run counter set to 1, perform 2 rounds</span>
+<span class="nb">source</span><span class="w"> </span>execute_lmsys_data_gathering.sh<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;55 56 57 58 53 54&quot;</span><span class="w"> </span><span class="s2">&quot;model_set_STANDARD model_set_STANDARD model_set_THINKING model_set_THINKING model_set_RESTRICTED model_set_RESTRICTED&quot;</span>
+
+<span class="nb">source</span><span class="w"> </span>execute_lmsys_data_gathering.sh<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;63 64 65&quot;</span><span class="w"> </span><span class="s2">&quot;model_set_EASY_STANDARD model_set_EASY_THINKING model_set_EASY_RESTRICTED&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Usage for the script call:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>execute_litellm_data_gathering.sh<span class="w"> </span>NUM_TRIALS<span class="w"> </span>RUN_ID_START<span class="w"> </span>NUM_ROUNDS<span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;PROMPT_ID_1 PROMPT_ID_2 PROMPT_ID_3&quot;</span><span class="w"> </span><span class="s2">&quot;EXP_NAME_1 EXP_NAME_2 EXP_NAME_3&quot;</span>
+
+<span class="nb">source</span><span class="w"> </span>execute_lmsys_data_gathering.sh<span class="w"> </span>NUM_TRIALS<span class="w"> </span>RUN_ID_START<span class="w"> </span>NUM_ROUNDS<span class="w"> </span>models_plot_set.json<span class="w"> </span><span class="s2">&quot;PROMPT_ID_1 PROMPT_ID_2 PROMPT_ID_3&quot;</span><span class="w"> </span><span class="s2">&quot;EXP_NAME_1 EXP_NAME_2 EXP_NAME_3&quot;</span>
+</pre></div>
+</div>
+<p>where</p>
+<ul class="simple">
+<li><p>NUM_TRIALS: trials to conduct in each round</p></li>
+<li><p>START_RUN_ID: starting from run id (will apply to file name run-ID)</p></li>
+<li><p>NUM_ROUNDS: how many rounds to go, each round will have NUM_TRIALS trials and own incremental run id</p></li>
+<li><p>“PROMPT_ID_X …” : list of IDs pointing to corresponding entries defined in prompt.json file</p></li>
+<li><p>“EXP_NAME_X …” : list of experiment names that can be chosed freely for each corresponding prompt ID to be appended to the filename with saved data</p></li>
+<li><p>Example for a collecting data for a full plot (Fig. 1) in the paper</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reading models from models_plot_set_reference.json and prompt IDs from prompt.json; full experiment set over all main AIW variations 1-4 and prompt types STANDARD, THINKING, RESTRICTED; doing 30 trials starting with run counter 1, for 2 rounds, aiming ot 60 trials in total per each model and prompt ID (that is a given combination of a prompt type and AIW variation)</span>
+<span class="nb">source</span><span class="w"> </span>execute_litellm_data_gathering.sh<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>models_plot_set_reference.json<span class="w"> </span><span class="s2">&quot;55 56 57 58 53 54 63 64 65 69 70 71&quot;</span><span class="w"> </span><span class="s2">&quot;model_set_reference_AIW-VAR-1_STANDARD model_set_reference_AIW-VAR-2_STANDARD model_set_reference_AIW-VAR-1_THINKING model_set_reference_AIW-VAR-2_THINKING model_set_reference_AIW-VAR-1_RESTRICTED model_set_reference_AIW-VAR-2_RESTRICTED model_set_reference_AIW-VAR-3_STANDARD model_set_reference_AIW-VAR-3_THINKING model_set_reference_AIW-VAR-3_RESTRICTED model_set_reference_AIW-VAR-4_STANDARD model_set_reference_AIW-VAR-4_THINKING model_set_reference_AIW-VAR-4_RESTRICTED&quot;</span>
+</pre></div>
+</div>
+<p>Refer to <a class="reference internal" href="#scripts/execute_litellm_data_gathering.sh"><span class="xref myst">this bash script</span></a> to see how to use litellm to gather model responses.</p>
+<p><strong>Collect using <a class="reference external" href="https://www.together.ai/">TogetherAI</a>:</strong></p>
+<p>Refer to the <a class="reference external" href="https://docs.together.ai/docs/quickstart">TogetherAI Docs</a> on how to setup your account and API keys.</p>
+<p>Refer to <a class="reference internal" href="#data_collection/examples/example_together.py"><span class="xref myst">this Python script</span></a> to see how to use togetherAI to gather model responses.</p>
+<p><strong>Collect by scraping <a class="reference external" href="https://chat.lmsys.org/">LMSYS Chatbot Arena</a>:</strong></p>
+<p><em>Note</em> This method is not recommended since it’s limited for purpose of automated model evaluation. The platform is gated by cloudflare.</p>
+<p>Refer to <a class="reference internal" href="#scripts/execute_lmsys_data_gathering.sh"><span class="xref myst">this bash script</span></a> to see how to use litellm to gather model responses.</p>
+</section>
+</section>
+<section id="plot-the-data">
+<h2>Plot the data<a class="headerlink" href="#plot-the-data" title="Link to this heading"></a></h2>
+<p>Run script to generate plots from the paper (by default plots will be saved in the working directory):
+<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/plot.sh</span></code></p>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading"></a></h2>
+<p>We would like to express gratitude to all the people who are working on making code, models and data publicly available, advancing community based research and making research more reproducible. Specifically, we would like to thank all the members of the <a class="reference external" href="https://discord.gg/BZqhreFazY">LAION Discord server</a> community and <a class="reference external" href="https://discord.gg/GsKh4mBVcv">Open-Ψ (Open-Sci) Collective</a> for providing fruitful ground for scientific exchange and open-source development.</p>
+<p>Marianna Nezhurina acknowledges funding by the Federal Ministry of Education and Research of Germany under grant no. 01IS22094B WestAI - AI Service Center West.</p>
+<p>Lucia Cipolina-Kun acknowledges the Helmholtz Information &amp; Data Science Academy (HIDA) for providing financial support enabling a short-term research stay at Juelich Supercomputing Center (JSC), Research Center Juelich (FZJ) to conduct research on foundation models.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
+<p>If you like this work, please cite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">nezhurina2024alice</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Alice</span> <span class="ow">in</span> <span class="n">Wonderland</span><span class="p">:</span> <span class="n">Simple</span> <span class="n">Tasks</span> <span class="n">Showing</span> <span class="n">Complete</span> <span class="n">Reasoning</span> <span class="n">Breakdown</span> <span class="ow">in</span> <span class="n">State</span><span class="o">-</span><span class="n">Of</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">Art</span> <span class="n">Large</span> <span class="n">Language</span> <span class="n">Models</span><span class="p">},</span>
+        <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Marianna</span> <span class="n">Nezhurina</span> <span class="ow">and</span> <span class="n">Lucia</span> <span class="n">Cipolina</span><span class="o">-</span><span class="n">Kun</span> <span class="ow">and</span> <span class="n">Mehdi</span> <span class="n">Cherti</span> <span class="ow">and</span> <span class="n">Jenia</span> <span class="n">Jitsev</span><span class="p">},</span>
+        <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2024</span><span class="p">},</span>
+        <span class="n">journal</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span> <span class="n">preprint</span> <span class="n">arXiv</span><span class="p">:</span><span class="mf">2406.02061</span><span class="p">},</span>
+        <span class="n">eprint</span><span class="o">=</span><span class="p">{</span><span class="mf">2406.02061</span><span class="p">},</span>
+        <span class="n">archivePrefix</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span><span class="p">},</span>
+        <span class="n">primaryClass</span><span class="o">=</span><span class="p">{</span><span class="n">cs</span><span class="o">.</span><span class="n">LG</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Link to this heading"></a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Copyright 2024 Marianna Nezhurina, Lucia Cipolina-Kun, Mehdi Cherti, Jenia Jitsev
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre></div>
+</div>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="LAION-AI/AIW" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../michaelhodel-arc-dsl/" class="btn btn-neutral float-right" title="michaelhodel/arc-dsl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
