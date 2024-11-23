@@ -95,12 +95,12 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../geometor.arcprize.solvers/">geometor.arcprize.solvers</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">geometor.arcprize.solvers.gemini_solver</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.solve()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.initialize_output_from_input()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.initialize_output_by_size()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.set_pixel()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.set_range()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.submit()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve"><code class="docutils literal notranslate"><span class="pre">PuzzleSolver.solve()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError"><code class="docutils literal notranslate"><span class="pre">MultipleFunctionCallsError</span></code></a></li>
@@ -206,6 +206,13 @@ for cumulative understanding and step-by-step solution development.</p>
 <p>start_time : datetime</p>
 <p>working_grid : <a class="reference internal" href="../geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid" title="geometor.arcprize.puzzles.grid.Grid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code></a></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_solver/#PuzzleSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve" title="Link to this definition"></a></dt>
+<dd><p>Main method to orchestrate the puzzle solving workflow.
+Returns the working grid if solution is found, None otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">
 <span class="sig-name descname"><span class="pre">initialize_output_from_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_solver/#PuzzleSolver.initialize_output_from_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input" title="Link to this definition"></a></dt>
 <dd><p>Initialize the test output grid with a copy of the input grid.</p>
@@ -233,13 +240,6 @@ for cumulative understanding and step-by-step solution development.</p>
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">
 <span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_solver/#PuzzleSolver.submit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit" title="Link to this definition"></a></dt>
 <dd><p>Submit the working grid and check for correctness.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">
-<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_solver/#PuzzleSolver.solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve" title="Link to this definition"></a></dt>
-<dd><p>Main method to orchestrate the puzzle solving workflow.
-Returns the working grid if solution is found, None otherwise.</p>
 </dd></dl>
 
 </section>

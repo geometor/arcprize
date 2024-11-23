@@ -129,11 +129,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">puzzle_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
 
-        <span class="c1"># Setup directory paths</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;sessions&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span>
-
         <span class="c1"># Ensure required directories exist</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_directory_structure</span><span class="p">()</span>
 
@@ -144,6 +139,10 @@
 
     <span class="k">def</span> <span class="nf">_ensure_directory_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create required directories if they don&#39;t exist.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;sessions&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -293,12 +292,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">puzzle_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
 
-        <span class="c1"># Setup directory structure</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;sessions&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">images_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_images&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">responses_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_responses&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_directory_structure</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">indexer</span> <span class="o">=</span> <span class="n">Indexer</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
@@ -306,6 +299,13 @@
 
     <span class="k">def</span> <span class="nf">_ensure_directory_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create required directories if they don&#39;t exist.&quot;&quot;&quot;</span>
+        <span class="c1"># Setup directory structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;sessions&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_images&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">responses_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_responses&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">sessions_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

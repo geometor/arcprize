@@ -143,8 +143,9 @@
 
 <span class="kn">from</span> <span class="nn">geometor.arcprize.puzzles</span> <span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
 
-<span class="kn">from</span> <span class="nn">.gemini_client</span> <span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
-<span class="kn">from</span> <span class="nn">.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_client</span> <span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">import</span> <span class="nn">geometor.arcprize.solvers.gemini_solver_instructions</span> <span class="k">as</span> <span class="nn">INST</span>
 
 <span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash&quot;</span>
 <span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
@@ -200,6 +201,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response_times</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Track individual response times</span>
 
+        <span class="c1"># Initialize Jinja environment using DictLoader for direct string templates</span>
+        <span class="c1">#  self.env = Environment(</span>
+            <span class="c1">#  loader=DictLoader({&quot;example_prompt&quot;: INST.example_prompt})</span>
+        <span class="c1">#  )</span>
+
         <span class="c1"># Core components</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span> <span class="o">=</span> <span class="n">puzzle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
@@ -242,111 +248,6 @@
         <span class="c1"># Initialize token tracking</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">token_counts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;candidates&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;cached&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
 
-<div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with a copy of the input grid.&quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
-
-        <span class="c1"># Log the initialization</span>
-        <span class="c1">#  self.logger.log_grid_state(&quot;initialization&quot;, &quot;copy_input&quot;)</span>
-        <span class="k">return</span> <span class="s2">&quot;initialize_output_from_input()&quot;</span></div>
-
-
-<div class="viewcode-block" id="PuzzleSolver.initialize_output_by_size">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the test output grid with specific dimensions.&quot;&quot;&quot;</span>
-
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
-
-        <span class="c1"># Log the initialization</span>
-        <span class="c1">#  self.logger.log_grid_state(&quot;initialization&quot;, f&quot;new_grid_{width}x{height}&quot;)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;initialize_output_by_size(</span><span class="si">{</span><span class="n">width</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">height</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
-
-
-<div class="viewcode-block" id="PuzzleSolver.set_pixel">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid value at a specific coordinate.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Working grid not initialized&quot;</span><span class="p">)</span>
-
-        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2"> is out of bounds. Grid height is </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> is out of bounds. Grid width is </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
-
-        <span class="c1"># Log the pixel change</span>
-        <span class="c1">#  self.logger.log_grid_state(&quot;pixel_set&quot;, f&quot;r{row}c{column}={color}&quot;)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;set_pixel(</span><span class="si">{</span><span class="n">row</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
-
-
-<div class="viewcode-block" id="PuzzleSolver.set_range">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid values for a range of pixels.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Working grid not initialized&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Convert to int and ensure proper order</span>
-        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">row1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row2</span><span class="p">)])</span>
-        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">column1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column2</span><span class="p">)])</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-
-        <span class="c1"># Add 1 to end indices to make them inclusive</span>
-        <span class="n">r2</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">c2</span> <span class="o">+=</span> <span class="mi">1</span>
-
-        <span class="c1"># Validate bounds</span>
-        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">r1</span> <span class="o">&gt;=</span> <span class="n">height</span> <span class="ow">and</span> <span class="n">r2</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c1</span> <span class="o">&gt;=</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">c2</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entire range is outside grid bounds (</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-
-        <span class="n">r1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-        <span class="n">r2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
-        <span class="n">c1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
-        <span class="n">c2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
-
-        <span class="c1"># Set the range</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
-
-        <span class="c1"># Log the range change</span>
-        <span class="n">cells_modified</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">r1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span>
-        <span class="c1">#  self.logger.log_grid_state(</span>
-        <span class="c1">#  &quot;range_set&quot;, f&quot;from_r{r1}c{c1}_to_r{r2-1}c{c2-1}={color}&quot;</span>
-        <span class="c1">#  )</span>
-
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;set_range(</span><span class="si">{</span><span class="n">row1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">row2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">column2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">)&quot;</span></div>
-
-
-<div class="viewcode-block" id="PuzzleSolver.submit">
-<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
-    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit the working grid and check for correctness.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No working grid to submit&quot;</span><span class="p">)</span>
-
-        <span class="c1"># TODO: Implement actual submission logic and correctness checking</span>
-        <span class="c1">#  self.logger.log_grid_state(&quot;submission&quot;, &quot;final&quot;)</span>
-        <span class="k">return</span> <span class="s2">&quot;submit&quot;</span></div>
-
-
 <div class="viewcode-block" id="PuzzleSolver.solve">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">[docs]</a>
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -358,9 +259,9 @@
             <span class="c1"># Initialize solving state</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Begin puzzle: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_process_training_examples</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_summarize_observations</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_process_test_input</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_show_examples</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_summarize_examples</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_show_test_input</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_working_grid</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_solution_loop</span><span class="p">()</span>
 
@@ -370,7 +271,10 @@
             <span class="k">raise</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_process_training_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_show_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        step 1 - show all training pairs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">train</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
                 <span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_input&quot;</span>
@@ -380,97 +284,48 @@
             <span class="p">)</span>
 
             <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="sa">f</span><span class="s2">&quot;**example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**input**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">**example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">**</span>
+<span class="s2">**input**</span>
+<span class="s2">```</span>
+<span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">```</span>
+
+<span class="s2">**output**</span>
+<span class="s2">```</span>
+<span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">```</span>
+
+<span class="s2">**images**</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
                 <span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**output**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">]</span>
-            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-<span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">- Review Examples Phase</span>
-
-<span class="sd">  pairs of input and output grids will be shown to you one at a time</span>
-
-<span class="sd">  you will examine and analyze the text and image for each example</span>
-
-<span class="sd">  you may use code execution with tools like numpy to examine patterns</span>
-<span class="sd">  after examining the grids, document the attributes of each as such</span>
-
-<span class="sd">  use a yaml block for the details</span>
-
-<span class="sd">  ```yaml</span>
-<span class="sd">  input:</span>
-<span class="sd">    width: X</span>
-<span class="sd">    height: Y</span>
-<span class="sd">    colors:</span>
-<span class="sd">      - N: (count)</span>
-<span class="sd">    objects:</span>
-<span class="sd">      - size, position and color - desc</span>
-<span class="sd">  ```</span>
-
-<span class="sd">  ```yaml</span>
-<span class="sd">  output:</span>
-<span class="sd">    width: X</span>
-<span class="sd">    height: Y</span>
-<span class="sd">    colors:</span>
-<span class="sd">      - N: (count)</span>
-<span class="sd">    objects:</span>
-<span class="sd">      - size, position and color - desc</span>
-<span class="sd">  ```</span>
-
-<span class="sd">  ```yaml</span>
-<span class="sd">  differences:</span>
-<span class="sd">    cells_changed: N</span>
-<span class="sd">    colors_changed: desc</span>
-<span class="sd">  transformation:</span>
-<span class="sd">    - speculate on transformation rules</span>
-<span class="sd">  ```</span>
-
-<span class="sd">  your response for this phase should contain the following content parts</span>
-
-<span class="sd">  - begin with a verbal description of your perception of the input and output</span>
-<span class="sd">    grid</span>
-<span class="sd">  - run a `code_execution` part to test your perceptions - since the code you</span>
-<span class="sd">    use may not be carried forward on following prompts, be sure to have the code print</span>
-<span class="sd">    you findings in the output</span>
-<span class="sd">    remember that you have access to many python libraries for analyzing the grids and validating patterns</span>
-<span class="sd">  - review your findings and try to determine what the natural language program is for the transformation</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-            <span class="p">]</span>
+            <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">example_instructions</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
                 <span class="n">prompt</span><span class="p">,</span>
                 <span class="n">instructions</span><span class="p">,</span>
                 <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_summarize_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;**examples summary**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">- summarize your observations to explain the transformation of the input to output</span>
-<span class="sd">- use code_execution to investigate properties, patterns and differences in the grids</span>
-<span class="sd">&quot;&quot;&quot;</span>
-        <span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_summarize_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        step 2 - summarize observations on pairs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">examples_summary_prompt</span><span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">examples_summary_instructions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_process_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_show_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        step 3 - show test input for eval</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">test_pair</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
             <span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;test_input&quot;</span>
@@ -484,59 +339,31 @@
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">- generate report as per instructions</span>
-<span class="sd">- use code_execution to investigate properties&quot;&quot;&quot;</span>
-        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">test_input_instructions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="c1">#  begin building the working output grid step by step using the functions</span>
-    <span class="c1">#  - Initialize output grid</span>
-    <span class="c1">#  if output is highly related to the input, start with</span>
-    <span class="c1">#  `initialize_output_from_input`</span>
-    <span class="c1">#  if output is largely unrelated, `initialize_output_by_size`</span>
-    <span class="c1">#  - Set Pixels</span>
-    <span class="c1">#  next we enter a loop to update pixels on the output grid to render the</span>
-    <span class="c1">#  solutions</span>
-    <span class="c1">#  after each rendering you will be given a chance to review the grid before</span>
-    <span class="c1">#  deciding on the next action</span>
-    <span class="c1">#  - `set_pixel` change one color at location</span>
-    <span class="c1">#  - `set_range` change rectangular subset of pixels to one color</span>
-    <span class="c1">#  - Submit</span>
-    <span class="c1">#  when the working grid meets the perceived transformation rules, we are</span>
-    <span class="c1">#  complete and can select submit to complete the test</span>
-
     <span class="k">def</span> <span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">init_functions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        step 4 - initialize the working grid for the desired output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">functions</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;initialize_output_from_input&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_from_input</span><span class="p">,</span>
             <span class="s2">&quot;initialize_output_by_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_by_size</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">use function_call to initialize the working output grid:</span>
-
-<span class="sd">- initialize_output_from_input: good when examples show few differences between</span>
-<span class="sd">  input and output</span>
-<span class="sd">- initialize_output_by_size: create a fresh grid from size and color&quot;&quot;&quot;</span>
-        <span class="p">]</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">test_input_instructions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
-            <span class="n">tools</span><span class="o">=</span><span class="n">init_functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
-            <span class="n">functions</span><span class="o">=</span><span class="n">init_functions</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+            <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_present_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_show_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span>
         <span class="p">)</span>
@@ -548,10 +375,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;- take a moment to review that the changes in the working output grid are in keeping with the rule</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;- use code_execution to investigate properties&quot;</span><span class="p">,</span>
-        <span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">show_working_grid_instructions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
@@ -573,18 +397,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">current_iteration</span> <span class="o">=</span> <span class="n">iteration</span>
 
             <span class="c1"># Present and analyze current state</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_present_working_grid</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_show_working_grid</span><span class="p">()</span>
 
             <span class="c1"># Get next action</span>
             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_next_action</span><span class="p">(</span><span class="n">set_functions</span><span class="p">)</span>
 
             <span class="c1"># Handle submission</span>
-            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;submit&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;submit&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution submitted after </span><span class="si">{</span><span class="n">iteration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> iterations&quot;</span><span class="p">)</span>
-                <span class="k">break</span>
+                <span class="k">return</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max iertions (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span><span class="si">}</span><span class="s2">) reached without submission&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> 
 
     <span class="k">def</span> <span class="nf">_get_next_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -686,22 +510,23 @@
                             <span class="p">)</span>
                         <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">:</span>
                             <span class="c1">#  if function_call_found:</span>
-                                <span class="c1">#  # More than one function call found - this should trigger a retry</span>
-                                <span class="c1">#  raise MultipleFunctionCallsError(</span>
-                                    <span class="c1">#  &quot;Multiple function calls detected&quot;</span>
-                                <span class="c1">#  )</span>
+                            <span class="c1">#  # More than one function call found - this should trigger a retry</span>
+                            <span class="c1">#  raise MultipleFunctionCallsError(</span>
+                            <span class="c1">#  &quot;Multiple function calls detected&quot;</span>
+                            <span class="c1">#  )</span>
 
                             <span class="n">function_call_found</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function_call:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-                            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_function</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">)</span>
-                            <span class="n">last_result</span> <span class="o">=</span> <span class="n">result</span>
+                            <span class="n">result</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_function</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">)</span>
+                            <span class="n">last_result</span> <span class="o">=</span> <span class="n">msg</span>
 
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">result:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                            <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-                            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;submit&quot;</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;submit&quot;</span><span class="p">:</span>
                                 <span class="k">break</span>
 
                 <span class="c1"># If functions were provided but no function call was found</span>
@@ -784,7 +609,65 @@
                 <span class="sa">f</span><span class="s2">&quot;Invalid arguments for </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">FunctionExecutionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error executing </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">FunctionExecutionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error executing </span><span class="si">{</span><span class="n">function_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># TEST FUNCTIONS to call from model #################################</span>
+<div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the test output grid with a copy of the input grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;initialize_output_from_input()&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.initialize_output_by_size">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
+    <span class="k">def</span> <span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the test output grid with specific dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;initialize_output_by_size(</span><span class="si">{</span><span class="n">width</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">height</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.set_pixel">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set grid value at a specific coordinate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.set_range">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set grid values for a range of pixels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">set_range</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">column1</span><span class="p">,</span> <span class="n">row2</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PuzzleSolver.submit">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
+    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Submit the working grid and check for correctness.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;submit&quot;</span></div>
+</div>
 
 
 

@@ -185,6 +185,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rotate the grid by 90 degrees k times.</span>
 <span class="sd">        Positive k means clockwise rotation, negative k means counter-clockwise.</span>
+
+<span class="sd">        returns copy of Grid</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rot90</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="n">k</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Grid</span><span class="p">(</span>
@@ -202,6 +204,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Flip the grid along the specified axis.</span>
 <span class="sd">        axis=0 flips vertically, axis=1 flips horizontally.</span>
+
+<span class="sd">        returns copy of Grid</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
         <span class="n">flip_type</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span> <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;horizontal&quot;</span>
@@ -212,6 +216,112 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">io_type</span><span class="si">}</span><span class="s2">_flipped_</span><span class="si">{</span><span class="n">flip_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Grid.set_pixel">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.set_pixel">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid value at a specific coordinate.&quot;&quot;&quot;</span>
+
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2"> is out of bounds. Grid height is </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Column </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> is out of bounds. Grid width is </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;set_pixel(</span><span class="si">{</span><span class="n">row</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)&quot;</span></div>
+
+
+<div class="viewcode-block" id="Grid.set_range">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.set_range">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set grid values for a range of pixels.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Convert to int and ensure proper order</span>
+        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">row1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">row2</span><span class="p">)])</span>
+        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">column1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column2</span><span class="p">)])</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="c1"># Add 1 to end indices to make them inclusive</span>
+        <span class="n">r2</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">c2</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Validate bounds</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r1</span> <span class="o">&gt;=</span> <span class="n">height</span> <span class="ow">and</span> <span class="n">r2</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c1</span> <span class="o">&gt;=</span> <span class="n">width</span> <span class="ow">and</span> <span class="n">c2</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Entire range is outside grid bounds (</span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+        <span class="n">r1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">c2</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
+
+        <span class="c1"># Set the range</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="n">cells_modified</span> <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">r1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="n">c1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;set_range(</span><span class="si">{</span><span class="n">row1</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column1</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">row2</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column2</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">cells_modified</span><span class="si">}</span><span class="s2"> pixels modified&quot;</span></div>
+
+
+
+
+<div class="viewcode-block" id="Grid.set_floodfill">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.grid/#geometor.arcprize.puzzles.grid.Grid.set_floodfill">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_floodfill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flood-fill algorithm to set all contiguous cells connected to (row, column)</span>
+<span class="sd">        with the same initial color to the new color.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">column</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Row </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2"> is out of bounds. Grid height is </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Column </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2"> is out of bounds. Grid width is </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Get the initial color at the starting cell</span>
+        <span class="n">initial_color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">]</span>
+
+        <span class="c1"># If the initial color is the same as the new color, no need to proceed</span>
+        <span class="k">if</span> <span class="n">initial_color</span> <span class="o">==</span> <span class="n">color</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;No change needed as the target color is the same as the initial color&quot;</span>
+
+        <span class="c1"># Stack for DFS</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)]</span>
+        <span class="n">cells_modified</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Perform flood-fill using DFS</span>
+        <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="n">current_row</span><span class="p">,</span> <span class="n">current_col</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="c1"># Check if the current cell is within bounds and matches the initial color</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">current_row</span> <span class="o">&lt;</span> <span class="n">height</span>
+                <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">current_col</span> <span class="o">&lt;</span> <span class="n">width</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">current_row</span><span class="p">,</span> <span class="n">current_col</span><span class="p">]</span> <span class="o">==</span> <span class="n">initial_color</span>
+            <span class="p">):</span>
+                <span class="c1"># Set the cell to the new color</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">current_row</span><span class="p">,</span> <span class="n">current_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+                <span class="n">cells_modified</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="c1"># Add neighboring cells to the stack (up, down, left, right)</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">current_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">current_col</span><span class="p">))</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">current_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">current_col</span><span class="p">))</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">current_row</span><span class="p">,</span> <span class="n">current_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">current_row</span><span class="p">,</span> <span class="n">current_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;set_floodfill(</span><span class="si">{</span><span class="n">row</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">column</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="si">=}</span><span class="s2">)</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">cells_modified</span><span class="si">}</span><span class="s2"> pixels modified&quot;</span></div>
+
 
 
 <div class="viewcode-block" id="Grid.to_string">
