@@ -685,11 +685,11 @@
                                 <span class="sa">f</span><span class="s2">&quot;```</span><span class="se">\n</span><span class="si">{</span><span class="n">part</span><span class="o">.</span><span class="n">code_execution_result</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span>
                             <span class="p">)</span>
                         <span class="k">if</span> <span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">function_call_found</span><span class="p">:</span>
-                                <span class="c1"># More than one function call found - this should trigger a retry</span>
-                                <span class="k">raise</span> <span class="n">MultipleFunctionCallsError</span><span class="p">(</span>
-                                    <span class="s2">&quot;Multiple function calls detected&quot;</span>
-                                <span class="p">)</span>
+                            <span class="c1">#  if function_call_found:</span>
+                                <span class="c1">#  # More than one function call found - this should trigger a retry</span>
+                                <span class="c1">#  raise MultipleFunctionCallsError(</span>
+                                    <span class="c1">#  &quot;Multiple function calls detected&quot;</span>
+                                <span class="c1">#  )</span>
 
                             <span class="n">function_call_found</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function_call:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
