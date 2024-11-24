@@ -231,7 +231,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate the puzzle index using Jinja2.&quot;&quot;&quot;</span>
         <span class="n">index_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;index.rst&quot;</span>
         <span class="n">prompt_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9][0-9]-prompt.rst&quot;</span><span class="p">))</span>
-        <span class="n">submission_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;submission.rst&quot;</span>
+        <span class="n">submission_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*-submission.rst&quot;</span><span class="p">))</span>  
         <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">total_response_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">total_tokens</span> <span class="o">=</span> <span class="mi">0</span>
@@ -270,6 +270,18 @@
                     <span class="p">}</span>
                 <span class="p">)</span>
 
+        <span class="c1"># Add submission entries to the steps list if submission files exist</span>
+        <span class="k">for</span> <span class="n">submission_file</span> <span class="ow">in</span> <span class="n">submission_files</span><span class="p">:</span>
+            <span class="n">submission_call_num</span> <span class="o">=</span> <span class="n">submission_file</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;call_num&quot;</span><span class="p">:</span> <span class="n">submission_call_num</span><span class="p">,</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;evaluation&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;tokens_used&quot;</span><span class="p">:</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
         <span class="c1"># Use Jinja template to render the index content</span>
         <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;puzzle_index.j2&quot;</span><span class="p">)</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
@@ -281,7 +293,16 @@
 
         <span class="c1"># Write the rendered content to the index file</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">index_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+
+        <span class="c1"># Append toctree entries to include all steps, including the final submission(s)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">index_path</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">.. toctree::</span><span class="se">\n</span><span class="s2">   :hidden:</span><span class="se">\n</span><span class="s2">   :maxdepth: 1</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;evaluation&quot;</span> <span class="ow">in</span> <span class="n">step</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">step</span><span class="p">[</span><span class="s1">&#39;call_num&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-submission</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="n">step</span><span class="p">[</span><span class="s1">&#39;call_num&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-prompt</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 
