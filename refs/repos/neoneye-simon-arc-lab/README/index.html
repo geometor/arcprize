@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="README.md" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="refs/repos/neoneye-arc-interactive/README/" />
+<meta property="og:url" content="refs/repos/neoneye-simon-arc-lab/README/" />
 <meta property="og:site_name" content="geometor • arcprize" />
-<meta property="og:description" content="Puzzle-Solving in Your Browser: Explore the puzzles of the Abstraction and Reasoning Corpus (ARC). ARC-Interactive is coded in HTML + CSS + JS. No backend. BrainGridGame is ARC-Interactive with a D..." />
-<meta name="description" content="Puzzle-Solving in Your Browser: Explore the puzzles of the Abstraction and Reasoning Corpus (ARC). ARC-Interactive is coded in HTML + CSS + JS. No backend. BrainGridGame is ARC-Interactive with a D..." />
+<meta property="og:description" content="Simon ARC Lab - My solution for ARC Prize 2024: In the ARC Prize 2024 contest, my solver got score=1 out of 100. My approach uses RLE compression to fit in an entire puzzle into a tiny 1024 context..." />
+<meta name="description" content="Simon ARC Lab - My solution for ARC Prize 2024: In the ARC Prize 2024 contest, my solver got score=1 out of 100. My approach uses RLE compression to fit in an entire puzzle into a tiny 1024 context..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>README.md &mdash; geometor • arcprize</title>
@@ -16,7 +16,7 @@
       <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
   
-    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/neoneye-arc-interactive/README/" />
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/repos/neoneye-simon-arc-lab/README/" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,8 +30,8 @@
     <link rel="author" title="About these documents" href="../../../../about/" />
     <link rel="index" title="Index" href="../../../../genindex/" />
     <link rel="search" title="Search" href="../../../../search/" />
-    <link rel="next" title="neoneye/simon-arc-lab" href="../../neoneye-simon-arc-lab/" />
-    <link rel="prev" title="neoneye/ARC-Interactive" href="../" />   
+    <link rel="next" title="neural-maze/agentic_patterns" href="../../neural-maze-agentic-patterns/" />
+    <link rel="prev" title="neoneye/simon-arc-lab" href="../" />   
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -112,19 +112,19 @@
 <li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-arc-dsl/">michaelhodel/arc-dsl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../michaelhodel-re-arc/">michaelhodel/re-arc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../microsoft-phi-3cookbook/">microsoft/Phi-3CookBook</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../">neoneye/ARC-Interactive</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../neoneye-arc-interactive/">neoneye/ARC-Interactive</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../">neoneye/simon-arc-lab</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">README.md</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#puzzle-solving-in-your-browser">Puzzle-Solving in Your Browser</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#gallery-of-tasks-in-the-arc-datasets">Gallery of tasks in the ARC datasets</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#task-editor">Task editor</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#more-screenshots">More screenshots</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simon-arc-lab-my-solution-for-arc-prize-2024">Simon ARC Lab - My solution for ARC Prize 2024</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#examples-of-incorrect-predictions">Examples of incorrect predictions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#rle-compression-of-an-image">RLE compression of an image</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#rle-compression-of-an-arc-puzzle">RLE compression of an ARC puzzle</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#reflections-on-what-went-wrong">Reflections on what went wrong</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../#notes">notes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../neoneye-simon-arc-lab/">neoneye/simon-arc-lab</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../neural-maze-agentic-patterns/">neural-maze/agentic_patterns</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../nousresearch-open-reasoning-tasks/">NousResearch/Open-Reasoning-Tasks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../peterovermann-triadicmemory/">PeterOvermann/TriadicMemory</a></li>
@@ -162,14 +162,14 @@
       <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../">references</a></li>
           <li class="breadcrumb-item"><a href="../../">repos</a></li>
-          <li class="breadcrumb-item"><a href="../">neoneye/ARC-Interactive</a></li>
+          <li class="breadcrumb-item"><a href="../">neoneye/simon-arc-lab</a></li>
       <li class="breadcrumb-item active">README.md</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/neoneye-arc-interactive/README.md" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/repos/neoneye-simon-arc-lab/README.md" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="../" class="btn btn-neutral float-left" title="neoneye/ARC-Interactive" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../neoneye-simon-arc-lab/" class="btn btn-neutral float-right" title="neoneye/simon-arc-lab" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../" class="btn btn-neutral float-left" title="neoneye/simon-arc-lab" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../neural-maze-agentic-patterns/" class="btn btn-neutral float-right" title="neural-maze/agentic_patterns" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -177,32 +177,75 @@
            <div itemprop="articleBody">
               <section id="readme-md">
 <h1>README.md<a class="headerlink" href="#readme-md" title="Link to this heading"></a></h1>
-<p align="center">
-  <a href="https://neoneye.github.io/arc/"><strong>Try it here</strong></a> · <a href="https://braingridgame.com/discord"><strong>Discord</strong></a>
-</p>
 </section>
-<section id="puzzle-solving-in-your-browser">
-<h1>Puzzle-Solving in Your Browser<a class="headerlink" href="#puzzle-solving-in-your-browser" title="Link to this heading"></a></h1>
-<p>Explore the puzzles of the Abstraction and Reasoning Corpus (ARC).</p>
-<p><a class="reference external" href="https://neoneye.github.io/arc/">ARC-Interactive</a> is coded in HTML + CSS + JS. No backend.</p>
-<p><a class="reference external" href="https://braingridgame.com">BrainGridGame</a> is ARC-Interactive with a Django backend for collecting interaction histories.</p>
-<section id="gallery-of-tasks-in-the-arc-datasets">
-<h2>Gallery of tasks in the ARC datasets<a class="headerlink" href="#gallery-of-tasks-in-the-arc-datasets" title="Link to this heading"></a></h2>
-<img src="https://raw.githubusercontent.com/neoneye/ARC-Interactive/develop/metadata/arc-interactive-task-gallery.gif" alt="ARC-Interactive: Gallery of tasks in the dataset"/>
+<section id="simon-arc-lab-my-solution-for-arc-prize-2024">
+<h1>Simon ARC Lab - My solution for ARC Prize 2024<a class="headerlink" href="#simon-arc-lab-my-solution-for-arc-prize-2024" title="Link to this heading"></a></h1>
+<p>In the ARC Prize 2024 contest, my solver got <code class="docutils literal notranslate"><span class="pre">score=1</span></code> out of 100.
+My approach uses <code class="docutils literal notranslate"><span class="pre">RLE</span></code> compression to fit in an entire puzzle into a tiny 1024 context length.
+I’m new to LLMs and I’m surprised that I managed to solve 1 of the hidden tasks with this approach.</p>
+<section id="examples-of-incorrect-predictions">
+<h2>Examples of incorrect predictions<a class="headerlink" href="#examples-of-incorrect-predictions" title="Link to this heading"></a></h2>
+<p><img alt="image" src="refs/repos/neoneye-simon-arc-lab/metadata/2b01abd0_incorrect.png" />
+<img alt="image" src="refs/repos/neoneye-simon-arc-lab/metadata/3f23242b_incorrect.png" />
+<img alt="image" src="refs/repos/neoneye-simon-arc-lab/metadata/a2fd1cf0_incorrect.png" />
+<img alt="image" src="refs/repos/neoneye-simon-arc-lab/metadata/cb227835_incorrect.png" /></p>
 </section>
-<section id="task-editor">
-<h2>Task editor<a class="headerlink" href="#task-editor" title="Link to this heading"></a></h2>
-<img src="https://raw.githubusercontent.com/neoneye/ARC-Interactive/develop/metadata/arc-interactive-editor-18419cfa.gif" alt="ARC-Interactive: Solving the ARC task 18419cfa"/>
+<section id="rle-compression-of-an-image">
+<h2>RLE compression of an image<a class="headerlink" href="#rle-compression-of-an-image" title="Link to this heading"></a></h2>
+<p>Given this image</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4 4 4 4
+4 4 4 4
+4 4 4 4
+4 7 4 7
+4 7 4 7
+4 7 4 7
+8 8 2 4
+8 8 2 4
+8 8 2 4
+7 4 2 4
+7 4 2 4
+7 4 2 4
+</pre></div>
+</div>
+<p>Here is the RLE representation</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4 12 4,,,4747,,,a824,,,7424,,
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">12</span></code> means <code class="docutils literal notranslate"><span class="pre">width=4</span></code> and <code class="docutils literal notranslate"><span class="pre">height=12</span></code>.</p>
 </section>
-<section id="more-screenshots">
-<h2>More screenshots<a class="headerlink" href="#more-screenshots" title="Link to this heading"></a></h2>
-<p><a class="reference internal" href="#metadata/arc-interactive-presentation-2024-mar-07.pdf"><span class="xref myst">ARC-Interactive presentation</span></a></p>
+<section id="rle-compression-of-an-arc-puzzle">
+<h2>RLE compression of an ARC puzzle<a class="headerlink" href="#rle-compression-of-an-arc-puzzle" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I0
+6 2 9a3b9,071b3
+O0
+6 7 9,d93,c939,a9a3a9,931b9,97c9,0d9
+I1
+3 1 4a7
+O1
+3 3 a97,979,4a9
+I2
+3 3 370,7a0,a50
+O2
+3 5 a90,970,3a0,759,5a9
+I3
+3 5 181,1a8,238,138,
+O3
+3 7 a91,9a8,1a8,138,238,139,1a9
+I4T
+3 5 0a4,494,934,a49,4
+O4T
+3 7 a94,9a4,694,439,9a4,a49,4a9
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">I0</span></code>, here <code class="docutils literal notranslate"><span class="pre">I</span></code> means input, and <code class="docutils literal notranslate"><span class="pre">0</span></code> means that it’s pair 0. The input image for pair 0.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">O0</span></code>, here <code class="docutils literal notranslate"><span class="pre">O</span></code> means output, and <code class="docutils literal notranslate"><span class="pre">0</span></code> means that it’s pair 0. The output image for pair 0.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">I4T</span></code>, here <code class="docutils literal notranslate"><span class="pre">T</span></code> means that it’s the <code class="docutils literal notranslate"><span class="pre">test</span></code> pair, that is to be solved.</p>
 </section>
-<section id="how-to-contribute">
-<h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading"></a></h2>
-<p>Share your thoughts on <a class="reference external" href="https://braingridgame.com/discord">Discord</a>.</p>
-<p>Code contributions, bug reports, feature requests, or feedback,
-your input is invaluable for making this project better for everyone.</p>
+<section id="reflections-on-what-went-wrong">
+<h2>Reflections on what went wrong<a class="headerlink" href="#reflections-on-what-went-wrong" title="Link to this heading"></a></h2>
+<p><strong>Catastrophic forgetting</strong>, Whenever I taught the model a new kind of task, then it was able to solve that kind of task, but got worse at solving other kinds of tasks.
+Future plan: Explore approaches that are more robust against catastrophic forgetting.</p>
+<p><strong>Previous prediction being ignored</strong>, When solving a puzzle the model got invoked a few times. Feeding the previous prediction into the next iteration. However the model seemed to get confused about the previous prediction despite being very close to the target output. Leaving out the previous best prediction was resulting in better predictions. I had hoped that the model was better at taking a hint and refine on it, however taking hints was unsuccessful.</p>
 </section>
 </section>
 
@@ -213,8 +256,8 @@ your input is invaluable for making this project better for everyone.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../" class="btn btn-neutral float-left" title="neoneye/ARC-Interactive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../neoneye-simon-arc-lab/" class="btn btn-neutral float-right" title="neoneye/simon-arc-lab" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../" class="btn btn-neutral float-left" title="neoneye/simon-arc-lab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../neural-maze-agentic-patterns/" class="btn btn-neutral float-right" title="neural-maze/agentic_patterns" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
