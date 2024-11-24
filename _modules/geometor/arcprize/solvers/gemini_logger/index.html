@@ -252,9 +252,9 @@
                     <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                     <span class="n">description</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
                         <span class="p">(</span>
-                            <span class="n">line</span>
+                            <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:description:&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;:description:&quot;</span><span class="p">)</span>
                         <span class="p">),</span>
                         <span class="s2">&quot;Step&quot;</span><span class="p">,</span>
                     <span class="p">)</span>
@@ -263,7 +263,7 @@
                 <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="p">{</span>
                         <span class="s2">&quot;call_num&quot;</span><span class="p">:</span> <span class="n">call_num</span><span class="p">,</span>
-                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
                         <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">,</span>
                         <span class="s2">&quot;tokens_used&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">token_data</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                     <span class="p">}</span>
@@ -336,7 +336,7 @@
 <span class="sd">            PIL Image to save</span>
 <span class="sd">        call_count :</span>
 <span class="sd">            Current call number</span>
-<span class="sd">        context : </span>
+<span class="sd">        context :</span>
 <span class="sd">            Image context (e.g., &#39;example_1_input&#39;, &#39;working&#39;)</span>
 
 <span class="sd">        returns</span>
@@ -366,7 +366,12 @@
 <div class="viewcode-block" id="Logger.write_rst_log">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Logger.write_rst_log">[docs]</a>
     <span class="k">def</span> <span class="nf">write_rst_log</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">log_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">log_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">usage_data</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">log_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+        <span class="n">log_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">call_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">usage_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write log as RST file and handle any images.</span>
 
@@ -451,6 +456,7 @@
             <span class="n">usage_data</span><span class="o">=</span><span class="n">usage_data</span><span class="p">,</span>
             <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
             <span class="n">token_usage</span><span class="o">=</span><span class="n">token_usage</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Write the rendered content to the file</span>

@@ -203,7 +203,7 @@
 
         <span class="c1"># Initialize Jinja environment using DictLoader for direct string templates</span>
         <span class="c1">#  self.env = Environment(</span>
-            <span class="c1">#  loader=DictLoader({&quot;example_prompt&quot;: INST.example_prompt})</span>
+        <span class="c1">#  loader=DictLoader({&quot;example_prompt&quot;: INST.example_prompt})</span>
         <span class="c1">#  )</span>
 
         <span class="c1"># Core components</span>
@@ -286,12 +286,14 @@
             <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">**example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">**</span>
+
 <span class="s2">**input**</span>
+
 <span class="s2">```</span>
 <span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span>
 <span class="s2">```</span>
-
 <span class="s2">**output**</span>
+
 <span class="s2">```</span>
 <span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span>
 <span class="s2">```</span>
@@ -308,6 +310,7 @@
                 <span class="n">prompt</span><span class="p">,</span>
                 <span class="n">instructions</span><span class="p">,</span>
                 <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_summarize_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -320,6 +323,7 @@
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_summary&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_show_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -331,10 +335,18 @@
             <span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;test_input&quot;</span>
         <span class="p">)</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;**test**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**input**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="nb">str</span><span class="p">(</span><span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
-            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">**test**</span>
+
+<span class="s2">**input**</span>
+
+<span class="s2">```</span>
+<span class="si">{</span><span class="w"> </span><span class="nb">str</span><span class="p">(</span><span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="si">}</span>
+<span class="s2">```</span>
+
+<span class="s2">**image**</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
             <span class="n">test_pair</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">**observations**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -344,6 +356,7 @@
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;test input&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -354,13 +367,14 @@
             <span class="s2">&quot;initialize_output_from_input&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_from_input</span><span class="p">,</span>
             <span class="s2">&quot;initialize_output_by_size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialize_output_by_size</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">test_input_instructions</span><span class="p">]</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;**initialize the working output grid:**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">init_working_grid_instructions</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
             <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;init working&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_show_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -368,10 +382,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span>
         <span class="p">)</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;**working output grid**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;updated with your changes</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">),</span>
-            <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">**working output grid**</span>
+
+<span class="s2">updated with your changes</span>
+
+<span class="s2">```</span>
+<span class="si">{</span><span class="w"> </span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="si">}</span>
+<span class="s2">```</span>
+
+<span class="s2">**image**</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span>
             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">]</span>
@@ -380,6 +402,7 @@
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;review working&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_run_solution_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -408,28 +431,25 @@
                 <span class="k">return</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max iertions (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span><span class="si">}</span><span class="s2">) reached without submission&quot;</span><span class="p">)</span>
-        <span class="k">return</span> 
+        <span class="k">return</span>
 
     <span class="k">def</span> <span class="nf">_get_next_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get and process the next action from the model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;**update working grid**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">]</span>
-        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="s2">&quot;- use function_call to set pixels on the grid to achieve the solution</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;  - set_pixel: update one pixel at a time</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;  - set_range: update a rectangular subset of pixel</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;- when you think you have completed the output, call the submit function</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="p">]</span>
-
+        <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span><span class="n">INST</span><span class="o">.</span><span class="n">next_action_instructions</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
             <span class="n">tools</span><span class="o">=</span><span class="n">functions</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
             <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;set pixels&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_generate_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">functions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_generate_content</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">functions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate content from the model with standardized logging and function call handling.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -446,11 +466,15 @@
         <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">instructions</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">instructions</span><span class="p">,</span> <span class="s2">&quot;prompt&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
+        <span class="c1"># write the prompt file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span>
+            <span class="n">prompt</span> <span class="o">+</span> <span class="n">instructions</span><span class="p">,</span> <span class="s2">&quot;prompt&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span>
+        <span class="p">)</span>
 
+        <span class="c1"># write history file</span>
         <span class="n">total_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">====</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">instructions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">total_prompt</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">total_prompt</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_RETRIES</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -519,7 +543,9 @@
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function_call:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-                            <span class="n">result</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_function</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">)</span>
+                            <span class="n">result</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_function</span><span class="p">(</span>
+                                <span class="n">part</span><span class="o">.</span><span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span>
+                            <span class="p">)</span>
                             <span class="n">last_result</span> <span class="o">=</span> <span class="n">msg</span>
 
                             <span class="n">response_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">result:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -560,6 +586,7 @@
                         <span class="p">},</span>
                         <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
                     <span class="p">},</span>
+                    <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
                 <span class="p">)</span>
 
                 <span class="k">return</span> <span class="n">last_result</span>
