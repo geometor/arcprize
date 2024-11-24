@@ -231,6 +231,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate the puzzle index using Jinja2.&quot;&quot;&quot;</span>
         <span class="n">index_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;index.rst&quot;</span>
         <span class="n">prompt_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;[0-9][0-9][0-9]-prompt.rst&quot;</span><span class="p">))</span>
+        <span class="n">submission_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;submission.rst&quot;</span>
         <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">total_response_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">total_tokens</span> <span class="o">=</span> <span class="mi">0</span>

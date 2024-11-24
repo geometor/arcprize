@@ -474,7 +474,9 @@
         <span class="c1"># write history file</span>
         <span class="n">total_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">====</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">instructions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="n">prompt</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span><span class="n">total_prompt</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span>
+            <span class="n">total_prompt</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span>
+        <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_RETRIES</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -691,10 +693,84 @@
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
     <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Submit the working grid and check for correctness.</span>
+<span class="sd">        Submit the working grid and check for correctness against the expected output.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No working grid to submit&quot;</span><span class="p">)</span>
+
+        <span class="n">expected_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="c1"># Perform the comparison and score each part</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="p">,</span> <span class="n">expected_output</span><span class="p">)</span>
+
+        <span class="c1"># Create a log entry for the result</span>
+        <span class="n">final_log</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;**Final Submission Results**</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;**Size Correct:** </span><span class="si">{</span><span class="n">score</span><span class="p">[</span><span class="s1">&#39;size_correct&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;**Colors Correct:** </span><span class="si">{</span><span class="n">score</span><span class="p">[</span><span class="s1">&#39;colors_correct&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;**Unique Pixel Color Quantities Difference:** </span><span class="si">{</span><span class="n">score</span><span class="p">[</span><span class="s1">&#39;unique_color_difference&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;**Per-Pixel Accuracy:** </span><span class="si">{</span><span class="n">score</span><span class="p">[</span><span class="s1">&#39;pixel_accuracy&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;final&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">write_rst_log</span><span class="p">(</span>
+            <span class="n">final_log</span><span class="p">,</span> <span class="s2">&quot;submission&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span>
+        <span class="p">)</span>
+
         <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;submit&quot;</span></div>
-</div>
+
+
+    <span class="k">def</span> <span class="nf">_evaluate_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">working_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span> <span class="n">expected_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate the accuracy of the working grid against the expected grid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        working_grid : Grid</span>
+<span class="sd">            The grid created during the solution process.</span>
+<span class="sd">        expected_grid : Grid</span>
+<span class="sd">            The expected output grid from the training data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            A dictionary containing scores for each evaluated aspect.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Size Correctness</span>
+        <span class="n">size_correct</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">working_grid</span><span class="o">.</span><span class="n">height</span> <span class="o">==</span> <span class="n">expected_grid</span><span class="o">.</span><span class="n">height</span>
+            <span class="ow">and</span> <span class="n">working_grid</span><span class="o">.</span><span class="n">width</span> <span class="o">==</span> <span class="n">expected_grid</span><span class="o">.</span><span class="n">width</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Colors Correctness</span>
+        <span class="n">working_colors</span> <span class="o">=</span> <span class="n">working_grid</span><span class="o">.</span><span class="n">colors</span>
+        <span class="n">expected_colors</span> <span class="o">=</span> <span class="n">expected_grid</span><span class="o">.</span><span class="n">colors</span>
+        <span class="n">colors_correct</span> <span class="o">=</span> <span class="n">working_colors</span> <span class="o">==</span> <span class="n">expected_colors</span>
+
+        <span class="c1"># Quantities of Unique Pixel Colors</span>
+        <span class="n">working_color_counts</span> <span class="o">=</span> <span class="n">working_grid</span><span class="o">.</span><span class="n">color_counts</span>
+        <span class="n">expected_color_counts</span> <span class="o">=</span> <span class="n">expected_grid</span><span class="o">.</span><span class="n">color_counts</span>
+        <span class="n">unique_color_difference</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">color</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span>
+                <span class="n">working_color_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">expected_color_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">working_color_counts</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">expected_color_counts</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Per-Pixel Accuracy</span>
+        <span class="n">total_pixels</span> <span class="o">=</span> <span class="n">working_grid</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">correct_pixels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span> <span class="o">==</span> <span class="n">expected_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+        <span class="n">pixel_accuracy</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">correct_pixels</span> <span class="o">/</span> <span class="n">total_pixels</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">if</span> <span class="n">total_pixels</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Return results as a dictionary</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;size_correct&quot;</span><span class="p">:</span> <span class="n">size_correct</span><span class="p">,</span>
+            <span class="s2">&quot;colors_correct&quot;</span><span class="p">:</span> <span class="n">colors_correct</span><span class="p">,</span>
+            <span class="s2">&quot;unique_color_difference&quot;</span><span class="p">:</span> <span class="n">unique_color_difference</span><span class="p">,</span>
+            <span class="s2">&quot;pixel_accuracy&quot;</span><span class="p">:</span> <span class="n">pixel_accuracy</span><span class="p">,</span>
+        <span class="p">}</span></div>
 
 
 
