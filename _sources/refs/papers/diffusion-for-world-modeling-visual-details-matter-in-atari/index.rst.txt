@@ -44,3 +44,5 @@ agents, videos and playable world models at https://diamond-wm.github.io.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

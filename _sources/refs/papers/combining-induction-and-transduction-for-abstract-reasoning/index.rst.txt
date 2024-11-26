@@ -37,3 +37,5 @@ despite sharing the same neural architecture.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

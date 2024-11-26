@@ -2,15 +2,17 @@
 <html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning" />
+<meta content="2208.04202v2.Analog_Bits__Generating_Discrete_Data_using_Diffusion_Models_with_Self_Conditioning.pdf" name="source_pdf" />
+<meta content="2024-11-25 20:38:04" name="summary_date" />
+<meta property="og:title" content="1 Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="refs/papers/analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning/" />
 <meta property="og:site_name" content="geometor • arcprize" />
-<meta property="og:description" content="id, 2208.04202,, Authors, Ting Chen, Ruixiang Zhang, Geoffrey Hinton,, Published, 2022-08-08,, arXiv, https://arxiv.org/abs/2208.04202,, PDF, https://arxiv.org/pdf/2208.04202,, DOI, N/A,, Journal R..." />
-<meta name="description" content="id, 2208.04202,, Authors, Ting Chen, Ruixiang Zhang, Geoffrey Hinton,, Published, 2022-08-08,, arXiv, https://arxiv.org/abs/2208.04202,, PDF, https://arxiv.org/pdf/2208.04202,, DOI, N/A,, Journal R..." />
+<meta property="og:description" content="1 Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning: id, 2208.04202,, Authors, Ting Chen, Ruixiang Zhang, Geoffrey Hinton,, Published, 2022-08-08,, arXiv, https://..." />
+<meta name="description" content="1 Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning: id, 2208.04202,, Authors, Ting Chen, Ruixiang Zhang, Geoffrey Hinton,, Published, 2022-08-08,, arXiv, https://..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning &mdash; geometor • arcprize</title>
+  <title>1 Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning &mdash; geometor • arcprize</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=f2e8749c" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
@@ -96,39 +98,100 @@
 <li class="toctree-l3"><a class="reference internal" href="../a-divide-align-conquer-strategy-for-program-synthesis/">A Divide-Align-Conquer Strategy for Program Synthesis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../addressing-the-abstraction-and-reasoning-corpus-via-procedural-example-generation/">Addressing the Abstraction and Reasoning Corpus via Procedural Example Generation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/">Alice in Wonderland: Simple Tasks Showing Complete Reasoning Breakdown in State-Of-the-Art Large Language Models</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#abstract">abstract</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#premise">premise</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#outline">outline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quotes">quotes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#notes">notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/#brief-overview">Brief overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/#key-points">Key points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/#notable-quotes">Notable quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../alice-in-wonderland-simple-tasks-showing-complete-reasoning-breakdown-in-state-of-the-art-large-language-models/#primary-themes">Primary themes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><span class="sectnum">1 </span>Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abstract"><span class="sectnum">1.1 </span>abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#premise"><span class="sectnum">1.2 </span>premise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outline"><span class="sectnum">1.3 </span>outline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quotes"><span class="sectnum">1.4 </span>quotes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes"><span class="sectnum">1.5 </span>notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary"><span class="sectnum">1.6 </span>summary</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#brief-overview"><span class="sectnum">2 </span>1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-points"><span class="sectnum">3 </span>2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notable-quotes"><span class="sectnum">4 </span>3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primary-themes"><span class="sectnum">5 </span>4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../arcle-the-abstraction-and-reasoning-corpus-learning-environment-for-reinforcement-learning/">ARCLE: The Abstraction and Reasoning Corpus Learning Environment for Reinforcement Learning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../attention-heads-of-large-language-models-a-survey/">Attention Heads of Large Language Models: A Survey</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../automated-design-of-agentic-systems/">Automated Design of Agentic Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../automated-design-of-agentic-systems/#brief-overview">Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../automated-design-of-agentic-systems/#key-points">Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../automated-design-of-agentic-systems/#notable-quotes">Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../automated-design-of-agentic-systems/#primary-themes">Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../combining-induction-and-transduction-for-abstract-reasoning/">Combining Induction and Transduction for Abstract Reasoning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/">Communicating Natural Programs to Humans and Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../communicating-natural-programs-to-humans-and-machines/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/">Diffusion for World Modeling: Visual Details Matter in Atari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion-for-world-modeling-visual-details-matter-in-atari/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffusion-on-syntax-trees-for-program-synthesis/">Diffusion On Syntax Trees For Program Synthesis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../dreamcoder-growing-generalizable-interpretable-knowledge-with-wake-sleep-bayesian-program-learning/">DreamCoder: Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../florence-2-advancing-a-unified-representation-for-a-variety-of-vision-tasks/">Florence-2: Advancing a Unified Representation for a Variety of Vision Tasks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../generative-agent-simulations-of-1000-people/">Generative Agent Simulations of 1,000 People</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../h-arc-a-robust-estimate-of-human-performance-on-the-abstraction-and-reasoning-corpus-benchmark/">H-ARC: A Robust Estimate of Human Performance on the Abstraction and Reasoning Corpus Benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../h-arc-a-robust-estimate-of-human-performance-on-the-abstraction-and-reasoning-corpus-benchmark/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../h-arc-a-robust-estimate-of-human-performance-on-the-abstraction-and-reasoning-corpus-benchmark/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../h-arc-a-robust-estimate-of-human-performance-on-the-abstraction-and-reasoning-corpus-benchmark/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../h-arc-a-robust-estimate-of-human-performance-on-the-abstraction-and-reasoning-corpus-benchmark/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../learning-to-learn-at-test-time-rnns-with-expressive-hidden-states/">Learning to (Learn at Test Time): RNNs with Expressive Hidden States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../learning-to-learn-at-test-time-rnns-with-expressive-hidden-states/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../learning-to-learn-at-test-time-rnns-with-expressive-hidden-states/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../learning-to-learn-at-test-time-rnns-with-expressive-hidden-states/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../learning-to-learn-at-test-time-rnns-with-expressive-hidden-states/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/">On the Measure of Intelligence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/">Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../on-the-measure-of-intelligence/#primary-themes">4. Primary Themes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/"><span class="sectnum">1 </span>Phi-3 Technical Report: A Highly Capable Language Model Locally on Your Phone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/#brief-overview"><span class="sectnum">2 </span>1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/#key-points"><span class="sectnum">3 </span>2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/#notable-quotes"><span class="sectnum">4 </span>3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phi-3-technical-report-a-highly-capable-language-model-locally-on-your-phone/#primary-themes"><span class="sectnum">5 </span>4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../planning-transformer-long-horizon-offline-reinforcement-learning-with-planning-tokens/">Planning Transformer: Long-Horizon Offline Reinforcement Learning with Planning Tokens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../principled-instructions-are-all-you-need-for-questioning-llama-1-2-gpt-3-5-4/">Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../principled-instructions-are-all-you-need-for-questioning-llama-1-2-gpt-3-5-4/"><span class="sectnum">1 </span>Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../procedural-knowledge-in-pretraining-drives-reasoning-in-large-language-models/">Procedural Knowledge in Pretraining Drives Reasoning in Large Language Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../procedural-knowledge-in-pretraining-drives-reasoning-in-large-language-models/#brief-overview">1. Brief overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../procedural-knowledge-in-pretraining-drives-reasoning-in-large-language-models/#key-points">2. Key points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../procedural-knowledge-in-pretraining-drives-reasoning-in-large-language-models/#notable-quotes">3. Notable quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../procedural-knowledge-in-pretraining-drives-reasoning-in-large-language-models/#primary-themes">4. Primary themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../reasoning-abilities-of-large-language-models-in-depth-analysis-on-the-abstraction-and-reasoning-corpus/">Reasoning Abilities of Large Language Models: In-Depth Analysis on the Abstraction and Reasoning Corpus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/">Relational decomposition for program synthesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/"><span class="sectnum">1 </span><span class="sectnum">1 </span>Relational decomposition for program synthesis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/#brief-overview"><span class="sectnum">2 </span><span class="sectnum">2 </span>1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/#key-points"><span class="sectnum">3 </span><span class="sectnum">3 </span>2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/#notable-quotes"><span class="sectnum">4 </span><span class="sectnum">4 </span>3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../relational-decomposition-for-program-synthesis/#primary-themes"><span class="sectnum">5 </span><span class="sectnum">5 </span>4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../searching-latent-program-spaces/">Searching Latent Program Spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../searching-latent-program-spaces/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../searching-latent-program-spaces/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../searching-latent-program-spaces/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../searching-latent-program-spaces/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tackling-the-abstraction-and-reasoning-corpus-arc-with-object-centric-models-and-the-mdl-principle/">Tackling the Abstraction and Reasoning Corpus (ARC) with Object-centric Models and the MDL Principle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../training-language-models-to-self-correct-via-reinforcement-learning/">Training Language Models to Self-Correct via Reinforcement Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training-language-models-to-self-correct-via-reinforcement-learning/#brief-overview">1. Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training-language-models-to-self-correct-via-reinforcement-learning/#key-points">2. Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training-language-models-to-self-correct-via-reinforcement-learning/#notable-quotes">3. Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../training-language-models-to-self-correct-via-reinforcement-learning/#primary-themes">4. Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tree-of-problems-improving-structured-problem-solving-with-compositionality/">Tree of Problems: Improving structured problem solving with compositionality</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../unraveling-the-arc-puzzle-mimicking-human-solutions-with-object-centric-decision-transformer/">Unraveling the ARC Puzzle: Mimicking Human Solutions with Object-Centric Decision Transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../unraveling-the-arc-puzzle-mimicking-human-solutions-with-object-centric-decision-transformer/#brief-overview">Brief Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../unraveling-the-arc-puzzle-mimicking-human-solutions-with-object-centric-decision-transformer/#key-points">Key Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../unraveling-the-arc-puzzle-mimicking-human-solutions-with-object-centric-decision-transformer/#notable-quotes">Notable Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../unraveling-the-arc-puzzle-mimicking-human-solutions-with-object-centric-decision-transformer/#primary-themes">Primary Themes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/">When a language model is optimized for reasoning, does it still show embers of autoregression? An analysis of OpenAI o1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/#brief-overview">1. Brief overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/#key-points">2. Key points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/#notable-quotes">3. Notable quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/#primary-themes">4. Primary themes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../repos/">repos</a></li>
@@ -156,7 +219,7 @@
       <li><a href="../../../" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../">references</a></li>
           <li class="breadcrumb-item"><a href="../">papers</a></li>
-      <li class="breadcrumb-item active">Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning</li>
+      <li class="breadcrumb-item active"><span class="sectnum">1 </span>Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/papers/analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -169,7 +232,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
               <section id="analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning">
-<span id="id1"></span><h1>Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning<a class="headerlink" href="#analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1><span class="sectnum">1 </span>Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning<a class="headerlink" href="#analog-bits-generating-discrete-data-using-diffusion-models-with-self-conditioning" title="Link to this heading"></a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">id<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2208.04202</p>
@@ -206,7 +269,7 @@
 </dd>
 </dl>
 <section id="abstract">
-<h2>abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<h2><span class="sectnum">1.1 </span>abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
 <p>We present Bit Diffusion: a simple and generic approach for generating
 discrete data with continuous state and continuous time diffusion models. The
 main idea behind our approach is to first represent the discrete data as binary
@@ -225,17 +288,48 @@ efficiency. For image captioning on MS-COCO dataset, our approach achieves
 competitive results compared to autoregressive models.</p>
 </section>
 <section id="premise">
-<h2>premise<a class="headerlink" href="#premise" title="Link to this heading"></a></h2>
+<h2><span class="sectnum">1.2 </span>premise<a class="headerlink" href="#premise" title="Link to this heading"></a></h2>
 </section>
 <section id="outline">
-<h2>outline<a class="headerlink" href="#outline" title="Link to this heading"></a></h2>
+<h2><span class="sectnum">1.3 </span>outline<a class="headerlink" href="#outline" title="Link to this heading"></a></h2>
 </section>
 <section id="quotes">
-<h2>quotes<a class="headerlink" href="#quotes" title="Link to this heading"></a></h2>
+<h2><span class="sectnum">1.4 </span>quotes<a class="headerlink" href="#quotes" title="Link to this heading"></a></h2>
 </section>
 <section id="notes">
-<h2>notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<h2><span class="sectnum">1.5 </span>notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
 </section>
+<section id="summary">
+<h2><span class="sectnum">1.6 </span>summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="brief-overview">
+<h1><span class="sectnum">2 </span>1. Brief Overview<a class="headerlink" href="#brief-overview" title="Link to this heading"></a></h1>
+<p>This paper introduces Bit Diffusion, a novel approach for generating discrete data using continuous diffusion models.  The core idea involves representing discrete data (like images) as binary bits, then modeling these bits as real numbers (“analog bits”) using a continuous diffusion model.  The model generates analog bits, which are then thresholded to obtain the final discrete representation.  Two techniques, Self-Conditioning and Asymmetric Time Intervals, significantly improve sample quality.  The approach achieves state-of-the-art results on discrete image generation tasks (CIFAR-10, ImageNet 64x64) and competitive results in image captioning (MS-COCO).</p>
+</section>
+<section id="key-points">
+<h1><span class="sectnum">3 </span>2. Key Points<a class="headerlink" href="#key-points" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Represents discrete data as binary bits, then models these as real numbers (analog bits) with a continuous diffusion model.</p></li>
+<li><p>Introduces Self-Conditioning (conditioning the model on previously generated samples) to improve sample quality.</p></li>
+<li><p>Employs Asymmetric Time Intervals during sampling for further quality enhancements.</p></li>
+<li><p>Achieves state-of-the-art results on CIFAR-10 and ImageNet 64x64 image generation tasks.</p></li>
+<li><p>Demonstrates competitive performance on image captioning with the MS-COCO dataset.</p></li>
+<li><p>The approach is simple and generic, potentially applicable to various diffusion model architectures.</p></li>
+</ul>
+</section>
+<section id="notable-quotes">
+<h1><span class="sectnum">4 </span>3. Notable Quotes<a class="headerlink" href="#notable-quotes" title="Link to this heading"></a></h1>
+<p>None explicitly stated in the abstract or introduction that warrant inclusion.</p>
+</section>
+<section id="primary-themes">
+<h1><span class="sectnum">5 </span>4. Primary Themes<a class="headerlink" href="#primary-themes" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Generative Modeling of Discrete Data:</strong> The primary focus is on developing effective methods for generating discrete data, a challenging problem for many continuous generative models.</p></li>
+<li><p><strong>Diffusion Models:</strong> The paper leverages the strengths of diffusion models, specifically their ability to handle high-dimensional data efficiently and generate high-quality samples.</p></li>
+<li><p><strong>Novel Techniques:</strong> The introduction of Self-Conditioning and Asymmetric Time Intervals showcases the exploration of new techniques to improve existing methods.</p></li>
+<li><p><strong>State-of-the-Art Results:</strong> The impressive results on benchmark datasets highlight the effectiveness of the proposed approach.</p></li>
+</ul>
 </section>
 
 <div class="section">

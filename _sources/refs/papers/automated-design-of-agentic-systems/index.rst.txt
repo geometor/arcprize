@@ -51,3 +51,5 @@ systems to benefit humanity.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

@@ -52,3 +52,5 @@ data can be found at https://github.com/LAION-AI/AIW
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

@@ -42,3 +42,5 @@ competitive results compared to autoregressive models.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

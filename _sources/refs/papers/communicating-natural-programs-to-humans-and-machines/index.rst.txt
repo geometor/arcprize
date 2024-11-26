@@ -46,3 +46,5 @@ suggestions on how to build the next-generation program synthesizers.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

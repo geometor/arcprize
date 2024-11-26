@@ -33,3 +33,5 @@ domain-specific approaches.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

@@ -39,3 +39,5 @@ our system can write graphics programs for hand-drawn sketches.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

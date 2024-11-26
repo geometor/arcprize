@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2410.01792v2.When_a_language_model_is_optimized_for_reasoning__does_it_still_show_embers_of_autoregression__An_analysis_of_OpenAI_o1.pdf" name="source_pdf" />
+<meta content="2024-11-25 20:39:49" name="summary_date" />
+<meta property="og:title" content="summary" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="refs/papers/when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/summary/" />
+<meta property="og:site_name" content="geometor • arcprize" />
+<meta property="og:description" content="1. Brief overview: This paper analyzes OpenAI’s new language model, o1, investigating whether it retains characteristics of autoregression despite being optimized for reasoning. The authors find th..." />
+<meta name="description" content="1. Brief overview: This paper analyzes OpenAI’s new language model, o1, investigating whether it retains characteristics of autoregression despite being optimized for reasoning. The authors find th..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>summary &mdash; geometor • arcprize</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+    <link rel="canonical" href="https://geometor.github.io/arcprize/refs/papers/when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/summary/" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />   
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../../log/atom.xml"
+  title="geometor • arcprize"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../" class="icon icon-home">
+            geometor • arcprize
+              <img src="../../../../_static/arcprize-logo-200.gif" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mission/">mission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/">usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs/">logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../">references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../todos/">todos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../">geometor • arcprize</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">summary</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/geometor/arcprize/blob/main/docsrc/refs/papers/when-a-language-model-is-optimized-for-reasoning-does-it-still-show-embers-of-autoregression-an-analysis-of-openai-o1/summary.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <section id="summary">
+<h1>summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
+<section id="brief-overview">
+<h2>1. Brief overview<a class="headerlink" href="#brief-overview" title="Link to this heading"></a></h2>
+<p>This paper analyzes OpenAI’s new language model, o1, investigating whether it retains characteristics of autoregression despite being optimized for reasoning.  The authors find that while o1 significantly outperforms previous LLMs on various reasoning tasks, particularly those involving rare variants of common problems, it still exhibits sensitivity to both the probability of outputs and the frequency of tasks.  This suggests that optimizing for reasoning can mitigate but not fully eliminate the influence of the model’s autoregressive origins.</p>
+</section>
+<section id="key-points">
+<h2>2. Key points<a class="headerlink" href="#key-points" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>o1 substantially outperforms previous LLMs on many reasoning tasks, especially rare variants.</p></li>
+<li><p>Despite improvements, o1 still shows sensitivity to output probability (performing better on high-probability outputs).</p></li>
+<li><p>o1 also displays sensitivity to task frequency (performing better on common task variants).</p></li>
+<li><p>This sensitivity to probability and frequency is less pronounced in o1 than in previous LLMs.</p></li>
+<li><p>The study uses “thinking tokens” as a measure of difficulty, corroborating accuracy-based findings.</p></li>
+<li><p>More challenging task variations reveal stronger task frequency effects in o1.</p></li>
+</ul>
+</section>
+<section id="notable-quotes">
+<h2>3. Notable quotes<a class="headerlink" href="#notable-quotes" title="Link to this heading"></a></h2>
+<p><em>No direct quotes were identified in the provided text that would be particularly valuable for future reference beyond the summary already provided.</em></p>
+</section>
+<section id="primary-themes">
+<h2>4. Primary themes<a class="headerlink" href="#primary-themes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>The persistence of autoregressive biases in LLMs optimized for reasoning:</strong> Even when a language model is trained to focus on reasoning, its underlying autoregressive nature still influences its performance.</p></li>
+<li><p><strong>The teleological perspective in AI analysis:</strong> Understanding the pressures that shape an AI system’s development is crucial for analyzing its strengths and limitations.</p></li>
+<li><p><strong>Quantitative and qualitative analysis of LLM performance:</strong> The study employs both accuracy and token usage metrics to evaluate model performance, providing a more comprehensive understanding of its capabilities and limitations.</p></li>
+<li><p><strong>The impact of task frequency and output probability on LLM performance:</strong> The study demonstrates the continued influence of data distribution on LLM performance, even in models specifically designed for reasoning tasks.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, geometor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

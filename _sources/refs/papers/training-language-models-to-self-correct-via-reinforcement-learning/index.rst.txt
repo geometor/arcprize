@@ -50,3 +50,5 @@ self-correction by 15.6% and 9.1% respectively on MATH and HumanEval.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

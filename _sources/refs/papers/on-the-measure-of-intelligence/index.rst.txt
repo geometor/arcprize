@@ -51,3 +51,5 @@ it enables fair general intelligence comparisons between AI systems and humans.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

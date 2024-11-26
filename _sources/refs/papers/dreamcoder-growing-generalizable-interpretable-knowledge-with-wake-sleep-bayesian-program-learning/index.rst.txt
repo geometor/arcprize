@@ -41,3 +41,5 @@ while still growing scalably and flexibly with experience.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

@@ -39,3 +39,5 @@ stones towards making leaps on the benchmark.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

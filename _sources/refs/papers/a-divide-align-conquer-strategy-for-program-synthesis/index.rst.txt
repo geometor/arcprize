@@ -48,3 +48,5 @@ which ILP methods were previously infeasible.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

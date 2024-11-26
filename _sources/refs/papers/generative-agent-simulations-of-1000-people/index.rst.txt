@@ -40,3 +40,5 @@ investigate individual and collective behavior.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

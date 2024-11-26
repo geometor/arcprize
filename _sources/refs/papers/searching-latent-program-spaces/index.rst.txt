@@ -45,3 +45,5 @@ outperforming algorithms without test-time adaptation mechanisms.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

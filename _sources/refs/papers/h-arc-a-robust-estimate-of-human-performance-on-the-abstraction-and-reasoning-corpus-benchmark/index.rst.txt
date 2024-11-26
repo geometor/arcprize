@@ -48,3 +48,5 @@ the submissions and action traces from human participants.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

@@ -37,3 +37,5 @@ https://github.com/VILA-Lab/ATLAS.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

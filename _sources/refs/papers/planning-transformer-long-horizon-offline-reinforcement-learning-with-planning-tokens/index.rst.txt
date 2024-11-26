@@ -40,3 +40,5 @@ plan visualisations and attention map.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

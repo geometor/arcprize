@@ -35,3 +35,5 @@ Decision Transformers and propels future AGI research.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

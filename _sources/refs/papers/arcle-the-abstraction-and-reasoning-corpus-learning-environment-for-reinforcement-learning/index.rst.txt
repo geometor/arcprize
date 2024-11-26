@@ -37,3 +37,5 @@ motivations for using ARCLE, including MAML, GFlowNets, and World Models.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

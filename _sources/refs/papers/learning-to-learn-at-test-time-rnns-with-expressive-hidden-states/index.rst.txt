@@ -43,3 +43,5 @@ in long context, pointing to a promising direction for future research.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

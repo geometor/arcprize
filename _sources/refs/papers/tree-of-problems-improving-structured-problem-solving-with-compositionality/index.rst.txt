@@ -39,3 +39,5 @@ https://github.com/ArmelRandy/tree-of-problems.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

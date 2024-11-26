@@ -37,3 +37,5 @@ to a different domain.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst

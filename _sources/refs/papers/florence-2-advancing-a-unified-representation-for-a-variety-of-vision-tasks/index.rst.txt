@@ -42,3 +42,5 @@ unprecedented zero-shot and fine-tuning capabilities.
 .. include:: quotes.rst
 
 .. include:: notes.rst
+
+.. include:: summary.rst
