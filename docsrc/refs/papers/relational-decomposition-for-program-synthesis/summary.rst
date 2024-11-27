@@ -9,12 +9,13 @@ summary
 .. sectnum::
 
 1. Brief Overview
-==================
+~~~~~~~~~~~~~~~~~
 
 This paper introduces a novel approach to program synthesis that decomposes complex functional tasks into simpler relational synthesis sub-tasks.  The authors demonstrate the effectiveness of their approach using an off-the-shelf inductive logic programming (ILP) system on three challenging datasets (ID-ARC, ARC, and List functions).  Their results show that a relational representation can outperform a functional one, and that an off-the-shelf ILP system with a relational encoding can outperform domain-specific approaches.  The core contribution is showing that decomposing complex functional synthesis tasks into relational sub-tasks simplifies the overall learning process.
 
+
 2. Key Points
-==================
+~~~~~~~~~~~~~
 
 *   A novel program synthesis approach is introduced that decomposes functional tasks into multiple relational tasks.
 *   An off-the-shelf ILP system with a relational representation achieves high performance compared to domain-specific approaches across multiple datasets (ID-ARC, ARC, List functions).
@@ -22,13 +23,15 @@ This paper introduces a novel approach to program synthesis that decomposes comp
 *   The relational approach's efficiency stems from decomposing each training example into multiple smaller examples, allowing independent rule learning and subsequent combination.
 *   The method effectively handles long sequences of functions, addressing a significant challenge in existing functional approaches.
 
+
 3. Notable Quotes
-==================
+~~~~~~~~~~~~~~~~~
 
 No notable quotes were identified in the provided text.
 
+
 4. Primary Themes
-==================
+~~~~~~~~~~~~~~~~~
 
 *   **Relational vs. Functional Program Synthesis:** The paper's central theme is a comparison of relational and functional approaches to program synthesis.  It argues that a relational approach, by decomposing complex problems into smaller, interrelated subproblems, provides significant advantages in terms of learning efficiency and scalability.
 *   **Inductive Logic Programming (ILP):** ILP plays a crucial role as the underlying framework for the relational approach. The authors highlight the effectiveness of using an off-the-shelf ILP system with minimal domain-specific modifications.

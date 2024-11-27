@@ -9,13 +9,13 @@ This paper investigates the reasoning capabilities of state-of-the-art Large Lan
 
 
 Brief overview
-=============
+~~~~~~~~~~~~~~
 
 The research explores the limitations of current state-of-the-art LLMs in solving simple common-sense reasoning problems.  Using the AIW problem, the authors demonstrate a dramatic failure of these models, which contrasts sharply with their high scores on standard benchmarks.  Various prompting techniques and model interventions fail to improve performance, revealing a lack of robustness and highlighting the need for improved evaluation metrics.
 
 
 Key points
-=========
+~~~~~~~~~~
 
 * The AIW problem, a simple common-sense question easily solvable by humans, reveals severe reasoning deficits in state-of-the-art LLMs.
 * Even slight variations in the AIW problem significantly impact model performance, demonstrating a lack of robustness.
@@ -26,14 +26,8 @@ Key points
 * The authors propose creating standardized benchmarks that better detect basic reasoning deficits.
 
 
-Notable quotes
-=============
-
-No notable quotes were identified in the provided text.
-
-
 Primary themes
-=============
+~~~~~~~~~~~~~~
 
 * **Limitations of LLMs:** The primary theme is the exposure of significant limitations in the reasoning capabilities of current LLMs, despite their success on other tasks.
 * **Benchmark inadequacy:** The paper strongly critiques the inadequacy of current benchmarks for evaluating reasoning capabilities.

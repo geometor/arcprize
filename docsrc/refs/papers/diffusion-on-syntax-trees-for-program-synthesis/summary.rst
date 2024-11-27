@@ -5,14 +5,15 @@
 summary
 -------
 
+
 1. Brief Overview
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 This paper introduces a novel approach to program synthesis using neural diffusion models that operate directly on syntax trees.  Unlike autoregressive language models, this method iteratively refines programs while preserving syntactic validity and allows the model to observe program outputs at each step, effectively enabling a debugging process.  The approach is applied to inverse graphics tasks, where the model learns to convert images into programs that generate those images. The system combines neural diffusion with search to efficiently explore the program space and produce programs meeting specifications, even from hand-drawn sketches.
 
 
 2. Key Points
-^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 *   Uses neural diffusion models operating on syntax trees for program synthesis.
 *   Iteratively refines programs while maintaining syntactic validity.
@@ -24,13 +25,13 @@ This paper introduces a novel approach to program synthesis using neural diffusi
 
 
 3. Notable Quotes
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 No notable quotes were identified in the provided text.
 
 
 4. Primary Themes
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 *   **Program Synthesis:**  The core focus is developing novel methods for automatically generating programs from input data (images in this case).
 *   **Neural Diffusion Models:**  The paper leverages the power of diffusion models, extending their application beyond image generation to the structured data of syntax trees.

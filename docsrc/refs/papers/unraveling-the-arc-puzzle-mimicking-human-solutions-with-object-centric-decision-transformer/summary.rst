@@ -9,13 +9,13 @@ This paper presents a novel approach to solving Abstraction and Reasoning Corpus
 
 
 Brief Overview
-=============
+~~~~~~~~~~~~~~
 
 The research tackles the challenge of imbuing AI with human-like abstraction and reasoning skills, focusing on the challenging ARC dataset.  Existing solutions struggle to surpass ~30% accuracy. The proposed approach uses a Decision Transformer in an imitation learning framework, learning from human problem-solving traces captured using an Object-Oriented ARC (O2ARC) interface.  Additionally, a novel object detection algorithm, Push and Pull (PnP) clustering, is introduced to enhance object understanding within the puzzle.  The combined approach, termed "Object-centric Decision Transformer," shows improved results on selected ARC problem types.
 
 
 Key Points
-=========
+~~~~~~~~~~
 
 *   The study employs an imitation learning paradigm using a Decision Transformer to model human problem-solving strategies on the ARC dataset.
 *   A novel object detection algorithm, the Push and Pull (PnP) clustering method, is introduced to enhance the model's understanding of objects within the ARC puzzles.
@@ -27,13 +27,13 @@ Key Points
 
 
 Notable Quotes
-==============
+~~~~~~~~~~~~~~
 
 None explicitly identified from the provided text.
 
 
 Primary Themes
-==============
+~~~~~~~~~~~~~~
 
 * **Imitation Learning:**  The core methodology involves learning from human problem-solving traces, a key aspect of imitation learning.
 * **Object-Centric Approach:**  The integration of the PnP clustering algorithm introduces an object-centric perspective to reasoning, mirroring human cognition.

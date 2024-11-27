@@ -6,13 +6,13 @@ summary
 -------
 
 1. Brief overview
-=========
+~~~~~~~~~~~~~~~~~
 
 This paper analyzes OpenAI's new language model, o1, investigating whether it retains characteristics of autoregression despite being optimized for reasoning.  The authors find that while o1 significantly outperforms previous LLMs on various reasoning tasks, particularly those involving rare variants of common problems, it still exhibits sensitivity to both the probability of outputs and the frequency of tasks.  This suggests that optimizing for reasoning can mitigate but not fully eliminate the influence of the model's autoregressive origins.
 
 
 2. Key points
-=========
+~~~~~~~~~~~~~
 
 * o1 substantially outperforms previous LLMs on many reasoning tasks, especially rare variants.
 * Despite improvements, o1 still shows sensitivity to output probability (performing better on high-probability outputs).
@@ -23,13 +23,13 @@ This paper analyzes OpenAI's new language model, o1, investigating whether it re
 
 
 3. Notable quotes
-=========
+~~~~~~~~~~~~~~~~~
 
 *No direct quotes were identified in the provided text that would be particularly valuable for future reference beyond the summary already provided.*
 
 
 4. Primary themes
-=========
+~~~~~~~~~~~~~~~~~
 
 * **The persistence of autoregressive biases in LLMs optimized for reasoning:** Even when a language model is trained to focus on reasoning, its underlying autoregressive nature still influences its performance.
 * **The teleological perspective in AI analysis:** Understanding the pressures that shape an AI system's development is crucial for analyzing its strengths and limitations.

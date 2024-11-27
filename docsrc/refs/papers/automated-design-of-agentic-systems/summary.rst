@@ -9,13 +9,13 @@ Automated Design of Agentic Systems (ADAS) is a new research area that aims to a
 
 
 Brief Overview
-=============
+~~~~~~~~~~~~~~
 
 This research paper introduces Automated Design of Agentic Systems (ADAS), a new research area focused on automatically generating powerful agentic systems.  The authors propose a novel algorithm called Meta Agent Search which leverages large language models (LLMs) as meta-agents to iteratively generate, test, and refine agents defined entirely in code.  Extensive experiments across multiple domains demonstrate the superior performance and generalizability of the automatically generated agents compared to hand-designed baselines.  The study also emphasizes the importance of safe development in this new field.
 
 
 Key Points
-=========
+~~~~~~~~~~
 
 * ADAS is formulated as a search problem with three key components: search space (code), search algorithm (Meta Agent Search), and evaluation function.
 * Meta Agent Search uses LLMs as meta-agents to iteratively generate novel agents in code, evaluating them and adding them to an archive which informs future generations.
@@ -25,13 +25,13 @@ Key Points
 
 
 Notable Quotes
-==============
+~~~~~~~~~~~~~~
 
 (No notable quotes were identified in the provided text.)
 
 
 Primary Themes
-==============
+~~~~~~~~~~~~~~
 
 * **Automation of Agentic System Design:** The core theme is the automation of the design process for complex agentic systems, moving away from manual design and tuning.
 * **Code as the Search Space:**  A significant contribution is the use of code as the search space for exploring possible agentic system designs.
