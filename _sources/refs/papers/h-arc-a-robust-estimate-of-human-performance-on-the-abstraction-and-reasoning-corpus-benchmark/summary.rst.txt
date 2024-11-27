@@ -6,12 +6,13 @@ summary
 -------
 
 1. Brief Overview
-=================
+~~~~~~~~~~~~~~~~~
 
 This paper presents H-ARC, a dataset containing human performance data on the Abstraction and Reasoning Corpus (ARC) benchmark.  The study aimed to provide a robust estimate of human performance on ARC by evaluating 1729 humans on the full set of 800 tasks (400 training and 400 evaluation). The results show that human performance significantly exceeds current state-of-the-art AI approaches, with humans achieving 76.2% accuracy on the training set and 64.2% on the evaluation set.  The dataset is publicly released to facilitate further research.
 
+
 2. Key Points
-=================
+~~~~~~~~~~~~~
 
 *   Evaluated 1729 humans on the full 800-task ARC dataset.
 *   Estimated average human accuracy: 76.2% (training), 64.2% (evaluation).
@@ -23,13 +24,13 @@ This paper presents H-ARC, a dataset containing human performance data on the Ab
 
 
 3. Notable Quotes
-==================
+~~~~~~~~~~~~~~~~~
 
 No notable quotes were identified.
 
 
 4. Primary Themes
-==================
+~~~~~~~~~~~~~~~~~
 
 *   **Benchmarking Human Performance:** The study's primary focus is establishing a reliable benchmark for human performance on a complex reasoning task.
 *   **Human-AI Comparison:**  The results highlight the significant gap between human and AI performance on ARC.

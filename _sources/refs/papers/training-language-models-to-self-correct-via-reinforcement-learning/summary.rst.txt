@@ -6,13 +6,13 @@ summary
 -------
 
 1. Brief Overview
-=================
+~~~~~~~~~~~~~~~~~
 
 This paper introduces SCoRe, a novel multi-turn online reinforcement learning (RL) approach that significantly improves a large language model's (LLM) self-correction ability using entirely self-generated data.  Existing methods for training self-correction in LLMs typically rely on multiple models, advanced models, or external supervision. SCoRe addresses these limitations by training a single model to both generate responses and correct its own mistakes, using a two-stage training process to mitigate issues like distribution shift and behavior collapse.  The method achieves state-of-the-art self-correction performance on MATH and HumanEval benchmarks.
 
 
 2. Key Points
-=================
+~~~~~~~~~~~~~
 
 *   SCoRe is a novel multi-turn online RL approach for training LLMs to self-correct.
 *   It uses entirely self-generated data, avoiding the need for external supervision or multiple models.
@@ -24,13 +24,13 @@ This paper introduces SCoRe, a novel multi-turn online reinforcement learning (R
 
 
 3. Notable Quotes
-==================
+~~~~~~~~~~~~~~~~~
 
 None explicitly stated, but the core argument can be summarized as: "existing methods for training self-correction typically depend on either multiple models, a more advanced model, or additional forms of supervision... SCoRe addresses these challenges by training under the model's own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at test time..."
 
 
 4. Primary Themes
-===================
+~~~~~~~~~~~~~~~~~
 
 *   **Self-correction in LLMs:** The central theme is improving the ability of LLMs to autonomously identify and correct their own mistakes.
 *   **Reinforcement Learning:** The paper focuses on using RL as the primary training paradigm to address the limitations of supervised learning approaches.

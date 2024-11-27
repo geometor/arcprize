@@ -5,14 +5,15 @@
 summary
 -------
 
-1. Brief Overview
-^^^^^^^^^^^^^^^
+
+3. Brief Overview
+~~~~~~~~~~~~~~~~~
 
 This paper introduces ARCLE, a reinforcement learning (RL) environment designed for the Abstraction and Reasoning Corpus (ARC) benchmark.  ARC presents challenges for RL due to its vast action space, hard-to-reach goals, and variety of tasks. ARCLE, implemented in Gymnasium, aims to address these challenges by providing a tailored environment and a range of tools for RL research.  The paper demonstrates that an agent using proximal policy optimization can learn individual ARC tasks within ARCLE, highlighting the effectiveness of non-factorial policies and auxiliary losses.  Further research directions are proposed, including the application of MAML, GFlowNets, and World Models.
 
 
 2. Key Points
-^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 * ARCLE is a new RL environment for the ARC benchmark, designed to address the challenges of ARC for RL agents.
 * ARCLE is implemented in Gymnasium and includes various components (envs, loaders, actions, wrappers).
@@ -22,13 +23,13 @@ This paper introduces ARCLE, a reinforcement learning (RL) environment designed 
 
 
 3. Notable Quotes
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 No notable quotes were identified.
 
 
 4. Primary Themes
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 * **Reinforcement Learning on Abstract Reasoning:** The core theme is the application of RL techniques to solve the challenging abstract reasoning problems presented by the ARC benchmark.
 * **Addressing Challenges in RL:** The paper focuses on overcoming typical RL difficulties like vast action spaces and hard-to-reach goals, as presented by the ARC benchmark.

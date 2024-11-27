@@ -6,12 +6,13 @@ summary
 -------
 
 1. Brief Overview
-================
+~~~~~~~~~~~~~~~~~
 
 This paper introduces a new class of sequence modeling layers called Test-Time Training (TTT) layers.  Unlike traditional RNNs which are limited by the expressiveness of their fixed-size hidden state, TTT layers make the hidden state a machine learning model itself, updated via a self-supervised learning step even during test time.  The authors propose two instantiations: TTT-Linear and TTT-MLP, which achieve linear complexity and match or exceed the performance of strong Transformers and modern RNNs (like Mamba) in long-context scenarios.  Key optimizations, including mini-batching and a dual form for computations, significantly improve wall-clock time.
 
+
 2. Key Points
-================
+~~~~~~~~~~~~~
 
 *   TTT layers address the limitations of RNNs in long-context scenarios by making the hidden state a learnable model.
 *   TTT-Linear and TTT-MLP are two instantiations of TTT layers, using a linear model and a two-layer MLP respectively as the hidden state.
@@ -22,13 +23,13 @@ This paper introduces a new class of sequence modeling layers called Test-Time T
 
 
 3. Notable Quotes
-=================
+~~~~~~~~~~~~~~~~~
 
 No specific quotes were identified as particularly notable for future reference.
 
 
 4. Primary Themes
-==================
+~~~~~~~~~~~~~~~~~
 
 *   **Improving RNN performance in long-context tasks:** This is the central problem addressed by the paper.  The limitations of traditional RNNs in handling long sequences are highlighted, and the TTT approach is presented as a solution.
 *   **Test-time training (TTT):** This novel technique is the core contribution of the paper. TTT involves training the hidden state model even during the inference phase, leading to improved performance in long sequences.

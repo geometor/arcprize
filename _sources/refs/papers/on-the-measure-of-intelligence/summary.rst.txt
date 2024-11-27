@@ -5,13 +5,15 @@
 summary
 -------
 
+
 1. Brief Overview
-=================
+~~~~~~~~~~~~~~~~~
 
 This paper, "On the Measure of Intelligence," by François Chollet, critically examines existing definitions and evaluation methods of intelligence in both psychology and AI.  It argues that current AI benchmarks, focused on task-specific skills, fail to adequately measure true intelligence, which is better characterized as skill-acquisition efficiency.  Chollet proposes a new formal definition of intelligence based on Algorithmic Information Theory and introduces the Abstraction and Reasoning Corpus (ARC) as a novel benchmark designed to evaluate human-like general fluid intelligence in AI systems.
 
+
 2. Key Points
-==============
+~~~~~~~~~~~~~
 
 * Current AI benchmarks prioritize skill in specific tasks, neglecting the broader ability to acquire new skills efficiently.
 * Skill acquisition efficiency, encompassing scope, generalization difficulty, priors, and experience, is proposed as a more accurate definition of intelligence.
@@ -20,8 +22,9 @@ This paper, "On the Measure of Intelligence," by François Chollet, critically e
 *  The paper formalizes the concept of intelligence using Algorithmic Information Theory, providing quantitative measures for generalization difficulty, priors, and experience.
 * ARC incorporates key aspects of psychometrics, such as the use of broad batteries of tasks and a hierarchy of abilities, but avoids issues concerning crystallized abilities and prior knowledge inherent in traditional psychometric tests.
 
+
 3. Notable Quotes
-==================
+~~~~~~~~~~~~~~~~~
 
 * "Looked at in one way, everyone knows what intelligence is; looked at in another way, no one does." - Robert J. Sternberg, 2000
 * "In the distant future I see open fields for far more important researches. Psychology will be based on a new foundation, that of the necessary acquirement of each mental power and capacity by gradation." - Charles Darwin, 1859
@@ -29,7 +32,7 @@ This paper, "On the Measure of Intelligence," by François Chollet, critically e
 
 
 4. Primary Themes
-===================
+~~~~~~~~~~~~~~~~~
 
 * **The inadequacy of current AI evaluation metrics:** The paper argues that existing methods focus too narrowly on task-specific skills, neglecting the broader capacities of intelligence, such as generalization and learning.
 * **A new definition of intelligence:** The author proposes a formal definition grounded in Algorithmic Information Theory, emphasizing skill-acquisition efficiency as the core characteristic of intelligence.

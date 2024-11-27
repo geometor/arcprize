@@ -6,13 +6,13 @@ summary
 -------
 
 1. Brief Overview
-=================
+~~~~~~~~~~~~~~~~~
 
 This paper introduces the Latent Program Network (LPN), a novel algorithm for program induction that learns a distribution over latent programs in a continuous space, enabling efficient search and test-time adaptation.  Unlike previous methods relying on stochastic sampling or gradient updates, LPN incorporates a structured search mechanism during inference, leveraging gradient-based optimization in the latent space to find the latent program that best explains a given specification.  The model is evaluated on the ARC-AGI benchmark, demonstrating its ability to generalize beyond its training distribution and adapt to unseen tasks through test-time computation.
 
 
 2. Key Points
-=============
+~~~~~~~~~~~~~
 
 *   Introduces Latent Program Network (LPN), a novel algorithm for program induction with efficient test-time adaptation.
 *   Utilizes a continuous latent space to represent programs, allowing for efficient gradient-based search during both training and inference.
@@ -20,14 +20,15 @@ This paper introduces the Latent Program Network (LPN), a novel algorithm for pr
 *   Evaluated on ARC-AGI, outperforming algorithms without test-time adaptation mechanisms and demonstrating strong generalization capabilities.
 *   Does not utilize pre-trained models or synthetic data, showing scalability and applicability to various domains.
 
+
 3. Notable Quotes
-================
+~~~~~~~~~~~~~~~~~
 
 No notable quotes identified.
 
 
 4. Primary Themes
-=================
+~~~~~~~~~~~~~~~~~
 
 *   **Program Synthesis:** The core focus is on developing more efficient and generalizable methods for automatically generating programs.
 *   **Latent Space Representation:** The use of a continuous latent space to represent programs is a key innovation, enabling efficient search and adaptation.

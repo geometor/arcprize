@@ -8,14 +8,15 @@ summary
 .. sectnum::
 .. section-numbering:: ones
 
+
 1. Brief Overview
-=================
+~~~~~~~~~~~~~~~~~
 
 This paper introduces Bit Diffusion, a novel approach for generating discrete data using continuous diffusion models.  The core idea involves representing discrete data (like images) as binary bits, then modeling these bits as real numbers ("analog bits") using a continuous diffusion model.  The model generates analog bits, which are then thresholded to obtain the final discrete representation.  Two techniques, Self-Conditioning and Asymmetric Time Intervals, significantly improve sample quality.  The approach achieves state-of-the-art results on discrete image generation tasks (CIFAR-10, ImageNet 64x64) and competitive results in image captioning (MS-COCO).
 
 
 2. Key Points
-=================
+~~~~~~~~~~~~~
 
 *   Represents discrete data as binary bits, then models these as real numbers (analog bits) with a continuous diffusion model.
 *   Introduces Self-Conditioning (conditioning the model on previously generated samples) to improve sample quality.
@@ -26,13 +27,13 @@ This paper introduces Bit Diffusion, a novel approach for generating discrete da
 
 
 3. Notable Quotes
-===================
+~~~~~~~~~~~~~~~~~
 
 None explicitly stated in the abstract or introduction that warrant inclusion.
 
 
 4. Primary Themes
-====================
+~~~~~~~~~~~~~~~~~
 
 *   **Generative Modeling of Discrete Data:** The primary focus is on developing effective methods for generating discrete data, a challenging problem for many continuous generative models.
 *   **Diffusion Models:** The paper leverages the strengths of diffusion models, specifically their ability to handle high-dimensional data efficiently and generate high-quality samples.
