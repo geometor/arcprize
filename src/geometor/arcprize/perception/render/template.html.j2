@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Visualization</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        header, footer {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+        section {
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 45%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+        }
+        section > h1 {
+            text-align: center;
+            color: #888;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .grid-content {
+            font-family: monospace;
+            white-space: pre;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    {% set rows = size %}
+    {% set cols = input_grid.split('\n')|first|length %}
+    {% set base_size = 500 %}  {# Adjust this value to change the overall scale #}
+    {% set font_size = (base_size / (rows * cols)**0.5)|round|int %}
+    
+    <header><h1>{{model}} • {{symbol_set}}</h1></header>
+    <main>
+        <section>
+            <h1>input</h1>
+            <div class="grid-content" style="font-size: {{font_size}}px;">{{input_grid}}</div>
+        </section>
+        <section>
+            <h1>output</h1>
+            <div class="grid-content" style="font-size: {{font_size}}px;">{{output_grid}}</div>
+        </section>
+    </main>
+    <footer>
+        Response: {{model_response}} • Correct: {{correct_answer}}
+    </footer>
+</body>
+</html>

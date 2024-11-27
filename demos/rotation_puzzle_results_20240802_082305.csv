@@ -1,0 +1,46 @@
+index,size,model_response,correct_answer,is_correct,processing_time,model,symbol_set,input_grid,output_grid
+0,3,none,right,False,8.263736248016357,phi3:mini,digits,"7 7 7
+7 2 7
+7 9 9","7 7 7
+9 2 7
+9 7 7"
+1,3,left,full,False,8.215836763381958,phi3:mini,digits,"1 1 1
+1 1 4
+1 1 1","1 1 1
+4 1 1
+1 1 1"
+2,3,none,full,False,8.219589233398438,phi3:mini,digits,"6 7 5
+7 7 7
+7 7 3","3 7 7
+7 7 7
+5 7 6"
+0,3,none,none,True,7.985076189041138,phi3:mini,letters,"N N N
+A N E
+U N N","N N N
+A N E
+U N N"
+1,3,right,left,False,7.8253772258758545,phi3:mini,letters,"W G S
+J G G
+G G G","S G G
+G G G
+W J G"
+2,3,left,right,False,7.797464370727539,phi3:mini,letters,"U C Y
+Y Y Y
+Y Y W","Y Y U
+Y Y C
+W Y Y"
+0,3,none,none,True,8.16842269897461,phi3:mini,symbols,"# = #
+# # &
+# @ #","# = #
+# # &
+# @ #"
+1,3,right,right,True,7.486171722412109,phi3:mini,symbols,"? ? ?
+? ? $
+? ? ?","? ? ?
+? ? ?
+? $ ?"
+2,3,full,left,False,8.086283445358276,phi3:mini,symbols,"% % %
+# % %
+% = %","% % %
+% % =
+% # %"

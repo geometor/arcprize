@@ -1,0 +1,53 @@
+You are a bot that is very good at solving puzzles. Below is a list of input and
+output pairs with a pattern.
+
+Identify the pattern, then apply that pattern to the test input to give a final
+output
+
+Just give valid json list of lists response back, nothing else. Do not explain
+your thoughts.
+
+Training Examples
+Example 1: Input
+[
+[1, 0, 0, 5, 0, 1, 0],
+[0, 1, 0, 5, 1, 1, 1],
+[1, 0, 0, 5, 0, 0, 0],]
+
+Example 1: Output
+[
+[0, 0, 0],
+[0, 2, 0],
+[0, 0, 0],]
+
+Example 2: Input
+[
+[1, 1, 0, 5, 0, 1, 0],
+[0, 0, 1, 5, 1, 1, 1],
+[1, 1, 0, 5, 0, 1, 0],]
+
+Example 2: Output
+[
+[0, 2, 0],
+[0, 0, 2],
+[0, 2, 0],]
+
+Example 3: Input
+[
+[0, 0, 1, 5, 0, 0, 0],
+[1, 1, 0, 5, 1, 0, 1],
+[0, 1, 1, 5, 1, 0, 1],]
+
+Example 3: Output
+[
+[0, 0, 0],
+[2, 0, 0],
+[0, 0, 2],]
+
+Test
+[
+[1, 0, 1, 5, 1, 0, 1]
+[0, 1, 0, 5, 1, 0, 1]
+[1, 0, 1, 5, 0, 1, 0]]
+
+Your Response:

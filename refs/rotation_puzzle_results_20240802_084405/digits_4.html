@@ -1,0 +1,133 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Visualization</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        p {
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        header, footer {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: #111;
+            color: #999;
+            font-size: 20px;
+        }
+        header > div, footer > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 20px;
+        }
+        section {
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+        section > h2 {
+            text-align: center;
+            color: #888;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .grid-content {
+            font-family: monospace;
+            white-space: pre;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .value {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+        }
+        .True {
+            color: green;
+        }
+        .False {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="index">4<hr>30</div>
+        <div class="title">digits_4<hr>ROTATION</div>
+        <div>phi3:mini<hr>7 x 7</div>
+    </header>
+    <main>
+        <section>
+            <h2>INPUT</h2>
+            <div class="grid-content" style="font-size: 73px;">2 1 2 2 2 9 9
+2 2 2 2 2 9 9
+2 2 2 2 2 2 2
+7 2 2 2 3 2 2
+7 2 2 2 2 2 2
+7 2 2 2 2 2 2
+2 2 2 2 2 2 2</div>
+        </section>
+        <section>
+            <h2>OUTPUT</h2>
+            <div class="grid-content" style="font-size: 73px;">2 7 7 7 2 2 2
+2 2 2 2 2 2 1
+2 2 2 2 2 2 2
+2 2 2 2 2 2 2
+2 2 2 3 2 2 2
+2 2 2 2 2 9 9
+2 2 2 2 2 9 9</div>
+        </section>
+    </main>
+    <footer>
+        <div>
+        <p>correct answer:</p>
+        <p class="value">RIGHT</p>
+        </div>
+        <div>
+        <p>model response:</p>
+        <p class="value">RIGHT</p>
+        </div>
+        <div >
+        <p class="value True">TRUE</p>
+        </div>
+        <div>
+        <p>time:</p>
+        <p class="value">15.23 s</p>
+        </div>
+    </footer>
+</body>
+</html>

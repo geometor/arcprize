@@ -1,0 +1,119 @@
+{
+  "model": "phi3:mini",
+  "symbol_sets": [
+    "digits",
+    "letters",
+    "symbols"
+  ],
+  "timestamp": "2024-08-02T07:12:33.742321",
+  "results": [
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.53762435913086,
+      "model": "phi3:mini",
+      "symbol_set": "digits",
+      "input_grid": "9 9 7\n9 4 9\n9 9 0",
+      "output_grid": "0 9 9\n9 4 9\n7 9 9"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "full",
+      "is_correct": false,
+      "processing_time": 8.360973358154297,
+      "model": "phi3:mini",
+      "symbol_set": "digits",
+      "input_grid": "8 8 0\n8 8 8\n8 9 8",
+      "output_grid": "8 9 8\n8 8 8\n0 8 8"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.320979118347168,
+      "model": "phi3:mini",
+      "symbol_set": "digits",
+      "input_grid": "2 2 2\n2 2 2\n3 2 0",
+      "output_grid": "2 2 2\n2 2 2\n3 2 0"
+    },
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "none",
+      "is_correct": false,
+      "processing_time": 7.882632255554199,
+      "model": "phi3:mini",
+      "symbol_set": "letters",
+      "input_grid": "Y R Y\nY Y Y\nY Y Y",
+      "output_grid": "Y R Y\nY Y Y\nY Y Y"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "right",
+      "correct_answer": "left",
+      "is_correct": false,
+      "processing_time": 8.171578168869019,
+      "model": "phi3:mini",
+      "symbol_set": "letters",
+      "input_grid": "R R R\nR R R\nW R P",
+      "output_grid": "R R P\nR R R\nR R W"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.152316570281982,
+      "model": "phi3:mini",
+      "symbol_set": "letters",
+      "input_grid": "Y Y Y\nY O B\nY Y F",
+      "output_grid": "Y Y Y\nY O B\nY Y F"
+    },
+    {
+      "index": 0,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.000463247299194,
+      "model": "phi3:mini",
+      "symbol_set": "symbols",
+      "input_grid": "$ # $\n$ $ $\n$ $ #",
+      "output_grid": "$ # $\n$ $ $\n$ $ #"
+    },
+    {
+      "index": 1,
+      "size": 3,
+      "model_response": "left",
+      "correct_answer": "right",
+      "is_correct": false,
+      "processing_time": 7.950545310974121,
+      "model": "phi3:mini",
+      "symbol_set": "symbols",
+      "input_grid": "% $ !\n$ $ $\n$ $ $",
+      "output_grid": "$ $ %\n$ $ $\n$ $ !"
+    },
+    {
+      "index": 2,
+      "size": 3,
+      "model_response": "none",
+      "correct_answer": "none",
+      "is_correct": true,
+      "processing_time": 8.035043954849243,
+      "model": "phi3:mini",
+      "symbol_set": "symbols",
+      "input_grid": "% * *\n* * #\n* + *",
+      "output_grid": "% * *\n* * #\n* + *"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+index,size,model_response,correct_answer,is_correct,processing_time,model,symbol_set
+0,3,right,right,True,13.79130482673645,phi3:mini,digits
+1,3,full,left,False,9.935859203338623,phi3:mini,digits
+2,3,none,none,True,9.048622846603394,phi3:mini,digits
+0,3,left,right,False,9.628116846084595,phi3:mini,letters
+1,3,left,right,False,10.96851921081543,phi3:mini,letters
+2,3,right,left,False,11.093298435211182,phi3:mini,letters
+0,3,none,none,True,11.293746709823608,phi3:mini,symbols
+1,3,right,left,False,10.788504838943481,phi3:mini,symbols
+2,3,right,full,False,11.659386157989502,phi3:mini,symbols
