@@ -95,6 +95,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../geometor.arcprize.solvers.gemini_client/">geometor.arcprize.solvers.gemini_client</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">geometor.arcprize.solvers.gemini_logger</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Indexer"><code class="docutils literal notranslate"><span class="pre">Indexer</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Indexer.update_session_results"><code class="docutils literal notranslate"><span class="pre">Indexer.update_session_results()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#geometor.arcprize.solvers.gemini_logger.Indexer.update_indices"><code class="docutils literal notranslate"><span class="pre">Indexer.update_indices()</span></code></a></li>
 </ul>
 </li>
@@ -156,9 +157,15 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Manages the creation and updating of session, puzzle, and main index files.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Indexer.update_session_results">
+<span class="sig-name descname"><span class="pre">update_session_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Indexer.update_session_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Indexer.update_session_results" title="Link to this definition"></a></dt>
+<dd><p>Generate and update session results summary.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="geometor.arcprize.solvers.gemini_logger.Indexer.update_indices">
 <span class="sig-name descname"><span class="pre">update_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/geometor/arcprize/solvers/gemini_logger/#Indexer.update_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometor.arcprize.solvers.gemini_logger.Indexer.update_indices" title="Link to this definition"></a></dt>
-<dd><p>Update all indices by regenerating them from scratch.</p>
+<dd><p>Update all indices including results summary.</p>
 </dd></dl>
 
 </dd></dl>

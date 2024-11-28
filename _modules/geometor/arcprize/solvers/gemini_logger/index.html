@@ -149,14 +149,67 @@
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_images&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle_dir</span> <span class="o">/</span> <span class="s2">&quot;_responses&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Indexer.update_session_results">
+<a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Indexer.update_session_results">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_session_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate and update session results summary.&quot;&quot;&quot;</span>
+        <span class="n">puzzles</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">puzzle_dir</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">puzzle_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                <span class="n">puzzle_data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">puzzle_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="s1">&#39;submitted&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;size_correct&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;colors_correct&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;color_diff&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;pixel_accuracy&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+                <span class="p">}</span>
+                
+                <span class="c1"># Look for submission files</span>
+                <span class="n">submission_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">puzzle_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*-submission.rst&#39;</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">submission_files</span><span class="p">:</span>
+                    <span class="n">puzzle_data</span><span class="p">[</span><span class="s1">&#39;submitted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">submission_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                        
+                        <span class="c1"># Extract metrics using regex</span>
+                        <span class="kn">import</span> <span class="nn">re</span>
+                        <span class="n">size_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;:Size Correct: (True|False)&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                        <span class="n">colors_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;:Colors Correct: (True|False)&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                        <span class="n">diff_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;:Unique Color Count Diff: (\{.*?\})&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                        <span class="n">accuracy_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;:Pixel Accuracy: ([\d\.]+)%&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                        
+                        <span class="n">puzzle_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                            <span class="s1">&#39;size_correct&#39;</span><span class="p">:</span> <span class="n">size_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">size_match</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;colors_correct&#39;</span><span class="p">:</span> <span class="n">colors_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">colors_match</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;color_diff&#39;</span><span class="p">:</span> <span class="n">diff_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">diff_match</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;pixel_accuracy&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">accuracy_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span> <span class="k">if</span> <span class="n">accuracy_match</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+                        <span class="p">})</span>
+                
+                <span class="n">puzzles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">puzzle_data</span><span class="p">)</span>
+        
+        <span class="c1"># Render template</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;session_results.j2&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Session Results: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">puzzles</span><span class="o">=</span><span class="n">puzzles</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Write results file</span>
+        <span class="n">results_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_dir</span> <span class="o">/</span> <span class="s1">&#39;results.rst&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">results_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Indexer.update_indices">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_logger/#geometor.arcprize.solvers.gemini_logger.Indexer.update_indices">[docs]</a>
     <span class="k">def</span> <span class="nf">update_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update all indices by regenerating them from scratch.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update all indices including results summary.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_write_sessions_index</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_write_session_index</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_write_puzzle_index</span><span class="p">()</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">_write_puzzle_index</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_session_results</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_write_sessions_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Regenerate the main sessions index using Jinja2.&quot;&quot;&quot;</span>
