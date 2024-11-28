@@ -1,6 +1,8 @@
-This project is a collection of studies inspired by the ARC prize
+This project is a collection of studies inspired by the Abstraction and
+Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
+to solve - but difficult for AI. 
 
-https://arcprize.org
+For more information on ARC and the current contest, check out https://arcprize.org
 
 began my journey with ARC think that I it might be fun to build a system 
 

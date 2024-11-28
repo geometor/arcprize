@@ -35,12 +35,62 @@ class Indexer:
         (self.puzzle_dir / "_images").mkdir(parents=True, exist_ok=True)
         (self.puzzle_dir / "_responses").mkdir(parents=True, exist_ok=True)
 
+    def update_session_results(self):
+        """Generate and update session results summary."""
+        puzzles = []
+        
+        for puzzle_dir in sorted(self.session_dir.iterdir()):
+            if puzzle_dir.is_dir():
+                puzzle_data = {
+                    'id': puzzle_dir.name,
+                    'submitted': False,
+                    'size_correct': '',
+                    'colors_correct': '',
+                    'color_diff': '',
+                    'pixel_accuracy': ''
+                }
+                
+                # Look for submission files
+                submission_files = list(puzzle_dir.glob('*-submission.rst'))
+                if submission_files:
+                    puzzle_data['submitted'] = True
+                    with open(submission_files[0]) as f:
+                        content = f.read()
+                        
+                        # Extract metrics using regex
+                        import re
+                        size_match = re.search(r':Size Correct: (True|False)', content)
+                        colors_match = re.search(r':Colors Correct: (True|False)', content)
+                        diff_match = re.search(r':Unique Color Count Diff: (\{.*?\})', content)
+                        accuracy_match = re.search(r':Pixel Accuracy: ([\d\.]+)%', content)
+                        
+                        puzzle_data.update({
+                            'size_correct': size_match.group(1) if size_match else '',
+                            'colors_correct': colors_match.group(1) if colors_match else '',
+                            'color_diff': diff_match.group(1) if diff_match else '',
+                            'pixel_accuracy': f"{accuracy_match.group(1)}%" if accuracy_match else ''
+                        })
+                
+                puzzles.append(puzzle_data)
+        
+        # Render template
+        template = self.env.get_template('session_results.j2')
+        content = template.render(
+            title=f"Session Results: {self.timestamp}",
+            puzzles=puzzles
+        )
+        
+        # Write results file
+        results_path = self.session_dir / 'results.rst'
+        with open(results_path, 'w') as f:
+            f.write(content)
+
     def update_indices(self):
-        """Update all indices by regenerating them from scratch."""
+        """Update all indices including results summary."""
         self._write_sessions_index()
         self._write_session_index()
         self._write_puzzle_index()
-
+        self.update_session_results()
     def _write_sessions_index(self):
         """Regenerate the main sessions index using Jinja2."""
         index_path = self.sessions_dir / "index.rst"
