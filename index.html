@@ -6,8 +6,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="" />
 <meta property="og:site_name" content="geometor • arcprize" />
-<meta property="og:description" content="This project is a collection of studies inspired by the ARC prize https://arcprize.org began my journey with ARC think that I it might be fun to build a system realized the intention in measure is ..." />
-<meta name="description" content="This project is a collection of studies inspired by the ARC prize https://arcprize.org began my journey with ARC think that I it might be fun to build a system realized the intention in measure is ..." />
+<meta property="og:description" content="investigations into the ARC challenge: contents questions, mission, priors, code, research, installation, usage. This project is a collection of studies inspired by the Abstraction and Reasoning Co..." />
+<meta name="description" content="investigations into the ARC challenge: contents questions, mission, priors, code, research, installation, usage. This project is a collection of studies inspired by the Abstraction and Reasoning Co..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>arcprize &mdash; geometor • arcprize</title>
@@ -121,26 +121,228 @@
            <div itemprop="articleBody">
               <section id="arcprize">
 <h1>arcprize<a class="headerlink" href="#arcprize" title="Link to this heading"></a></h1>
-<p>This project is a collection of studies inspired by the ARC prize</p>
-<p><a class="reference external" href="https://arcprize.org">https://arcprize.org</a></p>
-<p>began my journey with ARC think that I it might be fun to build a system</p>
-<p>realized the intention in <span class="xref std std-ref">measure</span> is for an agent to address the puzzles with
+<section id="investigations-into-the-arc-challenge">
+<h2>investigations into the ARC challenge<a class="headerlink" href="#investigations-into-the-arc-challenge" title="Link to this heading"></a></h2>
+<img alt="_images/arc-banner.png" src="_images/arc-banner.png" />
+<p><strong>contents</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#questions">questions</a></p></li>
+<li><p><a class="reference internal" href="#mission">mission</a></p></li>
+<li><p><a class="reference internal" href="#priors">priors</a></p></li>
+<li><p><a class="reference internal" href="#code">code</a></p></li>
+<li><p><a class="reference internal" href="#research">research</a></p></li>
+<li><p><a class="reference internal" href="#installation">installation</a></p></li>
+<li><p><a class="reference internal" href="#usage">usage</a></p></li>
+</ul>
+<p>This project is a collection of studies inspired by the Abstraction and
+Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
+to solve - but difficult for AI.</p>
+<p>The ARC challenge presents a fundamental test
+of machine intelligence through pattern recognition and reasoning. This project
+provides a systematic approach to analyzing and solving ARC puzzles, with a focus
+on geometric patterns and transformations.</p>
+<p>For more information on ARC and the current contest, check out <a class="reference external" href="https://arcprize.org">https://arcprize.org</a></p>
+<p>I began my journey with ARC thinking that it might be fun to “engineer” a system that
+could solve these puzzles.</p>
+<p>realized the intention in <a class="reference external" href="https://arxiv.org/pdf/1911.01547">On the Measure of Intelligence</a> is for an agent to address the puzzles with
 no previous knowledge about the puzzles</p>
-<div class="video_wrapper" style="">
-<iframe allowfullscreen="true" src="https://www.youtube.com/embed/CMr2NoIaZn8" style="border: 0; height: 345px; width: 560px">
-</iframe></div><p>if I were to design a system (if I could) then I would be demonstrating my
+<p>if I were to design a system (if I could) then I would be demonstrating my
 intelligence</p>
 <p>So, the question becomes: can a machine properly ingest a puzzle in a way that
-it is understood</p>
+it is understood?</p>
+</section>
+<section id="questions">
+<h2>questions<a class="headerlink" href="#questions" title="Link to this heading"></a></h2>
+<p>We are guided by several important questions</p>
+<ul>
+<li><p><strong>Can an LLM solve an ARC puzzle?</strong></p>
+<p>We know the answer is yes, but can it solve any puzzle.</p>
+</li>
+<li><p><strong>Can an LLM perceive the elements of the puzzle?</strong></p></li>
+<li><p><strong>Can an LLM discern the “story” of the puzzle?</strong></p></li>
+</ul>
+</section>
+<section id="mission">
+<h2>mission<a class="headerlink" href="#mission" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>raise an intelligent <strong>agent</strong> to participate</p></li>
+<li><p>facilitate the investigation of the ARC with the <strong>agent</strong></p></li>
+<li><p>focus on extracting a <strong>natural language program</strong> for each puzzle</p></li>
+<li><p>log process</p></li>
+</ul>
+</section>
+<section id="priors">
+<h2>priors<a class="headerlink" href="#priors" title="Link to this heading"></a></h2>
+<p>to successfully tell the story, an intelligent system would need to be able to
+perceive and discern the following:</p>
+<blockquote>
+<div><ul>
+<li><p><strong>Objectness</strong></p>
+<p>Objects persist and cannot appear or disappear without reason. Objects can interact or not depending on the circumstances.</p>
+</li>
+<li><p><strong>Goal-directedness</strong></p>
+<p>Objects can be animate or inanimate. Some objects are “agents” - they have intentions and they pursue goals.</p>
+</li>
+<li><p><strong>Numbers &amp; counting</strong></p>
+<p>Objects can be counted or sorted by their shape, appearance, or movement using basic mathematics like addition, subtraction, and comparison.</p>
+</li>
+<li><p><strong>Basic geometry &amp; topology</strong></p>
+<p>Objects can be shapes like rectangles, triangles, and circles which can be
+mirrored, rotated, translated, deformed, combined, repeated, etc.
+Differences in distances can be detected.</p>
+</li>
+</ul>
+<p class="attribution">—from <a class="reference external" href="https://arcprize.org/arc">https://arcprize.org/arc</a></p>
+</div></blockquote>
+</section>
+<section id="code">
+<h2>code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<p>Most of the logic of the <code class="docutils literal notranslate"><span class="pre">geometor.arcprize</span></code> package is in 3 submodules:</p>
+<p>Check out the documentation here: <a class="reference external" href="https://geometor.github.io/arcprize/modules/">https://geometor.github.io/arcprize/modules/</a></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometor.arcprize.puzzles</span></code>:</p>
+<p>tools for reading source json for ARC puzzles and facilitating presentation to
+the agent</p>
+<p>also tools for sorting puzzle list by complexity</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometor.arcprize.solvers</span></code>:</p>
+<p>currently code for facilitating puzzle solutions with the Gemini API</p>
+<p>logging and client management</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometor.arcprize.perception</span></code>:</p></li>
+</ul>
+</section>
+<section id="research">
+<h2>research<a class="headerlink" href="#research" title="Link to this heading"></a></h2>
+<p>I have been collecting links and summary of papers, repos, youtube videos, and
+other web pages related to ARC.</p>
+<p><a class="reference external" href="https://geometor.github.io/arcprize/refs/">https://geometor.github.io/arcprize/refs/</a></p>
+<p>I hope to improve the usefulness of this data over time.</p>
+<blockquote>
+<div><p><strong>NOTE:</strong></p>
+<p>the search feature on the website is excellent</p>
+</div></blockquote>
+<p>Please recommend any additional references.</p>
+</section>
+<section id="installation">
+<h2>installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>Until we deploy to pypi, we recommend installing from the project root</p>
+<p>this should install required packages as well as <code class="docutils literal notranslate"><span class="pre">geometor.model</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>the following is the current script for running the <strong>first six</strong> sessions at
+<a class="reference external" href="https://github.com/geometor/arcprizesessions">arcprizesessions</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">geometor.arcprize.puzzles</span> <span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
+<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_solver</span> <span class="kn">import</span> <span class="n">PuzzleSolver</span>
+
+
+<span class="k">def</span> <span class="nf">solve_all_puzzles</span><span class="p">(</span><span class="n">puzzle_set</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y.%j.%H%M%S&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">puzzle</span> <span class="ow">in</span> <span class="n">puzzle_set</span><span class="o">.</span><span class="n">puzzles</span><span class="p">:</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">PuzzleSolver</span><span class="p">(</span>
+            <span class="n">puzzle</span><span class="p">,</span>
+            <span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;../docsrc&quot;</span><span class="p">,</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+            <span class="n">max_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">puzzle_set</span> <span class="o">=</span> <span class="n">PuzzleSet</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">puzzle_set</span><span class="o">.</span><span class="n">puzzles</span><span class="p">)</span><span class="si">}</span><span class="s2"> puzzles&quot;</span><span class="p">)</span>
+
+    <span class="c1">#  model_name = &quot;gemini-exp-1121&quot;</span>
+    <span class="c1">#  model_name = &quot;models/gemini-exp-1114&quot;</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
+
+    <span class="c1">#  solve_all_puzzles(puzzle_set, model_name)</span>
+
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y.%j.%H%M%S&quot;</span><span class="p">)</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">PuzzleSolver</span><span class="p">(</span>
+        <span class="n">puzzle_set</span><span class="o">.</span><span class="n">puzzles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">,</span>
+        <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;../docsrc&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+        <span class="n">max_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="running-perception-tests">
+<h3>Running Perception Tests<a class="headerlink" href="#running-perception-tests" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geometor.arcprize.perception</span> <span class="kn">import</span> <span class="n">generate_puzzle_set</span>
+<span class="kn">from</span> <span class="nn">geometor.arcprize.perception.experiment_runner</span> <span class="kn">import</span> <span class="n">test_individual_puzzles</span>
+
+<span class="c1"># Generate test puzzles</span>
+<span class="n">puzzles</span> <span class="o">=</span> <span class="n">generate_puzzle_set</span><span class="p">(</span>
+    <span class="n">num_puzzles</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">min_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">symbol_set_key</span><span class="o">=</span><span class="s2">&quot;digits&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Run tests</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">test_individual_puzzles</span><span class="p">(</span><span class="n">puzzles</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;phi-3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contributing">
+<h2>contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h2>
+<p>Contributions are welcome! Please read our Contributing Guidelines for details on
+the process for submitting pull requests.</p>
+<ul class="simple">
+<li><p>New perception test types</p></li>
+<li><p>Additional solver strategies</p></li>
+<li><p>Visualization improvements</p></li>
+<li><p>Documentation enhancements</p></li>
+<li><p>Performance optimizations</p></li>
+</ul>
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><img alt="ytimg" src="https://img.youtube.com/vi/CMr2NoIaZn8/2.jpg" /></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.youtube.com/watch?v=CMr2NoIaZn8"><img alt="ytimg" src="https://img.youtube.com/vi/CMr2NoIaZn8/2.jpg" /></a></p></td>
 <td><p><a class="reference external" href="https://www.youtube.com/watch?v=CMr2NoIaZn8">https://www.youtube.com/watch?v=CMr2NoIaZn8</a> -</p>
 <p>all the grids from the training puzzles in order of complexity</p>
 </td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="license">
+<h2>license<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+</section>
+<section id="contact">
+<h2>contact<a class="headerlink" href="#contact" title="Link to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">GitHub<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/phiarchitect">&#64;phiarchitect</a></p>
+</dd>
+<dt class="field-even">Project<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://github.com/geometor">GEOMETOR</a></p>
+</dd>
+<dt class="field-odd">website<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This project is part of the GEOMETOR initiative, exploring fundamental
+patterns and relationships in mathematics and nature.</p>
+</dd>
+</dl>
+</section>
 <section id="recent-logs">
 <h2>recent logs<a class="headerlink" href="#recent-logs" title="Link to this heading"></a></h2>
 <ul class="postlist-style-none postlist">
