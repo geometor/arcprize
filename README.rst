@@ -1,3 +1,8 @@
+investigations into the ARC challenge
+-------------------------------------
+
+.. image:: ./docsrc/_static/arc-banner.png
+
 This project is a collection of studies inspired by the Abstraction and
 Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
 to solve - but difficult for AI. 
@@ -28,11 +33,8 @@ it is understood
 
        all the grids from the training puzzles in order of complexity
 
-.. topic:: alert
 
-   this is a topic
-
-Overview
+overview
 --------
 
 The ARC (Abstraction and Reasoning Corpus) challenge presents a fundamental test
@@ -40,8 +42,8 @@ of machine intelligence through pattern recognition and reasoning. This project
 provides a systematic approach to analyzing and solving ARC puzzles, with a focus
 on geometric patterns and transformations.
 
-Key Features
------------
+code
+----
 
 - **Puzzle Analysis**: Tools for decomposing and understanding ARC puzzle patterns
 - **Visual Rendering**: Multiple visualization options for grid states
@@ -49,8 +51,8 @@ Key Features
 - **Systematic Logging**: Comprehensive documentation of solution attempts
 - **Perception Tests**: Specialized tools for testing basic pattern recognition
 
-Project Structure
----------------
+project structure
+-----------------
 
 .. code-block:: text
 
@@ -68,9 +70,10 @@ Project Structure
 Installation
 -----------
 
+
 .. code-block:: bash
 
-    pip install geometor.arcprize
+    pip install -e .
 
 Usage
 -----
