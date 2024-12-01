@@ -3,8 +3,12 @@ investigations into the ARC challenge
 
 .. image:: ./docsrc/_static/arc-banner.png
 
-.. contents:: 
-   :local:
+**contents**
+
+- questions_
+- mission_
+- priors_
+- code_
 
 This project is a collection of studies inspired by the Abstraction and
 Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
@@ -27,14 +31,14 @@ if I were to design a system (if I could) then I would be demonstrating my
 intelligence
 
 So, the question becomes: can a machine properly ingest a puzzle in a way that
-it is understood
+it is understood?
 
 .. _On the Measure of Intelligence: https://arxiv.org/pdf/1911.01547
 
 
 
-mission
--------
+questions
+---------
 
 We are guided by several important questions
 
@@ -53,29 +57,31 @@ We are guided by several important questions
 mission
 -------
 
-- build a system to facilitate the participation by an LLM 
-- Focus on extracting a natural language program for 
+- raise an intelligent **agent** to participate
+- facilitate the investigation of the ARC with the **agent**
+- focus on extracting a **natural language program** for each puzzle
+- log process
 
 priors
 ------
 
-to successsfully tell the story, an intelligent system would need to be able to
+to successfully tell the story, an intelligent system would need to be able to
 perceive and discern the following:
 
 
-    - Objectness
+    - **Objectness**
 
       Objects persist and cannot appear or disappear without reason. Objects can interact or not depending on the circumstances.
 
-    - Goal-directedness
+    - **Goal-directedness**
 
       Objects can be animate or inanimate. Some objects are "agents" - they have intentions and they pursue goals.
 
-    - Numbers & counting
+    - **Numbers & counting**
 
       Objects can be counted or sorted by their shape, appearance, or movement using basic mathematics like addition, subtraction, and comparison.
 
-    - Basic geometry & topology
+    - **Basic geometry & topology**
 
       Objects can be shapes like rectangles, triangles, and circles which can be
       mirrored, rotated, translated, deformed, combined, repeated, etc.
@@ -86,53 +92,99 @@ perceive and discern the following:
 code
 ----
 
-- **puzzles**: 
+Most of the logic of the ``geometor.arcprize`` package is in 3 submodules:
+
+- ``geometor.arcprize.puzzles``: 
   
-  tools for reading source json for ARC puzzle and facilitating presentation
+  tools for reading source json for ARC puzzles and facilitating presentation to
+  the agent
 
   also tools for sorting puzzle list by complexity
 
-- **solvers**: 
+- ``geometor.arcprize.solvers``: 
   
   currently code for facilitating puzzle solutions with the Gemini API
 
   logging and client management
 
-- **perception**
+- ``geometor.arcprize.perception``: 
 
 
+research
+--------
 
+I have been collecting links and summary of papers, repos, youtube videos, and
+other web pages related to ARC.
 
+https://geometor.github.io/arcprize/refs/
 
 installation
------------
+------------
 
+Until we deploy to pypi, we recommend installing from the project root
 
-
+this should install required packages as well as ``geometor.model``
 
 .. code-block:: bash
 
     pip install -e .
 
-Usage
+usage
 -----
 
-Basic Example
-~~~~~~~~~~~~
+the following is the current script for running the **first six** sessions at
+arcprizesessions_
+
+.. _arcprizesessions: https://github.com/geometor/arcprizesessions
 
 .. code-block:: python
 
-    from geometor.arcprize import PuzzleSet
-    from geometor.arcprize.solvers import PuzzleSolver
+   from rich import print
+   from datetime import datetime
+   from pathlib import Path
+   import json
+   import os
 
-    # Load puzzle set
-    puzzle_set = PuzzleSet()
+   from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
+   from geometor.arcprize.solvers.gemini_solver import PuzzleSolver
 
-    # Create solver instance
-    solver = PuzzleSolver(puzzle_set.puzzles[0])
 
-    # Run solution attempt
-    solver.solve()
+   def solve_all_puzzles(puzzle_set, model_name):
+       timestamp = datetime.now().strftime("%y.%j.%H%M%S")
+       for puzzle in puzzle_set.puzzles:
+           solver = PuzzleSolver(
+               puzzle,
+               timestamp=timestamp,
+               output_dir="../docsrc",
+               model_name=model_name,
+               max_iterations=10,
+           )
+           solver.solve()
+
+
+   def run():
+       puzzle_set = PuzzleSet()
+       print(f"Loaded {len(puzzle_set.puzzles)} puzzles")
+
+       #  model_name = "gemini-exp-1121"
+       #  model_name = "models/gemini-exp-1114"
+       model_name = "models/gemini-1.5-flash-002"
+
+       #  solve_all_puzzles(puzzle_set, model_name)
+
+       timestamp = datetime.now().strftime("%y.%j.%H%M%S")
+       solver = PuzzleSolver(
+           puzzle_set.puzzles[0],
+           timestamp=timestamp,
+           output_dir="../docsrc",
+           model_name=model_name,
+           max_iterations=10,
+       )
+       solver.solve()
+
+
+   if __name__ == "__main__":
+       run()
 
 Running Perception Tests
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -153,66 +205,14 @@ Running Perception Tests
     # Run tests
     results = test_individual_puzzles(puzzles, model="phi-3")
 
-Components
----------
 
-Puzzle Module
-~~~~~~~~~~~~
-- ``Grid``: Represents individual puzzle grids with transformation capabilities
-- ``PuzzlePair``: Manages input/output grid pairs
-- ``Puzzle``: Encapsulates complete ARC puzzles
-- ``PuzzleSet``: Handles collections of puzzles
 
-Perception Module
-~~~~~~~~~~~~~~~
-- Tools for testing basic pattern recognition abilities
-- Focus on rotation, symmetry, and other fundamental transformations
-- Support for multiple symbol sets (digits, letters, geometric shapes)
-
-Solver Module
-~~~~~~~~~~~
-- Framework for implementing different solution strategies
-- Built-in support for various AI models
-- Logging and analysis of solution attempts
-
-Render Module
-~~~~~~~~~~~
-- Multiple visualization formats (PNG, SVG, HTML)
-- Interactive grid displays
-- Animation capabilities for solution steps
-
-Development
-----------
-
-Prerequisites
-~~~~~~~~~~~~
-- Python 3.8+
-- Poetry for dependency management
-- Development dependencies: pytest, black, pylint
-
-Setup Development Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-    # Clone repository
-    git clone https://github.com/geometor/arc.git
-    cd arc
-
-    # Install dependencies
-    poetry install
-
-    # Run tests
-    poetry run pytest
-
-Contributing
------------
+contributing
+------------
 
 Contributions are welcome! Please read our Contributing Guidelines for details on
 the process for submitting pull requests.
 
-Areas for Contribution
-~~~~~~~~~~~~~~~~~~~
 - New perception test types
 - Additional solver strategies
 - Visualization improvements
@@ -230,39 +230,19 @@ Areas for Contribution
 
        all the grids from the training puzzles in order of complexity
 
-Project Philosophy
-----------------
 
-This project approaches the ARC challenge through the lens of fundamental geometric
-principles and pattern recognition. Rather than treating each puzzle as an isolated
-problem, we seek to understand the underlying patterns and transformations that
-connect them.
-
-Key principles:
-
-- Focus on basic perception before complex reasoning
-- Systematic documentation of observations
-- Integration of geometric analysis
-- Progressive refinement of solution strategies
-
-License
+license
 -------
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgments
--------------
 
-- François Chollet for creating the ARC challenge
-- The GEOMETOR project community
-- All contributors and testers
-
-Contact
+contact
 -------
 
 :GitHub: `@phiarchitect <https://github.com/phiarchitect>`_
-:Project: `GEOMETOR/ARC <https://github.com/geometor/arcprize>`_
+:Project: `GEOMETOR <https://github.com/geometor>`_
+:website: 
 
-.. note::
     This project is part of the GEOMETOR initiative, exploring fundamental
     patterns and relationships in mathematics and nature.
