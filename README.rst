@@ -17,38 +17,31 @@ This project is a collection of studies inspired by the Abstraction and
 Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
 to solve - but difficult for AI. 
 
-The ARC (Abstraction and Reasoning Corpus) challenge presents a fundamental test
+The ARC challenge presents a fundamental test
 of machine intelligence through pattern recognition and reasoning. This project
 provides a systematic approach to analyzing and solving ARC puzzles, with a focus
 on geometric patterns and transformations.
 
-
 For more information on ARC and the current contest, check out https://arcprize.org
 
-began my journey with ARC think that I it might be fun to build a system 
+I began my journey with ARC thinking that it might be fun to "engineer" a system that
+could solve these puzzles. But I soon realized the intention in `On the Measure of Intelligence`_ is for an agent to address the puzzles with
+no previous knowledge about the puzzles. If I were to design a system (if I could) then I would be demonstrating my
+intelligence - not that of an agent.
 
-realized the intention in `On the Measure of Intelligence`_ is for an agent to address the puzzles with
-no previous knowledge about the puzzles
-
-if I were to design a system (if I could) then I would be demonstrating my
-intelligence
-
-So, the question becomes: can a machine properly ingest a puzzle in a way that
-it is understood?
 
 .. _On the Measure of Intelligence: https://arxiv.org/pdf/1911.01547
-
 
 
 questions
 ---------
 
-We are guided by several important questions
+We are guided by several important questions around the use of LLMs to 
 
 
-- **Can an LLM solve an ARC puzzle?**
+- **Can an LLM solve an ARC puzzle with understanding?**
 
-  We know the answer is yes, but can it solve any puzzle.
+  We know that LLMs can solve ARC puzzles in many different ways, but the LLM 
 
 - **Can an LLM perceive the elements of the puzzle?**
 
@@ -57,19 +50,11 @@ We are guided by several important questions
 - **Can an LLM discern the "story" of the puzzle?**
 
 
-mission
--------
-
-- raise an intelligent **agent** to participate
-- facilitate the investigation of the ARC with the **agent**
-- focus on extracting a **natural language program** for each puzzle
-- log process
-
 priors
 ------
 
-to successfully tell the story, an intelligent system would need to be able to
-perceive and discern the following:
+To successfully tell the story, an intelligent agent would need to be able to
+perceive and discern the following qualities of a puzzle:
 
 
     - **Objectness**
@@ -91,6 +76,22 @@ perceive and discern the following:
       Differences in distances can be detected.
 
     -- from https://arcprize.org/arc
+
+mission
+-------
+To achieve our goal, we want to see the endeavor as a partnership with the
+intelligent agent. We want to learn about the nature of the agent, so that we
+can facilitate the puzzles in the most advantageous way.
+
+- raise an intelligent **agent** to participate in the ARC challenge
+- facilitate the investigation of the ARC puzzles with the **agent**
+- focus on extracting a **natural language program** for each puzzle
+- give the agent a set of actions to perform to complete the puzzle
+- recognize all the variables in the system and test for them
+- log process
+
+An important consideration, the agent cannot experience the puzzle as a human
+does, so we must find ways to augment perception.
 
 code
 ----
