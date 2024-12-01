@@ -3,9 +3,18 @@ investigations into the ARC challenge
 
 .. image:: ./docsrc/_static/arc-banner.png
 
+.. contents:: 
+   :local:
+
 This project is a collection of studies inspired by the Abstraction and
 Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
 to solve - but difficult for AI. 
+
+The ARC (Abstraction and Reasoning Corpus) challenge presents a fundamental test
+of machine intelligence through pattern recognition and reasoning. This project
+provides a systematic approach to analyzing and solving ARC puzzles, with a focus
+on geometric patterns and transformations.
+
 
 For more information on ARC and the current contest, check out https://arcprize.org
 
@@ -22,53 +31,83 @@ it is understood
 
 .. _On the Measure of Intelligence: https://arxiv.org/pdf/1911.01547
 
-.. |ytimg| image::  https://img.youtube.com/vi/CMr2NoIaZn8/2.jpg
-   :target: https://www.youtube.com/watch?v=CMr2NoIaZn8
 
 
-.. list-table::
+mission
+-------
 
-   * - |ytimg|
-     - https://www.youtube.com/watch?v=CMr2NoIaZn8 - 
-
-       all the grids from the training puzzles in order of complexity
+We are guided by several important questions
 
 
-overview
---------
+- **Can an LLM solve an ARC puzzle?**
 
-The ARC (Abstraction and Reasoning Corpus) challenge presents a fundamental test
-of machine intelligence through pattern recognition and reasoning. This project
-provides a systematic approach to analyzing and solving ARC puzzles, with a focus
-on geometric patterns and transformations.
+  We know the answer is yes, but can it solve any puzzle.
+
+- **Can an LLM perceive the elements of the puzzle?**
+
+
+
+- **Can an LLM discern the "story" of the puzzle?**
+
+
+mission
+-------
+
+- build a system to facilitate the participation by an LLM 
+- Focus on extracting a natural language program for 
+
+priors
+------
+
+to successsfully tell the story, an intelligent system would need to be able to
+perceive and discern the following:
+
+
+    - Objectness
+
+      Objects persist and cannot appear or disappear without reason. Objects can interact or not depending on the circumstances.
+
+    - Goal-directedness
+
+      Objects can be animate or inanimate. Some objects are "agents" - they have intentions and they pursue goals.
+
+    - Numbers & counting
+
+      Objects can be counted or sorted by their shape, appearance, or movement using basic mathematics like addition, subtraction, and comparison.
+
+    - Basic geometry & topology
+
+      Objects can be shapes like rectangles, triangles, and circles which can be
+      mirrored, rotated, translated, deformed, combined, repeated, etc.
+      Differences in distances can be detected.
+
+    -- from https://arcprize.org/arc
 
 code
 ----
 
-- **Puzzle Analysis**: Tools for decomposing and understanding ARC puzzle patterns
-- **Visual Rendering**: Multiple visualization options for grid states
-- **Model Integration**: Framework for testing various AI models on ARC tasks
-- **Systematic Logging**: Comprehensive documentation of solution attempts
-- **Perception Tests**: Specialized tools for testing basic pattern recognition
+- **puzzles**: 
+  
+  tools for reading source json for ARC puzzle and facilitating presentation
 
-project structure
------------------
+  also tools for sorting puzzle list by complexity
 
-.. code-block:: text
+- **solvers**: 
+  
+  currently code for facilitating puzzle solutions with the Gemini API
 
-    src/geometor/arcprize/
-    ├── __init__.py           # Package initialization
-    ├── __main__.py          # CLI entry point
-    ├── analyze.py           # Puzzle analysis tools
-    ├── app.py              # Main application runner
-    ├── img_gen.py          # Image generation utilities
-    ├── perception/         # Perception test framework
-    ├── puzzles/           # Core puzzle handling
-    ├── render/            # Visualization components
-    └── solvers/           # Solution implementations
+  logging and client management
 
-Installation
+- **perception**
+
+
+
+
+
+installation
 -----------
+
+
 
 
 .. code-block:: bash
@@ -179,6 +218,17 @@ Areas for Contribution
 - Visualization improvements
 - Documentation enhancements
 - Performance optimizations
+
+.. |ytimg| image::  https://img.youtube.com/vi/CMr2NoIaZn8/2.jpg
+   :target: https://www.youtube.com/watch?v=CMr2NoIaZn8
+
+
+.. list-table::
+
+   * - |ytimg|
+     - https://www.youtube.com/watch?v=CMr2NoIaZn8 - 
+
+       all the grids from the training puzzles in order of complexity
 
 Project Philosophy
 ----------------
