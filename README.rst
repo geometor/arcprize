@@ -9,6 +9,9 @@ investigations into the ARC challenge
 - mission_
 - priors_
 - code_
+- research_
+- installation_
+- usage_
 
 This project is a collection of studies inspired by the Abstraction and
 Reasoning Corpus (ARC) - a set of puzzles designed to be easy for humans
@@ -94,6 +97,8 @@ code
 
 Most of the logic of the ``geometor.arcprize`` package is in 3 submodules:
 
+Check out the documentation here: https://geometor.github.io/arcprize/modules/
+
 - ``geometor.arcprize.puzzles``: 
   
   tools for reading source json for ARC puzzles and facilitating presentation to
@@ -114,9 +119,17 @@ research
 --------
 
 I have been collecting links and summary of papers, repos, youtube videos, and
-other web pages related to ARC.
+other web pages related to ARC. 
 
 https://geometor.github.io/arcprize/refs/
+
+I hope to improve the usefulness of this data over time. 
+
+    **NOTE:**
+
+    the search feature on the website is excellent
+
+Please recommend any additional references. 
 
 installation
 ------------
