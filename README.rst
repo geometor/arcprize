@@ -29,6 +29,10 @@ could solve these puzzles. But I soon realized the intention in `On the Measure 
 no previous knowledge about the puzzles. If I were to design a system (if I could) then I would be demonstrating my
 intelligence - not that of an agent.
 
+:important: there is a sister repo with all the logs of the puzzle sessions:
+https://github.com/geometor/arcprizesessions
+
+
 
 .. _On the Measure of Intelligence: https://arxiv.org/pdf/1911.01547
 
