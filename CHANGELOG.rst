@@ -19,3 +19,11 @@ changelog
 
 .. + Fixed bug in data processing (`#42 <https://github.com/example/repo/issues/42>`_)
 .. + Improved error handling in API calls
+
+## 0.0.1
+
+- Placeholder for changes
+
+## 0.0.1
+
+- Placeholder for changes
