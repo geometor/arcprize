@@ -1,6 +1,13 @@
+the following are python modules from geometor.arcprize.solvers
+
+the code runs test sessions on the Gemini API and logs the results to the sphinx
+website
+
+
+
 
 ./gemini_solver.py
-```python
+```
 """Dialogue-Based ARC Puzzle Solver
 
 Implements a structured workflow for solving ARC puzzles through conversation
@@ -680,7 +687,7 @@ class FunctionExecutionError(Exception):
 
 
 ./gemini_logger.py
-```python
+```
 from datetime import datetime
 from pathlib import Path
 import json
@@ -1140,7 +1147,7 @@ class Logger:
 
 
 ./gemini_client.py
-```python
+```
 """Google Gemini Model Interface for ARC Challenge
 
 Provides a streamlined interface to Google's Gemini model, configured specifically
@@ -1228,13 +1235,6 @@ class GeminiClient:
 ```
 
 
-the following are python modules 
-
-we want to begin a step by step refactoring to improve the logging / reporting
-
-we especially need to roll up results at the index levels
-
-New Instructions to Append:
 
 # Refactoring and Logging/Reporting Guidelines
 

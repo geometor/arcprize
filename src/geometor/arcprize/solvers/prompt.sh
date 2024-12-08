@@ -2,18 +2,20 @@
 
 function add_file() {
   printf "\n%s\n" "$1"
-  printf "\`\`\`%s\n" "$2"
+  printf "\`\`\`\n"
   cat "$1"
   printf "\`\`\`\n\n"
 }
 
 function main() {
-  add_file ./gemini_solver.py python
-  add_file ./gemini_logger.py python
-  add_file ./gemini_client.py python
+  cat ./prompt_intro.md
   echo
-  cat prompt_instruction.md
+  add_file ./gemini_solver.py
+  add_file ./gemini_logger.py
+  add_file ./gemini_client.py
+  echo
+  cat ./prompt_instruction.md
 }
 
-main > prompt.txt
-cat prompt.txt | xclip -selection clipboard
+main > prompt.md
+cat prompt.md | xclip -selection clipboard

@@ -1,10 +1,3 @@
-the following are python modules 
-
-we want to begin a step by step refactoring to improve the logging / reporting
-
-we especially need to roll up results at the index levels
-
-New Instructions to Append:
 
 # Refactoring and Logging/Reporting Guidelines
 
