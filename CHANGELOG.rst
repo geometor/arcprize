@@ -31,3 +31,14 @@ changelog
 ## 0.0.1
 
 - Placeholder for changes
+
+0.0.2
+-----
+
+:init: 2024.347 
+:merge:
+:pub:
+
+  create new session
+
+- actions
