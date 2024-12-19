@@ -1,0 +1,34 @@
+{{ title }}
+{{ "=" * title|length }}
+
+:puzzle_id: {{ puzzle_id }}
+:timestamp: {{ timestamp }}
+:call_count: {{ call_count }}
+
+Solution Results
+--------------
+
+.. list-table:: Accuracy Metrics
+   :header-rows: 1
+
+   * - Metric
+     - Result
+   * - Size Correct
+     - {{ "✅ Pass" if score.size_correct else "❌ Fail" }}
+   * - Colors Correct
+     - {{ "✅ Pass" if score.colors_correct else "❌ Fail" }}
+   * - Pixel Accuracy
+     - {{ "%.2f"|format(score.pixel_accuracy) }}%
+
+Color Distribution Differences
+---------------------------
+
+.. list-table:: Color Counts
+   :header-rows: 1
+
+   * - Color
+     - Difference
+{% for color, diff in score.unique_color_difference.items() %}
+   * - {{ color }}
+     - {{ diff }}
+{% endfor %}

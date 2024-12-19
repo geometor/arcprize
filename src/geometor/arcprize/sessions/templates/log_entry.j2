@@ -1,0 +1,55 @@
+{{ title }}
+{{ "=" * title|length }}
+
+:puzzle_id: {{ puzzle_id }}
+:description: {{ description }}
+:timestamp: {{ timestamp }}
+:call_count: {{ call_count }}
+
+{% for part in content %}
+{%    if part.type == 'code' %}
+.. code-block::
+
+{{ part.content | indent(4) }}
+
+{%    elif part.type == 'text' %}
+{{ part.content }}
+
+{%    elif part.type == 'image' %}
+.. image:: {{ part.path }}
+   :align: left
+   :width: 45%
+
+{%    else %}
+[{{ part.type }}]
+{%    endif %}
+{% endfor %}
+
+{% if metrics and metrics.timing %}
+.. list-table:: Timing
+   :header-rows: 1
+
+   * - Response Time (s)
+     - Total Elapsed (s)
+   * - {{ metrics.timing.response_time|round(3) }}
+     - {{ metrics.timing.total_elapsed|round(3) }}
+{% endif %}
+
+{% if metrics and metrics.token_counts %}
+.. list-table:: Token Usage
+   :header-rows: 1
+
+   * - Category
+     - Count
+   * - Prompt
+     - {{ metrics.token_counts.prompt }}
+   * - Response
+     - {{ metrics.token_counts.candidates }}
+   * - Total
+     - {{ metrics.token_counts.total }}
+   * - Cached
+     - {{ metrics.token_counts.cached }}
+{% endif %}
+
+
+

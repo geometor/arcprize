@@ -1,0 +1,31 @@
+{{ puzzle_id }}
+{{ "=" * puzzle_id|length }}
+
+Solution Process
+--------------
+
+.. list-table:: Steps
+   :header-rows: 1
+   :widths: 5 45 25 25
+
+   * - Step
+     - Description
+     - Response Time
+     - Tokens
+{% for step in steps %}
+   * - {{ step.call_num }}
+     - {{ step.description }}
+     - {{ "%.2f"|format(step.response_time) }}s
+     - {{ step.tokens_used }}
+{% endfor %}
+
+Total Metrics
+-----------
+
+.. list-table::
+   :header-rows: 0
+
+   * - Total Time
+     - {{ total_response_time }}s
+   * - Total Tokens
+     - {{ total_tokens }}

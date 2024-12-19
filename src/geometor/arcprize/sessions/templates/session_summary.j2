@@ -1,0 +1,39 @@
+Session Results: {{ timestamp }}
+{{ "=" * (16 + timestamp|length) }}
+
+Overall Metrics
+-------------
+
+.. list-table::
+   :header-rows: 0
+
+   * - Total Time
+     - {{ metrics.total_time|round(2) }}s
+   * - Puzzles Attempted
+     - {{ metrics.puzzles_attempted }}
+   * - Puzzles Solved
+     - {{ metrics.puzzles_solved }}
+   * - Average Accuracy
+     - {{ metrics.average_accuracy|round(2) }}%
+   * - Total Tokens
+     - {{ metrics.token_counts.total }}
+
+Results by Puzzle
+---------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 10 10 15 15
+
+   * - Puzzle ID
+     - Success
+     - Steps
+     - Accuracy
+     - Time (s)
+{% for puzzle_id, result in results.items() %}
+   * - {{ puzzle_id }}
+     - {{ "✅" if result.success else "❌" }}
+     - {{ result.total_steps }}
+     - {{ "%.2f"|format(result.accuracy) }}%
+     - {{ "%.2f"|format(result.solution_time) }}
+{% endfor %}
