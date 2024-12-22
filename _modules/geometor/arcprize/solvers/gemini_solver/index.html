@@ -262,8 +262,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_show_examples</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_summarize_examples</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_show_test_input</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_working_grid</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_run_solution_loop</span><span class="p">()</span>
+            <span class="c1">#  self._initialize_working_grid()</span>
+            <span class="c1">#  self._run_solution_loop()</span>
 
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solve failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -309,7 +309,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
                 <span class="n">prompt</span><span class="p">,</span>
                 <span class="n">instructions</span><span class="p">,</span>
-                <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+                <span class="c1">#  tools=&quot;code_execution&quot;,</span>
                 <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -322,7 +322,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
-            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="c1">#  tools=&quot;code_execution&quot;,</span>
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_summary&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -355,7 +355,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
-            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="c1">#  tools=&quot;code_execution&quot;,</span>
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;test input&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -401,7 +401,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_content</span><span class="p">(</span>
             <span class="n">prompt</span><span class="p">,</span>
             <span class="n">instructions</span><span class="p">,</span>
-            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;code_execution&quot;</span><span class="p">,</span>
+            <span class="c1">#  tools=&quot;code_execution&quot;,</span>
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;review working&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
