@@ -146,8 +146,8 @@ class PuzzleSolver:
             self._show_examples()
             self._summarize_examples()
             self._show_test_input()
-            self._initialize_working_grid()
-            self._run_solution_loop()
+            #  self._initialize_working_grid()
+            #  self._run_solution_loop()
 
         except Exception as e:
             print(f"Solve failed: {str(e)}")
@@ -192,7 +192,7 @@ class PuzzleSolver:
             self._generate_content(
                 prompt,
                 instructions,
-                tools="code_execution",
+                #  tools="code_execution",
                 description=f"example_{i}",
             )
 
@@ -205,7 +205,7 @@ class PuzzleSolver:
         self._generate_content(
             prompt,
             instructions,
-            tools="code_execution",
+            #  tools="code_execution",
             description=f"example_summary",
         )
 
@@ -238,7 +238,7 @@ class PuzzleSolver:
         self._generate_content(
             prompt,
             instructions,
-            tools="code_execution",
+            #  tools="code_execution",
             description=f"test input",
         )
 
@@ -284,7 +284,7 @@ updated with your changes
         self._generate_content(
             prompt,
             instructions,
-            tools="code_execution",
+            #  tools="code_execution",
             description=f"review working",
         )
 

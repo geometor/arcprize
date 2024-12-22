@@ -11,55 +11,80 @@ example_prompt = """
 """
 
 example_instructions = """
-Review Examples Phase
+above is a pair of example input and output grids 
 
-pairs of input and output grids will be shown to you one at a time
+- document your initial observations and impressions
+    - begin with a verbal description of your perception of the input and output
+      grid
+- use `code_execution` to examine the grid information and verify the
+  assumptions about size, colors, objects, and transformations. Focus your
+  analysis on aspects like:
 
-you will examine and analyze the text and image for each example
+    - Counting the occurrences of each color.
+    - How to identify the coordinates of pixels that have changed color or position.
+    - Determining if the dimensions of the grid have changed.
+    - Analyzing the count, size, shape, and relative positions of objects (contiguous
+      blocks of the same color).
 
-you may use code execution with tools like numpy to examine patterns
-after examining the grids, document the attributes of each as such
+- since the code you use may not be carried forward on following prompts, be
+  sure to have the code print your findings in the output
+- use what you learn to develop a natural language program of the
+  transformation rule.
+- review your findings and try to determine the natural language description of
+  the transformation rule. How does the information captured in the YAML block
+  inform your understanding of the transformation?
 
-use a yaml block for the details
+use a yaml block to capture details (examples):
 
 ```yaml
 input:
-width: X
-height: Y
-colors:
-  - N: (count)
-objects:
-  - size, position and color - desc
-```
-
-```yaml
-output:
-width: X
-height: Y
-colors:
-  - N: (count)
-objects:
-  - size, position and color - desc
+  width: X
+  height: Y
+  colors:
+    - N: (count)
+  objects:
+    - size, position and color - desc
 ```
 
 ```yaml
 differences:
-cells_changed: N
-colors_changed: desc
-transformation:
-  - speculate on transformation rules
+  cells_changed: N
+  colors_changed: desc
+  transformation:
+    - speculate on transformation rules
 ```
 
-your response for this phase should contain the following content parts
+final step - provide a thorough natural language program
+to tell another intelligent entity how to transform the input grid into the
+output grid
 
-- begin with a verbal description of your perception of the input and output
-  grid
-- run a `code_execution` part to test your perceptions - since the code you use
-  may not be carried forward on following prompts, be sure to have the code
-  print you findings in the output remember that you have access to many python
-  libraries for analyzing the grids and validating patterns
-- review your findings and try to determine what the natural language program
-  is for the transformation
+You will examine and analyze the example grids
+
+For each example pair, your goal is to derive a natural language description of
+the transformation rule that explains how the input is changed to produce the
+output. This "natural language program" should describe the steps or logic
+involved in the transformation. 
+
+the natural language program should be sufficient for an intelligent agent to
+perform the operation of generating an output grid from the input, without the
+benefit of seeing the examples. So be sure that the provide 
+
+- context for understanding the input grid (objects, organization and important colors)
+  particularly context for how to identify the 'objects'
+- process for initializing the output grid (copy from input or set size and
+  fill)
+- describe the color palette to be used in the output
+- describe how to determine which pixels should change in the output
+
+For example, it might state: 
+
+- copy input to working output
+- identify sets of pixels in blue (1) rectangles in working grid
+- identify to largest rectangle
+- set the largest rectangle's pixels to red (2)
+
+But remember - any information that describe the story of the transformations is
+desired. Be flexible and creative. 
 
 """
 
@@ -68,8 +93,40 @@ examples_summary_prompt = """
 """
 
 examples_summary_instructions = """
+This is your chance to review what you have learned from the examples
+
 - summarize your observations to explain the transformation of the input to output
-- use code_execution to investigate properties, patterns and differences in the grids
+- use code_execution to re-investigate properties, patterns and differences in the grids to confirm your predictions
+- generate your final step by step natural language program
+
+Consider the following in this phase:
+
+- **Confidence Assessment:** How confident are you in your derived transformation rule?
+- **Alternative Scenarios:** Did you consider any alternative transformation rules? If so, why did you choose the current one?
+- **Justification:** Briefly explain how your chosen transformation rule leads to the predicted output grid for the test case.
+
+## Ruminate Phase
+During this phase, you should review all examples presented and your findings
+and do your best to validate your natural language program.
+
+consider what you have learned from all the examples provided. This is a crucial phase for identifying consistent patterns and formulating a general rule.
+
+Your primary objective is to review the natural language program you've
+developed
+
+Actively compare the findings from the analysis of each example pair. Identify elements that remain consistent across transformations (invariants) and elements that change.
+
+Formulate multiple hypotheses about the underlying transformation rule that explains the observed input-output relationships.
+
+Use `code_execution` to evaluate and test the proposed transformation stories against all examples. Focus on validating your hypotheses by checking if the predicted output based on your rule matches the actual output for each example. Consider these aspects in your validation:
+
+- Does the rule apply consistently across all examples?
+- Are there any exceptions or inconsistencies?
+- Can the rule be generalized or does it need to be more specific?
+
+If inconsistencies arise, revisit your analysis of the individual examples and refine your hypotheses. The process of understanding the transformation rule is iterative.
+
+Our goal is to arrive at a natural language program that describes the transformation. This program should be a concise and accurate description of the general rule governing the input-to-output transformation.
 """
 
 test_input_prompt = """
@@ -82,8 +139,20 @@ test_input_prompt = """
 """
 
 test_input_instructions = """
-- generate report as per instructions
-- use code_execution to investigate properties
+using the knowledge you have gathered from the previous examples
+and the step by step natural language program
+we want to build the test output grid
+
+- initial the output grid
+  copy input grid or set size
+- set pixels in the output grid as described in the program
+- use code_execution to validate the output - correct configuration of objects
+  and attributes
+- make final adjustments
+  review properties of this grid and compare with examples, 
+  paying attention to similarities and differences in size, colors, and object arrangements.
+- submit final output grid
+
 """
 
 
