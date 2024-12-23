@@ -58,8 +58,7 @@ priors are ones that humans naturally possess, even in childhood.
   Objects can interact or not depending on the circumstances.
 - Goal-directedness
   Objects can be animate or inanimate.
-  Some objects are "agents" - they have intentions and they pursue goals.
-- Numbers & counting
+  Some objects are "agents" - they have intentions and they pursue goals.  - Numbers & counting
   Objects can be counted or sorted by their shape, appearance, or movement using
   basic mathematics like addition, subtraction, and comparison.
 - Basic geometry & topology

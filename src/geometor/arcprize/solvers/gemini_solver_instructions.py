@@ -7,7 +7,8 @@ example_prompt = """
 **output**
 {{ output_grid }}
 
-**observations**
+images:
+
 """
 
 example_instructions = """
