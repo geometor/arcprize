@@ -14,12 +14,12 @@ images:
 example_instructions = """
 above is a pair of example input and output grids 
 
-- document your initial observations and impressions
-    - begin with a verbal description of your perception of the input and output
-      grid
+- document your initial observations and impressions. 
+  begin with a verbal description of your perception of the elements of the grids - objects, colors, relationships, and if possible, the transformation rule
 - use `code_execution` to examine the grid information and verify the
-  assumptions about size, colors, objects, and transformations. Focus your
-  analysis on aspects like:
+  assumptions about size, colors, objects, and transformations. 
+
+- focus your analysis on aspects like:
 
     - Counting the occurrences of each color.
     - How to identify the coordinates of pixels that have changed color or position.
@@ -27,7 +27,7 @@ above is a pair of example input and output grids
     - Analyzing the count, size, shape, and relative positions of objects (contiguous
       blocks of the same color).
 
-- since the code you use may not be carried forward on following prompts, be
+- the code you use in code_execution may not be carried forward on following prompts, be
   sure to have the code print your findings in the output
 - use what you learn to develop a natural language program of the
   transformation rule.
