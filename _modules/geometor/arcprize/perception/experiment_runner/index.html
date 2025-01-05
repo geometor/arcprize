@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>geometor.arcprize.perception.experiment_runner &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -110,17 +110,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
               <h1>Source code for geometor.arcprize.perception.experiment_runner</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rich</span><span class="w"> </span><span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">.puzzles.random_rotate</span> <span class="kn">import</span> <span class="n">generate_puzzle_set</span>
-<span class="kn">from</span> <span class="nn">.models.ollama</span> <span class="kn">import</span> <span class="n">generate_response</span>
-<span class="kn">from</span> <span class="nn">.grids.tools</span> <span class="kn">import</span> <span class="n">grid_to_string</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.puzzles.random_rotate</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_puzzle_set</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models.ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_response</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.grids.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">grid_to_string</span>
 
 
 <div class="viewcode-block" id="test_individual_puzzles">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.perception/#geometor.arcprize.perception.experiment_runner.test_individual_puzzles">[docs]</a>
-<span class="k">def</span> <span class="nf">test_individual_puzzles</span><span class="p">(</span><span class="n">puzzles</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_individual_puzzles</span><span class="p">(</span><span class="n">puzzles</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">correct_answer</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">symbol_set</span><span class="p">,</span> <span class="n">input_grid</span><span class="p">,</span> <span class="n">output_grid</span> <span class="ow">in</span> <span class="n">puzzles</span><span class="p">:</span>
         <span class="n">input_grid_str</span> <span class="o">=</span> <span class="n">grid_to_string</span><span class="p">(</span><span class="n">input_grid</span><span class="p">)</span>
@@ -170,7 +170,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

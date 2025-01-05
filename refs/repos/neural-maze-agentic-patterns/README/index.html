@@ -11,7 +11,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>README.md &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -364,7 +364,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 <section id="using-a-reflection-agent-reflection-pattern">
 <h3>Using a Reflection Agent - Reflection Pattern<a class="headerlink" href="#using-a-reflection-agent-reflection-pattern" title="Link to this heading"></a></h3>
 <p>Here is an example of how to use a Reflection Agent.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns</span> <span class="kn">import</span> <span class="n">ReflectionAgent</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agentic_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReflectionAgent</span>
 
 <span class="n">agent</span> <span class="o">=</span> <span class="n">ReflectionAgent</span><span class="p">()</span>
 
@@ -391,13 +391,13 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 <h3>Creating and Using Tools - Tool Use Pattern<a class="headerlink" href="#creating-and-using-tools-tool-use-pattern" title="Link to this heading"></a></h3>
 <p>An example of how to create a custom tool and bind it to a Tool Agent.</p>
 <p>First, let’s create the tool. In this case, I’ll be creating a tool for interacting with Hacker News. To define a tool, we just need to decorate the Python function with the <code class="docutils literal notranslate"><span class="pre">&#64;tool</span></code>decorator.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">agentic_patterns.tool_pattern.tool</span> <span class="kn">import</span> <span class="n">tool</span>
-<span class="kn">from</span> <span class="nn">agentic_patterns.tool_pattern.tool_agent</span> <span class="kn">import</span> <span class="n">ToolAgent</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentic_patterns.tool_pattern.tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentic_patterns.tool_pattern.tool_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolAgent</span>
 
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">fetch_top_hacker_news_stories</span><span class="p">(</span><span class="n">top_n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_top_hacker_news_stories</span><span class="p">(</span><span class="n">top_n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch the top stories from Hacker News.</span>
 
@@ -454,7 +454,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 <p>The <code class="docutils literal notranslate"><span class="pre">ReactAgent</span></code> is an evolution of the <code class="docutils literal notranslate"><span class="pre">ToolAgent</span></code>, extending its planning and reasoning capabilities.</p>
 <p>As we did before, we’ll begin by defining the tools. In this case, I’ll create three.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">sum_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the sum of two integers.</span>
 
@@ -469,7 +469,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 
 
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">multiply_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply_two_elements</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiplies two integers.</span>
 
@@ -483,7 +483,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
 
 <span class="nd">@tool</span>
-<span class="k">def</span> <span class="nf">compute_log</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_log</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the logarithm of an integer `x` with an optional base.</span>
 
@@ -500,7 +500,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 </pre></div>
 </div>
 <p>Now, let’s create the agent.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns.planning_pattern.react_agent</span> <span class="kn">import</span> <span class="n">ReactAgent</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agentic_patterns.planning_pattern.react_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReactAgent</span>
 
 <span class="n">agent</span> <span class="o">=</span> <span class="n">ReactAgent</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">sum_two_elements</span><span class="p">,</span> <span class="n">multiply_two_elements</span><span class="p">,</span> <span class="n">compute_log</span><span class="p">])</span>
 
@@ -513,7 +513,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
 <p>For the Multiagent Pattern, I decided to use two <a class="reference external" href="https://www.crewai.com/">CrewAI</a>’s abstractions: the Agent and the Crew.</p>
 <p>Additionally, I’ve also borrow some ideas from Airflow, defining the dependency between agents using the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> operator.</p>
 <p>Let’s see an example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">agentic_patterns.multiagent_pattern.crew</span> <span class="kn">import</span> <span class="n">Crew</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">agentic_patterns.multiagent_pattern.crew</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crew</span>
 
 
 <span class="k">with</span> <span class="n">Crew</span><span class="p">()</span> <span class="k">as</span> <span class="n">crew</span><span class="p">:</span>
@@ -591,7 +591,7 @@ the <code class="docutils literal notranslate"><span class="pre">Crew</span></co
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

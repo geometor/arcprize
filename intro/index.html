@@ -11,7 +11,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>investigations into the ARC challenge &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
 
@@ -231,17 +231,17 @@ other web pages related to ARC.</p>
 <h1>usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
 <p>the following is the current script for running the <strong>first six</strong> sessions at
 <a class="reference external" href="https://github.com/geometor/arcprizesessions">arcprizesessions</a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rich</span><span class="w"> </span><span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">geometor.arcprize.puzzles</span> <span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
-<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_solver</span> <span class="kn">import</span> <span class="n">PuzzleSolver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.puzzles</span><span class="w"> </span><span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.solvers.gemini_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">PuzzleSolver</span>
 
 
-<span class="k">def</span> <span class="nf">solve_all_puzzles</span><span class="p">(</span><span class="n">puzzle_set</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_all_puzzles</span><span class="p">(</span><span class="n">puzzle_set</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y.%j.%H%M%S&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">puzzle</span> <span class="ow">in</span> <span class="n">puzzle_set</span><span class="o">.</span><span class="n">puzzles</span><span class="p">:</span>
         <span class="n">solver</span> <span class="o">=</span> <span class="n">PuzzleSolver</span><span class="p">(</span>
@@ -254,7 +254,7 @@ other web pages related to ARC.</p>
         <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
     <span class="n">puzzle_set</span> <span class="o">=</span> <span class="n">PuzzleSet</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">puzzle_set</span><span class="o">.</span><span class="n">puzzles</span><span class="p">)</span><span class="si">}</span><span class="s2"> puzzles&quot;</span><span class="p">)</span>
 
@@ -281,8 +281,8 @@ other web pages related to ARC.</p>
 </div>
 <section id="running-perception-tests">
 <h2>Running Perception Tests<a class="headerlink" href="#running-perception-tests" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">geometor.arcprize.perception</span> <span class="kn">import</span> <span class="n">generate_puzzle_set</span>
-<span class="kn">from</span> <span class="nn">geometor.arcprize.perception.experiment_runner</span> <span class="kn">import</span> <span class="n">test_individual_puzzles</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.perception</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_puzzle_set</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.perception.experiment_runner</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_individual_puzzles</span>
 
 <span class="c1"># Generate test puzzles</span>
 <span class="n">puzzles</span> <span class="o">=</span> <span class="n">generate_puzzle_set</span><span class="p">(</span>
@@ -350,7 +350,7 @@ patterns and relationships in mathematics and nature.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

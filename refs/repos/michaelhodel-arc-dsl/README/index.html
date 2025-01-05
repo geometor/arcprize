@@ -11,7 +11,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>README.md &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -181,7 +181,7 @@
 <section id="example-solver-program-for-task-00d62c1b-written-in-the-dsl">
 <h2>Example solver program for task 00d62c1b written in the DSL<a class="headerlink" href="#example-solver-program-for-task-00d62c1b-written-in-the-dsl" title="Link to this heading"></a></h2>
 <p><img alt="Task 00d62c1b" src="refs/repos/michaelhodel-arc-dsl/00d62c1b.png" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_00d62c1b</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solve_00d62c1b</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
     <span class="n">objs</span> <span class="o">=</span> <span class="n">objects</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">univalued</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="n">F</span><span class="p">,</span> <span class="n">without_bg</span><span class="o">=</span><span class="n">F</span><span class="p">)</span>
     <span class="n">black_objs</span> <span class="o">=</span> <span class="n">colorfilter</span><span class="p">(</span><span class="n">objs</span><span class="o">=</span><span class="n">objs</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">ZERO</span><span class="p">)</span>
     <span class="n">borders</span> <span class="o">=</span> <span class="n">rbind</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">bordering</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">I</span><span class="p">)</span>
@@ -204,7 +204,7 @@
 <section id="another-solver-example-5521c0d9">
 <h2>Another solver example: 5521c0d9<a class="headerlink" href="#another-solver-example-5521c0d9" title="Link to this heading"></a></h2>
 <p><img alt="Task 5521c0d9" src="refs/repos/michaelhodel-arc-dsl/5521c0d9.png" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_5521c0d9</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solve_5521c0d9</span><span class="p">(</span><span class="n">I</span><span class="p">):</span>
     <span class="n">objs</span> <span class="o">=</span> <span class="n">objects</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">univalued</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="n">F</span><span class="p">,</span> <span class="n">without_bgT</span><span class="p">)</span>
     <span class="n">foreground</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">containers</span><span class="o">=</span><span class="n">objs</span><span class="p">)</span>
     <span class="n">empty_grid</span> <span class="o">=</span> <span class="n">cover</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">patch</span><span class="o">=</span><span class="n">foreground</span><span class="p">)</span>
@@ -241,7 +241,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

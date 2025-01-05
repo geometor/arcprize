@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>geometor.arcprize.solvers.gemini_solver &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -134,18 +134,18 @@
 <span class="sd">for cumulative understanding and step-by-step solution development.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rich</span><span class="w"> </span><span class="kn">import</span> <span class="nb">print</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">geometor.arcprize.puzzles</span> <span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.puzzles</span><span class="w"> </span><span class="kn">import</span> <span class="n">Puzzle</span><span class="p">,</span> <span class="n">PuzzleSet</span><span class="p">,</span> <span class="n">Grid</span>
 
-<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_client</span> <span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
-<span class="kn">from</span> <span class="nn">geometor.arcprize.solvers.gemini_logger</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">import</span> <span class="nn">geometor.arcprize.solvers.gemini_solver_instructions</span> <span class="k">as</span> <span class="nn">INST</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.solvers.gemini_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeminiClient</span> <span class="k">as</span> <span class="n">Client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">geometor.arcprize.solvers.gemini_logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geometor.arcprize.solvers.gemini_solver_instructions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">INST</span>
 
 <span class="c1">#  DEFAULT_MODEL = &quot;models/gemini-1.5-flash&quot;</span>
 <span class="n">DEFAULT_MODEL</span> <span class="o">=</span> <span class="s2">&quot;models/gemini-1.5-flash-002&quot;</span>
@@ -155,7 +155,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver">[docs]</a>
-<span class="k">class</span> <span class="nc">PuzzleSolver</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PuzzleSolver</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initialize the PuzzleSolver with all necessary components for solving and logging.</span>
 
@@ -187,7 +187,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">puzzle</span><span class="p">:</span> <span class="n">Puzzle</span><span class="p">,</span>
         <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_MODEL</span><span class="p">,</span>
@@ -250,7 +250,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver.solve">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.solve">[docs]</a>
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Main method to orchestrate the puzzle solving workflow.</span>
 <span class="sd">        Returns the working grid if solution is found, None otherwise.</span>
@@ -271,7 +271,7 @@
             <span class="k">raise</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_show_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_show_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        step 1 - show all training pairs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -313,7 +313,7 @@
                 <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_summarize_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_summarize_examples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        step 2 - summarize observations on pairs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -326,7 +326,7 @@
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;example_summary&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_show_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_show_test_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        step 3 - show test input for eval</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -359,7 +359,7 @@
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;test input&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        step 4 - initialize the working grid for the desired output</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -377,7 +377,7 @@
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;init working&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_show_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_show_working_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_grid_image</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">to_image</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;working_grid&quot;</span>
         <span class="p">)</span>
@@ -405,7 +405,7 @@
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;review working&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_run_solution_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run_solution_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the main solution loop with proper submission handling.</span>
 <span class="sd">        Returns the working grid if solution is found, None otherwise.</span>
@@ -433,7 +433,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max iertions (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iterations</span><span class="si">}</span><span class="s2">) reached without submission&quot;</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">_get_next_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_next_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get and process the next action from the model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -447,7 +447,7 @@
             <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;set pixels&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_generate_content</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_content</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">instructions</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">functions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -619,7 +619,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="n">error_msg</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">MaxRetriesExceededError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_call_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_call_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function_call</span><span class="p">,</span> <span class="n">functions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute a function call with improved error handling.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">functions</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No functions provided&quot;</span><span class="p">)</span>
@@ -643,11 +643,11 @@
     <span class="c1"># TEST FUNCTIONS to call from model #################################</span>
 <div class="viewcode-block" id="PuzzleSolver.initialize_output_from_input">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_from_input">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_output_from_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the test output grid with a copy of the input grid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzle</span><span class="o">.</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_grid</span><span class="o">.</span><span class="n">grid</span><span class="p">))</span>
@@ -657,7 +657,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver.initialize_output_by_size">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.initialize_output_by_size">[docs]</a>
-    <span class="k">def</span> <span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_output_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the test output grid with specific dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -671,7 +671,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver.set_pixel">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_pixel">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set grid value at a specific coordinate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -680,7 +680,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver.set_range">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.set_range">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_range</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_range</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">row1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">row2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">column2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -691,7 +691,7 @@
 
 <div class="viewcode-block" id="PuzzleSolver.submit">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.PuzzleSolver.submit">[docs]</a>
-    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Submit the working grid and check for correctness against the expected output.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -723,7 +723,7 @@
         <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;submit&quot;</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_evaluate_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">working_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span> <span class="n">expected_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_evaluate_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">working_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span> <span class="n">expected_grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the accuracy of the working grid against the expected grid.</span>
 
@@ -780,7 +780,7 @@
 <span class="c1"># Custom exceptions for better error handling</span>
 <div class="viewcode-block" id="MultipleFunctionCallsError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MultipleFunctionCallsError">[docs]</a>
-<span class="k">class</span> <span class="nc">MultipleFunctionCallsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MultipleFunctionCallsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when multiple function calls are detected in a single response.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
@@ -789,7 +789,7 @@
 
 <div class="viewcode-block" id="MaxRetriesExceededError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.MaxRetriesExceededError">[docs]</a>
-<span class="k">class</span> <span class="nc">MaxRetriesExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MaxRetriesExceededError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when maximum retry attempts are exhausted.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
@@ -798,7 +798,7 @@
 
 <div class="viewcode-block" id="UnknownFunctionError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.UnknownFunctionError">[docs]</a>
-<span class="k">class</span> <span class="nc">UnknownFunctionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnknownFunctionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when an unknown function is called.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
@@ -807,7 +807,7 @@
 
 <div class="viewcode-block" id="FunctionArgumentError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionArgumentError">[docs]</a>
-<span class="k">class</span> <span class="nc">FunctionArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FunctionArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when invalid arguments are provided to a function.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
@@ -816,7 +816,7 @@
 
 <div class="viewcode-block" id="FunctionExecutionError">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.solvers.gemini_solver/#geometor.arcprize.solvers.gemini_solver.FunctionExecutionError">[docs]</a>
-<span class="k">class</span> <span class="nc">FunctionExecutionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FunctionExecutionError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a function fails during execution.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
@@ -833,7 +833,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

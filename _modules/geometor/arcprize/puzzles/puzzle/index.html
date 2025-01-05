@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>geometor.arcprize.puzzles.puzzle &mdash; geometor • arcprize</title>
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=f2e8749c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=ea5fcf70" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -120,16 +120,16 @@
 <span class="sd">- :class:`PuzzlePair &lt;geometor.arcprize.puzzles.puzzle.PuzzlePair&gt;`</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">from</span> <span class="nn">.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Grid</span>
 
 
 <div class="viewcode-block" id="PuzzlePair">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.PuzzlePair">[docs]</a>
-<span class="k">class</span> <span class="nc">PuzzlePair</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">input_grid</span><span class="p">,</span> <span class="n">output_grid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PuzzlePair</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">input_grid</span><span class="p">,</span> <span class="n">output_grid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="n">input_grid</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Grid</span><span class="p">(</span><span class="n">output_grid</span><span class="p">,</span> <span class="n">puzzle_id</span><span class="p">,</span> <span class="n">set_type</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
@@ -138,11 +138,11 @@
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">size</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">size_change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">size_change</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -152,11 +152,11 @@
         <span class="p">}</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">colors</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="k">else</span> <span class="nb">set</span><span class="p">())</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">color_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">color_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="n">input_counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">color_counts</span>
@@ -170,8 +170,8 @@
 
 <div class="viewcode-block" id="Puzzle">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.Puzzle">[docs]</a>
-<span class="k">class</span> <span class="nc">Puzzle</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Puzzle</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">train</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">PuzzlePair</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">pair</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span> <span class="n">pair</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">])</span>
@@ -183,21 +183,21 @@
         <span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">all_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_pairs</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">colors</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_pairs</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Puzzle.nice_json_layout">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.Puzzle.nice_json_layout">[docs]</a>
-    <span class="k">def</span> <span class="nf">nice_json_layout</span><span class="p">(</span><span class="n">puzzle</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">matrix_to_json_string</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nice_json_layout</span><span class="p">(</span><span class="n">puzzle</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">matrix_to_json_string</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="s2">&quot;[</span><span class="se">\n</span><span class="s2">&quot;</span>
                 <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;          </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">matrix</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
@@ -244,11 +244,11 @@
 
 <div class="viewcode-block" id="PuzzleSet">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.PuzzleSet">[docs]</a>
-<span class="k">class</span> <span class="nc">PuzzleSet</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PuzzleSet</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">puzzles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_puzzles</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">folder_path</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_load_puzzles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_puzzles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="p">):</span>
         <span class="n">puzzles</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">folder_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.json&quot;</span><span class="p">)):</span>
             <span class="n">puzzle_id</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stem</span>  <span class="c1"># Get filename without extension</span>
@@ -259,19 +259,19 @@
 
 <div class="viewcode-block" id="PuzzleSet.get_ordered_puzzles">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_ordered_puzzles">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_ordered_puzzles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_ordered_puzzles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puzzles</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">key</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PuzzleSet.get_puzzles_by_color_count">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_color_count">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_puzzles_by_color_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_puzzles_by_color_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzles</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span> <span class="o">==</span> <span class="n">count</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="PuzzleSet.get_puzzles_by_size_change">
 <a class="viewcode-back" href="../../../../../modules/geometor.arcprize.puzzles.puzzle/#geometor.arcprize.puzzles.puzzle.PuzzleSet.get_puzzles_by_size_change">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_puzzles_by_size_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_type</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_puzzles_by_size_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change_type</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="n">p</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">puzzles</span>
@@ -294,7 +294,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, geometor.</p>
+    <p>&#169; Copyright 2025, geometor.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
