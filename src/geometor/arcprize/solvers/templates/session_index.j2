@@ -1,31 +1,37 @@
 {{ title }}
 {{ "=" * title|length }}
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-{% for puzzle in puzzles %}
-   {{ puzzle.puzzle_id }}/index
-{% endfor %}
-
 .. list-table:: session puzzles
    :header-rows: 1
-   :widths: 30 20 25 25
 
-   * - Puzzle ID
-     - Steps
-     - Total Time
-     - Total Tokens
-   {% for puzzle in puzzles %}
-   * - :doc:`{{ puzzle.puzzle_id }}/index`
+   * - puzzle
+     - steps
+     - time
+     - tokens
+     - size
+     - colors
+     - pixels
+
+{% for puzzle in puzzles %}
+   * - :doc:`{{ puzzle.id }}/index`
      - {{ puzzle.steps }}
      - {{ puzzle.total_time }}
      - {{ puzzle.total_tokens }}
-   {% endfor %}
-   * - **TOTAL**
-     - {{ total_steps }}
-     - {{ total_time }}
-     - {{ total_tokens }}
+     - {{ "✅" if puzzle.size_correct else "❌" if puzzle.submitted else "-" }}
+     - {{ "✅" if puzzle.colors_correct else "❌" if puzzle.submitted else "-" }}
+     - {{ puzzle.pixel_accuracy if puzzle.submitted else "-" }}
+{% endfor %}
 
+**Session Totals**
 
+- Total Steps: {{ total_steps }}
+- Total Time: {{ total_time }}
+- Total Tokens: {{ total_tokens }}
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+{% for puzzle in puzzles %}
+   {{ puzzle.id }}/index
+{% endfor %}

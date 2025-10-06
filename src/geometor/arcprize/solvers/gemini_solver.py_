@@ -32,7 +32,7 @@ import os
 from geometor.arcprize.puzzles import Puzzle, PuzzleSet, Grid
 
 from geometor.arcprize.solvers.gemini_client import GeminiClient as Client
-from geometor.arcprize.solvers.gemini_logger import Logger, PuzzleSession
+from geometor.arcprize.solvers.gemini_logger import Logger
 import geometor.arcprize.solvers.gemini_solver_instructions as INST
 
 #  DEFAULT_MODEL = "models/gemini-1.5-flash"
@@ -82,21 +82,15 @@ class PuzzleSolver:
         max_iterations: int = 5,
         timestamp: str = None,
         client: Client = None,
-        session: PuzzleSession = None,
+        logger: Logger = None,
     ):
-        # Initialize timestamp
-        self.timestamp = timestamp or datetime.now().strftime("%y.%j.%H%M%S")
+        self.start_time = datetime.now()
+        self.response_times = []  # Track individual response times
 
-        # Initialize PuzzleSession
-        self.session = session or PuzzleSession(output_dir, puzzle.id, self.timestamp)
-        self.session.model_name = model_name
-        self.session.max_iterations = max_iterations
-
-        # Initialize GeminiClient
-        self.client = client or Client(model_name, instructions_file)
-
-        # Initialize Logger using the session
-        self.logger = Logger(self.session)
+        # Initialize Jinja environment using DictLoader for direct string templates
+        #  self.env = Environment(
+        #  loader=DictLoader({"example_prompt": INST.example_prompt})
+        #  )
 
         # Core components
         self.puzzle = puzzle
@@ -106,8 +100,39 @@ class PuzzleSolver:
         self.call_count = 0
         self.current_iteration = 0
 
+        # Initialize GeminiClient
+        self.client = client or Client(model_name, instructions_file)
+
+        # Initialize timestamp
+        self.timestamp = timestamp or datetime.now().strftime("%y.%j.%H%M%S")
+
+        # Initialize Logger
+        self.logger = logger or Logger(
+            output_dir,
+            puzzle.id,
+            self.timestamp,
+        )
+
         # Initialize working state
         self.working_grid = None
+        self.history = []
+
+        # Initialize metadata for logging
+        self.metadata = {
+            "puzzle_id": puzzle.id,
+            "model": model_name,
+            "timestamp": self.timestamp,
+            "max_iterations": max_iterations,
+            "history": [],
+            "grid_states": [],
+            "function_calls": [],
+            "start_time": self.start_time.isoformat(),
+            "response_times": [],
+            "total_elapsed": None,
+        }
+
+        # Initialize token tracking
+        self.token_counts = {"prompt": 0, "candidates": 0, "total": 0, "cached": 0}
 
     def solve(self):
         """
@@ -116,7 +141,7 @@ class PuzzleSolver:
         """
         try:
             # Initialize solving state
-            self.session.history.append(f"Begin puzzle: {self.puzzle.id}\n\n")
+            self.history = [f"Begin puzzle: {self.puzzle.id}\n\n"]
 
             self._show_examples()
             self._summarize_examples()
@@ -126,7 +151,7 @@ class PuzzleSolver:
 
         except Exception as e:
             print(f"Solve failed: {str(e)}")
-            self.logger.log_error(f"Solve failed: {str(e)}", "\n".join(self.session.history))
+            self.logger.log_error(f"Solve failed: {str(e)}", self.history)
             raise
 
     def _show_examples(self):
@@ -305,63 +330,172 @@ updated with your changes
             description=f"set pixels",
         )
 
-    def _generate_content(self, prompt, instructions, tools=None, functions=None, description=""):
+    def _generate_content(
+        self, prompt, instructions, tools=None, functions=None, description=""
+    ):
         """
         Generate content from the model with standardized logging and function call handling.
         """
         MAX_RETRIES = 3
         self.call_count += 1
 
-        # Logging the prompt and instructions
-        self.session.history.extend(prompt)
-        self.session.history.extend(instructions)
+        print(f"{self.call_count} • PROMPT")
+        print("=" * 80)
 
-        log_data = {
-            "call_count": self.call_count,
-            "type": "prompt",
-            "description": description,
-            "content": [{"type": "markdown", "content": part} for part in prompt + instructions],
-        }
-        self.session.add_step(log_data)
-        self.logger.write_rst_log(prompt + instructions, "prompt", self.call_count, description=description)
+        for part in prompt:
+            print(part)
 
-        # Generate content
+        instructions.insert(0, "\nINSTRUCTIONS:\n\n")
+        for part in instructions:
+            print(part)
+
+        # write the prompt file
+        self.logger.write_rst_log(
+            prompt + instructions, "prompt", self.call_count, description=description
+        )
+
+        # write history file
+        total_prompt = self.history + prompt + ["\n\n====\n\n"] + instructions
+        self.history = self.history + prompt
+        self.logger.write_rst_log(
+            total_prompt, "history", self.call_count, description=description
+        )
+
         for attempt in range(MAX_RETRIES):
             try:
                 response_start = datetime.now()
-                response = self.client.generate_content("\n".join(self.session.history), tools=tools)
+                response = self.client.generate_content(
+                    total_prompt,
+                    tools=tools,
+                )
                 response_end = datetime.now()
                 response_time = (response_end - response_start).total_seconds()
 
                 # Update timing metadata
-                self.session.response_times.append(response_time)
+                self.response_times.append(response_time)
+                total_elapsed = (response_end - self.start_time).total_seconds()
 
-                # Update token counts
+                # Update token counts immediately
                 metadata = response.to_dict().get("usage_metadata", {})
-                self.session.token_counts["prompt"] += metadata.get("prompt_token_count", 0)
-                self.session.token_counts["candidates"] += metadata.get("candidates_token_count", 0)
-                self.session.token_counts["total"] += metadata.get("total_token_count", 0)
-                self.session.token_counts["cached"] += metadata.get("cached_content_token_count", 0)
+                self.token_counts["prompt"] += metadata.get("prompt_token_count", 0)
+                self.token_counts["candidates"] += metadata.get(
+                    "candidates_token_count", 0
+                )
+                self.token_counts["total"] += metadata.get("total_token_count", 0)
+                self.token_counts["cached"] += metadata.get(
+                    "cached_content_token_count", 0
+                )
 
-                # Log response
+                # Save response with current totals
                 response_data = response.to_dict()
-                response_data["token_totals"] = self.session.token_counts.copy()
+                response_data["token_totals"] = self.token_counts.copy()
                 response_data["timing"] = {
                     "response_time": response_time,
-                    "response_times": self.session.response_times.copy(),
+                    "total_elapsed": total_elapsed,
+                    "response_times": self.response_times.copy(),
                 }
 
                 self.logger.save_response(response_data, self.call_count)
 
-                # Handle function calls in response
-                # ... rest of the function ...
+                response_parts = []
+                function_call_found = False
+                last_result = None
 
-                return response
+                if hasattr(response.candidates[0].content, "parts"):
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            response_parts.append(part.text + "\n")
+                        if part.executable_code:
+                            response_parts.append("code_execution:\n")
+                            response_parts.append(
+                                f"```python\n{part.executable_code.code}\n```\n"
+                            )
+                        if part.code_execution_result:
+                            response_parts.append(
+                                f"code_execution_result: {part.code_execution_result.outcome}\n"
+                            )
+                            response_parts.append(
+                                f"```\n{part.code_execution_result.output}\n```\n"
+                            )
+                        if part.function_call:
+                            #  if function_call_found:
+                            #  # More than one function call found - this should trigger a retry
+                            #  raise MultipleFunctionCallsError(
+                            #  "Multiple function calls detected"
+                            #  )
+
+                            function_call_found = True
+                            response_parts.append("function_call:\n")
+                            response_parts.append(part.function_call.name + "\n")
+
+                            result, msg = self._call_function(
+                                part.function_call, functions
+                            )
+                            last_result = msg
+
+                            response_parts.append("\nresult:\n")
+                            response_parts.append(f"{result}\n")
+                            response_parts.append(f"{msg}\n")
+
+                            if msg == "submit":
+                                break
+
+                # If functions were provided but no function call was found
+                if functions and not function_call_found and attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nNo function call found in your response. Please provide exactly one function call using the available functions.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(
+                        f"\nRetrying function call request (attempt {attempt + 2}/{MAX_RETRIES})"
+                    )
+                    continue
+
+                # Log the response
+                print(f"{self.call_count} • RESPONSE")
+                print("-" * 80)
+                for part in response_parts:
+                    print(part)
+                self.history = self.history + response_parts
+
+                self.logger.write_rst_log(
+                    response_parts,
+                    "response",
+                    self.call_count,
+                    {
+                        "current": metadata,
+                        "totals": self.token_counts,
+                        "timing": {
+                            "response_time": response_time,
+                            "total_elapsed": total_elapsed,
+                        },
+                        "model": self.model_name,
+                    },
+                    description=description,
+                )
+
+                return last_result
+
+            except MultipleFunctionCallsError as e:
+                if attempt < MAX_RETRIES - 1:
+                    retry_prompt = total_prompt + [
+                        "\nPlease provide exactly one function call in your response.\n"
+                    ]
+                    total_prompt = retry_prompt
+                    print(
+                        f"\nRetrying due to multiple function calls (attempt {attempt + 2}/{MAX_RETRIES})"
+                    )
+                    continue
+                else:
+                    print(f"\nERROR: {str(e)} - Max retries exceeded")
+                    self.logger.log_error(str(e), prompt)
+                    raise
 
             except Exception as e:
                 print(f"\nERROR generating content: {str(e)}")
-                self.logger.log_error(str(e), "\n".join(self.session.history))
+                self.logger.log_error(str(e), prompt)
                 raise
+
         # If we get here, we've exhausted retries without success
         error_msg = "Failed to get valid function call after maximum retries"
         print(f"\nERROR: {error_msg}")

@@ -5,78 +5,6 @@ from m2r2 import convert
 from jinja2 import Environment, PackageLoader
 
 
-class PuzzleSession:
-    """
-    A central object to hold all data related to a puzzle solving session.
-    """
-
-    def __init__(self, output_dir: str, puzzle_id: str, timestamp: str = None):
-        self.output_dir = Path(output_dir)
-        self.puzzle_id = puzzle_id
-        self.timestamp = timestamp or datetime.now().strftime("%y.%j.%H%M%S")
-
-        # Metadata
-        self.start_time = datetime.now()
-        self.end_time = None
-        self.model_name = ""
-        self.max_iterations = 0
-        self.response_times = []
-
-        # State tracking
-        self.history = []
-        self.steps = []  # List of steps taken, each step is a dictionary
-        self.token_counts = {"prompt": 0, "candidates": 0, "total": 0, "cached": 0}
-
-        # Ensure output directory exists
-        self._ensure_directory_structure()
-
-    def _ensure_directory_structure(self):
-        self.session_dir = self.output_dir / "sessions" / self.timestamp
-        self.puzzle_dir = self.session_dir / self.puzzle_id
-        (self.puzzle_dir / "_images").mkdir(
-            parents=True, exist_ok=True
-        )  # Create _images directory
-        self.session_dir.mkdir(parents=True, exist_ok=True)
-        self.puzzle_dir.mkdir(parents=True, exist_ok=True)
-
-    def to_dict(self):
-        """Return the entire session data as a dictionary."""
-        return {
-            "puzzle_id": self.puzzle_id,
-            "timestamp": self.timestamp,
-            "start_time": self.start_time.isoformat(),
-            "end_time": self.end_time.isoformat() if self.end_time else None,
-            "model_name": self.model_name,
-            "max_iterations": self.max_iterations,
-            "response_times": self.response_times,
-            "history": self.history,
-            "steps": self.steps,
-            "token_counts": self.token_counts,
-        }
-
-    def save_session_json(self):
-        """Save the current session as a JSON file."""
-        session_file = self.session_dir / "session.json"
-        with open(session_file, "w") as f:
-            json.dump(self.to_dict(), f, indent=2)
-
-    def add_step(self, step_data: dict):
-        """Add a step to the session."""
-        self.steps.append(step_data)
-        self.history.append(f"Step {len(self.steps)}: {step_data['description']}")
-        self.save_session_json()
-
-    def log_error(self, error_message: str, details: str = ""):
-        """Log an error to the session."""
-        error_data = {
-            "type": "error",
-            "message": error_message,
-            "details": details,
-            "timestamp": datetime.now().isoformat(),
-        }
-        self.add_step(error_data)
-
-
 class Indexer:
     """
     Manages the creation and updating of session, puzzle, and main index files.
@@ -331,24 +259,24 @@ class Indexer:
     def write_detailed_results(self, puzzle_dir: Path):
         """Generate detailed results page for a puzzle."""
         # Get puzzle data from submission file and response files
-        submission_file = next(puzzle_dir.glob("*-submission.rst"), None)
+        submission_file = next(puzzle_dir.glob('*-submission.rst'), None)
         if not submission_file:
             return
 
-        response_files = sorted(puzzle_dir.glob("_reponses/*-response.json"))
+        response_files = sorted(puzzle_dir.glob('_reponses/*-response.json'))
         final_response = json.load(open(response_files[-1])) if response_files else {}
 
         # Get images
-        test_input = next(puzzle_dir.glob("_images/*-test_input.png"), "").name
-        working_output = next(puzzle_dir.glob("_images/*-working_grid.png"), "").name
+        test_input = next(puzzle_dir.glob('_images/*-test_input.png'), '').name
+        working_output = next(puzzle_dir.glob('_images/*-working_grid.png'), '').name
 
         # Parse submission data
         with open(submission_file) as f:
             submission_content = f.read()
 
         # Get final history from last history file
-        history_files = sorted(puzzle_dir.glob("*-history.rst"))
-        final_history = ""
+        history_files = sorted(puzzle_dir.glob('*-history.rst'))
+        final_history = ''
         if history_files:
             with open(history_files[-1]) as f:
                 final_history = f.read()
@@ -357,124 +285,83 @@ class Indexer:
         interaction_summary = self._generate_interaction_summary(puzzle_dir)
 
         # Render template
-        template = self.env.get_template("puzzle_result.j2")
+        template = self.env.get_template('puzzle_result.j2')
         content = template.render(
             puzzle_id=puzzle_dir.name,
             test_input_image=test_input,
             submitted_output_image=working_output,
-            expected_output_image="expected.png",  # You'll need to generate this
+            expected_output_image='expected.png',  # You'll need to generate this
             steps=len(response_files),
             total_time=f"{sum(r.get('timing', {}).get('response_time', 0) for r in response_files):.2f}s",
-            total_tokens=final_response.get("token_totals", {}).get("total", 0),
+            total_tokens=final_response.get('token_totals', {}).get('total', 0),
             size_correct=True,  # Parse from submission
             colors_correct=True,  # Parse from submission
             pixel_accuracy="83.2%",  # Parse from submission
             color_counts={},  # Parse from submission
             interaction_summary=interaction_summary,
-            final_history=final_history,
+            final_history=final_history
         )
 
-        results_path = puzzle_dir / "results.rst"
-        with open(results_path, "w") as f:
+        results_path = puzzle_dir / 'results.rst'
+        with open(results_path, 'w') as f:
             f.write(content)
 
     def _generate_interaction_summary(self, puzzle_dir: Path) -> str:
         """Generate a summary of key interactions from prompt/response pairs."""
         summary = []
-        response_files = sorted(puzzle_dir.glob("*-response.json"))
+        response_files = sorted(puzzle_dir.glob('*-response.json'))
 
         for response_file in response_files:
-            call_num = response_file.stem.split("-")[0]
-            prompt_file = puzzle_dir / f"{call_num}-prompt.rst"
+            call_num = response_file.stem.split('-')[0]
+            prompt_file = puzzle_dir / f'{call_num}-prompt.rst'
 
             if prompt_file.exists():
                 with open(prompt_file) as f:
                     content = f.read()
                     description = next(
-                        (
-                            line.split(":description:")[1].strip()
-                            for line in content.split("\n")
-                            if line.startswith(":description:")
-                        ),
-                        "Step",
+                        (line.split(':description:')[1].strip()
+                         for line in content.split('\n')
+                         if line.startswith(':description:')),
+                        'Step'
                     )
-                    summary.append(f"- Step {call_num}: {description}")
+                    summary.append(f'- Step {call_num}: {description}')
 
-        return "\n".join(summary)
-
+        return '\n'.join(summary)
 
 class Logger:
-    def __init__(self, puzzle_session: PuzzleSession):
-        self.session = puzzle_session
+    def __init__(self, output_dir: str, puzzle_id: str, timestamp: str):
+        self.output_dir = Path(output_dir)
+        self.puzzle_id = puzzle_id
+        self.timestamp = timestamp
+
+        self._ensure_directory_structure()
+
+        self.indexer = Indexer(output_dir, puzzle_id, timestamp)
         self.image_registry = {}
-        # Set up Jinja environment
-        self.env = Environment(
-            loader=PackageLoader("geometor.arcprize.solvers", "templates"),
-        )
+
+    def _ensure_directory_structure(self):
+        """Create required directories if they don't exist."""
+        # Setup directory structure
+        self.sessions_dir = self.output_dir / "sessions"
+        self.session_dir = self.sessions_dir / self.timestamp
+        self.puzzle_dir = self.session_dir / self.puzzle_id
+        self.images_dir = self.puzzle_dir / "_images"
+        self.responses_dir = self.puzzle_dir / "_responses"
+
+        self.sessions_dir.mkdir(parents=True, exist_ok=True)
+        self.session_dir.mkdir(parents=True, exist_ok=True)
+        self.puzzle_dir.mkdir(parents=True, exist_ok=True)
+        self.images_dir.mkdir(parents=True, exist_ok=True)
+        self.responses_dir.mkdir(parents=True, exist_ok=True)
 
     def save_response(self, response: dict, call_count: int):
         """Save raw response data as JSON."""
-        response_file = self.session.puzzle_dir / f"{call_count:03d}-response.json"
+        response_file = self.responses_dir / f"{call_count:03d}-response.json"
+
         with open(response_file, "w") as f:
             json.dump(response, f, indent=2)
 
-        # Update session with response metadata
-        self.session.token_counts["prompt"] += response.get("usage_metadata", {}).get(
-            "prompt_token_count", 0
-        )
-        self.session.token_counts["candidates"] += response.get(
-            "usage_metadata", {}
-        ).get("candidates_token_count", 0)
-        self.session.token_counts["total"] += response.get("usage_metadata", {}).get(
-            "total_token_count", 0
-        )
-        self.session.token_counts["cached"] += response.get("usage_metadata", {}).get(
-            "cached_content_token_count", 0
-        )
-        self.session.response_times.append(
-            response.get("timing", {}).get("response_time", 0)
-        )
-        self.session.save_session_json()
-
-    def write_rst_log(
-        self, log_list: list, log_type: str, call_count: int, description=""
-    ):
-        """Write log as RST file and handle any images."""
-        parts = []
-        for part in log_list:
-            if isinstance(part, str):
-                parts.append({"type": "markdown", "content": part})
-            elif hasattr(part, "save"):  # PIL Image object
-                rel_path = self.save_grid_image(
-                    part, call_count, f"grid_{len(self.image_registry)}"
-                )
-                parts.append({"type": "image", "path": str(rel_path)})
-
-        # Prepare the data for logging and add it to the session
-        log_data = {
-            "call_count": call_count,
-            "type": log_type,
-            "description": description,
-            "content": parts,
-        }
-        self.session.add_step(log_data)
-
-        # Render the content with Jinja2
-        template = self.env.get_template("log_entry.j2")
-        title = f"{call_count:03d} • {log_type.title()}"
-        content = template.render(
-            puzzle_id=self.session.puzzle_id,
-            timestamp=self.session.timestamp,
-            call_count=call_count,
-            title=title,
-            log_list=parts,
-            description=description,
-        )
-
-        # Write the rendered content to the file
-        log_file = self.session.puzzle_dir / f"{call_count:03d}-{log_type}.rst"
-        with open(log_file, "w") as f:
-            f.write(content)
+        self.indexer.update_indices()
 
     def save_grid_image(self, grid_image, call_count: int, context: str) -> Path:
         """
@@ -502,25 +389,157 @@ class Logger:
 
         # Create new file if image hasn't been saved before
         filename = f"{call_count:03d}-{context}.png"
-        image_path = self.session.puzzle_dir / "_images" / filename
-        image_path.parent.mkdir(
-            parents=True, exist_ok=True
-        )  # Ensure _images directory exists
+        image_path = self.images_dir / filename
         grid_image.save(image_path)
 
         # Store relative path for RST references
-        rel_path = image_path.relative_to(self.session.puzzle_dir)
+        rel_path = image_path.relative_to(self.puzzle_dir)
         self.image_registry[image_bytes] = rel_path
 
+        #  self.indexer.update_indices()
         return rel_path
 
+    def write_rst_log(
+        self,
+        log_list: list,
+        log_type: str,
+        call_count: int,
+        usage_data=None,
+        description="",
+    ):
+        """Write log as RST file and handle any images.
 
-# Example usage
-if __name__ == "__main__":
-    session = PuzzleSession(output_dir="./output", puzzle_id="puzzle_001")
-    logger = Logger(puzzle_session=session)
+        parameters
+        ----------
+        log_list : list
+            The list of log content parts (strings, images, etc.)
+        log_type : str
+            The type of log (e.g., "prompt", "response")
+        call_count : int
+            The call count for naming the log file
+        usage_data : dict, optional
+            Data related to model usage (e.g., token counts, timing)
+        """
+        # Prepare data for the template
+        parts = []
+        for part in log_list:
+            if isinstance(part, str):
+                if part.startswith("[["):  # Grid display - preserve as code block
+                    parts.append({"type": "code", "content": part})
+                else:
+                    try:
+                        # Convert markdown to RST
+                        rst_content = convert(part, escape_html=True)
+                        parts.append({"type": "markdown", "content": rst_content})
+                    except Exception as e:
+                        print(f"Warning: Markdown conversion failed: {str(e)}")
+                        parts.append({"type": "markdown", "content": part})
 
-    # Example of adding a log
-    logger.write_rst_log(
-        ["This is a test log."], "response", call_count=1, description="Test log entry."
-    )
+            elif hasattr(part, "save"):  # PIL Image object
+                rel_path = self.save_grid_image(
+                    part, call_count, f"grid_{len(self.image_registry)}"
+                )
+                parts.append({"type": "image", "path": str(rel_path)})
+
+            else:
+                parts.append({"type": "unknown", "content": f"[{type(part).__name__}]"})
+
+        # Prepare usage data for the template
+        timing = None
+        token_usage = []
+
+        if usage_data:
+            if "timing" in usage_data:
+                timing = usage_data["timing"]
+
+            if "current" in usage_data and "totals" in usage_data:
+                current = usage_data["current"]
+                totals = usage_data["totals"]
+                token_usage = [
+                    {
+                        "label": "Prompt",
+                        "current": current["prompt_token_count"],
+                        "total": totals["prompt"],
+                    },
+                    {
+                        "label": "Response",
+                        "current": current["candidates_token_count"],
+                        "total": totals["candidates"],
+                    },
+                    {
+                        "label": "Total",
+                        "current": current["total_token_count"],
+                        "total": totals["total"],
+                    },
+                    {
+                        "label": "Cached",
+                        "current": current["cached_content_token_count"],
+                        "total": totals["cached"],
+                    },
+                ]
+
+        # Render the content with Jinja2
+        template = self.indexer.env.get_template("log_entry.j2")
+        title = f"{call_count:03d} • {log_type.title()}"
+        content = template.render(
+            puzzle_id=self.puzzle_id,
+            timestamp=self.timestamp,
+            call_count=call_count,
+            title=title,
+            log_list=parts,
+            usage_data=usage_data,
+            timing=timing,
+            token_usage=token_usage,
+            description=description,
+        )
+
+        # Write the rendered content to the file
+        log_file = self.puzzle_dir / f"{call_count:03d}-{log_type}.rst"
+        with open(log_file, "w") as f:
+            f.write(content)
+
+        # Update indices after writing the log
+        self.indexer.update_indices()
+
+    def _get_image_count(self, call_count: int) -> int:
+        """
+        Get the next available image number for this call.
+
+        parameters
+        ----------
+
+        """
+        pattern = f"{call_count:03d}-*.png"
+        existing_images = list(self.images_dir.glob(pattern))
+        return len(existing_images) + 1
+
+    def _add_navigation_links(self, file, log_type: str, call_count: int):
+        """Add appropriate navigation links based on log type."""
+        file.write("\n.. seealso::\n\n")
+        if log_type == "prompt":
+            file.write(f"   - :doc:`{call_count:03d}-history`\n")
+            file.write(f"   - :doc:`{call_count:03d}-response`\n\n")
+        elif log_type == "response":
+            file.write(f"   - :doc:`{call_count:03d}-history`\n")
+            file.write(f"   - :doc:`{call_count:03d}-prompt`\n\n")
+        elif log_type == "history":
+            file.write(f"   - :doc:`{call_count:03d}-prompt`\n")
+            file.write(f"   - :doc:`{call_count:03d}-response`\n\n")
+
+    def log_error(self, error_message: str, context: str = ""):
+        """Log an error message to a file.
+
+        parameters
+        ----------
+        error_message : str
+            The error message to be logged.
+        context : str
+            Additional context or history information to provide.
+
+        """
+        error_log_file = self.session_dir / "error_log.txt"
+        with open(error_log_file, "a") as f:
+            f.write(f"[{datetime.now().isoformat()}] ERROR: {error_message}")
+            if context:
+                f.write(f"Context: {context}")
+            f.write(" ")
